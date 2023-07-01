@@ -3,8 +3,8 @@
 NtQueryInformationProcess_run_example - dump.png
 ![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/dump.png)
 
-<i>Dodaj ten kod po lini 80, czyli po printf("%zu \n", sizeof(PVOID));</i><br>
-Te struktury i pola biore jak IMAGE_DOS_SIGNATURE są w winnt.h
+<i>Dodaj ten kod po lini 85, czyli po printf("%zu \n", sizeof(PVOID));</i><br>
+Te struktury i pola bitowe jak IMAGE_DOS_SIGNATURE są w winnt.h
 ```
 IMAGE_DOS_HEADER *idh = (IMAGE_DOS_HEADER*)hdr;			
 printf("e_magic: %p %p %d %d %p\n", idh, image, IMAGE_DOS_SIGNATURE, idh->e_magic, idh->e_lfanew);
