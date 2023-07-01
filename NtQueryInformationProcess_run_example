@@ -1,0 +1,127 @@
+// za każdym razem jak chcę coś pogrzebać w NtQueryInformationProcess nie pamiętam jak leci implementacja tego
+// w linii 23 jest PID 5996 trzeba zmienić to na jakiś inny preces. W przykładzie testowałem to na prostej aplikacji
+// int main() { while(1); } skompilowanej i uruchomionej w drugiej konsoli CMD. Akurat to był właśnie PID 5996.
+// W linii 32 jest (BYTE*)pbi.PebBaseAddress + 16 - dla 32 bitowego procesu chyba będzie to 8 ale dla 64 chyba jest to 16
+// w liniach 74 i 79 jest 	LPVOID new_image = (BYTE*)image + 247; i to jest wskaźnik na pole które ma zwracać nagłówek "PE"
+
+#include <windows.h>
+#include <stdio.h>
+#include <psapi.h>
+#include <winternl.h>
+#include <cstdint>
+
+typedef NTSTATUS(*MYPROC)(HANDLE, PROCESSINFOCLASS, PVOID, ULONG, PULONG);
+
+volatile int counter = 0;
+
+DWORD WINAPI _open_proc()
+{
+	MYPROC ProcAdd;
+	HINSTANCE hinstLib = LoadLibrary(TEXT("ntdll.dll"));
+	if (hinstLib != NULL) {
+		ProcAdd = (MYPROC)GetProcAddress(hinstLib, "NtQueryInformationProcess");
+		if (ProcAdd != NULL) {
+			//printf("1");
+			HANDLE h = OpenProcess(PROCESS_ALL_ACCESS | PROCESS_QUERY_INFORMATION | PROCESS_VM_READ |
+				PROCESS_VM_WRITE | PROCESS_VM_OPERATION, FALSE, 5996);
+			PROCESS_BASIC_INFORMATION pbi;
+			DWORD data_length = 0;
+			(ProcAdd)(h, ProcessBasicInformation, &pbi, sizeof(pbi), &data_length);
+			printf("%x %d \n", pbi.PebBaseAddress, pbi.UniqueProcessId);
+			printf("%p \n", pbi.PebBaseAddress+4+(8*4));
+
+			LPVOID image = 0;
+			SIZE_T ret2 = 0;
+			ReadProcessMemory(h, (BYTE*)pbi.PebBaseAddress + 16, &image, sizeof(image), &ret2);
+			printf("%x %p %d \n", image, image, ret2);
+
+			BYTE hdr[0x1000];
+			BYTE c1 = 0;
+			BYTE c2 = 0;
+			ReadProcessMemory(h, image, hdr, sizeof(hdr), &ret2);
+			for (int i = 0; i < 500; i++) {
+				printf("%hhx ", hdr[i]);
+				// szukaj bajtow PE
+				
+				//if (c1 == 50 || c1 == 45 && c2 == 50 || c2 == 45) {
+				//	printf("xxxaaaaaaaaaaaaaaaaaaaaaaaax\n");
+				//	break;
+				//}
+				//if (c1 == 45 || c1 == 50) {
+					//printf("-------------bajty %x %x \n", c1, c2);
+				//}
+					if (c1 == 0x45 && c2 == 0x50) {
+						//printf("[][][][][][]");
+						printf("[ %c %c %d ] \n", c2, c1, counter);
+				}
+
+					if (i > 0) {
+						c1 = hdr[i];
+						c2 = hdr[i - 1];
+					}
+				// counter up 
+					counter++;
+			}
+
+			IMAGE_NT_HEADERS64 *inth64 = (IMAGE_NT_HEADERS64*)image;
+			DWORD head = 0;
+			ReadProcessMemory(h, inth64, &head, 4, NULL);
+			printf("inth64 | %p  %x\n", inth64, head);
+
+			printf("calc addres %p %p \n", head, head + 247);
+
+			//unsigned long new_image = image + 250;
+			LPVOID new_image = (BYTE*)image + 247;
+			printf("%x \n", new_image);
+
+
+			// to jest chyba wlasciwy kod dla tej struktury
+			IMAGE_NT_HEADERS64* inth64_b = (IMAGE_NT_HEADERS64*)new_image;
+			DWORD head_b = 0;
+			ReadProcessMemory(h, inth64_b, &head_b, 4, NULL);
+			printf("inth64 bbbb | %p  %x\n", inth64_b, head_b);
+
+			printf("%zu \n", sizeof(PVOID));
+			//printf("%p \n", pbi.PebBaseAddress->Ldr->InMemoryOrderModuleList);
+
+			//pbi.PebBaseAddress.
+#define LEN 1000
+			BYTE buf[LEN];
+			SIZE_T ret_val;
+			ReadProcessMemory(h, pbi.PebBaseAddress, buf, sizeof(buf), &ret_val);
+
+			printf("%zu \n", ret_val);
+			for (int i = 0; i < LEN; i++) {
+				printf("%hhx ", buf[i]);
+			}
+
+			//LIST_ENTRY le = pbi.PebBaseAddress->Ldr->InMemoryOrderModuleList;
+			//printf("%p \n", le.Flink);
+
+			FreeLibrary(hinstLib);
+		}
+	}
+
+	
+
+	//PROCESS_BASIC_INFORMATION pbi;
+	//DWORD ret;
+	//NtQueryInformationProcess(h, ProcessBasicInformation, &pbi, sizeof(pbi), &ret);
+
+	//printf("%d \n", pbi.PebBaseAddress);
+
+	return 0;
+
+}
+
+int main()
+{
+
+	printf("sizeo fo dword %zu \n", sizeof(DWORD));
+
+	_open_proc();
+
+	
+
+	return 0;
+}
