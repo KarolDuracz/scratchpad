@@ -20,3 +20,14 @@ e_magic: 000000B6B3A0E0F0 00007FF6B9400000 23117 23117 00000000000000F8<br />
 Czyli pobrane pola są takie same jak IMAGE_DOS_SIGNATURE i IMAGE_NT_SIGNATURE. W ten sposób można dostawać się do pól tych struktur.
 http://pinvoke.net/default.aspx/Structures.IMAGE_DOS_HEADER
 Ten offset 0xf8 z idh->e_lfanew jest ten sam który obliczyłem "ręcznie" tylko mi wyszło 247.
+<br /><br />
+https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-image_optional_header32
+```
+IMAGE_NT_HEADERS32 *inh32 = (IMAGE_NT_HEADERS32*)((BYTE*)hdr + idh->e_lfanew);
+printf("%d %d \n", inh32->Signature, IMAGE_NT_SIGNATURE);
+printf("%p %d %p %d\n", inh32->OptionalHeader.AddressOfEntryPoint,
+inh32->OptionalHeader.SizeOfImage, inh32->OptionalHeader.ImageBase, inh32->OptionalHeader.SizeOfCode);
+```
+0000000000011276 159744 0000000000007FF7 37376
+<hr>
+...
