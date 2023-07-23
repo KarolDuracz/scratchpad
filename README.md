@@ -32,6 +32,8 @@ inh32->OptionalHeader.SizeOfImage, inh32->OptionalHeader.ImageBase, inh32->Optio
 ```
 0000000000011276 159744 0000000000007FF7 37376
 <hr>
+![ntqueryinfo_example2.png](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/ntqueryinfo_example2.png)
+
 update 23-07-2023 - 
 <b>NtQueryInformationProcess_run_example</b>
 <br />
