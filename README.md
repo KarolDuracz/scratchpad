@@ -3,6 +3,8 @@
 NtQueryInformationProcess_run_example - dump.png
 ![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/dump.png)
 
+<b>64 bit - dla 32 bitowego procesu offsety są inne i nie wczyta adresu PEB a co z tym idzie reszty odczytywanej przez ReadProcessMemory.</b>
+
 <i>Dodaj ten kod po lini 85, czyli po printf("%zu \n", sizeof(PVOID));</i><br>
 Te struktury i pola bitowe jak IMAGE_DOS_SIGNATURE są w winnt.h
 ```
