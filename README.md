@@ -32,4 +32,12 @@ inh32->OptionalHeader.SizeOfImage, inh32->OptionalHeader.ImageBase, inh32->Optio
 ```
 0000000000011276 159744 0000000000007FF7 37376
 <hr>
-...
+update 23-07-2023 - 
+<b>NtQueryInformationProcess_run_example</b>
+<br />
+Linie 145-147 - odczytanie linii poleceń. To jest przydatne gdy aplikacja kest wywoływana z argumentami, a tak jest np przy otwarciu pliku w notatniku (nie pustego notatnika, tylko pliku .txt). Tak samo proces msedge.exe, czyli przeglądarka internetowa, w lini poleceń jest sporo informacji do wyciągnięcia.
+```
+ReadProcessMemory(h, rupp.CommandLine.Buffer, cmd, rupp.CommandLine.Length - 2, &rb4);
+
+printf("%d %ws\n", rb4, cmd);
+```
