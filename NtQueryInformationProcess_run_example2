@@ -1,0 +1,206 @@
+#include <windows.h>
+#include <stdio.h>
+#include <subauth.h>
+
+typedef enum _PROCESSINFOCLASS {
+	ProcessBasicInformation = 0
+} PROCESSINFOCLASS;
+
+typedef void (__kernel_entry WINAPI* PGNSI)(
+	HANDLE           ProcessHandle,
+	PROCESSINFOCLASS ProcessInformationClass,
+	PVOID            ProcessInformation,
+	ULONG            ProcessInformationLength,
+	PULONG           ReturnLength
+	);
+
+typedef struct _PROCESS_BASIC_INFORMATION {
+	PVOID Reserved1;
+	PVOID PebBaseAddress;
+	PVOID Reserved2[2];
+	ULONG_PTR UniqueProcessId;
+	PVOID Reserved3;
+} PROCESS_BASIC_INFORMATION;
+
+typedef struct _RTL_USER_PROCESS_PARAMETERS {
+	BYTE           Reserved1[16];
+	PVOID          Reserved2[10];
+	UNICODE_STRING ImagePathName;
+	UNICODE_STRING CommandLine;
+} RTL_USER_PROCESS_PARAMETERS, * PRTL_USER_PROCESS_PARAMETERS;
+
+typedef struct _PEB_LDR_DATA {
+	BYTE       Reserved1[8];
+	PVOID      Reserved2[3];
+	LIST_ENTRY InMemoryOrderModuleList;
+} PEB_LDR_DATA, * PPEB_LDR_DATA;
+
+// https://msdn.microsoft.com/en-us/library/windows/desktop/aa813706.aspx
+typedef struct _PEB {
+	BYTE Reserved1[2];
+	BYTE BeingDebugged;
+	BYTE Reserved2[1];
+	PVOID Reserved3[2];
+	PVOID Ldr;
+	PRTL_USER_PROCESS_PARAMETERS ProcessParameters;
+	BYTE Reserved4[104];
+	PVOID Reserved5[52];
+	PVOID PostProcessInitRoutine;
+	BYTE Reserved6[128];
+	PVOID Reserved7[1];
+	ULONG SessionId;
+} PEB, * PPEB;
+
+typedef struct _LDR_DATA_TABLE_ENTRY {
+	PVOID Reserved1[2];
+	LIST_ENTRY InMemoryOrderLinks;
+	PVOID Reserved2[2];
+	PVOID DllBase;
+	PVOID EntryPoint;
+	PVOID Reserved3;
+	UNICODE_STRING FullDllName;
+	BYTE Reserved4[8];
+	PVOID Reserved5[3];
+	union {
+		ULONG CheckSum;
+		PVOID Reserved6;
+	};
+	ULONG TimeDateStamp;
+} LDR_DATA_TABLE_ENTRY, * PLDR_DATA_TABLE_ENTRY;
+
+
+
+int _hook()
+{
+	PGNSI pGNSI;
+
+	HINSTANCE his = LoadLibrary(L"ntdll.dll");
+
+	pGNSI = (PGNSI)GetProcAddress(his, "NtQueryInformationProcess");
+	
+	printf("%x %x \n", his, pGNSI);
+
+	HANDLE h = OpenProcess(PROCESS_VM_READ | PROCESS_QUERY_INFORMATION, FALSE, 10632);
+
+	PROCESS_BASIC_INFORMATION pbi;
+	pGNSI(h, ProcessBasicInformation, &pbi, sizeof(pbi), NULL);
+
+	printf("%d %d \n", pbi.PebBaseAddress == NULL, pbi.UniqueProcessId);
+
+	// read process memory 
+	PEB peb;
+	SIZE_T read_bytes;
+	BOOL res = ReadProcessMemory(h, pbi.PebBaseAddress, &peb, sizeof(peb), &read_bytes);
+
+	LPCVOID ImageBase = 0;
+	SIZE_T read_bytes2 = 0;
+	res = ReadProcessMemory(h, (BYTE*)pbi.PebBaseAddress, &ImageBase, sizeof(ImageBase), &read_bytes2); 
+
+	printf("%lld \n", read_bytes);
+
+	printf("%p %lld \n", ImageBase, read_bytes2);
+
+	BYTE hdrs_buf[0x100]; // 0x1000 PAGE_SIZE
+	res = ReadProcessMemory(h, ImageBase, hdrs_buf, sizeof(hdrs_buf), &read_bytes2);
+
+	printf("%s \n", hdrs_buf);
+	/*for (int i = 0; i < sizeof(hdrs_buf); i++) {
+		printf("%c ", hdrs_buf[i]);
+	}*/
+
+	//IMAGE_DOS_SIGNATURE
+
+	int i = 0;
+	while (hdrs_buf[i++] != '\0') {
+		//i++;
+	}
+	printf("%d \n", i);
+
+	for (int x = i; x >= 0; x--) {
+
+		//printf("%d ", (hdrs_buf[x]));
+	}
+
+	printf("%d %p \n", peb.SessionId, peb.ProcessParameters);
+	printf("%p \n", peb.Ldr);
+
+	// zp 247
+	RTL_USER_PROCESS_PARAMETERS rupp;
+	SIZE_T red_bytes3 = 0;
+
+	printf("%p \n", peb.ProcessParameters);
+
+	ReadProcessMemory(h, peb.ProcessParameters, &rupp, sizeof(rupp), &red_bytes3);
+
+	printf("%d \n", red_bytes3);
+
+	// i teraz mam chyba dostęp do rupp
+	printf("%d \n", rupp.CommandLine.Length);
+
+	WCHAR* cmd = new WCHAR[rupp.CommandLine.Length];
+	memset(cmd, 0, rupp.CommandLine.Length * sizeof(WCHAR));
+
+	SIZE_T rb4 = 0;
+
+	ReadProcessMemory(h, rupp.CommandLine.Buffer, cmd, rupp.CommandLine.Length - 2, &rb4);
+
+	printf("%d %ws\n", rb4, cmd);
+
+	//printf("%ws \n", (WCHAR)rupp.CommandLine.Buffer);
+
+	// ok, to jeszcze raz PEB + 8 ? Co to jest?
+	printf("%x \n", pbi.PebBaseAddress);
+	//printf("%x \n", peb.)
+
+	LPVOID IB = 0;
+	SIZE_T rb5 = 0;
+	//ReadProcessMemory(h, peb.)
+	printf("%p \n", peb.Ldr);
+
+	PEB_LDR_DATA pld;
+	ReadProcessMemory(h, peb.Ldr, &pld, sizeof(pld), &rb5);
+
+	printf("%d \n", rb5);
+
+	printf("%p %p \n", pld.InMemoryOrderModuleList.Flink, pld.InMemoryOrderModuleList.Blink);
+
+	// próbuje rozkminic przyklad z inniznieria wsteczna stroyn 236 - 237
+	LDR_DATA_TABLE_ENTRY ldte;
+	LDR_DATA_TABLE_ENTRY ldteB;
+	SIZE_T rb6;
+	SIZE_T rb7;
+	ReadProcessMemory(h, pld.InMemoryOrderModuleList.Flink, &ldte, sizeof(ldte), &rb6);
+
+	ReadProcessMemory(h, pld.InMemoryOrderModuleList.Blink, &ldteB, sizeof(ldteB), &rb7);
+
+	printf("%d %p \n", rb6, ldte.EntryPoint);
+	printf("%d %p \n", rb7, ldteB.EntryPoint);
+
+	BYTE xbuf[0x100];
+	SIZE_T rb8;
+	ReadProcessMemory(h, ldte.EntryPoint, &xbuf, sizeof(xbuf), &rb8);
+
+	printf("%d \n", rb8);
+
+	// image nt header
+	IMAGE_NT_HEADERS32 inh32;
+	SIZE_T rb10;
+
+	// ImageBase ???? address
+	ReadProcessMemory(h, (BYTE*)pbi.PebBaseAddress + 8, &inh32, sizeof(inh32), &rb10);
+
+	printf("%d \n", rb10);
+
+	IMAGE_OPTIONAL_HEADER32 opt = inh32.OptionalHeader;
+	printf("%p %x \n", opt.AddressOfEntryPoint, opt.AddressOfEntryPoint);
+
+	return 0;
+
+}
+
+int main()
+{
+	_hook();
+
+	return 0;
+}
