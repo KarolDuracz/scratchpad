@@ -44,3 +44,7 @@ Linie 145-147 - odczytanie linii poleceń. To jest przydatne gdy aplikacja jest 
 ReadProcessMemory(h, rupp.CommandLine.Buffer, cmd, rupp.CommandLine.Length - 2, &rb4);
 printf("%d %ws\n", rb4, cmd);
 ```
+
+<hr>
+
+![EnumWindows_img.png](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/EnumWindows_img.png)
