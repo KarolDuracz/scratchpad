@@ -47,6 +47,6 @@ printf("%d %ws\n", rb4, cmd);
 
 <hr>
 
-![EnumWindows_img.png](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/EnumWindows_img.png)
+![EnumWindows_img.png](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/EnumWindows_img-a.png)
 
 Jeśli chciałbym znaleźć aktualnie otwartą kartę w przeglądarce, aktualnie aktywne okno i to co widnieje w "title" to jak to zrobić? Okazuje się że EnumWindows w tej formie wyciągnie te informacje, ale potrzeba moim zdaniem jest jeszcze kolejna funkcja PrintProcessNameAndID która zwraca ściżkę do procesu (ścieżkę uruchomionego programu np. msedge.exe) oraz PID. Dzięki temu można w dalszym kroku powiązać ze sobą te dwa wyniki zwracane przez funkcje i filtrować (wyszukiwać) konkretnego PID, w tym przypadku dla procesu "msedge.exe", jeśi chcę znać aktualną nawzę otwartego okna. To jest tylko mały przykład od czego zacząć.
