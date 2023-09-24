@@ -1,0 +1,93 @@
+#include <string>
+#include <iostream>
+#include <windows.h>
+#include <stdio.h>
+#include <psapi.h>
+#include <tchar.h>
+
+
+void PrintProcessNameAndID(DWORD processID)
+{
+    TCHAR szProcessName[MAX_PATH] = TEXT("<unknown>");
+
+    // Get a handle to the process.
+
+    HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION |
+        PROCESS_VM_READ,
+        FALSE, processID);
+
+    // Get the process name.
+
+    if (NULL != hProcess)
+    {
+        HMODULE hMod;
+        DWORD cbNeeded;
+        char buf[1024]; // path to file process
+
+        if (EnumProcessModules(hProcess, &hMod, sizeof(hMod),
+            &cbNeeded))
+        {
+            GetModuleBaseName(hProcess, hMod, szProcessName,
+                sizeof(szProcessName) / sizeof(TCHAR));
+        }
+
+        DWORD hj = GetProcessImageFileNameA(hProcess, buf, sizeof(buf));
+        printf("%s \n", buf);
+
+        // find pattern msedge for example
+        std::string s = buf;
+        std::cout << s.find("edge") << std::endl;
+
+    }
+
+    // Print the process name and identifier.
+
+    _tprintf(TEXT("%s  (PID: %u)\n"), szProcessName, processID);
+
+    // Release the handle to the process.
+
+    CloseHandle(hProcess);
+}
+
+
+static BOOL CALLBACK enumWindowCallback(HWND hWnd, LPARAM lparam) {
+    int length = GetWindowTextLength(hWnd);
+    std::cout << length << std::endl;
+    char* buffer = new char[300];
+    GetWindowTextW(hWnd, (LPWSTR)buffer, length + 1);
+    
+    printf("%ws ", buffer);
+   
+    DWORD pid = 0;
+    GetWindowThreadProcessId(hWnd, &pid);
+
+    //printf("[%d]", pid);
+
+   
+    return TRUE;
+}
+
+int main() {
+    std::cout << "Enmumerating windows..." << std::endl;
+    EnumWindows(enumWindowCallback, NULL);
+    //std::cin.ignore();
+
+    TCHAR szProcessName[MAX_PATH] = TEXT("<unknown>");
+
+    DWORD aProcesses[1024], cbNeeded, cProcesses;
+    if (EnumProcesses(aProcesses, sizeof(aProcesses), &cbNeeded));
+    cProcesses = cbNeeded / sizeof(DWORD);
+
+
+    for (int i = 0; i < cProcesses; i++)
+    {
+        if (aProcesses[i] != 0)
+        {
+            PrintProcessNameAndID(aProcesses[i]);
+        }
+    }
+
+
+    return 0;
+}
+
