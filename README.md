@@ -57,6 +57,10 @@ Gdyby użyć polecenia CMD <b>tasklist /v</b> to nie dostaniemy wystarczajaco in
 
 <hr>
 
+![tasklist verbose.png](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/another_way_to_track_windows.png)
+
+Może to jest najlepsza opcja żeby śledzić otwarte okna w systemie Windows. Jest najbardziej oczywista. Oprócz nazwy okna, PID procesu w drugiej lini jest nazwa procesu, żeby miec pewność który dokładnie proces był w danym momencie był zapisywany w logach / które okno było aktualnie na pierwszym planie wyświetlane. Czyli dostajemy w ten sposób nazwy otwartych stron (nie adresy, ale nazwy z title) oraz nazwę i PID procesu.
+
 ```
 #define _CRT_SECURE_NO_WARNINGS
 #include <string>
