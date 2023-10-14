@@ -16,4 +16,4 @@ W lini 19 trzeba zmienić ścieżkę do folderu logów `strcat(log_buf, "c:\\__b
 
 <br /><br/>
 TODO<br />
-Aplikacja jednowątkowa - minusy - Funkcja MessageBox blokuje wątek. Do póki okno nie zniknie wątek nie jest w stanie wykonywać obliczenia czasu który wyświetla okno co 15 minut w tym przypadku. Dlatego trzeba podzielić program na funkcje które zajmują się np obliczaniem czasu, jak timery, innny wątek wyświetlaniem okienek itd. Wtedy gdy okno jest wyświetlone inny watek mimo to pracować i liczyć delte czasu - &#916;t
+Aplikacja jednowątkowa - minusy - Funkcja MessageBox blokuje wątek. Do póki okno nie zniknie wątek nie jest w stanie wykonywać obliczenia czasu który wyświetla okno co 15 minut w tym przypadku. Dlatego trzeba podzielić program na funkcje które zajmują się np obliczaniem czasu, jak timery, innny wątek wyświetlaniem okienek itd. Wtedy gdy okno jest wyświetlone inny watek mimo to będzie pracować i liczyć delte czasu - &#916;t
