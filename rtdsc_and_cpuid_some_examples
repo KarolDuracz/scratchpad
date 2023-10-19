@@ -1,0 +1,143 @@
+#include <Windows.h>
+#include <stdio.h>
+#include <intrin.h>
+
+#define PP(x1, x2) \
+	printf("%d %d \n", (x1), (x2));
+
+
+int  main()
+{
+
+	int buf[4];
+	__cpuid(buf, 0x80000002);
+
+	for (int i = 0; i < 4; i++) {
+		printf("%d %x \n", i, buf[i]);
+	}
+
+	/*for (int i = 0; i < 4; i++) {
+		int c1 = buf[i] & 0xff000000;
+		printf("%c %x %d \n", c1, buf[i] & 0xff000000, (c1 >> 24));
+	}*/
+	
+	long num = 0x0f00;
+	for (int i = 0; i < 31; i++) {
+		printf("[ bit test ] %d \n", _bittest(&num, i));
+	}
+
+	// how to convert 0b00000111000  to digital representation
+	const char number[] = "0b0011001011";
+	char reversed_number[32];
+	// reversed
+	int j = 0;
+	for (int i = sizeof(number); i > 0; i--) {
+		printf("%c ", number[i]);
+		reversed_number[j++] = number[i];
+	}
+	reversed_number[j] = '\0';
+
+	int __digit_normal = 0;
+	for (int i = 0; i < sizeof(reversed_number); i++) {
+		if (reversed_number[i] == 'b') break;
+		if (reversed_number[i] & 1) {
+			__digit_normal += (1 << i);
+			printf("index %d \n", i);
+		}
+		printf("%c ", reversed_number[i]);
+	}
+
+	printf("\n");
+	printf("%d \n", __digit_normal);
+	printf("\n");
+
+	// no reversed
+	int digit = 0;
+	int len = 2;
+	for (int i = 0; i < sizeof(number); i++) {
+		if (i >= 2 && number[1] == 'b') {
+			if (number[i] == '\0') {
+				break;
+			}
+			if (number[i] & 1) {
+				digit += (1 << i);
+				printf(" selected index : %d \n", i);
+			}
+			//digit = digit << number[i];
+			printf(" [ >> ] %c %d\n", number[i], len++);
+		}
+	}
+	printf("%zu %d\n", sizeof(number), digit);
+
+	char buff[4];
+
+	// 0 20202020
+	//	1 49202020
+	//	2 6c65746e
+	//	3 20295228
+
+	int step = 0;
+	int base = 0x6c65746e;
+	int k = 0x000000ff;
+	int idx = 0;
+	for (int i = 0; i < 4; i++) {
+		int mask = (k << step);
+		buff[idx] = ((base & mask) >> step) & 0xff;
+		int c = ((base & mask) >> step) & 0xff;
+		printf("%d %c\n", c, c);
+		idx++;
+		printf("%x \n", ((base & mask) >> step) & 0xff);
+		step += 8;
+	}
+
+	printf("==> %d \n", buff);
+
+	// reverse
+	for (int i = 3; i >= 0; i--) {
+		printf("%c", buff[i]);
+	}
+	printf("\n ------------------ \n");
+	for (int i = 0; i <=  3; i++) {
+		printf("%c", buff[i]);
+	}
+
+	/*if (p == NULL)
+		return 1;*/
+
+	//printf("%d %x \n", p,  GetLastError());
+	/*
+	unsigned __int64 start = __rdtsc();
+	unsigned __int64 end;
+
+	HANDLE p = OpenThread(THREAD_QUERY_INFORMATION | THREAD_SUSPEND_RESUME, FALSE, GetCurrentThreadId());
+
+	int k = 0;
+	for (int i = 0; i < 1000000; i++) {
+		k++;
+	}
+
+	end = __rdtsc();
+
+	printf("%I64d %I64d %I64d \n", start, end, (end-start));
+
+	SuspendThread(p);
+
+	start = __rdtsc();
+
+	k = 0;
+	for (int i = 0; i < 1000000; i++) {
+		k++;
+	}
+
+	end = __rdtsc();
+
+	printf("%I64d %I64d %I64d \n", start, end, (end - start));
+
+	SuspendThread(p);
+
+	//while (1);
+	*/
+
+	return 0;
+
+}
