@@ -1,3 +1,5 @@
+// https://learn.microsoft.com/pl-pl/cpp/intrinsics/cpuid-cpuidex?view=msvc-170
+
 #include <Windows.h>
 #include <stdio.h>
 #include <intrin.h>
@@ -20,7 +22,8 @@ int  main()
 		int c1 = buf[i] & 0xff000000;
 		printf("%c %x %d \n", c1, buf[i] & 0xff000000, (c1 >> 24));
 	}*/
-	
+
+	// _bittest - https://learn.microsoft.com/en-us/cpp/intrinsics/bittest-bittest64?view=msvc-170
 	long num = 0x0f00;
 	for (int i = 0; i < 31; i++) {
 		printf("[ bit test ] %d \n", _bittest(&num, i));
