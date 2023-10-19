@@ -30,6 +30,9 @@ int  main()
 	}
 
 	// how to convert 0b00000111000  to digital representation
+	// like python bin(0x0f00) > '0b111100000000'
+	// and backward '0b111100000000' > 0x0f00 (3840)
+	// but this example is a bug
 	const char number[] = "0b0011001011";
 	char reversed_number[32];
 	// reversed
