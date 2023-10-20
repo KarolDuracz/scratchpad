@@ -1,4 +1,5 @@
 // https://learn.microsoft.com/pl-pl/cpp/intrinsics/cpuid-cpuidex?view=msvc-170
+// https://www.intel.com/content/dam/develop/external/us/en/documents/architecture-instruction-set-extensions-programming-reference.pdf
 
 #include <Windows.h>
 #include <stdio.h>
@@ -8,10 +9,27 @@
 	printf("%d %d \n", (x1), (x2));
 
 
+// #define __X86__MACHINE 
+
 int  main()
 {
 
+	// only debug mode 
+	// set project to x86 and define __X86__MACHINE macro to run this asm code
+	// MS Studio 2022 - Project Properties > Configuration Manager > set to x86 platform
+	// retrivered:
+	// 	EAX, EBX, ECD, EDX - Processor Brand String
+	// for 0x80000002 code my CPU Intel i3 2220 the brand id -> Intel(R) 
+#ifdef __X86__MACHINE
+	__asm {
+		mov eax, 0x80000002
+		cpuid
+		int 3
+	}
+#endif
+
 	int buf[4];
+	// tabela z kodami - drugi parametr funkcji __cpuid jest manualu architecture-instruction-set-extensions-program...
 	__cpuid(buf, 0x80000002);
 
 	for (int i = 0; i < 4; i++) {
