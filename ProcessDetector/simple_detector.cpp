@@ -517,6 +517,29 @@ void __send_input_test()
 
 }
 
+void __get_curent_active_monitor(HWND hwnd)
+{
+
+	// first screen dimension 1600 x 900
+	// mierzę czas przebywania na obszarze, czyli na którym monitorze jest kursor
+	// i na tej podstawie określam czy mam na prawej kliknąć czy po lewej
+	// tylko co z rozmiarem okna... 
+
+	/*POINT point;
+	GetCursorPos(&point);
+	
+	LASTINPUTINFO last_inp;
+	last_inp.cbSize = sizeof(LASTINPUTINFO);
+	GetLastInputInfo(&last_inp);*/
+
+	RECT rect;
+	GetWindowRect(hwnd, &rect);
+
+	std::cout << " get active monitor info " << rect.bottom << " " << rect.top << " " << rect.left << " " << rect.right << std::endl;
+
+	
+}
+
 int main()
 {
 
@@ -601,6 +624,7 @@ int main()
 			printf("%d %s %s\n", counter, buf, _cur_buf);
 			__get_local_time();
 			__open_handler(hwnd);
+			__get_curent_active_monitor(hwnd);
 			__get_cursor_pos();
 			__send_input_mouse_down();
 			__send_input_test();
