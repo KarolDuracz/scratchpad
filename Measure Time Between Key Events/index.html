@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Measure Time Between Key Events</title>
+	<style>
+	input[type=text] {
+		width: 200px;
+		height: 100px;
+		box-sizing: border-box;
+		border-radius: 4px;
+		padding: 16px 32px;
+	}
+	textarea {
+		position: fixed;
+		width: 500px;
+		height: 350px;
+		padding: 6px 10px;
+		box-sizing: border-box;
+		border: 1px solid red;
+		border-radius: 4px;
+		background-color: #f8f8f8;
+		font-size: 12px;
+		resize: none;
+	}
+	#example {
+		position: fixed;
+		left: 600px;
+		width: 650px;
+		height: 350px;
+		padding: 6px 10px;
+		box-sizing: border-box;
+		border: 1px solid red;
+		border-radius: 4px;
+		background-color: #f8f8f8;
+		font-size: 12px;
+		resize: none;
+	}
+	#stats {
+		position: fixed;
+		left: 50px;
+		top: 450px;
+		width: 650px;
+		height: 150px;
+		border: 1px solid black;
+		border-radius: 4px;
+		font-size: 14px;
+		padding: 3px 2px;
+	}
+	div {
+		position: -webkit-sticky; /* Safari */
+		position: sticky;
+		float:left;
+	}
+	#start {
+		position: fixed;
+		left: 750px;
+		top: 30px;
+	}
+	#stop {
+		position: fixed;
+		left: 830px;
+		top: 30px;
+	}
+	#app_is_running {
+		position: fixed;
+		left: 920px;
+		top: 30px;
+	}
+	#current_line {
+		position: fixed;
+		left: 750px;
+		top: 450px;
+		width: 450px;
+		height: 60px;
+		border: 1px solid black;
+		border-radius: 4px;
+		font-size: 12px;
+		padding: 3px 5px;
+	}
+	#example_line {
+		position: fixed;
+		left: 750px;
+		top: 530px;
+		width: 450px;
+		height: 60px;
+		border: 1px solid black;
+		border-radius: 4px;
+		font-size: 12px;
+		padding: 3px 5px;
+	}
+	#interval_timer {
+		position: fixed;
+		left: 1150px;
+		top: 30px;
+	}
+	</style>
+</head>
+<body>
+    <h1>Measure Time Between Key Events</h1>
+    <!-- <input type="text" id="userInput" placeholder="Type something..."> --!>
+	<form>
+		<textarea id="training_area"></textarea>
+	</form>
+	<!-- example --!>
+	<form>
+		<textarea id="example"></textarea>
+	</form>
+	<!-- stats --!>
+	<div id="stats">
+		<div><u>STATYSTYKA</u></div><br />
+		<div>Czas ostatniego kliknięcia:&nbsp;</div><div id="lc1">0</div>&nbsp;ms<br />
+		<div>Średni czas na linie:&nbsp;</div><div id="lc2">-1</div>&nbsp;ms<br />
+		<div>Średni czas na minutę:&nbsp;</div><div id="lc3">-1</div>&nbsp;ms<br />
+		<div>Średni czas wszystkich kliknięć:&nbsp;</div><div id="lc4">0&nbsp;ms</div><br />
+		<div><b>Ilość wszystkich kliknięć:&nbsp;</b></div><div id="lc5">0&nbsp;</div><br />
+		<div>Ile razy był wciśnięty backspace:&nbsp;</div><div id="lc6">0&nbsp;</div><br />
+		<div>Błędy w liniach:&nbsp;</div><div id="lc7">0&nbsp;</div>
+	</div>
+	
+	<div id="app_is_running">Click start button</div>
+	<button id="start">START</button>
+	<button id="stop">STOP</button>
+	<div id="interval_timer">00:00</div>
+	
+	<div>
+		<div id="current_line">current line</div>
+		<div id="example_line">example line</div>
+	</div>
+	
+    <script type="module">
+	
+		//const glob_arr_tok_bad = []; // globala tablica na indeksy danej lini z bledami
+		//const glob_arr_tok_good = [];
+		const map1 = new Map();
+		
+		const time_last_click_for_file = [];
+		const collect_every_keydown_click_for_file = [];
+		const collect_every_keydown_click_by_code_for_file = [];
+	
+		const DEFAULT_TAB_SIZE = 4;
+		const TAB_LENGTH = DEFAULT_TAB_SIZE // 4
+		const INTERVAL_SPEED = 1000; // for tests set to 10
+		const HOW_MINUTES = 15; // for test set to 1
+		const TIME_LENGTH_FOR_TASK = (HOW_MINUTES * 60) * INTERVAL_SPEED; // 15 minut w milisekundach
+		
+		var tab_key_click_counter = 0; // potrzebne bo domyslnie w tym ustawieniu robi 2 x tab
+
+		const total_time = [];
+		const total_events = [];
+		var total_time_counter = 0;
+		var total_events_counter = 0;
+		var total_sum = 0;
+		
+		// array for matches lines
+		const example_arr = [];
+		const training_arr = [];
+		
+		// backspace counter
+		var counter_of_backspace = 0;
+		
+		// interval 
+		var interval = 0;
+		
+		var timer_a = TIME_LENGTH_FOR_TASK;
+		function myTimer() {
+			//const d = new Date();
+			//document.getElementById("interval_timer").innerHTML = d.toLocaleTimeString();
+			timer_a = timer_a - INTERVAL_SPEED;
+			document.getElementById("interval_timer").innerHTML = (timer_a);
+			// if timer == 0
+			if (timer_a <= 0) {
+				//clearInterval(interval);
+				document.getElementById("interval_timer").innerHTML = " KONIEC CZASU ";
+			}
+		}
+		
+		// str to hash - https://www.geeksforgeeks.org/how-to-create-hash-from-string-in-javascript/
+		function stringToHash(string) {
+			let hash = 0;
+			if (string.length == 0) return hash;
+			for (var i = 0; i < string.length; i++) {
+				var char = string.charCodeAt(i);
+				hash = ((hash << 5) - hash) + char;
+				hash = (hash & hash); 
+			}
+			return hash; // ale na razie nic z tego bo to nie unsigned INT
+		}
+				
+		// button start == counter running
+		var start_button_on = 0;	
+		function startBtn(event) { 
+			start_button_on = 1; 
+			var app_is_running_div = document.getElementById("app_is_running");
+			app_is_running_div.innerText = "APP IS RUNNING...";
+			app_is_running_div.style.color = "blue";
+			interval = setInterval(myTimer, INTERVAL_SPEED);
+		}	
+		function stopBtn(event) { 
+			var app_is_running_div = document.getElementById("app_is_running");
+			app_is_running_div.innerText = "APP IS STOPPED";
+			app_is_running_div.style.color = "red";
+			start_button_on = 0; 
+			clearInterval(interval); // clear interval
+			
+			// Date
+			console.log(new Date().toString());
+			var date = new Date();
+			var year = date.getFullYear();
+			var month = date.getMonth(); // June is 5 ??? 
+			month = month + 1;
+			var day = date.getDate();
+			var hours = date.getHours();
+			var minutes = date.getMinutes();
+			var seconds = date.getSeconds();
+			var new_date = year+""+month+""+day+""+hours+""+minutes+""+seconds;
+			console.log( year + " " + month + " " + day + " " + new_date + " | hash " + stringToHash(new_date));
+			// save to file some data - time
+			const link = document.createElement("a");
+			const file = new Blob([time_last_click_for_file], { type: 'text/plain' });
+			link.href = URL.createObjectURL(file);
+			link.download = "time"+new_date+".txt";
+			link.click();
+			URL.revokeObjectURL(link.href);
+			// save to file some data - key_codes
+			const link1 = document.createElement("a");
+			const file1 = new Blob([collect_every_keydown_click_by_code_for_file], { type: 'text/plain' });
+			link1.href = URL.createObjectURL(file1);
+			link1.download = "key_codes"+new_date+".txt";
+			link1.click();
+			URL.revokeObjectURL(link1.href);
+		}
+		
+		// add buttons Events
+		var start_btn = document.getElementById("start");
+		var stop_btn = document.getElementById("stop");
+		start_btn.addEventListener("click", startBtn);
+		stop_btn.addEventListener("click", stopBtn);
+		
+		/* początkowa rozkmina ale wszystko źle */
+		function cmpString1() { 
+			var current_line_number = tr_match_data.length;
+			// musi byc sprawdzenie ilosci lini -- bo w ten sposob jak przeskocze ilosc linii wzgledem example
+			// pokazuje UNDEFINED. Nic sie nie dzieje przez to ale bedzie zliczalo bledy porownujac tutaj tekst
+			console.log(" match data " + ex_match_data.length + " " + tr_match_data.length); 
+			var last_line_ex = ex_match_data[tr_match_data.length-1];
+			var curr_line_to_match = tr_match_data[tr_match_data.length-1];
+			console.log(" == > " + last_line_ex + " " + curr_line_to_match);
+			console.log(" ktory string jest dluzszy " + last_line_ex.length + " " + curr_line_to_match.length);
+			// to nie jest normalny scanriusz bo to oznacza ze uzytkownik wpisal wiecej znakow linii (poki co robie to dla siebie a nie na github wiec)
+			// wiec nie bede sprawdzal czy ktos nacisnal enter albo co ma zrobic zeby sie cofnac znowu do tej linii
+			// ale pierwsze podejscie jakie zrobilem do tego wydaje sie ok bo indeksy beda dzialaly po cofnieciu sie (chyba)
+			if (curr_line_to_match.length > last_line_ex.length) {
+				var good_char_in_seq = 0;
+				var count_mistakes = 0;
+				//const tmp_arr_for_bad = []
+				for (var i = 0; i < curr_line_to_match.length-1; i++) {
+					var curr_line_div = document.getElementById("current_line");
+					var example_line_div = document.getElementById("example_line");
+					curr_line_div.innerText =  curr_line_to_match;
+					example_line_div.innerText =  last_line_ex;		
+					if (last_line_ex.charAt(i) === curr_line_to_match.charAt(i)) {
+						good_char_in_seq += 1;
+					} else {
+						//console.log(" ========> " + i + " " + curr_line_div.textContent + " " + curr_line_div.textContent[i]);
+						// cos nie dziala ta zmiana kolorow
+						//curr_line_div.innerHTML = curr_line_div.innerHTML.replace(curr_line_div.textContent[i-1], '<span style="color: red;">'+curr_line_div.textContent[i-1]+'</span>');
+						//tmp_arr_for_bad.push(i);
+						count_mistakes += 1;
+					}
+				}
+				console.log(count_mistakes + " " + good_char_in_seq + " <<<< zmiana na dluzsa sekwencji niz przyklad !!!!!!!!!");
+			} else {
+				var good_char_in_seq = 0;
+				var count_mistakes = 0;
+				const tmp_arr_for_bad = []
+				for (var i = 0; i < last_line_ex.length; i++) {
+					console.log(last_line_ex.charAt(i) === curr_line_to_match.charAt(i));
+					var curr_line_div = document.getElementById("current_line");
+					var example_line_div = document.getElementById("example_line");
+					curr_line_div.innerText =  curr_line_to_match;
+					example_line_div.innerText =  last_line_ex;						
+					//console.log( " element 0 " + curr_line_div.textContent[0]);
+					//curr_line_div.innerHTML = curr_line_div.innerHTML.replace(curr_line_div.textContent[0], '<span style="color: red;">'+curr_line_div.textContent[0]+'</span>');
+					// check errors
+					if (last_line_ex.charAt(i) === curr_line_to_match.charAt(i)) {
+						good_char_in_seq += 1;
+					} else {
+						//console.log(" ========> " + i + " " + curr_line_div.textContent + " " + curr_line_div.textContent[i]);
+						// cos nie dziala ta zmiana kolorow
+						//curr_line_div.innerHTML = curr_line_div.innerHTML.replace(curr_line_div.textContent[i-1], '<span style="color: red;">'+curr_line_div.textContent[i-1]+'</span>');
+						//tmp_arr_for_bad.push(i);
+						count_mistakes += 1;
+					}
+				}
+				//console.log(tmp_arr_for_bad);
+				//console.log(tmp_arr_for_bad.length);
+				//glob_arr_tok_bad.push({"line":current_line_number,idx:tmp_arr_for_bad})
+				/*
+					To też nie dziala bo trzeba jakos litera po literze i przerywac peltle
+					ale nie robic tego w locie poki co tylko policzyc bledy i tyle
+				// next step
+				console.log(tmp_arr_for_bad);
+				console.log(tmp_arr_for_bad.length);
+				if (tmp_arr_for_bad.length > 0) {
+					var curr_line_div = document.getElementById("current_line");					
+					for (var i = 0; i < tmp_arr_for_bad.length-1; i++) {
+						console.log(curr_line_div.textContent[i]);
+						if (i > curr_line_div.textContent.length) {
+							//console.log("stop");
+							break;
+						}
+						curr_line_div.innerHTML.replace(curr_line_div.textContent[i], '<span style="color: red;">'+curr_line_div.textContent[i]+'</span>');
+					}
+				}
+				*/
+				console.log(count_mistakes + " " + good_char_in_seq + " <<<< ");
+			}
+			
+			/*for (var i = 0; i < glob_arr_tok_bad.length-1;i++) {
+				console.log(" tablica z obiektami gdzie zrobiłem błąd " + glob_arr_tok_bad[i].line + " " + glob_arr_tok_bad[i].idx);
+			}*/
+		}
+		
+		// funkcja blokuje w textarea traingowym TAB key żeby robić nim spacje
+		// TODO : dodaj okienko do wpisania dlugosc tab bo moze być różnie albo 2,3,4 - domyśleni większość ma chyba 4
+		// ale to jest potrzebne potem do porownania linia po lini i sprawdzanie ilosci bledow
+		function stopLink(event) {
+			//console.log(" --- > " + event + " " + event.keyCode);
+			if (event.keyCode == 9) {
+				tab_key_click_counter += 1;
+				event.preventDefault();
+			}
+		}
+		
+		// to blokuje przeskakiwanie do kolejnego DIV w obszarze strony 
+		// https://developer.mozilla.org/en-US/docs/Web/API/Event/defaultPrevented
+		// https://stackoverflow.com/questions/50839838/how-to-prevent-tab-key-from-jumping-to-the-next-form-field
+		var training_area_stopTab = document.getElementById("training_area");
+		training_area_stopTab.addEventListener("keydown", stopLink);
+	
+        // Define worker script as a blob
+        const keyEventWorkerScript = `
+            let lastEventTime = null;
+
+            self.onmessage = (event) => {
+                if (event.data.type === 'keydown' || event.data.type === 'keyup') {
+                    const currentTime = Date.now();
+                    if (lastEventTime !== null) {
+                        const timeDifference = currentTime - lastEventTime;
+                        self.postMessage({
+                            type: event.data.type,
+                            key: event.data.key,
+                            timeDifference
+                        });
+                    }
+                    lastEventTime = currentTime;
+                }
+            };
+        `;
+
+        // Create blob URL for the worker script
+        const keyEventWorkerBlob = new Blob([keyEventWorkerScript], { type: 'application/javascript' });
+        const keyEventWorker = new Worker(URL.createObjectURL(keyEventWorkerBlob));
+
+        // Handle key events
+        document.addEventListener('keydown', (event) => {
+            keyEventWorker.postMessage({ type: 'keydown', key: event.key });
+        });
+
+        document.addEventListener('keyup', (event) => {
+            keyEventWorker.postMessage({ type: 'keyup', key: event.key });
+        });
+
+        // Listen for messages from the worker
+        keyEventWorker.onmessage = (event) => {
+            console.log(`Event: ${event.data.type}, Key: ${event.data.key}, Time since last event: ${event.data.timeDifference} ms`);
+			//console.log(event);
+			var key_code = 0;
+			switch (event.data.key) {
+				case "Enter":
+					key_code = 0x0d;
+					break;
+				case " ": // space
+					key_code = 0x20;
+					break;
+				case "Backspace":
+					key_code = 0x8;
+					break;
+				case "Tab":
+					key_code = 0x9;
+					break;
+				case "Shift":
+					key_code = 0x10;
+					break;
+				case "Control":
+					key_code = 0x11;
+					break;
+				case "CapsLock":
+					key_code = 0x14;
+					break;
+				case "Alt":
+					key_code = 0x12;
+					break;
+				case "ArrowDwon":
+					key_code = 0x28;
+					break;
+				case "ArrowLeft":
+					key_code = 0x25;
+					break;
+				case "ArrowRight":
+					key_code = 0x27;
+					break;
+				case "ArrowUp":
+					key_code = 0x26;
+					break;
+				case "Escape":
+					key_code = 0x1b;
+					break;
+				default:
+					key_code = event.data.key.charCodeAt(); // jak cos powinno dac 0 jako key_code i bedzie ok tez dla mnie
+			}
+			console.log(event.data.key + " | " + event.data.key.charCodeAt() + " | " + event.data.key.codePointAt() + " " + key_code);
+			
+			/* START BUTTON */
+			if (start_button_on == 1) {
+			// add to page 
+			var lc1 = document.getElementById("lc1");
+			var lc2 = document.getElementById("lc2");
+			var lc3 = document.getElementById("lc3");
+			var lc4 = document.getElementById("lc4");
+			var lc5 = document.getElementById("lc5");
+			var lc6 = document.getElementById("lc6");
+			var lc7 = document.getElementById("lc7");
+			
+			lc1.innerHTML = event.data.timeDifference;
+			lc6.innerHTML = counter_of_backspace;
+
+			if (event.data.type == "keyup") {
+				total_events_counter += 1;
+				lc5.innerHTML = total_events_counter;
+			}
+			
+			// total time Measure
+			if (event.data.type == "keydown") {
+				total_time_counter += 1;
+				total_time.push(event.data.timeDifference);
+				//console.log(total_time);
+				for (var i = 0; i < total_time.length-1; i++) {
+						total_sum += total_time[i]
+				}
+				total_sum = total_sum / total_time.length;
+				//console.log(total_time);
+				//console.log(total_time.length + " " + total_sum + " " + (total_sum / total_time.length));
+				lc4.innerHTML = total_sum;
+				
+				// collect in array
+				time_last_click_for_file.push(event.data.timeDifference);
+				collect_every_keydown_click_for_file.push(event.data.key);
+				collect_every_keydown_click_by_code_for_file.push(key_code);
+			}
+			
+			// get some data from id="example"
+			var example_data = document.getElementById("example");
+			console.log(example_data.value.length);
+			var ex_match_data = example_data.value.match(/[^\r\n]+/g);
+			//console.log(" array to example matches " + ex_match_data + " " + ex_match_data.length);
+			// add to example_arr
+			/* for (var i = 0; i < ex_match_data.length; i++) {
+				example_arr.push(ex_match_data[i]);
+			}
+			console.log(example_arr);*/
+
+			// get data from training_area to compare line by line
+			var training_area_cmp = document.getElementById("training_area");
+			var tr_match_data = training_area_cmp.value.match(/[^\r\n]+/g);
+			console.log(" array to example matches " + tr_match_data);
+			
+			// kolejna instotna kwestia ktora powinna znalezc sie w poraniku na stronie po kliknieciu w (?)
+			// zeby bylo jasne że ENTER powoduje wykonanie porownania linia po lini i niech wyswiela informacje o tym na stronie 
+			// przynajmniej ilosc linii aktualna linie oraz bledy w aktualnej lini
+			if (event.data.key == "Enter" && event.data.type == "keydown") {
+				//cmpString1();
+				
+				var line = tr_match_data.length;
+				console.log(" match data " + ex_match_data.length + " " + tr_match_data.length); 
+				var last_line_ex = ex_match_data[tr_match_data.length-1];
+				var curr_line_to_match = tr_match_data[tr_match_data.length-1];
+				console.log(" == > " + last_line_ex + " " + curr_line_to_match);
+				console.log(" ktory string jest dluzszy " + last_line_ex.length + " " + curr_line_to_match.length);
+				
+				var arr_to_iter = ( last_line_ex.length > curr_line_to_match.length) ? last_line_ex : curr_line_to_match;
+				var tmp_buff = [];
+				for (var i = 0; i < arr_to_iter.length; i++) {
+					console.log( " iter " + last_line_ex[i] + " " + curr_line_to_match[i]);
+					console.log(last_line_ex[i] === curr_line_to_match[i]);
+					if (last_line_ex[i] != curr_line_to_match[i]) {
+						tmp_buff.push(i);
+					}
+					// add text to div
+					var curr_line_div = document.getElementById("current_line");
+					var example_line_div = document.getElementById("example_line");
+					curr_line_div.innerText =  curr_line_to_match;
+					example_line_div.innerText =  last_line_ex;	
+				}
+				map1.set(line, tmp_buff);
+				
+				// add info to lc7
+				var tmp_ct_buf_map1 = [];
+				for (var i = 0; i < map1.size; i++) {
+					console.log(map1.get(i+1));
+					//console.log(map1.get(i+1).length);
+					tmp_ct_buf_map1.push(map1.get(i+1).length);
+				}
+				console.log(" tmp buf " + tmp_ct_buf_map1);
+				lc7.innerHTML = tmp_ct_buf_map1;
+				
+				// pokaz staty globalnej talibcy dla odstepow czasu miedzy kliknieciem tutaj
+				console.log(" == GLOBAL TIME ARRAY FOR FILE == " + time_last_click_for_file + " | " + time_last_click_for_file.length);
+				console.log( " keys " + collect_every_keydown_click_for_file + " | " + collect_every_keydown_click_for_file.length);
+				console.log( " key codes " + collect_every_keydown_click_by_code_for_file + " | " + collect_every_keydown_click_by_code_for_file.length);
+			}
+			
+			console.log( " MAP 1 " + map1.size);
+			console.log( " map item [0] [-1] " + map1.get(1) + " | " +  map1.get(map1.size));
+			
+			// zliczanie cofnięć kursora w przypadku szybkiego wyłapania błędu
+			if (event.data.key == "Backspace" && event.data.type == "keydown") {
+				counter_of_backspace += 1;
+			}
+
+			// obługa klawisza TAB zeby nie pzreskakiwal na inne DIV po stronie albo linkki tylko byl w polu treningowym pisania tekstu
+			if (event.data.key == "Tab") {
+				// blokowania TAB przeniesione na poczatek kodu
+				var training_area = document.getElementById("training_area");
+				//training_area_stopTab.addEventListener("keydown", stopLink);
+				//console.log(event);
+				//event.preventDefault();
+				console.log(training_area.value[(training_area.value.length-1)]);
+				var temp_str = training_area.value[(training_area.value.length-1)];
+				//temp_str += "    ";
+				//training_area.value[(training_area.value.length-1)] = "    ";
+				//console.log(" text " + training_area.value[(training_area.value.length-1)]);
+				//training_area.text[(training_area.value.length-1)] = temp_str;
+				//var ta = training_area.value;
+				//ta = ta.slice(0, training_area.value.length) + "    ";
+				//console.log( " ta " + ta);
+				//console.log(" inner " + training_area);
+				
+				//tab_key_click_counter += 1;
+				//console.log(tab_key_click_counter);
+				//w function stopLink(event) zwiększany jest globaly licznik tab_key_click_counter
+				// przez co potem wystarczy sprawdzic czy jest rowne 1 i potem wyzerowac
+				if (tab_key_click_counter == 1) { 
+				switch (TAB_LENGTH) {
+					case 2:
+						training_area.value = training_area.value + "  ";
+						break;
+					case 3:
+						training_area.value = training_area.value + "   ";
+						break;
+					case 4:
+						training_area.value = training_area.value + "    ";
+						break;
+					default:
+						console.log( " ? " );
+				}
+				tab_key_click_counter = 0;
+				}
+				
+				//training_area.innerText = "";
+				//console.log(ta.innerText[ta.innerText.length-1])
+				console.log(" training area " + training_area.value.match(/[^\r\n]+/g));
+				return;
+			}	
+			
+			/* END OF START BUTTON SECTION */
+			}
+			
+        };
+
+        // Handle worker errors
+        keyEventWorker.onerror = (err) => {
+            console.error(`Key Event Worker Error: ${err.message}`);
+        };
+		
+		
+		
+		
+    </script>
+</body>
+</html>
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Workers Example</title>
+</head>
+<body>
+    <h1>Web Workers Example</h1>
+    <input type="text" id="userInput" placeholder="Type something...">
+    <script type="module">
+        // Define worker scripts as blobs
+        const keyEventWorkerScript = `
+            self.onmessage = (event) => {
+                if (event.data.type === 'keydown') {
+                    self.postMessage(\`Key down: \${event.data.key}\`);
+                } else if (event.data.type === 'keyup') {
+                    self.postMessage(\`Key up: \${event.data.key}\`);
+                }
+            };
+        `;
+        
+        const inputProcessingWorkerScript = `
+            self.onmessage = (event) => {
+                if (event.data.type === 'input') {
+                    const processedInput = event.data.data.toUpperCase();
+                    self.postMessage(\`Processed input: \${processedInput}\`);
+                }
+            };
+        `;
+
+        // Create blob URLs for the worker scripts
+        const keyEventWorkerBlob = new Blob([keyEventWorkerScript], { type: 'application/javascript' });
+        const inputProcessingWorkerBlob = new Blob([inputProcessingWorkerScript], { type: 'application/javascript' });
+
+        const keyEventWorker = new Worker(URL.createObjectURL(keyEventWorkerBlob));
+        const inputProcessingWorker = new Worker(URL.createObjectURL(inputProcessingWorkerBlob));
+
+        // Handle key events
+        document.addEventListener('keydown', (event) => {
+            keyEventWorker.postMessage({ type: 'keydown', key: event.key });
+        });
+
+        document.addEventListener('keyup', (event) => {
+            keyEventWorker.postMessage({ type: 'keyup', key: event.key });
+        });
+
+        // Handle input events
+        const inputElement = document.getElementById('userInput');
+        inputElement.addEventListener('input', (event) => {
+            inputProcessingWorker.postMessage({ type: 'input', data: event.target.value });
+        });
+
+        // Listen for messages from the workers
+        keyEventWorker.onmessage = (event) => {
+            console.log(`Key Event Worker: ${event.data}`);
+        };
+
+        inputProcessingWorker.onmessage = (event) => {
+            console.log(`Input Processing Worker: ${event.data}`);
+        };
+
+        // Handle worker errors
+        keyEventWorker.onerror = (err) => {
+            console.error(`Key Event Worker Error: ${err.message}`);
+        };
+
+        inputProcessingWorker.onerror = (err) => {
+            console.error(`Input Processing Worker Error: ${err.message}`);
+        };
+    </script>
+</body>
+</html>
+--!>
+
+
+
+
+
+	<!--
+		<script>
+		document.addEventListener(
+		  "keydown",
+		  (event) => {
+			const keyName = event.key;
+
+			if (keyName === "Control") {
+			  // do not alert when only Control key is pressed.
+			  return;
+			}
+
+			if (event.ctrlKey) {
+			  // Even though event.key is not 'Control' (e.g., 'a' is pressed),
+			  // event.ctrlKey may be true if Ctrl key is pressed at the same time.
+			  alert(`Combination of ctrlKey + ${keyName}`);
+			} else {
+			  alert(`Key pressed ${keyName}`);
+			}
+		  },
+		  false,
+		);
+
+		document.addEventListener(
+		  "keyup",
+		  (event) => {
+			const keyName = event.key;
+
+			// As the user releases the Ctrl key, the key is no longer active,
+			// so event.ctrlKey is false.
+			if (keyName === "Control") {
+			  alert("Control key was released");
+			}
+		  },
+		  false,
+		);
+
+		
+		</script>
+		--!>
