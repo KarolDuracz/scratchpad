@@ -1,5 +1,6 @@
 29-06-2024 - Update -
 użyj <b>index2.html</b> 
+- Najpierw wklej kod po prawej stronie, i naciśnij "analyze sample" następnie START. I możesz pisać po lewej. To pierwsze wycina z kodu puste linie, czyli scala kod pozbywając się pustych lini. Start uruchamia resztę skrytpów żeby po wpisaniu znaku po lewej coś się działo na dole.
 - poprawilem troche licznik lini - ale jest jeszcze błąd w przypadku cofania backspace wtedy trzeba strzałkami wrócić do linii 0 i znowu w dół do aktualnej linii. Patrz wtedy na div w prawym dolnym rogu
 - poprawiona analiza błędów w pisowni linia treningowa vs sample
 - dodane kilka licznikow w tym znaki na minutę
