@@ -198,6 +198,12 @@
 		top: 5px;
 		background-color: gold;
 	}
+	#check_line_btn {
+		position: fixed;
+		left: 750px;
+		top: 5px;
+		background-color: white;
+	}
 
 	</style>
 </head>
@@ -259,6 +265,7 @@ class dielectric : public material {
 	<button id="start">START</button>
 	<button id="stop">STOP</button>
 	<button id="analyze_sample_btn">analyze sample</button>
+	<button id="check_line_btn">check line sample</button>
 	<div id="interval_timer">00:00</div>
 	
 	<div>
@@ -383,6 +390,20 @@ class dielectric : public material {
 			}
 			_prev_ev_val = _curr_ev_val;
 		}
+		
+		// check line to get info about \t\t or empty space
+		function check_line_fun(event) {
+			var ___sample_form___ = document.getElementById("sample_form_");
+			for (var i = 0; i < ___sample_form___.value.length; i++) {
+				console.warn( " test check line " + i + " | " + ___sample_form___.value[i] +
+					" | [\\t] | " +  (___sample_form___.value[i] == '\t') + " | [' '] | " +  (___sample_form___.value[i] == " ")  ); 
+				if (___sample_form___.value[i] == '\t' || ___sample_form___.value[i] == ' ') {
+					console.log( " tab char or white space - check " );
+				}
+			}
+		}
+		var check_line_btn_ = document.getElementById("check_line_btn");
+		check_line_btn_.addEventListener("click", check_line_fun);
 		
 		
 		// str to hash - https://www.geeksforgeeks.org/how-to-create-hash-from-string-in-javascript/
