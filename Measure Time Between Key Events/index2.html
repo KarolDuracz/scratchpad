@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Measure Time Between Key Events</title>
+	<style>
+	input[type=text] {
+		width: 200px;
+		height: 100px;
+		box-sizing: border-box;
+		border-radius: 4px;
+		padding: 16px 32px;
+	}
+	textarea {
+		position: fixed;
+		width: 500px;
+		height: 350px;
+		padding: 6px 10px;
+		box-sizing: border-box;
+		border: 1px solid red;
+		border-radius: 4px;
+		background-color: #f8f8f8;
+		font-size: 12px;
+		resize: none;
+	}
+	#example {
+		position: fixed;
+		left: 600px;
+		width: 650px;
+		height: 350px;
+		padding: 6px 10px;
+		box-sizing: border-box;
+		border: 1px solid red;
+		border-radius: 4px;
+		background-color: #f8f8f8;
+		font-size: 12px;
+		resize: none;
+	}
+	#stats {
+		position: fixed;
+		left: 50px;
+		top: 450px;
+		width: 650px;
+		height: 150px;
+		border: 1px solid black;
+		border-radius: 4px;
+		font-size: 14px;
+		padding: 3px 2px;
+	}
+	div {
+		position: -webkit-sticky; /* Safari */
+		position: sticky;
+		float:left;
+	}
+	#start {
+		position: fixed;
+		left: 750px;
+		top: 30px;
+	}
+	#stop {
+		position: fixed;
+		left: 830px;
+		top: 30px;
+	}
+	#app_is_running {
+		position: fixed;
+		left: 920px;
+		top: 30px;
+	}
+	#current_line {
+		position: fixed;
+		left: 750px;
+		top: 450px;
+		width: 450px;
+		height: 60px;
+		border: 1px solid black;
+		border-radius: 4px;
+		font-size: 12px;
+		padding: 3px 5px;
+	}
+	#example_line {
+		position: fixed;
+		left: 750px;
+		top: 530px;
+		width: 450px;
+		height: 60px;
+		border: 1px solid black;
+		border-radius: 4px;
+		font-size: 12px;
+		padding: 3px 5px;
+	}
+	#interval_timer {
+		position: fixed;
+		left: 1150px;
+		top: 30px;
+	}
+	#fly_arrow_to_show_line_X {
+		position: fixed;
+		left: 560px;
+		top: 500px;
+		width: 20px;
+		padding: 2px;
+		border: 1px solid black;
+		font-size: 16px;
+	}
+	#fly_arrow_to_show_line_Y {
+		position: fixed;
+		left: 590px;
+		top: 500px;
+		width: 20px;
+		padding: 2px;
+		border: 1px solid black;
+		font-size: 16px;
+	}
+	#coordinates_XY_carret {
+		position: fixed;
+		left: 555px;
+		top: 480px;
+		width: 60px;
+		padding: 2px;
+		border: 1px solid black;
+		font-size: 8px;
+	}
+	#curr_line_num_div {
+		position: fixed;
+		left: 620px;
+		top: 500px;
+		width: 20px;
+		padding: 2px;
+		border: 1px solid black;
+		font-size: 16px;
+	}
+	#fly_area_behind_sample {
+		z-index: -1;
+		position: fixed;
+		left: 560px;
+		top: 100px;
+		width: 710px;
+		padding: 6px;
+		border: 1px solid black;
+		background-color: red;
+		font-size: 16px;
+	}
+	#tab2btn {
+		position: fixed;
+		left: 550px;
+		top: 30px;
+	}
+	#tab3btn {
+		position: fixed;
+		left: 580px;
+		top: 30px;
+	}
+	#tab4btn {
+		position: fixed;
+		left: 610px;
+		top: 30px;
+	}
+	#tab_size_info_panel {
+		position: fixed;
+		left: 650px;
+		top: 30px;
+		width: 20px;
+		padding: 2px;
+		border: 1px solid silver;
+		font-size: 12px;
+		text-align: center;
+	}
+	#training_form_ {
+		height: 30px;
+		width: 450px;
+		text-align; left;
+		padding: 2px;
+	}
+	#sample_form_ {
+		position:fixed;
+		top: 600px;
+		left: 755px;
+		height: 30px;
+		width: 450px;
+		text-align; left;
+		padding: 2px;
+		border: 1px solid silver;
+	}
+	#mistakes_counter_div {
+		position: fixed;
+		left: 450px;
+		top: 500px;
+		width: 20px;
+		padding: 2px;
+		border: 1px solid black;
+		font-size: 16px;
+		text-align: center;
+	}
+	#analyze_sample_btn {
+		position: fixed;
+		left: 640px;
+		top: 5px;
+		background-color: gold;
+	}
+
+	</style>
+</head>
+<body>
+    <h1>Measure Time Between Key Events</h1>
+    <!-- <input type="text" id="userInput" placeholder="Type something..."> --!>
+	<form>
+		<textarea id="training_area"></textarea>
+	</form>
+	<!-- example --!>
+	<form>
+		<textarea id="example">
+class dielectric : public material {
+  public:
+    dielectric(double refraction_index) : refraction_index(refraction_index) {}
+
+    bool scatter(const ray& r_in, const hit_record& rec, const hit_record& bh, color& attenuation, ray& scattered)
+    const override {
+        attenuation = color(1.0, 1.0, 1.0);
+        double ri = rec.front_face ? (1.0/refraction_index) : refraction_index;
+
+        vec3 unit_direction = unit_vector(r_in.direction());
+        double cos_theta = fmin(dot(-unit_direction, rec.normal), 1.0);
+        double sin_theta = sqrt(1.0 - cos_theta*cos_theta);
+
+        bool cannot_refract = ri * sin_theta > 1.0;
+        vec3 direction;
+
+        if (cannot_refract || reflectance(cos_theta, ri) > random_double())
+            direction = reflect(unit_direction, rec.normal);
+        else
+            direction = refract(unit_direction, rec.normal, ri);
+
+        scattered = ray(rec.p, direction);
+        return true;
+    }
+		</textarea>
+	</form>
+	<!-- stats --!>
+	<div id="stats">
+		<div><u>STATYSTYKA</u></div><br />
+		<div>Czas ostatniego kliknięcia:&nbsp;</div><div id="lc1">0</div>&nbsp;ms<br />
+		<div>Średni czas na linie:&nbsp;</div><div id="lc2">-1</div>&nbsp;ms<br />
+		<div>Średni czas na minutę:&nbsp;</div><div id="lc3">-1</div>&nbsp;ms<br />
+		<div>Średni czas wszystkich kliknięć:&nbsp;</div><div id="lc4">0&nbsp;ms</div><br />
+		<div><b>Ilość wszystkich kliknięć:&nbsp;</b></div><div id="lc5">0&nbsp;</div><br />
+		<div>Ile razy był wciśnięty backspace:&nbsp;</div><div id="lc6">0&nbsp;</div><br />
+		<div>Błędy w liniach:&nbsp;</div><div id="lc7">0&nbsp;</div><br/>	
+		<div>word per minute:&nbsp;</div><div id="lc8">0&nbsp;</div><br/>	
+	</div>
+	
+	
+	<button id="tab2btn">2</button>
+	<button id="tab3btn">3</button>
+	<button id="tab4btn">4</button>
+	<div id="tab_size_info_panel">4</div>
+	
+	<div id="app_is_running">Click start button</div>
+	<button id="start">START</button>
+	<button id="stop">STOP</button>
+	<button id="analyze_sample_btn">analyze sample</button>
+	<div id="interval_timer">00:00</div>
+	
+	<div>
+		<div id="current_line">current line</div>
+		<div id="example_line">example line
+			<input type="text" id="training_form_" name="training_form_" required minlength="0" maxlength="500" size="20" />
+		</div>
+	</div>
+	
+	<input type="text" id="sample_form_" name="sample_form_" required minlength="0" maxlength="500" size="20" />
+	
+	<!--<div style="display:none" id="fly_arrow_to_show_line">1</div>--!>
+	<div id="coordinates_XY_carret">Cursor position</div>
+	<div id="fly_arrow_to_show_line_X">X</div>
+	<div id="fly_arrow_to_show_line_Y">Y</div>
+	<div id="curr_line_num_div">LN</div>
+	
+	<div style="display:none" id="fly_area_behind_sample"></div>
+	
+	<div id="mistakes_counter_div">0</div>
+	
+	
+    <script type="module">
+	
+		// track variable
+		var xs1 = 0;
+		var current_pos_currsor_in_sample_area = 0;
+		var _swap_sample_with_no_lines = 0;
+		var cmp_cbc =  0;
+		var counter_mistakes_for_world_ = 0;
+		var count_mistakes = 0;
+		
+		// settings for arrow to track line number
+		//const STEP_SIZE = 13; // moze jednak trzeba dodac kilka rzeczy - ok fajnie ze wrzucilem kopie na github. Bo mam do czego sie odniesc. Ale trzeba myśleć o sobie. O swoich celach. Po co to robie
+		var current_line_number = 0;
+		var X = 0;
+		var Y = 0;
+		
+		//const glob_arr_tok_bad = []; // globala tablica na indeksy danej lini z bledami
+		//const glob_arr_tok_good = [];
+		const map1 = new Map();
+		
+		const time_last_click_for_file = [];
+		const collect_every_keydown_click_for_file = [];
+		const collect_every_keydown_click_by_code_for_file = [];
+	
+		const DEBUG_MODE = 1;
+		const DEFAULT_TAB_SIZE = 4;
+		var TAB_LENGTH = DEFAULT_TAB_SIZE // 4
+		const INTERVAL_SPEED = 1000; // for tests set to 10
+		const HOW_MINUTES = 15; // for test set to 1
+		const TIME_LENGTH_FOR_TASK = (HOW_MINUTES * 60) * INTERVAL_SPEED; // 15 minut w milisekundach
+		
+		var tab_key_click_counter = 0; // potrzebne bo domyslnie w tym ustawieniu robi 2 x tab
+
+		const total_time = [];
+		const total_events = [];
+		var total_time_counter = 0;
+		var total_events_counter = 0;
+		var total_sum = 0;
+		
+		// array for matches lines
+		const example_arr = [];
+		const training_arr = [];
+		
+		// backspace counter
+		var counter_of_backspace = 0;
+		
+		// interval 
+		var interval = 0;
+		
+		/***********************************************************************************/
+		
+		// add button to set tab length
+		const bt1 = document.getElementById("tab2btn");
+		const bt2 = document.getElementById("tab3btn");
+		const bt3 = document.getElementById("tab4btn");
+		var tab_size_info_panel = document.getElementById("tab_size_info_panel");
+		bt1.addEventListener('click', () => {
+			tab_size_info_panel.innerHTML = 2;
+			TAB_LENGTH = 2;
+		});
+		bt2.addEventListener('click', () => {
+			tab_size_info_panel.innerHTML = 3;
+			TAB_LENGTH = 3;
+		});
+		bt3.addEventListener('click', () => {
+			tab_size_info_panel.innerHTML = 4;
+			TAB_LENGTH = 4;
+		});
+		
+		var timer_a = TIME_LENGTH_FOR_TASK;
+		function myTimer() {
+			//const d = new Date();
+			//document.getElementById("interval_timer").innerHTML = d.toLocaleTimeString();
+			timer_a = timer_a - INTERVAL_SPEED;
+			document.getElementById("interval_timer").innerHTML = (timer_a);
+			// if timer == 0
+			if (timer_a <= 0) {
+				//clearInterval(interval);
+				document.getElementById("interval_timer").innerHTML = " KONIEC CZASU ";
+			}
+		}
+		
+		// timer for count char per minute
+		var interval_for_word_per_min = 0;
+		var _prev_ev_val = 0;
+		var _curr_ev_val = 0;
+		var _buf_for_stat_ev_wpm = [];
+		function timer_word_per_minute()
+		{
+			_curr_ev_val = total_events_counter;
+			console.log( " timer calling " + total_events_counter + " "  + _curr_ev_val + " " + _prev_ev_val );
+			console.warn(_buf_for_stat_ev_wpm);
+			if (_prev_ev_val != _curr_ev_val) {
+				// aplikacja moze stac tzn user moze nie klikac wiec dlatego to sprawdzenie
+				// poniewaz potem zmienia sie wartosc prev i wtedy wszystkie 3 sa takie same
+				var ___cur_val = total_events_counter - _prev_ev_val;
+				_buf_for_stat_ev_wpm.push(___cur_val);
+				var lc8 = document.getElementById("lc8");
+				lc8.innerHTML = _buf_for_stat_ev_wpm;
+			}
+			_prev_ev_val = _curr_ev_val;
+		}
+		
+		
+		// str to hash - https://www.geeksforgeeks.org/how-to-create-hash-from-string-in-javascript/
+		function stringToHash(string) {
+			let hash = 0;
+			if (string.length == 0) return hash;
+			for (var i = 0; i < string.length; i++) {
+				var char = string.charCodeAt(i);
+				hash = ((hash << 5) - hash) + char;
+				hash = (hash & hash); 
+			}
+			return hash; // ale na razie nic z tego bo to nie unsigned INT
+		}
+				
+		// button start == counter running
+		var start_button_on = 0;	
+		function startBtn(event) { 
+			start_button_on = 1; 
+			var app_is_running_div = document.getElementById("app_is_running");
+			app_is_running_div.innerText = "APP IS RUNNING...";
+			app_is_running_div.style.color = "blue";
+			interval = setInterval(myTimer, INTERVAL_SPEED);
+			interval_for_word_per_min = setInterval(timer_word_per_minute, 1000 * 60);
+			
+			// add val to input sample element
+			var example_area_info = document.getElementById("example");
+			var example_area_info_each_lines = example_area_info.value.match(/[^\r\n]+/g);
+			var inpValdiv = document.getElementById("sample_form_");
+			inpValdiv.value = example_area_info_each_lines[current_pos_currsor_in_sample_area];
+		}	
+		
+		function stopBtn(event) { 
+			var app_is_running_div = document.getElementById("app_is_running");
+			app_is_running_div.innerText = "APP IS STOPPED";
+			app_is_running_div.style.color = "red";
+			start_button_on = 0; 
+			clearInterval(interval); // clear interval
+			clearInterval(interval_for_word_per_min); // clear another timer
+			
+			if (DEBUG_MODE == 0){
+				// Date
+				console.log(new Date().toString());
+				var date = new Date();
+				var year = date.getFullYear();
+				var month = date.getMonth(); // June is 5 ??? 
+				month = month + 1;
+				var day = date.getDate();
+				var hours = date.getHours();
+				var minutes = date.getMinutes();
+				var seconds = date.getSeconds();
+				var new_date = year+""+month+""+day+""+hours+""+minutes+""+seconds;
+				console.log( year + " " + month + " " + day + " " + new_date + " | hash " + stringToHash(new_date));
+				// save to file some data - time
+				const link = document.createElement("a");
+				const file = new Blob([time_last_click_for_file], { type: 'text/plain' });
+				link.href = URL.createObjectURL(file);
+				link.download = "time"+new_date+".txt";
+				link.click();
+				URL.revokeObjectURL(link.href);
+				// save to file some data - key_codes
+				const link1 = document.createElement("a");
+				const file1 = new Blob([collect_every_keydown_click_by_code_for_file], { type: 'text/plain' });
+				link1.href = URL.createObjectURL(file1);
+				link1.download = "key_codes"+new_date+".txt";
+				link1.click();
+				URL.revokeObjectURL(link1.href);
+			}
+		}
+		
+		// add buttons Events
+		var start_btn = document.getElementById("start");
+		var stop_btn = document.getElementById("stop");
+		start_btn.addEventListener("click", startBtn);
+		stop_btn.addEventListener("click", stopBtn);
+
+		function abtn_samp_func(event) { 
+
+			var sampleA = ['static const phys_addr_t size_bytes __initconst =\n', '\t(phys_addr_t)CMA_SIZE_MBYTES * SZ_1M;\n', 'static phys_addr_t  size_cmdline __initdata = -1;\n', 'static phys_addr_t base_cmdline __initdata;\n', 'static phys_addr_t limit_cmdline __initdata;\n', '\n', 'static int __init early_cma(char *p)\n', '{\n', '\tif (!p) {\n', '\t\tpr_err("Config string not provided\\n");\n', '\t\treturn -EINVAL;\n', '\t}\n', '\n', '\tsize_cmdline = memparse(p, &p);\n', "\tif (*p != '@')\n", '\t\treturn 0;\n', '\tbase_cmdline = memparse(p + 1, &p);\n', "\tif (*p != '-') {\n", '\t\tlimit_cmdline = base_cmdline + size_cmdline;\n', '\t\treturn 0;\n', '\t}\n', '\tlimit_cmdline = memparse(p + 1, &p);\n', '\n', '\treturn 0;\n'];
+			var sampleB = ['class dielectric : public material {\n', '  public:\n', '    dielectric(double refraction_index) : refraction_index(refraction_index) {}\n', '\n', '    bool scatter(const ray& r_in, const hit_record& rec, const hit_record& bh, color& attenuation, ray& scattered)\n', '    const override {\n', '        attenuation = color(1.0, 1.0, 1.0);\n', '        double ri = rec.front_face ? (1.0/refraction_index) : refraction_index;\n', '\n', '        vec3 unit_direction = unit_vector(r_in.direction());\n', '        double cos_theta = fmin(dot(-unit_direction, rec.normal), 1.0);\n', '        double sin_theta = sqrt(1.0 - cos_theta*cos_theta);\n', '\n', '        bool cannot_refract = ri * sin_theta > 1.0;\n', '        vec3 direction;\n', '\n', '        if (cannot_refract || reflectance(cos_theta, ri) > random_double())\n', '            direction = reflect(unit_direction, rec.normal);\n', '        else\n', '            direction = refract(unit_direction, rec.normal, ri);\n', '\n', '        scattered = ray(rec.p, direction);\n', '        return true;\n', '    }\n'];
+
+			// np przeanalizuje te linki
+			// https://github.com/torvalds/linux/blob/master/kernel/dma/contiguous.c
+
+			// add val to input sample element
+			var example_area_info = document.getElementById("example");
+			//example_area_info.value = sampleA.join('');
+			//var example_area_info_each_lines = example_area_info.value.match(/[^\r\n]+/g);
+			
+			// word regex
+			console.warn(" regex " + example_area_info.value.split(/\b\S+\b/g));
+			console.warn(" regex " + example_area_info.value.match(/\w+/g));
+			
+			var lines = []
+			var str_ = "";
+			for (var i = 0; i < example_area_info.value.length; i++) {
+				var item = example_area_info.value[i];
+				if (item === '\n') {
+					str_ += item;
+					lines.push(str_);
+					str_ = "";
+				} else {
+					str_ += item;
+				}
+			}
+			
+			console.log( lines );
+			
+			for (var i = 0; i < lines.length; i++) {
+				console.log(i + " | " + lines[i]);
+			}
+			
+			// find all emty lines 
+			var lines_proper = [];
+			for (var i = 0; i < lines.length; i++) {
+				if (lines[i] == '\n') {
+					console.log( " find " + i );
+					continue;
+				}	
+				// other item put into new array
+				lines_proper.push(lines[i]);
+			}
+			
+			console.log( " proepr arr " + lines_proper.join(''));
+			
+			// replace textarea field
+			example_area_info.value = lines_proper.join('');
+			
+		}	
+		
+		// analyze SAMPLE
+		var _analyze_sample_btn = document.getElementById("analyze_sample_btn");
+		_analyze_sample_btn.addEventListener("click", abtn_samp_func);
+		
+		/* początkowa rozkmina ale wszystko źle */
+		function cmpString1() { 
+			var current_line_number = tr_match_data.length;
+			// musi byc sprawdzenie ilosci lini -- bo w ten sposob jak przeskocze ilosc linii wzgledem example
+			// pokazuje UNDEFINED. Nic sie nie dzieje przez to ale bedzie zliczalo bledy porownujac tutaj tekst
+			console.log(" match data " + ex_match_data.length + " " + tr_match_data.length); 
+			var last_line_ex = ex_match_data[tr_match_data.length-1];
+			var curr_line_to_match = tr_match_data[tr_match_data.length-1];
+			console.log(" == > " + last_line_ex + " " + curr_line_to_match);
+			console.log(" ktory string jest dluzszy " + last_line_ex.length + " " + curr_line_to_match.length);
+			// to nie jest normalny scanriusz bo to oznacza ze uzytkownik wpisal wiecej znakow linii (poki co robie to dla siebie a nie na github wiec)
+			// wiec nie bede sprawdzal czy ktos nacisnal enter albo co ma zrobic zeby sie cofnac znowu do tej linii
+			// ale pierwsze podejscie jakie zrobilem do tego wydaje sie ok bo indeksy beda dzialaly po cofnieciu sie (chyba)
+			if (curr_line_to_match.length > last_line_ex.length) {
+				var good_char_in_seq = 0;
+				var count_mistakes = 0;
+				//const tmp_arr_for_bad = []
+				for (var i = 0; i < curr_line_to_match.length-1; i++) {
+					var curr_line_div = document.getElementById("current_line");
+					var example_line_div = document.getElementById("example_line");
+					curr_line_div.innerText =  curr_line_to_match;
+					example_line_div.innerText =  last_line_ex;		
+					if (last_line_ex.charAt(i) === curr_line_to_match.charAt(i)) {
+						good_char_in_seq += 1;
+					} else {
+						//console.log(" ========> " + i + " " + curr_line_div.textContent + " " + curr_line_div.textContent[i]);
+						// cos nie dziala ta zmiana kolorow
+						//curr_line_div.innerHTML = curr_line_div.innerHTML.replace(curr_line_div.textContent[i-1], '<span style="color: red;">'+curr_line_div.textContent[i-1]+'</span>');
+						//tmp_arr_for_bad.push(i);
+						count_mistakes += 1;
+					}
+				}
+				console.log(count_mistakes + " " + good_char_in_seq + " <<<< zmiana na dluzsa sekwencji niz przyklad !!!!!!!!!");
+			} else {
+				var good_char_in_seq = 0;
+				var count_mistakes = 0;
+				const tmp_arr_for_bad = []
+				for (var i = 0; i < last_line_ex.length; i++) {
+					console.log(last_line_ex.charAt(i) === curr_line_to_match.charAt(i));
+					var curr_line_div = document.getElementById("current_line");
+					var example_line_div = document.getElementById("example_line");
+					curr_line_div.innerText =  curr_line_to_match;
+					example_line_div.innerText =  last_line_ex;						
+					//console.log( " element 0 " + curr_line_div.textContent[0]);
+					//curr_line_div.innerHTML = curr_line_div.innerHTML.replace(curr_line_div.textContent[0], '<span style="color: red;">'+curr_line_div.textContent[0]+'</span>');
+					// check errors
+					if (last_line_ex.charAt(i) === curr_line_to_match.charAt(i)) {
+						good_char_in_seq += 1;
+					} else {
+						//console.log(" ========> " + i + " " + curr_line_div.textContent + " " + curr_line_div.textContent[i]);
+						// cos nie dziala ta zmiana kolorow
+						//curr_line_div.innerHTML = curr_line_div.innerHTML.replace(curr_line_div.textContent[i-1], '<span style="color: red;">'+curr_line_div.textContent[i-1]+'</span>');
+						//tmp_arr_for_bad.push(i);
+						count_mistakes += 1;
+					}
+				}
+				//console.log(tmp_arr_for_bad);
+				//console.log(tmp_arr_for_bad.length);
+				//glob_arr_tok_bad.push({"line":current_line_number,idx:tmp_arr_for_bad})
+				/*
+					To też nie dziala bo trzeba jakos litera po literze i przerywac peltle
+					ale nie robic tego w locie poki co tylko policzyc bledy i tyle
+				// next step
+				console.log(tmp_arr_for_bad);
+				console.log(tmp_arr_for_bad.length);
+				if (tmp_arr_for_bad.length > 0) {
+					var curr_line_div = document.getElementById("current_line");					
+					for (var i = 0; i < tmp_arr_for_bad.length-1; i++) {
+						console.log(curr_line_div.textContent[i]);
+						if (i > curr_line_div.textContent.length) {
+							//console.log("stop");
+							break;
+						}
+						curr_line_div.innerHTML.replace(curr_line_div.textContent[i], '<span style="color: red;">'+curr_line_div.textContent[i]+'</span>');
+					}
+				}
+				*/
+				console.log(count_mistakes + " " + good_char_in_seq + " <<<< ");
+			}
+			
+			/*for (var i = 0; i < glob_arr_tok_bad.length-1;i++) {
+				console.log(" tablica z obiektami gdzie zrobiłem błąd " + glob_arr_tok_bad[i].line + " " + glob_arr_tok_bad[i].idx);
+			}*/
+		}
+		
+		// funkcja blokuje w textarea traingowym TAB key żeby robić nim spacje
+		// TODO : dodaj okienko do wpisania dlugosc tab bo moze być różnie albo 2,3,4 - domyśleni większość ma chyba 4
+		// ale to jest potrzebne potem do porownania linia po lini i sprawdzanie ilosci bledow
+		function stopLink(event) {
+			//console.log(" --- > " + event + " " + event.keyCode);
+			if (event.keyCode == 9) {
+				tab_key_click_counter += 1;
+				event.preventDefault();
+			}
+		}
+		
+		// to blokuje przeskakiwanie do kolejnego DIV w obszarze strony 
+		// https://developer.mozilla.org/en-US/docs/Web/API/Event/defaultPrevented
+		// https://stackoverflow.com/questions/50839838/how-to-prevent-tab-key-from-jumping-to-the-next-form-field
+		var training_area_stopTab = document.getElementById("training_area");
+		training_area_stopTab.addEventListener("keydown", stopLink);
+	
+        // Define worker script as a blob
+        const keyEventWorkerScript = `
+            let lastEventTime = null;
+
+            self.onmessage = (event) => {
+                if (event.data.type === 'keydown' || event.data.type === 'keyup') {
+                    const currentTime = Date.now();
+                    if (lastEventTime !== null) {
+                        const timeDifference = currentTime - lastEventTime;
+                        self.postMessage({
+                            type: event.data.type,
+                            key: event.data.key,
+                            timeDifference
+                        });
+                    }
+                    lastEventTime = currentTime;
+                }
+            };
+        `;
+
+        // Create blob URL for the worker script
+        const keyEventWorkerBlob = new Blob([keyEventWorkerScript], { type: 'application/javascript' });
+        const keyEventWorker = new Worker(URL.createObjectURL(keyEventWorkerBlob));
+
+        // Handle key events
+        document.addEventListener('keydown', (event) => {
+            keyEventWorker.postMessage({ type: 'keydown', key: event.key });
+        });
+
+        document.addEventListener('keyup', (event) => {
+            keyEventWorker.postMessage({ type: 'keyup', key: event.key });
+        });
+
+        // Listen for messages from the worker
+        keyEventWorker.onmessage = (event) => {
+			console.log(" -------------------------- ENTER INTO keyEventWorker.onmessage - key event loop --------------------------");
+            console.log(`Event: ${event.data.type}, Key: ${event.data.key}, Time since last event: ${event.data.timeDifference} ms`);
+			//console.log(event);
+			var key_code = 0;
+			switch (event.data.key) {
+				case "Enter":
+					key_code = 0x0d;
+					break;
+				case " ": // space
+					key_code = 0x20;
+					break;
+				case "Backspace":
+					key_code = 0x8;
+					break;
+				case "Tab":
+					key_code = 0x9;
+					break;
+				case "Shift":
+					key_code = 0x10;
+					break;
+				case "Control":
+					key_code = 0x11;
+					break;
+				case "CapsLock":
+					key_code = 0x14;
+					break;
+				case "Alt":
+					key_code = 0x12;
+					break;
+				case "ArrowDown":
+					key_code = 0x28;
+					break;
+				case "ArrowLeft":
+					key_code = 0x25;
+					break;
+				case "ArrowRight":
+					key_code = 0x27;
+					break;
+				case "ArrowUp":
+					key_code = 0x26;
+					break;
+				case "Escape":
+					key_code = 0x1b;
+					break;
+				default:
+					key_code = event.data.key.charCodeAt(); // jak cos powinno dac 0 jako key_code i bedzie ok tez dla mnie
+			}
+			console.log(event.data.key + " | " + event.data.key.charCodeAt() + " | " + event.data.key.codePointAt() + " " + key_code);
+			
+			/* START BUTTON */
+			if (start_button_on == 1) {
+			// add to page 
+			var lc1 = document.getElementById("lc1");
+			var lc2 = document.getElementById("lc2");
+			var lc3 = document.getElementById("lc3");
+			var lc4 = document.getElementById("lc4");
+			var lc5 = document.getElementById("lc5");
+			var lc6 = document.getElementById("lc6");
+			var lc7 = document.getElementById("lc7");
+			
+			lc1.innerHTML = event.data.timeDifference;
+			lc6.innerHTML = counter_of_backspace;
+
+			if (event.data.type == "keyup") {
+				total_events_counter += 1;
+				lc5.innerHTML = total_events_counter;
+			}
+			
+			// total time Measure
+			if (event.data.type == "keydown") {
+				total_time_counter += 1;
+				total_time.push(event.data.timeDifference);
+				//console.log(total_time);
+				for (var i = 0; i < total_time.length-1; i++) {
+						total_sum += total_time[i]
+				}
+				total_sum = total_sum / total_time.length;
+				//console.log(total_time);
+				//console.log(total_time.length + " " + total_sum + " " + (total_sum / total_time.length));
+				lc4.innerHTML = total_sum;
+				
+				// collect in array
+				time_last_click_for_file.push(event.data.timeDifference);
+				collect_every_keydown_click_for_file.push(event.data.key);
+				collect_every_keydown_click_by_code_for_file.push(key_code);
+			}
+			
+			
+			// track carret X Y position on training rectangle
+			if (event.data.type == "keydown") {
+				// dla kazdego klawisza przesuwaj na osi X w prawo o 1 -> X += 1
+				// dla backspace przesuwaj w lewo X -= 1
+				// dla kawiszy up, down, left, right potrzeba właśnie śledzenia pozycji w osiach Y oraz X
+				// sa jeszcze klawisze funkcyjne jak SHIFT, CTRL których nie trzeba zliczac
+				// poza tym informacja o aktualnym położeniu kursora (koodrynaty) musi być gdziś w widodnczym miejscu
+				// zacznij od zrobienia najpierw koordynatow i sprawdzenia jak zmienia się po klinieciu tych wszystkich klawiszy
+
+				var fly_arrow_to_show_line_X = document.getElementById("fly_arrow_to_show_line_X");
+				var fly_arrow_to_show_line_Y = document.getElementById("fly_arrow_to_show_line_Y");
+				var curr_line_num_div = document.getElementById("curr_line_num_div");
+				
+				// jest problem w tym podejsciu, kilka scenariuszy ktore np zakladaja ze ktos pisze np 3 znaki na poczatku nowej lini
+				// potem kasuje je, cofa sie do poprzedniej lini jeszcze, zowu pisze wciska enter i licznik sie zwieksza mimo ze linia
+				// byla skasowana i robiac takich kilka modyfikacji wstecz w kodzie licznik sie zwieksza caly czas 
+				// moze lepiej jest zliczac wzystkie znaki "\n" w tekście i na podstawie tego liczyć ilość lini
+				// czyli tak jakbym patrzyl wstecz na sekwencje znakow ktore wpadaja na wyjscie [i][f][ ][(][X][)][{][}][\n][ ]
+				// tylko ja tego potrzebowalem w pierwszym zalozeniu do śledzenia gdzie jest aktualnie kursor względem SAMPLE DATA po prawej stronie !
+				// wiec nawet mimo sprawdzanie sekwencji wstecz to i tak potrzebuje polozenia kursora przy cofaniu sie zeby poprawic cos w poprzedniej lini.
+				// bo to podejscie z sekwencja powie mi tylko ile jest ogolnie lini a przy cofnieciu sie ... 
+				// ale to moze pomoc w korygowaniu ilosci lini bo jesli uzytkownik zrobi backspace i zlikwiduje linie to zaktualizje obecny stan na podstawie ilości "\n" w tekście.
+				var training_area_cmp = document.getElementById("training_area");
+				console.log(" +++ length " + training_area_cmp.value.length);
+				var correct_number_of_lines_in_text = 0;
+				for (var i = 0; i < training_area_cmp.value.length; i++) {
+					var item = training_area_cmp.value[i];
+					if (item == "\n") {
+						console.log(" --> " + i + " " + correct_number_of_lines_in_text + " " + current_line_number);
+						correct_number_of_lines_in_text++;
+					}
+				} 
+				/*
+				 +++ length 34
+				index.html:544  --> 3 0 15
+				index.html:544  --> 6 1 15
+				index.html:544  --> 14 2 15
+				index.html:544  --> 27 3 15
+				index.html:544  --> 29 4 15
+				index.html:544  --> 31 5 15
+				index.html:544  --> 32 6 15
+												Cursor position-3 14 15
+				*/
+				// ale nie można tak po prostu nadpisać tej wartości, trzeba odjąć od iliści lini różnicę i też od Y o tyle o ile zmienia się ilość lini
+				// trzeba uwazac co sie dzieje gdy skasujesz caly tekst
+				//if ((correct_number_of_lines_in_text + 1) != current_line_number) {
+						//current_line_number = correct_number_of_lines_in_text + 1;
+						//curr_line_num_div.innerHTML = current_line_number;
+						//console.warn(" change global current_line_number value " );
+				//}
+				
+				// trzeba zmienic podejscie - przede wszystkim robie to dla siebie
+				// wylacze z tego scenariusze kliknia strzalkami - tylko enter i backspace
+				// i tak wlasciwie chodzi o klepanie kodu do przodu linia po linii i ewentualnie cofanie sie
+				// jedynie moge dodac obsluge w lewo i prawo a nie jak poczatkowo X Y 
+				
+				/* wstawka zeby cos podzialac na sample */
+				var nl = 0; // number of lines in sample rectangle
+				var nw = 0; // number of white space in sample
+				var example_area_info = document.getElementById("example");
+				console.log(" +++ example ++ length " + example_area_info.value.length);
+				for (var i = 0; i < example_area_info.value.length; i++) {
+					var item = example_area_info.value[i];
+					if (item == "\n") {
+						nl += 1;
+					}
+					if (item == ' ') {
+						nw += 1;		
+					}
+				}
+				console.log( " number of lines in sample " + nl + " | " + nw);
+				var example_area_info_each_lines = example_area_info.value.match(/[^\r\n]+/g);
+				console.warn(example_area_info_each_lines + " " + example_area_info_each_lines.length);
+				
+				// proba zmiany tekstu zeby dobrze liczylo linie - to i tak na razie tylko dla mnie wiec ma byc pode mnie robione
+				// wystarczylo dac po prostu .join i w argumencie wtedy wstawia to co chce, taki znak jaki chce, bez sciska tekst ze soba
+				// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join
+				// tym sposobem mam poprawnie liczona ilosc lini jesli chodzi o poruszanie kursorem w gore i w dol
+				if (_swap_sample_with_no_lines == 0) {
+					//var arp = []
+					//console.log( "typeof " + typeof example_area_info_each_lines[0] + " " + (typeof arp));
+					var tmp_arr_for_lines = [];
+					for (var i = 0; i < example_area_info_each_lines.length; i++) {
+						//console.log(example_area_info_each_lines[i].length);
+						var tmp_str = example_area_info_each_lines[i];
+						//tmp_str = tmp_str.slice(0, -1);		
+						//console.log(tmp_arr_for_lines);
+						tmp_arr_for_lines.push(tmp_str); //tmp_arr_for_lines.push(tmp_str + "\n"); --> .join("\n");
+					}
+					example_area_info.innerHTML = tmp_arr_for_lines.join("\n");
+					_swap_sample_with_no_lines = 1; // done
+				}
+				
+				/*var correct_number_of_lines_in_text = 0;
+				for (var i = 0; i < training_area_cmp.value.length; i++) {
+					var item = training_area_cmp.value[i];
+					if (item == "\n") {
+						console.log(" --> " + i + " " + correct_number_of_lines_in_text + " " + current_line_number);
+						correct_number_of_lines_in_text++;
+					}
+				} */
+				
+				//var fly_area_behind_sample = document.getElementById("fly_area_behind_sample");
+				//console.log(fly_area_behind_sample.style.top);
+				
+				var x1 = 0;
+				var y1 = 0;
+				
+				var MIN_MOVE_VAL = 0;
+				var MAX_MOVE_VAL = correct_number_of_lines_in_text;
+				
+				if (event.data.type = "keydown") {
+				switch (event.data.key) {
+					case "ArrowDown":
+						console.warn(" correct_number_of_lines_in_text === " + correct_number_of_lines_in_text);
+						console.log(current_pos_currsor_in_sample_area);
+						//fly_area_behind_sample.style.top = (xs1) + "px";
+						//xs1 += 13;
+						if (current_pos_currsor_in_sample_area < MAX_MOVE_VAL) {
+							current_pos_currsor_in_sample_area += 1;
+							// current_pos_currsor_in_sample_area --< inc this
+							var cur_line_div = document.getElementById("current_line");
+							cur_line_div.innerHTML = current_pos_currsor_in_sample_area + " : " + example_area_info_each_lines[current_pos_currsor_in_sample_area];
+							
+							for (var i = 0; i < example_area_info_each_lines.length; i++) {
+								var line = example_area_info_each_lines[i];
+								console.log(i + " " + line);
+							}	
+							
+							// add val to input sample element
+							var inpValdiv = document.getElementById("sample_form_");
+							inpValdiv.value = example_area_info_each_lines[current_pos_currsor_in_sample_area];
+						}
+						
+						// current line div for manuala change
+						change_current_line_manualy_.value = current_pos_currsor_in_sample_area;
+						
+						break;
+					case "ArrowUp":
+						if (current_pos_currsor_in_sample_area > MIN_MOVE_VAL) {
+							current_pos_currsor_in_sample_area -= 1;
+							var cur_line_div = document.getElementById("current_line");
+							cur_line_div.innerHTML =  current_pos_currsor_in_sample_area + " : " + example_area_info_each_lines[current_pos_currsor_in_sample_area];
+							
+							// add val to input sample element
+							var inpValdiv = document.getElementById("sample_form_");
+							inpValdiv.value = example_area_info_each_lines[current_pos_currsor_in_sample_area];
+						}
+						
+						//fly_area_behind_sample.style.top = (xs1) + "px";
+						//xs1 -= 13;
+						console.warn(correct_number_of_lines_in_text);
+						console.log(current_pos_currsor_in_sample_area);
+						
+						if (correct_number_of_lines_in_text != 0) {
+							
+						} else {
+							// no new lines in text
+							console.warn(" no new lines in text  " );
+						}
+						
+						// current line div for manuala change
+						change_current_line_manualy_.value = current_pos_currsor_in_sample_area;
+						break;
+					case "ArrowLeft":
+						
+						break;
+					case "ArrowRight":
+						
+						break;
+					
+					// enter - similar behaviour to arrown down key
+					case "Enter":
+						// ogólnie ok do póki nie wychodze poza zakres ilosci lini w polu to pisania (training) - wtedyt sie wszystko pieprzy 
+						// tak samo jak robie backspace gdzie nie ma juz zadnych znakow w linii i przeskakuje do poprzedniej linii bez sprawdzania tego zachowania
+						current_pos_currsor_in_sample_area += 1; // tylko to akumuluje licznik i potem strzalkami nie zniweluje roznicy ;p
+						var cur_line_div = document.getElementById("current_line");
+						cur_line_div.innerHTML = current_pos_currsor_in_sample_area + " : " + example_area_info_each_lines[current_pos_currsor_in_sample_area];
+						
+						console.warn(example_area_info_each_lines);
+						
+						// add val to input sample element
+						var inpValdiv = document.getElementById("sample_form_");
+						inpValdiv.value = example_area_info_each_lines[current_pos_currsor_in_sample_area];
+						
+						// clear form
+						//var inpValdivXX = document.getElementById("sample_form_");
+						//inpValdivXX.innerHTML = "";
+						
+						// current line div for manuala change
+						change_current_line_manualy_.value = current_pos_currsor_in_sample_area;
+						break;
+					
+					case "Backspace":
+						// jak crc będzie się zgadzał wtedy zresetuj liczniki
+						if (counter_mistakes_for_world_ == 1) {
+							var inpValdiv = document.getElementById("training_form_");
+							console.warn(" check cnc in backspace " + cmp_cbc + " | " + window.getComputedStyle(inpValdiv).getPropertyValue("border-color"));
+							var color_test_ = window.getComputedStyle(inpValdiv).getPropertyValue("border-color") == "rgb(255, 0, 0)";
+							console.warn( " color test " + color_test_);
+						}
+						break;
+					
+					// tutaj bedize update div gdzie bedzie na bierzaco porownanie i komunikat bledu
+					default:
+						//console.log( " 11111111111111111111111111111 " );
+						var example_line_div = document.getElementById("example_line");
+						var training_area_cmp = document.getElementById("training_area");
+						//var tr_match_data = training_area_cmp.value.match(/[^\r\n]+/g);
+						// current_pos_currsor_in_sample_area -- current line to compare
+						//var get_lines_tr_data = tr_match_data.value.match(/[^\r\n]+/g);
+						//console.log(" every lines of : " + tr_match_data + " " + tr_match_data[current_pos_currsor_in_sample_area-1] + " " + current_pos_currsor_in_sample_area );
+						//example_line_div.innerHTML = tr_match_data[current_pos_currsor_in_sample_area];
+						var linesX = [];
+						var strX = "";
+						//console.log(" ::::::::::::::: " + example_area_info_each_lines[current_pos_currsor_in_sample_area].length); //
+						
+						var stringX = [];
+						var n_nl_count = 0;
+						var n_tmp_word_arr = [];
+						var count_new_offset = 0;
+						var count_new_backward_offset = 0;
+						var cur_word_str_val = "";
+						
+						// oblicz offset 
+						for (var i = 0; i < training_area_cmp.value.length; i++) { 
+							var ijk = training_area_cmp.value[i];
+							if (ijk == "\n") {
+								n_nl_count++;
+							} 
+						}
+						//console.warn(" n nl count " + n_nl_count);
+						// clear array 
+						//var example_area_info_each_lines = example_area_info.value.match(/[^\r\n]+/g);	
+
+						// word regex
+						console.warn(" regex " + training_area_cmp.value.split(/\b\S+\b/g));
+						console.warn(" regex " + training_area_cmp.value.match(/\w+/g));
+						
+						var new_tmp_buf_word_tr = training_area_cmp.value.match(/[^\r\n]+/g);
+						console.warn(new_tmp_buf_word_tr[current_pos_currsor_in_sample_area] + " | " + current_pos_currsor_in_sample_area);
+						console.warn(new_tmp_buf_word_tr + " | " + new_tmp_buf_word_tr.length); 
+						
+						var __offset_forward = 0;
+						var __offset_backward = 0;
+						var __offset_idx = 0;
+						var __current_line_length = 0;
+						var __word__ = "";
+						for (var kk1 = 0; kk1 < new_tmp_buf_word_tr.length; kk1++) {
+							var line_kk1 = new_tmp_buf_word_tr[kk1];
+							var test_kk1 = new_tmp_buf_word_tr[current_pos_currsor_in_sample_area];
+							if (line_kk1 === test_kk1) {
+								__offset_idx = kk1; // got index
+								__word__ = line_kk1; // get line - word
+								//console.warn( " match " + kk1 );
+							}
+							console.warn( " length of each lines " + line_kk1.length);
+						}
+						
+						// forward calc 
+						for (var kk2 = 0; kk2 < new_tmp_buf_word_tr.length; kk2++) {
+							if (kk2 === __offset_idx) {
+								__current_line_length = new_tmp_buf_word_tr[kk2].length;
+								break;
+							}
+							__offset_forward += new_tmp_buf_word_tr[kk2].length;
+						}
+						
+						//console.warn( " match " + __offset_forward + " | " + __current_line_length);
+						
+						// backward calc
+						for (var kk3 = new_tmp_buf_word_tr.length-1; kk3 > 0; kk3--) {
+							var line_kk3 = new_tmp_buf_word_tr[kk3];
+							var test_kk3 = new_tmp_buf_word_tr[current_pos_currsor_in_sample_area];
+							if (line_kk3 === test_kk3) {
+								//console.warn( " match " +  kk3 + " | " + __offset_idx + " | back | " + __offset_backward + " | " + new_tmp_buf_word_tr[kk3].length);
+								break;
+							}
+							__offset_backward += new_tmp_buf_word_tr[kk3].length;
+						}
+						
+						console.warn( " match " + __offset_forward + " | " + __offset_backward);
+						console.warn( " word :: " + __word__);
+						//console.warn( " current word " + __word__.substring(__offset_forward, __offset_backward) + " | " + __word__.substring(__offset_forward, __offset_backward).length);
+						
+						var inpVal = document.getElementById("training_form_");
+						var inpValdiv = document.getElementById("sample_form_");
+						inpVal.value = __word__;
+						// stringToHash
+						//console.warn( " cmp 2 word " + inpVal.value + " | " + inpValdiv.value);
+						//console.warn( " hash " + stringToHash(inpVal.value) + " :: " + stringToHash(inpValdiv.value));
+						
+						var tmp_inp_for_hash_test1 = "";
+						var tmp_inp_for_hash_test2 = "";
+						var _test_cbc = 0;
+						for (var pp = 0; pp < inpVal.value.length; pp++) {
+							tmp_inp_for_hash_test1 += inpVal.value[pp];
+							tmp_inp_for_hash_test2 += inpValdiv.value[pp];
+							console.warn( " cmp 2 word " + tmp_inp_for_hash_test1 + " | " + tmp_inp_for_hash_test2);
+							console.warn( " hash " + stringToHash(tmp_inp_for_hash_test1) + " :: " + stringToHash(tmp_inp_for_hash_test2));
+							_test_cbc = stringToHash(tmp_inp_for_hash_test1) === stringToHash(tmp_inp_for_hash_test2);
+							console.warn( " cbc " + _test_cbc);
+							if (_test_cbc != true) {
+								inpVal.style.border = "8px solid red";
+							} else {
+								inpVal.style.border = "2px solid black";
+							}
+						}
+						
+						// part of mistakes count
+						var color_test_ = window.getComputedStyle(inpVal).getPropertyValue("border-color") == "rgb(255, 0, 0)";
+						if (_test_cbc == false) {
+							console.warn( " :::: " + color_test_ );
+							if (color_test_ == true) {
+								count_mistakes ++;
+								var mistakes_counter_div_ = document.getElementById("mistakes_counter_div");
+								mistakes_counter_div_.innerHTML = count_mistakes;
+							}
+						}
+						
+						/*
+						for (var ii = 0; ii < current_pos_currsor_in_sample_area; ii++) {
+							var uu1 = new_tmp_buf_word_tr[ii];
+							for (var uuu2 = 0; uuu2 < uu1.length; uuu2++) {
+								//console.warn(uu1[uuu2]);
+								// calc forward offset
+								count_new_offset++;
+							}
+							//console.log( " ......... " + uu1 + " | " + count_new_offset );
+						}
+						
+						//---
+						console.warn(" test dlugosci " + current_pos_currsor_in_sample_area + " | " + n_nl_count + " | " + count_new_offset);
+						
+						// current line - from new offset calculation
+						var dd_val = 0;
+						var _backward_count_char = 0;
+						if (current_pos_currsor_in_sample_area < n_nl_count) {
+							for (var i = training_area_cmp.value.length; i > 0; i--) {
+								console.log(" backward " + training_area_cmp.value[i] + " " + (training_area_cmp.value[i]=="\n"));
+								if ((training_area_cmp.value[i]=="\n")){
+									dd_val++;				
+								}
+								_backward_count_char++; // to jest potrzbne to zrobienia substring
+								if (dd_val == (n_nl_count - current_pos_currsor_in_sample_area)) {
+									break;
+								}
+								console.log( " get middle word " + " | " + dd_val + " | " + current_pos_currsor_in_sample_area);
+							}							
+						} else {
+							for (var i = 0; i < training_area_cmp.value.length; i++) { 
+								if (i < count_new_offset) continue;
+								
+								cur_word_str_val += training_area_cmp.value[i];
+								console.warn(" current line >>> " +  i + " "  + training_area_cmp.value[i] + " |  " + count_new_offset); // << no i jest !!	
+							}
+						}
+						// znowu zle 
+						//console.warn( " word after loop " + cur_word_str_val + " | " + training_area_cmp.value.substring(count_new_offset, _backward_count_char) );
+						*/
+						
+						//for (var i = 0; i < example_area_info_each_lines[current_pos_currsor_in_sample_area].length; i++) {
+							//var itemx = ;
+							//console.log(" >> " + example_area_info_each_lines[current_pos_currsor_in_sample_area][i]);
+						//}
+						
+						/*
+						// wszystko OFF --- ! Od nowa
+						/////////////////////////////
+						for (var i = 0; i < training_area_cmp.value.length; i++) { // mozna tez sterowac dodaj lub odejmujac tutaj jakas wartosc gdy jestem w danej linii o dlugosc linii
+						//for (var i = 0; i < example_area_info_each_lines[current_pos_currsor_in_sample_area].length; i++) {
+							var itemx = training_area_cmp.value[i];
+							if (itemx == "\n") {
+								linesX.push(strX);
+								strX = "";
+							} else {
+								strX += itemx; // current_pos_currsor_in_sample_area nie diala tutaj bo itemx dodaje ostatnie znaki do tej tablicy
+								// dlatego pewnie trzeba wrocic tutaj do linesX[0] 
+								linesX[0] = strX;
+								//example_line_div.innerHTML = "";
+								//example_line_div.appendChild(document.createTextNode(linesX[0]));
+								//console.warn(" 11111111111111111 " + itemx + " || " + linesX[0] + " |||||  " + strX + " num of lines " + linesX.length + " | " + current_pos_currsor_in_sample_area);
+
+								var inpVal = document.getElementById("training_form_");
+								
+								// !!! correct value for linesX
+								// poniewaz wychodzi cos stakiego wiec mozna obciac do dlugosc wzgledem npVal.value.length
+								// dlatego kolorowanie ramki dziala ale juz hash nie bo string jest zluzszy niz 12 w tym przypadku
+								// linexX check     dielectr |     dielectr,class dielectric : public material {,  public: | 3
+								// index.html:879  inpVal.value.length 12
+								//linesX[0] = linesX[0].substring(0, inpVal.value.length);
+								
+								
+								inpVal.value = linesX[0]; // <<<<<<<<<<<<<<<<<<<<<<< to zmienione na to  linesX[0].substring(0, inpVal.value.length)
+								inpVal.value =  linesX[0].substring(0, inpVal.value.length);
+								//console.log(inpVal.vale);
+								//console.log(linesX[0].length);
+								
+								console.info( " linexX check " + linesX[0] + " | " + linesX + " | " + linesX.length + " | " + linesX[0].substring(0, inpVal.value.length)); 
+								
+								// sprawdzenie bledow na biezaco bo najprosciej dla mnie 
+								var inpValdiv = document.getElementById("sample_form_");
+								var tmp_inp_for_hash_test1 = "";
+								var tmp_inp_for_hash_test2 = "";
+								console.info( " inpVal.value.length " + inpVal.value.length );
+								// ta petla w tej formie liczy wszystkie znaki od poczatku tekstu wpisanego w tym okienku
+								// a ma liczyc tylko biezaca linie
+								// jesli nie dodam obslugi strzalek wtedy bedzie dzialao ... 
+								for (var pp = 0; pp < inpVal.value.length; pp++) {
+									// add for hash
+									tmp_inp_for_hash_test1 += inpVal.value[pp];
+									tmp_inp_for_hash_test2 += inpValdiv.value[pp];
+									//var cmp_cbc = inpVal.value[pp].charCodeAt(0) === inpValdiv.value[pp].charCodeAt(0);
+									cmp_cbc = stringToHash(linesX[0].substring(0, inpVal.value.length)) === stringToHash(tmp_inp_for_hash_test2);
+									//console.warn(pp + " >> " + cmp_cbc); 
+									if (cmp_cbc != true) {
+										inpVal.style.border = "8px solid red";
+										//break;
+									} else {
+										inpVal.style.border = "2px solid black";
+									}
+									// nie wiem czy to w petli powinno byc tutaj ale ok na raize niech bedzie
+									//console.log( " H A S H " + stringToHash(tmp_inp_for_hash_test1) + " " + stringToHash(tmp_inp_for_hash_test2) );
+									console.log( " H A S H " + stringToHash(linesX[0].substring(0, inpVal.value.length)) + " " + stringToHash(tmp_inp_for_hash_test2) );
+									//console.log( tmp_inp_for_hash_test1 + " " +tmp_inp_for_hash_test1 );
+								}
+								
+								var color_test_ = window.getComputedStyle(inpVal).getPropertyValue("border-color") == "rgb(255, 0, 0)";
+								console.warn( " mistake " + cmp_cbc + " | " + counter_mistakes_for_world_ + " | " + count_mistakes + " | " + color_test_ + " || " +  window.getComputedStyle(inpVal).getPropertyValue("border-color"));
+								
+								//if (cmp_cbc != true) {
+								if (color_test_ == 1) {
+									// chyba wszystko jest źle jeśli chodzi o sprawdzanie i liczenie błędów
+									// niby dobrze pokazuje kiedy jest błąd rysując czerwoną ramkę...
+									// ale coś jest nie halo jednak
+									console.warn( " >>>>>>>>>>>> " + stringToHash(tmp_inp_for_hash_test1) + " "+  stringToHash(tmp_inp_for_hash_test2) );
+									// add +1 to mistakes
+									if (counter_mistakes_for_world_ == 0) {
+										count_mistakes += 1;
+										// lock counter
+										counter_mistakes_for_world_ = 1;
+										// jump to backspace key event handler ^^
+									}
+								}
+								if (counter_mistakes_for_world_) {
+									var inpValdiv = document.getElementById("training_form_");
+									//console.warn(" check cnc in backspace " + cmp_cbc + " | " + window.getComputedStyle(inpValdiv).getPropertyValue("border-color"));
+									color_test_ = window.getComputedStyle(inpValdiv).getPropertyValue("border-color") == "rgb(255, 0, 0)";
+									//console.warn( " color test " + color_test_);
+									if (color_test_ == false) {
+										// unlock counter
+										counter_mistakes_for_world_ = 0;
+										// update DIV
+										// dodaje extra co kazde poprawione slowo skonczone +1 ale to nic
+										// chodzi o to zeby ilosc bledow bylo jak najmniejsza
+										// ale to też może być po prostu przy robieniu kolejnego znaku np spacji
+										var mistakes_counter_div_ = document.getElementById("mistakes_counter_div");
+										mistakes_counter_div_.innerHTML = count_mistakes;
+									}
+								}
+								
+							}
+							//console.warn(" 11111111111111111 " + strX);
+						}
+						//example_line_div.innerHTML = linesX.join();
+						*/
+					
+				}
+				}
+				
+				/*
+				switch (event.data.key) {
+					case "Enter":
+						Y += 1;
+						// ale z racji tego ze to nowa linia trzeba tez zresetowac tutaj X - na razie mam tylko X Y zmienne mozna dodac wiecej jakby co
+						X = 0;
+						// klawisz down moze liczyc dalej w dol mimo ze nie ma nowych linii
+						current_line_number += 1;
+						curr_line_num_div.innerHTML = current_line_number;
+						break;
+					case " ": // space
+						X += 1;
+						break;
+					case "Backspace":
+						X -= 1;
+						break;
+					//case "Tab": // obsluga TAB musi byc zrobiona w miejscu gdzie mam bezposrednia obsluge tego klawisza - tutaj blokuje inne operacje w programie
+					//	X += DEFAULT_TAB_SIZE;
+					//	break;
+					case "Shift":
+						break;
+					case "Control":	
+						break;
+					case "CapsLock":
+						break;
+					case "Alt":
+						break;
+					case "ArrowDown":
+						if (Y < current_line_number) {
+							Y += 1;						
+						}
+						break;
+					case "ArrowLeft":
+						if (X != 0) { //  bez tego klikajac ciagle w lewo mimo ze pozycja w div jest poczatek lini nabija licznik na minus
+							X -= 1;
+						} else {
+							X = 0;
+						}
+						break;
+					case "ArrowRight":
+						X += 1;
+						break;
+					case "ArrowUp":
+						if (Y != 0) { // bez tego klikajac ciagle w góre nabija licznik mimo braku tekstu etc
+							Y -= 1;
+						} else {
+							Y = 0; // jesli cos jest nie tak daj na 0 - bo cos zmienia przy tab na -1 jeszcze
+						}
+						break;
+					case "Escape":	
+						break;
+					default:
+						X += 1 ;
+				}
+				*/
+				
+				fly_arrow_to_show_line_X.innerHTML = X;
+				fly_arrow_to_show_line_Y.innerHTML = Y;
+				
+			}
+			
+			
+			// get some data from id="example"
+			var example_data = document.getElementById("example");
+			console.log(example_data.value.length);
+			var ex_match_data = example_data.value.match(/[^\r\n]+/g);
+			//console.log(" array to example matches " + ex_match_data + " " + ex_match_data.length);
+			// add to example_arr
+			/* for (var i = 0; i < ex_match_data.length; i++) {
+				example_arr.push(ex_match_data[i]);
+			}
+			console.log(example_arr);*/
+
+			// get data from training_area to compare line by line
+			var training_area_cmp = document.getElementById("training_area");
+			var tr_match_data = training_area_cmp.value.match(/[^\r\n]+/g);
+			console.log(" array to example matches " + tr_match_data);
+			
+			// kolejna instotna kwestia ktora powinna znalezc sie w poraniku na stronie po kliknieciu w (?)
+			// zeby bylo jasne że ENTER powoduje wykonanie porownania linia po lini i niech wyswiela informacje o tym na stronie 
+			// przynajmniej ilosc linii aktualna linie oraz bledy w aktualnej lini
+			if (event.data.key == "Enter" && event.data.type == "keydown") {
+
+				//var example_line_div = document.getElementById("example_line");
+				// current_pos_currsor_in_sample_area -- current line to compare
+				//var get_lines_tr_data = tr_match_data.value.match(/[^\r\n]+/g);
+				//console.log(" every lines of : " + tr_match_data + " " + tr_match_data[current_pos_currsor_in_sample_area-1] + " " + current_pos_currsor_in_sample_area );
+				//example_line_div.innerHTML = tr_match_data[current_pos_currsor_in_sample_area-1];
+
+				//cmpString1();
+
+				/*
+				var line = tr_match_data.length;
+				console.log(" match data " + ex_match_data.length + " " + tr_match_data.length); 
+				var last_line_ex = ex_match_data[tr_match_data.length-1];
+				var curr_line_to_match = tr_match_data[tr_match_data.length-1];
+				console.log(" == > " + last_line_ex + " " + curr_line_to_match);
+				console.log(" ktory string jest dluzszy " + last_line_ex.length + " " + curr_line_to_match.length);
+				
+				var arr_to_iter = ( last_line_ex.length > curr_line_to_match.length) ? last_line_ex : curr_line_to_match;
+				var tmp_buff = [];
+				for (var i = 0; i < arr_to_iter.length; i++) {
+					console.log( " iter " + last_line_ex[i] + " " + curr_line_to_match[i]);
+					console.log(last_line_ex[i] === curr_line_to_match[i]);
+					if (last_line_ex[i] != curr_line_to_match[i]) {
+						tmp_buff.push(i);
+					}
+					// add text to div
+					var curr_line_div = document.getElementById("current_line");
+					var example_line_div = document.getElementById("example_line");
+					curr_line_div.innerText =  curr_line_to_match;
+					example_line_div.innerText =  last_line_ex;	// tutaj zmienie to na tekst ktory klepie w oknie trainingowym
+				}
+				map1.set(line, tmp_buff);
+				
+				// add info to lc7
+				var tmp_ct_buf_map1 = [];
+				for (var i = 0; i < map1.size; i++) {
+					console.log(map1.get(i+1));
+					//console.log(map1.get(i+1).length);
+					tmp_ct_buf_map1.push(map1.get(i+1).length);
+				}
+				console.log(" tmp buf " + tmp_ct_buf_map1);
+				lc7.innerHTML = tmp_ct_buf_map1;
+				*/
+				
+				// pokaz staty globalnej talibcy dla odstepow czasu miedzy kliknieciem tutaj
+				console.log(" == GLOBAL TIME ARRAY FOR FILE == " + time_last_click_for_file + " | " + time_last_click_for_file.length);
+				console.log( " keys " + collect_every_keydown_click_for_file + " | " + collect_every_keydown_click_for_file.length);
+				console.log( " key codes " + collect_every_keydown_click_by_code_for_file + " | " + collect_every_keydown_click_by_code_for_file.length);
+			}
+			
+			console.log( " MAP 1 " + map1.size);
+			console.log( " map item [0] [-1] " + map1.get(1) + " | " +  map1.get(map1.size));
+			
+			// zliczanie cofnięć kursora w przypadku szybkiego wyłapania błędu
+			if (event.data.key == "Backspace" && event.data.type == "keydown") {
+				counter_of_backspace += 1;
+			}
+
+			// obługa klawisza TAB zeby nie pzreskakiwal na inne DIV po stronie albo linkki tylko byl w polu treningowym pisania tekstu
+			if (event.data.key == "Tab") {
+				console.warn("TAB CLICKEd");
+				// przeniesione - tutaj sledzi carret pos X dla tab
+				if(event.data.type == "keydown"){
+					X += DEFAULT_TAB_SIZE - 1; // dlaczego -1 ? Poniewaz liczy oprocz tego jako osoby znak w miejscu gdzie liczy coordynaty X Y 
+					var fly_arrow_to_show_line_X = document.getElementById("fly_arrow_to_show_line_X");
+					fly_arrow_to_show_line_X.innerHTML = X;
+				}
+			
+				// blokowania TAB przeniesione na poczatek kodu
+				var training_area = document.getElementById("training_area");
+				//training_area_stopTab.addEventListener("keydown", stopLink);
+				//console.log(event);
+				//event.preventDefault();
+				console.log(training_area.value[(training_area.value.length-1)]);
+				var temp_str = training_area.value[(training_area.value.length-1)];
+				//temp_str += "    ";
+				//training_area.value[(training_area.value.length-1)] = "    ";
+				//console.log(" text " + training_area.value[(training_area.value.length-1)]);
+				//training_area.text[(training_area.value.length-1)] = temp_str;
+				//var ta = training_area.value;
+				//ta = ta.slice(0, training_area.value.length) + "    ";
+				//console.log( " ta " + ta);
+				//console.log(" inner " + training_area);
+				
+				//tab_key_click_counter += 1;
+				//console.log(tab_key_click_counter);
+				//w function stopLink(event) zwiększany jest globaly licznik tab_key_click_counter
+				// przez co potem wystarczy sprawdzic czy jest rowne 1 i potem wyzerowac
+				if (tab_key_click_counter == 1) { 
+				switch (TAB_LENGTH) {
+					case 2:
+						training_area.value = training_area.value + "  ";
+						break;
+					case 3:
+						training_area.value = training_area.value + "   ";
+						break;
+					case 4:
+						//training_area.value = training_area.value + "    ";
+						training_area.value = training_area.value + "\t";
+						break;
+					default:
+						console.log( " ? " );
+				}
+				tab_key_click_counter = 0;
+				}
+				
+				//training_area.innerText = "";
+				//console.log(ta.innerText[ta.innerText.length-1])
+				console.log(" training area " + training_area.value.match(/[^\r\n]+/g));
+				return;
+			}	
+			
+			/* END OF START BUTTON SECTION */
+			}
+			
+        };
+
+        // Handle worker errors
+        keyEventWorker.onerror = (err) => {
+            console.error(`Key Event Worker Error: ${err.message}`);
+        };
+		
+		
+		
+		
+    </script>
+</body>
+</html>
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Workers Example</title>
+</head>
+<body>
+    <h1>Web Workers Example</h1>
+    <input type="text" id="userInput" placeholder="Type something...">
+    <script type="module">
+        // Define worker scripts as blobs
+        const keyEventWorkerScript = `
+            self.onmessage = (event) => {
+                if (event.data.type === 'keydown') {
+                    self.postMessage(\`Key down: \${event.data.key}\`);
+                } else if (event.data.type === 'keyup') {
+                    self.postMessage(\`Key up: \${event.data.key}\`);
+                }
+            };
+        `;
+        
+        const inputProcessingWorkerScript = `
+            self.onmessage = (event) => {
+                if (event.data.type === 'input') {
+                    const processedInput = event.data.data.toUpperCase();
+                    self.postMessage(\`Processed input: \${processedInput}\`);
+                }
+            };
+        `;
+
+        // Create blob URLs for the worker scripts
+        const keyEventWorkerBlob = new Blob([keyEventWorkerScript], { type: 'application/javascript' });
+        const inputProcessingWorkerBlob = new Blob([inputProcessingWorkerScript], { type: 'application/javascript' });
+
+        const keyEventWorker = new Worker(URL.createObjectURL(keyEventWorkerBlob));
+        const inputProcessingWorker = new Worker(URL.createObjectURL(inputProcessingWorkerBlob));
+
+        // Handle key events
+        document.addEventListener('keydown', (event) => {
+            keyEventWorker.postMessage({ type: 'keydown', key: event.key });
+        });
+
+        document.addEventListener('keyup', (event) => {
+            keyEventWorker.postMessage({ type: 'keyup', key: event.key });
+        });
+
+        // Handle input events
+        const inputElement = document.getElementById('userInput');
+        inputElement.addEventListener('input', (event) => {
+            inputProcessingWorker.postMessage({ type: 'input', data: event.target.value });
+        });
+
+        // Listen for messages from the workers
+        keyEventWorker.onmessage = (event) => {
+            console.log(`Key Event Worker: ${event.data}`);
+        };
+
+        inputProcessingWorker.onmessage = (event) => {
+            console.log(`Input Processing Worker: ${event.data}`);
+        };
+
+        // Handle worker errors
+        keyEventWorker.onerror = (err) => {
+            console.error(`Key Event Worker Error: ${err.message}`);
+        };
+
+        inputProcessingWorker.onerror = (err) => {
+            console.error(`Input Processing Worker Error: ${err.message}`);
+        };
+    </script>
+</body>
+</html>
+--!>
+
+
+
+
+
+	<!--
+		<script>
+		document.addEventListener(
+		  "keydown",
+		  (event) => {
+			const keyName = event.key;
+
+			if (keyName === "Control") {
+			  // do not alert when only Control key is pressed.
+			  return;
+			}
+
+			if (event.ctrlKey) {
+			  // Even though event.key is not 'Control' (e.g., 'a' is pressed),
+			  // event.ctrlKey may be true if Ctrl key is pressed at the same time.
+			  alert(`Combination of ctrlKey + ${keyName}`);
+			} else {
+			  alert(`Key pressed ${keyName}`);
+			}
+		  },
+		  false,
+		);
+
+		document.addEventListener(
+		  "keyup",
+		  (event) => {
+			const keyName = event.key;
+
+			// As the user releases the Ctrl key, the key is no longer active,
+			// so event.ctrlKey is false.
+			if (keyName === "Control") {
+			  alert("Control key was released");
+			}
+		  },
+		  false,
+		);
+
+		
+		</script>
+		--!>
