@@ -4,6 +4,7 @@ użyj <b>index2.html</b>
 - poprawilem troche licznik lini - ale jest jeszcze błąd w przypadku cofania backspace wtedy trzeba strzałkami wrócić do linii 0 i znowu w dół do aktualnej linii. Patrz wtedy na div w prawym dolnym rogu
 - poprawiona analiza błędów w pisowni linia treningowa vs sample
 - dodane kilka licznikow w tym znaki na minutę
+- "check line sample" jest po to, żeby w przypadku dziwnych odstępów w kodzie zobaczyć z czego jest zbudowany np "\t\t\t     const struct" czyli 5xtab + 5x' ' - mozna to sprawdzić w konsoli żeby nie świeciło na czerwono że robisz błąd
   ps: to jest aplikacja dla własnego użytku, dla sprawdzenia i poprawy szybkości pisania kodu ogólnie . Wstępna wersja jest ok dla mnie.
 <hr>
 
