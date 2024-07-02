@@ -1,3 +1,8 @@
+![screenshow_mtbk-2.png](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/Measure%20Time%20Between%20Key%20Events/screenshow_mtbk-2.png)
+
+<b>new_toke.html</b> - Można potem gdy już zrobię ten test 15 tygodniowy "challange" dodać ML jak "makemore" @karpathy, jakiś prosty MLP żeby pomógł w przewidywaniu sekwencji słow. Zamiast klikać na klawiaturze można myszką klikać w kafelki jak na tym obrazku i po prostu w ten sposób tworzyć kod. Nie uderzając w klawisze tylko klikając TOKENY ! Ale to będzie kolejny challange żeby połączyć to z makemore za 15 tygodni ;p
+<hr>
+
 02-07-2024 - sposób użycia</br >
 1. generujesz sample jak pokazane w sample_generator_v2.ipynb żeby pozbyć się zbętnych komentarzy i pustych linii</br >
 2. wklejasz jakiś fragment (u mnie na ten moment nie więcej niż 100 lini kodu linux w 15 min daje radę wklepać około ~3500 znaków wg tego licznika) po prawej</br >
