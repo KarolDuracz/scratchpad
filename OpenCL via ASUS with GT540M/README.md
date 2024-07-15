@@ -1,3 +1,6 @@
+Update 15-07-2024.<br />
+"don't need .lib" I mean ... i don't have .lib file. So I used this way to run functions from DLL file directly used LoadLibrary.<br />
+<br />
 1. MS Visual Studio setup<br />
 Project property >  C/C++ > General > Aditional Include Directories<br />
   {path_to_cl.h}\OpenCL-SDK\clGPU-master\clGPU-master\common\intel_ocl_icd\windows\include<br />
