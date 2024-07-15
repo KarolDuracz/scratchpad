@@ -1,5 +1,8 @@
 Update 15-07-2024.<br />
 "don't need .lib" I mean ... i don't have .lib file. So I used this way to run functions from DLL file directly used LoadLibrary.<br />
+https://www.nersc.gov/assets/pubs_presos/MattsonTutorialSC14.pdf<br />
+https://www.khronos.org/files/opencl-1-1-quick-reference-card.pdf<br />
+https://www.khronos.org/files/opencl-1-2-quick-reference-card.pdf<br />
 <br />
 1. MS Visual Studio setup<br />
 Project property >  C/C++ > General > Aditional Include Directories<br />
