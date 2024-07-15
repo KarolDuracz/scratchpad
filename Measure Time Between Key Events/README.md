@@ -1,5 +1,5 @@
 Update 15.07.2024</br >
-What is below is my challenge to increase the coding speed a bit and develop some automations. 15 weeks -> 105 days. After this challenge, the plan is to make another small tool to improve programming skills.</br >
+What is below is my challenge to increase the coding speed a bit and develop some automations. 15 weeks -> 105 days. After this challenge, the plan is to make another small tool to improve programming skills. <b>FOR MY OWN USE</b>.</br >
 But apart from training on the token array as below in the image using a small MLP like makemore @karpathy. The WHISPER project (https://github.com/openai/whisper/tree/main) and the API from developer.mozilla. org SpeechSynthesis are also interesting. </br >https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisVoice</br >
 https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition</br >
 I tried running this on Chrome in Android 10, some JS code from here. Maybe a mix of these things + a phone with Android 10 and running it via Chrome will result in an interesting project. Because there are nice examples on API developer.mozilla.org. Whisper also looks fun project to generate text from audio. Overall, it is so interesting that I will try to take it up as another challenge in some time.
