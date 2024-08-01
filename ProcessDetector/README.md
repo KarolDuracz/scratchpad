@@ -1,3 +1,15 @@
+[PL] Jeśli nie ma uruchomionej aplikacji ProcessDetector_v20240801, czyli głównej która ma śledzić nazwy okien wtedy przy uruchomieniu serwisu może tworzyć pliki w Temp do póki komputer jest uruchomiony. To ważne! Czyli żeby nie tworzyło oprócz pliku "service.log" w C:\Windows\Temp reszty która ma zbierać info czy aplikacja działa w tle, a następnie wyciąga PID tego procesu. W tej wersji nie ma komunikacji pomiędzy. Tylko zbierane jest info na ten temat do tych plików. Najpierw skompiluj program, który wykreywa 2 rodzaje ciągów znakowych w nazwie "xtensions" oraz "Rozszerzenia". Wtedy nastepuje wyświetlanie pliku w notepad.exe oraz wyświetlenie MessageBox. Co 45 minut pojawia się calc.exe który ma komunikować działanie aplikacji ProcessDetector_v20240801. <b>FOR MY OWN USE.</b>
+<br /> <br />
+1. Instruction to run as background task is the same WinKey+R > shell:startup > copy file to this location as shortcut > etc <br />
+2. In /ProcessDetector_v20240801.cpp file change {path to file} for particular path<br />
+3. In /ProcessDetector_v20240801.cpp in line 166 in production mode remove this line to compile with ShowWindow and EnableWindow API functions<br />
+4. This command create service as named "SimpleService" C:\Windows\system32>sc create SimpleService binPath="C:\Users\{user}\source\repos\ProcessDetector_v20240801\Debug\ProcessDetector_v20240801.exe" <br />
+5. sc start SimpleService - start serice and add to list services.msc <br />
+6. sc stop SimpleService - stop service <br />
+7. sc delete SimpleService - delte service from list of service <br />
+8. services.msc <br />
+9. To install as permanent service type command : sc config SimpleService type= own start= auto 
+<hr>
 <b>follow this instructions</b> </br>
 press -> WinKey(key) + R </br>
 type -> shell:startup </br>
