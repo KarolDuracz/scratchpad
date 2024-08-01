@@ -8,7 +8,8 @@
 6. sc stop SimpleService - stop service <br />
 7. sc delete SimpleService - delte service from list of service <br />
 8. services.msc <br />
-9. To install as permanent service type command : sc config SimpleService type= own start= auto 
+9. To install as permanent service type command : sc config SimpleService type= own start= auto  <br />
+10. TODO. Is there some errors. For example. In TestStringForSimpleService.cpp with scenarion pid 4711 is ok, but for 10780 with 5 numbers sth going worng here. But base code is ok to run and to fix in future.
 <hr>
 <b>follow this instructions</b> </br>
 press -> WinKey(key) + R </br>
