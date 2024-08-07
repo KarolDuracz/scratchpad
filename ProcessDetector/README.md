@@ -3,6 +3,17 @@
 Zamiast kombinować z SimpleService można podejść do zbierania pewnych logów w ten sposób.<br />
 -- Aktualnie używam MS Studio 2019 --
 <br />
+Jak coś to kod dla .bat wygląda podobnie jak to. Tylko zmień ścieżkę do pliku i samą nazwę. Tutaj jest python uruchamiany w przykładzie.
+<br />
+```
+@echo off
+color 5f # set color 
+rem RUN AS ADMIN
+cd C:\Users\{path to .exe} # path to .exe 
+python -m notebook # for example run notebook when cmd jump to path using CD
+cmd /k # don't close cmd console, stay on desktop
+```
+<br />
 <hr>
 05.08.2024 - <b>ProcessDetector_v20240801v4.cpp</b> - Na ten moment finalna wersja. WIęcej pól w nlist structurze. Dodane podstawowe liczniki które zwiększają się o 1 na aktualnym oknie które jest aktywne. Linie 472-478. Co 1 sekundę. Jest jeszcze błąd wielkości bufora na string. 500 znaków to za mało. Jest chyba w 2-3 miejscach do zmiany ta wartość w całym kodzie jakby co. Albo obłsuga wyjątku. Bo w ogóle nie ma w tym kodzie tego typu zdarzeń obsługiwanych.<br /><br />
 05.08.2024 - <b>ProcessDetector_v20240801v3.cpp</b> - Na ten moment finalna wersja. Dodane "hash table / hash lookup and install table" z ANSIC 6-6 ex. To w fajny sposób zbiera unikalne nazwy. Jest ustawione NLISTSIZE na 10000 dla testów zmień np na 101. W liniach 426 - 445 wyświelana jest lista z hashlist. W tym miejscu zamiast wyświetlać to na konsoli można zapisywać do pliku co jakiś czas. Ale to co jest tutaj jest bazą wlaśnie pod takie modyfikacje.<br />
