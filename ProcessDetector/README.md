@@ -8,7 +8,7 @@ Jak coś to kod dla .bat wygląda podobnie jak to. Tylko zmień ścieżkę do pl
 ```
 @echo off
 color 5f # set color 
-rem RUN AS ADMIN
+rem RUN AS ADMIN # for this app doesn't need admin privilege but some app like SimpleService need run with admin permission
 cd C:\Users\{path to .exe} # path to .exe 
 python -m notebook # for example run notebook when cmd jump to path using CD
 cmd /k # don't close cmd console, stay on desktop
