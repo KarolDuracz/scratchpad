@@ -1,6 +1,7 @@
-07.08.2024 - <b>Project8-bamf.cpp</b> - To jest alternatywa dla SimpleService.cpp który działa w tle bez żadnych okienek, tylko zapisuje log. W lini 128 ustaw czas co jaki ma pojawiać się okno do wpisania wybory. Obecnie jest to (60 * 5) czyli 5 minut. Watek "func_th1" przy 
+07.08.2024 - <b>Project8-bamf.cpp</b> - To jest alternatywa dla SimpleService.cpp który działa w tle bez żadnych okienek, tylko zapisuje log. W lini 128 ustaw czas co jaki ma pojawiać się okno do wpisania wyboru. Obecnie jest to (60 * 5) czyli 5 minut. Watek "func_th1" przy 
  ustawieniu "sig_th1" na 1 odpala sekwencje -> czyszczenie konsoli -> pokazanie okna wykonując ShowWindow -> czekanie na wybór użytkownika -> zapisanie na dysku "save_to_file" -> ResumeThread które wznawia zatrzymany wątek który sam siebie uśpił przy zapaleniu bitu dla "sig_th1" -> Zminimalizowanie okna po Sleep(1000)<br />
-Zamiast kombinować z SimpleService można podejść do zbierania pewnych logów w ten sposób.
+Zamiast kombinować z SimpleService można podejść do zbierania pewnych logów w ten sposób.<br />
+-- Aktualnie używam MS Studio 2019 --
 <br />
 <hr>
 05.08.2024 - <b>ProcessDetector_v20240801v4.cpp</b> - Na ten moment finalna wersja. WIęcej pól w nlist structurze. Dodane podstawowe liczniki które zwiększają się o 1 na aktualnym oknie które jest aktywne. Linie 472-478. Co 1 sekundę. Jest jeszcze błąd wielkości bufora na string. 500 znaków to za mało. Jest chyba w 2-3 miejscach do zmiany ta wartość w całym kodzie jakby co. Albo obłsuga wyjątku. Bo w ogóle nie ma w tym kodzie tego typu zdarzeń obsługiwanych.<br /><br />
