@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D World with Q-Learning Creatures</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.0.3/dist/pixi.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script >
+	
+	
+	
+	
+	const WIDTH = 800;
+const HEIGHT = 600;
+const CREATURE_SIZE = 10; // Diameter of the creature
+const FOOD_SIZE = 5; // Diameter of the food
+const NUM_ACTIONS = 4; // UP, DOWN, LEFT, RIGHT
+const LEARNING_RATE = 0.001;
+const DISCOUNT_FACTOR = 0.9;
+const INITIAL_EXPLORATION_RATE = 0.1;
+const EXPLORATION_INCREASE_RATE = 0.05;
+const MAX_STEPS_IN_SAME_PATH = 100;
+const NUM_CREATURES = 10;
+const FOOD_KNOWLEDGE_RADIUS = 100; // Radius around known food locations to prioritize movement
+const MEMORY_SHARING_RATE = 0.1; // Probability of sharing memory between creatures
+const SENSOR_RADIUS = 50; // Radius of the sensor around the creature
+const MIN_LIFETIME = 500;
+const MAX_LIFETIME = 1000;
+const LIFETIME_DECREASE_RATE = 1; // Rate at which lifetime decreases per update
+
+// Deep Q-Network
+class DQN {
+    constructor() {
+        this.model = this.createModel();
+        this.optimizer = tf.train.adam(LEARNING_RATE);
+    }
+
+    createModel() {
+        return tf.sequential({
+            layers: [
+                tf.layers.dense({ units: 24, activation: 'relu', inputShape: [4] }),
+                tf.layers.dense({ units: 24, activation: 'relu' }),
+                tf.layers.dense({ units: NUM_ACTIONS, activation: 'linear' })
+            ]
+        });
+    }
+
+    async predict(state) {
+        const tensorState = tf.tensor2d([state], [1, 4]);
+        const qValues = this.model.predict(tensorState);
+        return qValues;
+    }
+
+    async train(experiences) {
+        const batchSize = experiences.length;
+        const states = tf.tensor2d(experiences.map(e => e.state), [batchSize, 4]);
+        const actions = tf.tensor1d(experiences.map(e => e.action), 'int32');
+        const rewards = tf.tensor1d(experiences.map(e => e.reward));
+        const nextStates = tf.tensor2d(experiences.map(e => e.nextState), [batchSize, 4]);
+        const doneMasks = tf.tensor1d(experiences.map(e => e.done ? 1 : 0));
+
+        const qValues = this.model.predict(states);
+        const targetQValues = rewards.add(
+            doneMasks.mul(
+                tf.max(this.model.predict(nextStates), 1)
+            ).mul(DISCOUNT_FACTOR)
+        );
+        const loss = qValues.sub(targetQValues).square().mean();
+
+        await this.optimizer.minimize(() => loss);
+    }
+
+    async transferKnowledge(otherModel) {
+        this.model.setWeights(await otherModel.model.getWeights());
+    }
+}
+
+// Global Knowledge Base
+const globalFoodKnowledge = [];
+const globalExperienceReplayBuffer = [];
+
+// Creature class
+class Creature {
+    constructor(id) {
+        this.id = id;
+        this.x = Math.floor(Math.random() * (WIDTH - CREATURE_SIZE));
+        this.y = Math.floor(Math.random() * (HEIGHT - CREATURE_SIZE));
+        this.path = [];
+        this.dqn = new DQN();
+        this.explorationRate = INITIAL_EXPLORATION_RATE;
+        this.recentPositions = [];
+        this.experienceReplayBuffer = [];
+        this.knownFoodLocations = []; // Local knowledge of food locations
+        this.foodFound = 0; // Number of foods found by this creature
+        this.sensorColor = 0x00ff00; // Default sensor color
+        this.targetFoodLocation = null; // Target food location to move towards
+        this.lifetime = Math.floor(Math.random() * (MAX_LIFETIME - MIN_LIFETIME + 1)) + MIN_LIFETIME;
+    }
+
+    move(action) {
+        this.path.push({ x: this.x, y: this.y });
+        if (action === 0 && this.y > 0) this.y -= CREATURE_SIZE;
+        if (action === 1 && this.y < HEIGHT - CREATURE_SIZE) this.y += CREATURE_SIZE;
+        if (action === 2 && this.x > 0) this.x -= CREATURE_SIZE;
+        if (action === 3 && this.x < WIDTH - CREATURE_SIZE) this.x += CREATURE_SIZE;
+    }
+
+    draw(graphics) {
+        graphics.beginFill(this.sensorColor);
+        graphics.drawCircle(this.x + CREATURE_SIZE / 2, this.y + CREATURE_SIZE / 2, CREATURE_SIZE / 2);
+        graphics.endFill();
+        
+        // Draw sensor area
+        graphics.lineStyle(1, 0x00ffff, 0.5);
+        graphics.drawCircle(this.x + CREATURE_SIZE / 2, this.y + CREATURE_SIZE / 2, SENSOR_RADIUS);
+    }
+
+    drawPath(graphics) {
+        graphics.lineStyle(2, this.sensorColor, 0.5);
+        this.path.forEach((point, index) => {
+            if (index === 0) return;
+            graphics.moveTo(this.path[index - 1].x + CREATURE_SIZE / 2, this.path[index - 1].y + CREATURE_SIZE / 2);
+            graphics.lineTo(point.x + CREATURE_SIZE / 2, point.y + CREATURE_SIZE / 2);
+        });
+    }
+
+    async actAndLearn(state, action, reward, nextState, done) {
+        this.move(action);
+        this.recentPositions.push({ x: this.x, y: this.y });
+        if (this.recentPositions.length > MAX_STEPS_IN_SAME_PATH) {
+            const recentPosition = this.recentPositions.slice(-MAX_STEPS_IN_SAME_PATH);
+            const uniquePositions = new Set(recentPosition.map(p => `${p.x},${p.y}`));
+            if (uniquePositions.size < MAX_STEPS_IN_SAME_PATH / 2) {
+                this.explorationRate = Math.min(1.0, this.explorationRate + EXPLORATION_INCREASE_RATE);
+            } else {
+                this.explorationRate = INITIAL_EXPLORATION_RATE;
+            }
+        }
+
+        this.experienceReplayBuffer.push({ state, action, reward, nextState, done });
+        globalExperienceReplayBuffer.push({ state, action, reward, nextState, done });
+
+        if (this.experienceReplayBuffer.length > 1000) {
+            const batch = this.experienceReplayBuffer.slice(-64);
+            await this.dqn.train(batch);
+        }
+
+        // Update known food locations
+        if (done) {
+            this.knownFoodLocations.push({ x: this.x, y: this.y });
+            globalFoodKnowledge.push({ x: this.x, y: this.y });
+            this.foodFound++;
+            this.sensorColor = 0xff0000; // Change color to indicate food detection
+            this.targetFoodLocation = null; // Reset target food location
+        } else {
+            this.sensorColor = 0x00ff00; // Reset sensor color if no food found
+        }
+    }
+
+    getClosestFoodLocation() {
+        const allKnownFood = globalFoodKnowledge;
+        let closestFood = null;
+        let minDist = Infinity;
+        allKnownFood.forEach(food => {
+            const dist = Math.hypot(this.x - food.x, this.y - food.y);
+            if (dist < minDist && dist < FOOD_KNOWLEDGE_RADIUS) {
+                minDist = dist;
+                closestFood = food;
+            }
+        });
+        return closestFood;
+    }
+
+    updateBehavior() {
+        if (this.targetFoodLocation) {
+            // Move towards the target food location
+            if (Math.abs(this.x - this.targetFoodLocation.x) > Math.abs(this.y - this.targetFoodLocation.y)) {
+                this.move(this.x < this.targetFoodLocation.x ? 3 : 2); // Move left or right
+            } else {
+                this.move(this.y < this.targetFoodLocation.y ? 1 : 0); // Move up or down
+            }
+        } else {
+            const closestFood = this.getClosestFoodLocation();
+            if (closestFood) {
+                // Set target food location to move towards
+                this.targetFoodLocation = closestFood;
+                if (Math.abs(this.x - this.targetFoodLocation.x) > Math.abs(this.y - this.targetFoodLocation.y)) {
+                    this.move(this.x < this.targetFoodLocation.x ? 3 : 2); // Move left or right
+                } else {
+                    this.move(this.y < this.targetFoodLocation.y ? 1 : 0); // Move up or down
+                }
+            } else {
+                // Random movement if no known food is close
+                this.move(Math.floor(Math.random() * NUM_ACTIONS));
+            }
+        }
+    }
+
+    async shareKnowledge(creatures) {
+        if (Math.random() < MEMORY_SHARING_RATE) {
+            const otherCreature = creatures[Math.floor(Math.random() * creatures.length)];
+            if (otherCreature !== this) {
+                await this.dqn.transferKnowledge(otherCreature.dqn);
+            }
+        }
+    }
+
+    updateLifetime() {
+        this.lifetime -= LIFETIME_DECREASE_RATE;
+        if (this.lifetime <= 0) {
+            this.lifetime = 0;
+            return true; // Creature has expired
+        }
+        return false;
+    }
+}
+
+// Food class
+class Food {
+    constructor() {
+        this.x = Math.floor(Math.random() * (WIDTH - FOOD_SIZE));
+        this.y = Math.floor(Math.random() * (HEIGHT - FOOD_SIZE));
+    }
+
+    draw(graphics) {
+        graphics.beginFill(0xff0000);
+        graphics.drawCircle(this.x + FOOD_SIZE / 2, this.y + FOOD_SIZE / 2, FOOD_SIZE / 2);
+        graphics.endFill();
+    }
+}
+
+// Environment class
+class Environment {
+    constructor() {
+        this.app = new PIXI.Application({ width: WIDTH, height: HEIGHT });
+        document.body.appendChild(this.app.view);
+        this.creatures = Array.from({ length: NUM_CREATURES }, (_, i) => new Creature(i));
+        this.food = new Food();
+        this.graphics = new PIXI.Graphics();
+        this.app.stage.addChild(this.graphics);
+
+        // Statistics panel
+        this.stats = new PIXI.Text('', { fontSize: 16, fill: 0xffffff });
+        this.stats.x = WIDTH - 300;
+        this.stats.y = 10;
+        this.app.stage.addChild(this.stats);
+
+        // Plotting transfer learning
+        this.plotContainer = new PIXI.Container();
+        this.plotContainer.x = WIDTH - 300;
+        this.plotContainer.y = 200;
+        this.app.stage.addChild(this.plotContainer);
+
+        this.update();
+    }
+
+    async update() {
+        const expiredCreatures = [];
+        
+        for (const creature of this.creatures) {
+            if (creature.updateLifetime()) {
+                expiredCreatures.push(creature);
+                continue; // Skip this creature as it has expired
+            }
+            
+            const state = [creature.x, creature.y, this.food.x, this.food.y];
+            const qValues = await creature.dqn.predict(state);
+            const action = (Math.random() < creature.explorationRate) ?
+                Math.floor(Math.random() * NUM_ACTIONS) :
+                qValues.argMax().arraySync();
+
+            creature.updateBehavior(); // Update creature's movement strategy based on known food
+            creature.move(action);
+
+            // Improved collision detection
+            const distance = Math.hypot(
+                creature.x - this.food.x,
+                creature.y - this.food.y
+            );
+            const collision = distance < (CREATURE_SIZE / 2 + FOOD_SIZE / 2);
+            
+            const reward = collision ? 1 : -0.01;
+            if (collision) {
+                // Place new food at a different location
+                this.food = new Food();
+                globalFoodKnowledge.push({ x: this.food.x, y: this.food.y }); // Update global food knowledge
+                this.creatures.forEach(c => {
+                    c.knownFoodLocations.push({ x: this.food.x, y: this.food.y }); // Update each creature's known food locations
+                    c.sensorColor = 0x00ff00; // Reset sensor colors
+                    c.targetFoodLocation = null; // Reset target food location
+                });
+            }
+
+            const nextState = [creature.x, creature.y, this.food.x, this.food.y];
+            await creature.actAndLearn(state, action, reward, nextState, collision);
+            await creature.shareKnowledge(this.creatures);
+        }
+
+        // Create new creatures with collective knowledge from surviving creatures
+        while (this.creatures.length < NUM_CREATURES) {
+            const newCreature = new Creature(this.creatures.length);
+            const sharedDQN = new DQN();
+            for (const creature of this.creatures) {
+                sharedDQN.transferKnowledge(creature.dqn);
+            }
+            newCreature.dqn = sharedDQN;
+            this.creatures.push(newCreature);
+        }
+
+        this.creatures = this.creatures.filter(c => !expiredCreatures.includes(c));
+
+        this.graphics.clear();
+        this.creatures.forEach(creature => {
+            creature.drawPath(this.graphics);
+            creature.draw(this.graphics);
+        });
+        this.food.draw(this.graphics);
+
+        // Update statistics panel
+        let statsText = "Creature Statistics:\n";
+        this.creatures.forEach(creature => {
+            statsText += `Creature ${creature.id}: Found ${creature.foodFound} foods, Lifetime ${creature.lifetime}\n`;
+        });
+        this.stats.text = statsText;
+
+        // Clear old plot
+        this.plotContainer.removeChildren();
+
+        // Example plot - transfer learning success over time
+        const transferData = this.creatures.map(c => c.foodFound);
+        const maxTransfers = Math.max(...transferData);
+        const barWidth = 20;
+        const barSpacing = 5;
+        transferData.forEach((count, index) => {
+            const barHeight = (count / maxTransfers) * 100;
+            const bar = new PIXI.Graphics();
+            bar.beginFill(0x00ffff);
+            bar.drawRect(index * (barWidth + barSpacing), 100 - barHeight, barWidth, barHeight);
+            bar.endFill();
+            this.plotContainer.addChild(bar);
+        });
+
+        requestAnimationFrame(() => this.update());
+    }
+}
+
+// Initialize the environment
+new Environment();
+
+	
+	
+
+
+	</script>
+</body>
+</html>
