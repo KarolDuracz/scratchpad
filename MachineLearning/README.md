@@ -6,7 +6,7 @@ The main goal and strategy of development (evolution) should be to develop the a
 for food and surviving as a whole species.<br />
 - This is base code for explore more about RL and compare with this: https://cs.stanford.edu/people/karpathy/convnetjs/demo/rldemo.html
 or this https://github.com/karpathy/reinforcejs/tree/master etc
-- there is some errors  --> for example this "creatures" don't have this skills  which I write about above but I plan to deep dive into it in my free time <br />
+- there is some errors  --> for example this "creatures" don't have this skills  which I wrote about above but I plan to deep dive into it in my free time <br />
 
 This looks like this <br />
 
