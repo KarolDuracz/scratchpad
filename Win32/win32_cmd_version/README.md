@@ -1,0 +1,12 @@
+try to build minimalist version of CMD
+
+<br /><br />
+For implementation functionality as exec, etc to run this as comommad this repo show how to build something like that<br />
+https://github.com/Ran1s/xv6-labs-2021/tree/master<br />
+https://github.com/mit-pdos/xv6-riscv/tree/riscv<br />
+https://github.com/mit-pdos/xv6-public/tree/master<br />
+
+<br /><br />
+mode about windows controls <br />
+https://nexus-6.uk/joomla/index.php/common-controls-menu-item<br />
+https://www.nexus-6.uk/common-controls/ <br />
