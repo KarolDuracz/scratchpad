@@ -29,3 +29,8 @@ https://ep.com.pl/kursy/14931-eksperymenty-z-fpga-20<br />
 https://www.youtube.com/@Rysino/videos<br />
 https://rysino.gitlab.io/pl/<br />
 https://gitlab.com/rysy_core
+This guy wrote an incredibly helpful article to play with microcontrolers like ARM Cortex M0 in series "Małe jest piękne" [73-75]
+https://programistamag.pl/programista-6-2018-73/
+For me this is another topic to correspond to CMD / TTY console
+
+--- 04-09-2024 ---
