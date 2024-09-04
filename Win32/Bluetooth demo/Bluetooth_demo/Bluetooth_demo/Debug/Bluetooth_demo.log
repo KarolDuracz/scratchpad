@@ -1,0 +1,8 @@
+﻿  main.cpp
+C:\Users\kdhome\source\repos\Bluetooth_demo\Bluetooth_demo\main.cpp(22,12): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'HBLUETOOTH_RADIO_FIND'
+C:\Users\kdhome\source\repos\Bluetooth_demo\Bluetooth_demo\main.cpp(39,12): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'HANDLE'
+C:\Users\kdhome\source\repos\Bluetooth_demo\Bluetooth_demo\main.cpp(39,12): warning C4477: 'printf' : format string '%x' requires an argument of type 'unsigned int', but variadic argument 2 has type 'HANDLE'
+C:\Users\kdhome\source\repos\Bluetooth_demo\Bluetooth_demo\main.cpp(81,17): warning C4477: 'wprintf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'BLUETOOTH_ADDRESS_STRUCT'
+C:\Users\kdhome\source\repos\Bluetooth_demo\Bluetooth_demo\main.cpp(207,17): warning C4477: 'wprintf' : format string '%llu' requires an argument of type 'unsigned __int64', but variadic argument 1 has type 'BLUETOOTH_ADDRESS_STRUCT'
+C:\Users\kdhome\source\repos\Bluetooth_demo\Bluetooth_demo\main.cpp(207,17): warning C4477: 'wprintf' : format string '%x' requires an argument of type 'unsigned int', but variadic argument 2 has type 'BLUETOOTH_ADDRESS_STRUCT'
+  Bluetooth_demo.vcxproj -> C:\Users\kdhome\source\repos\Bluetooth_demo\Debug\Bluetooth_demo.exe
