@@ -7,3 +7,5 @@ https://github.com/microsoft/Windows-driver-samples/tree/main
 <br /><br />
 And very interesting and helpful videos about kernel debugging etc in on this YT channel<br />
 https://www.youtube.com/@nirlichtman/videos
+<br />
+--- 04-09-2024 ---
