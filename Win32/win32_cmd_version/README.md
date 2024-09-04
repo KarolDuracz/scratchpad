@@ -15,3 +15,9 @@ Series "Konsola (TTY) pod Linuxem" is ok as example how to build console
 Gynvael's Livestream #80: Konsola (TTY) pod Linuxem (part 1)
 https://www.youtube.com/watch?v=LnbjkYrCR6M
 
+<br /><br />
+To create minimalist system RTOS with context switching mechanism etc look at<br />
+https://github.com/rosly/rados <br />
+and https://programistamag.pl/programista-11-2015-42/
+
+PS: Smiehalf seems to have gone out of business, but RADOS is a nice lesson in how to write an RTOS. For this case I have in here copy as .rar this repo.
