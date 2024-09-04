@@ -21,3 +21,11 @@ https://github.com/rosly/rados <br />
 and https://programistamag.pl/programista-11-2015-42/
 
 PS: Smiehalf seems to have gone out of business, but RADOS is a nice lesson in how to write an RTOS. For this case I have in here copy as "rados-master.zip" this repo.
+
+<br /><br />
+But for better understand from electronic side. here you can see how to create a TTY console on FPGA and mechanism from this repo in low level <br />
+https://ep.com.pl/kursy/14891-eksperymenty-z-fpga-19-cos-dla-graczy<br />
+https://ep.com.pl/kursy/14931-eksperymenty-z-fpga-20<br />
+https://www.youtube.com/@Rysino/videos<br />
+https://rysino.gitlab.io/pl/<br />
+https://gitlab.com/rysy_core
