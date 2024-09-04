@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formula 1 Simulation</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+        .info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            pointer-events: none;
+        }
+        .controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="info">
+        <div id="tireCondition">Tire Condition: 100%</div>
+        <div id="laps">Laps: 0</div>
+        <div id="temperature">Temperature: 25°C</div>
+        <div id="humidity">Humidity: 50%</div>
+        <div id="speed">Speed: 0 km/h</div>
+    </div>
+    <div class="controls">
+        <button id="accelerate">Accelerate</button>
+        <button id="brake">Brake</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Initialize scene
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Add ambient light
+        const ambientLight = new THREE.AmbientLight(0x404040);
+        scene.add(ambientLight);
+
+        // Add directional light
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(1, 1, 1).normalize();
+        scene.add(directionalLight);
+
+        camera.position.z = 50;
+        camera.position.y = 10;
+        camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+        // Create a more complex track with varying curve radii
+        class ComplexTrackCurve extends THREE.Curve {
+            constructor() {
+                super();
+            }
+
+            getPoint(t) {
+                const R = 30 + 10 * Math.sin(2 * Math.PI * t); // Varying radius of the curve
+                const x = R * Math.sin(2 * Math.PI * t); 
+                const y = 5 * Math.sin(4 * Math.PI * t);  
+                const z = R * Math.cos(2 * Math.PI * t); 
+                return new THREE.Vector3(x, y, z);
+            }
+        }
+
+        const trackCurve = new ComplexTrackCurve();
+        const trackGeometry = new THREE.TubeGeometry(trackCurve, 100, 1, 8, true);
+        const trackMaterial = new THREE.MeshBasicMaterial({ color: 0x444444, side: THREE.DoubleSide });
+        const track = new THREE.Mesh(trackGeometry, trackMaterial);
+        scene.add(track);
+
+        // Create a simple car model
+        const carGeometry = new THREE.BoxGeometry(5, 2, 3);
+        const carMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const car = new THREE.Mesh(carGeometry, carMaterial);
+        scene.add(car);
+
+        // Function to move car along the track
+        let t = 0;
+        let speed = 0; // Initial speed in m/s
+        const maxSpeed = 30; // Maximum speed in m/s
+        const accelerationRate = 0.1; // Rate of acceleration
+        const brakingRate = 0.2; // Rate of braking
+
+        function animateCar() {
+            t += speed / 100; // Adjust t based on speed
+            if (t > 1) t = 0; // Loop the track
+
+            const point = trackCurve.getPoint(t);
+            car.position.set(point.x, point.y, point.z);
+            car.lookAt(trackCurve.getPoint((t + 0.01) % 1));
+        }
+
+        // Tire wear and speed simulation
+        let tireCondition = 100;  // Initial tire condition in percentage
+        let temperature = 25;     // Initial temperature in Celsius
+        let humidity = 50;        // Initial humidity in percentage
+        const maxTireDegradation = 50;
+        const g = 9.8; // Gravitational acceleration in m/s²
+
+        // Function to calculate tire wear based on speed
+        function calculateTireWear(speed, temperature, humidity) {
+            const speedEffect = 0.01 * speed; // Tire wear effect per unit speed
+            const tempEffect = 0.0005 * temperature; // Temperature effect on wear
+            const humidityEffect = 0.0002 * humidity; // Humidity effect on wear
+            return speedEffect + tempEffect + humidityEffect;
+        }
+
+        function updateTireConditionAndSpeed(lap) {
+            // Simulate changing track conditions
+            temperature = 25 + 10 * Math.sin(2 * Math.PI * lap / 70);  // Temperature varies
+            humidity = 50 + 30 * Math.sin(2 * Math.PI * lap / 70);  // Humidity varies
+
+            // Calculate varying radius of the curve
+            const R = 30 + 10 * Math.sin(2 * Math.PI * lap / 70); // Example radius function
+
+            // Calculate speed based on curve radius
+            const speedEffect = Math.sqrt(g * R);
+            const speedKmH = speed * 3.6; // Convert m/s to km/h
+
+            // Update tire condition
+            const wear = calculateTireWear(speed, temperature, humidity);
+            const degradation = wear * lap; // Accumulate wear over laps
+            tireCondition = Math.max(100 - degradation, 0);  // Tire condition should not drop below 0
+
+            // Update car color based on tire condition
+            const color = new THREE.Color(`hsl(${120 - (120 * (100 - tireCondition) / maxTireDegradation)}, 100%, 50%)`);
+            car.material.color.set(color);
+
+            // Update HTML with tire condition, temperature, humidity, lap info, and speed
+            document.getElementById('tireCondition').innerText = `Tire Condition: ${Math.round(tireCondition)}%`;
+            document.getElementById('laps').innerText = `Laps: ${Math.round(lap)}`;
+            document.getElementById('temperature').innerText = `Temperature: ${Math.round(temperature)}°C`;
+            document.getElementById('humidity').innerText = `Humidity: ${Math.round(humidity)}%`;
+            document.getElementById('speed').innerText = `Speed: ${Math.round(speedKmH)} km/h`;
+        }
+
+        let lap = 0;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            lap += 0.1;
+            updateTireConditionAndSpeed(Math.floor(lap));
+            animateCar();
+            renderer.render(scene, camera);
+        }
+
+        // Event listeners for controls
+        document.getElementById('accelerate').addEventListener('click', () => {
+            speed = Math.min(speed + accelerationRate, maxSpeed);
+        });
+
+        document.getElementById('brake').addEventListener('click', () => {
+            speed = Math.max(speed - brakingRate, 0);
+        });
+
+        // Keyboard controls
+        window.addEventListener('keydown', (event) => {
+            switch (event.key) {
+                case 'ArrowUp': // Accelerate
+                    speed = Math.min(speed + accelerationRate, maxSpeed);
+                    break;
+                case 'ArrowDown': // Brake
+                    speed = Math.max(speed - brakingRate, 0);
+                    break;
+            }
+        });
+
+        animate();
+    </script>
+</body>
+</html>
