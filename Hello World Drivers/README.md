@@ -5,7 +5,7 @@ section. At this moment some stuff for reading only...
 https://www.kernel.org/doc/html/latest/driver-api/index.html <br />
 https://github.com/microsoft/Windows-driver-samples/tree/main
 <br /><br />
-And very interesting and helpful videos about kernel debugging etc in on this YT channel<br />
+And very interesting and helpful videos about kernel debugging etc you will find on this YT channel<br />
 https://www.youtube.com/@nirlichtman/videos
 <br />
 --- 04-09-2024 ---
