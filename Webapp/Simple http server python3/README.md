@@ -12,3 +12,5 @@ This is to demonstrate a simple game and a backend, i.e. and python server.
 
 <b> <h2>But like everything here, there is something started and unfinished .  </h2></b>
 Maybe someday...
+
+![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/Webapp/Simple%20http%20server%20python3/simple%20game.png)
