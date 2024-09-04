@@ -20,4 +20,4 @@ To create minimalist system RTOS with context switching mechanism etc look at<br
 https://github.com/rosly/rados <br />
 and https://programistamag.pl/programista-11-2015-42/
 
-PS: Smiehalf seems to have gone out of business, but RADOS is a nice lesson in how to write an RTOS. For this case I have in here copy as .rar this repo.
+PS: Smiehalf seems to have gone out of business, but RADOS is a nice lesson in how to write an RTOS. For this case I have in here copy as "rados-master.zip" this repo.
