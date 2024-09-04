@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\Users\kdhome\source\repos\win_server_bottlenecks\win_server_bottlenecks\main.cpp(159,27): warning C4309: 'argument': truncation of constant value
+  win_server_bottlenecks.vcxproj -> C:\Users\kdhome\source\repos\win_server_bottlenecks\Debug\win_server_bottlenecks.exe

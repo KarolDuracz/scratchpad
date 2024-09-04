@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.34729.46
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "win_server_bottlenecks", "win_server_bottlenecks\win_server_bottlenecks.vcxproj", "{E101FC33-44E3-4541-ABDC-C4FD07741DD9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E101FC33-44E3-4541-ABDC-C4FD07741DD9}.Debug|x64.ActiveCfg = Debug|x64
+		{E101FC33-44E3-4541-ABDC-C4FD07741DD9}.Debug|x64.Build.0 = Debug|x64
+		{E101FC33-44E3-4541-ABDC-C4FD07741DD9}.Debug|x86.ActiveCfg = Debug|Win32
+		{E101FC33-44E3-4541-ABDC-C4FD07741DD9}.Debug|x86.Build.0 = Debug|Win32
+		{E101FC33-44E3-4541-ABDC-C4FD07741DD9}.Release|x64.ActiveCfg = Release|x64
+		{E101FC33-44E3-4541-ABDC-C4FD07741DD9}.Release|x64.Build.0 = Release|x64
+		{E101FC33-44E3-4541-ABDC-C4FD07741DD9}.Release|x86.ActiveCfg = Release|Win32
+		{E101FC33-44E3-4541-ABDC-C4FD07741DD9}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3A52CE73-C062-40C2-8CB2-A9AA7509EDEC}
+	EndGlobalSection
+EndGlobal
