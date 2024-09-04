@@ -4,6 +4,9 @@ section. At this moment some stuff for reading only...
 <br />
 https://www.kernel.org/doc/html/latest/driver-api/index.html <br />
 https://github.com/microsoft/Windows-driver-samples/tree/main
+<br />
+In WINAPI DOCS start from here maybe<br />
+https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/defining-i-o-control-codes
 <br /><br />
 And very interesting and helpful videos about kernel debugging etc you will find on this YT channel<br />
 https://www.youtube.com/@nirlichtman/videos
