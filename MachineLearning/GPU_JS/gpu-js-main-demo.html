@@ -1,0 +1,161 @@
+<script src="https://cdn.jsdelivr.net/npm/gpu.js@latest/dist/gpu-browser.min.js"></script>
+<body>
+<canvas id="dummyCanvas"></canvas>
+
+
+
+<script>
+
+	class RNG {
+  constructor(seed) {
+      this.state = BigInt(seed);
+  }
+
+  random_u32() {
+      // xorshift rng: https://en.wikipedia.org/wiki/Xorshift#xorshift.2A
+      this.state ^= (this.state >> 12n) & 0xFFFFFFFFFFFFFFFFn;
+      this.state ^= (this.state << 25n) & 0xFFFFFFFFFFFFFFFFn;
+      this.state ^= (this.state >> 27n) & 0xFFFFFFFFFFFFFFFFn;
+      return Number((this.state * 0x2545F4914F6CDD1Dn >> 32n) & 0xFFFFFFFFn);
+  }
+
+  random() {
+      // random number in [0, 1)
+      return (this.random_u32() >>> 8) / 16777216.0;
+  }
+
+  uniform(a = 0.0, b = 1.0) {
+      // random number in [a, b)
+      return a + (b - a) * this.random();
+  }
+}
+
+	let random  = new RNG(42);
+
+	console.log(random);
+    
+	for (let i = 0; i < 10; i++) {
+	console.log(random.uniform(0, 2) + " " + random.random());
+	}
+	
+	class Value {
+  constructor(data, _children = [], _op = '') {
+      this.data = data;
+      this.grad = 0;
+      // internal variables used for autograd graph construction
+      this._backward = () => {};
+      this._prev = new Set(_children);
+      this._op = _op; // the op that produced this node, for graphviz / debugging / etc
+  }
+  
+   add(other) {
+      other = other instanceof Value ? other : new Value(other);
+      const out = new Value(this.data + other.data, [this, other], '+');
+
+      out._backward = () => {
+          this.grad += out.grad;
+          other.grad += out.grad;
+      };
+
+      return out;
+  }
+  
+   mul(other) {
+      other = other instanceof Value ? other : new Value(other);
+      const out = new Value(this.data * other.data, [this, other], '*');
+
+      out._backward = () => {
+          this.grad += other.data * out.grad;
+          other.grad += this.data * out.grad;
+      };
+
+      return out;
+  }
+  
+  pow(other) {
+      if (typeof other !== 'number') {
+          throw new Error("only supporting number powers for now");
+      }
+      const out = new Value(Math.pow(this.data, other), [this], `**${other}`);
+
+      out._backward = () => {
+          this.grad += (other * Math.pow(this.data, other - 1)) * out.grad;
+      };
+
+      return out;
+  }
+
+  
+   relu() {
+      const out = new Value(this.data < 0 ? 0 : this.data, [this], 'ReLU');
+
+      out._backward = () => {
+          this.grad += (out.data > 0 ? 1 : 0) * out.grad;
+      };
+
+      return out;
+  }
+  
+	 backward() {
+      // topological order all of the children in the graph
+      const topo = [];
+      const visited = new Set();
+
+      const buildTopo = (v) => {
+          if (!visited.has(v)) {
+              visited.add(v);
+              for (const child of v._prev) {
+                  buildTopo(child);
+              }
+              topo.push(v);
+          }
+      };
+
+      buildTopo(this);
+
+      // go one variable at a time and apply the chain rule to get its gradient
+      this.grad = 1;
+      for (const v of topo.reverse()) {
+          v._backward();
+      }
+  }
+  
+  // Alias for toString to mimic Python's __repr__
+  [Symbol.for('nodejs.util.inspect.custom')]() {
+      return this.toString();
+  }
+  }
+  
+  let nin = 2;
+  console.log( " scale " + Math.pow(nin, -0.5));
+  
+  let val = new Value(random.uniform(-1,1));
+  val.backward();
+  console.log(val);
+  
+  let c, d, e, f, g = 0;
+  let c1, d1 = 0;
+  
+  let a = new Value(-4.0);
+  let b = new Value(2.0);
+  
+  console.log(a);
+  console.log(b);
+  
+	c = a.add(b);
+	console.log(c);
+	d = a.mul(b);
+	console.log(d);
+	d1 = b.pow(3);
+	console.log("d1 : " + d1.data + " d : " + d.data);
+	d = d.add(d1);
+	console.log(d.data);
+	c = c.add(1);
+	console.log(c.data);
+	
+	
+	
+
+
+</script>
+</body>
