@@ -10,3 +10,8 @@ https://github.com/mit-pdos/xv6-public/tree/master<br />
 mode about windows controls <br />
 https://nexus-6.uk/joomla/index.php/common-controls-menu-item<br />
 https://www.nexus-6.uk/common-controls/ <br />
+<br /><br />
+Series "Konsola (TTY) pod Linuxem" is ok as example how to build console
+Gynvael's Livestream #80: Konsola (TTY) pod Linuxem (part 1)
+https://www.youtube.com/watch?v=LnbjkYrCR6M
+
