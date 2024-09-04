@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24-Hour Animated Clock with Task Management</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+			margin-top: 50px;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        #clock-container {
+            position: relative;
+            width: 440px;
+            height: 440px;
+        }
+        #clock, #animation-circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #inner-circle {
+            position: absolute;
+            top: 70px;
+            left: 70px;
+            width: 300px;
+            height: 300px;
+            background-color: white;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .hour-label {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        #task-container {
+            margin-left: 20px;
+            width: 300px;
+        }
+        #task-container h2 {
+            margin-bottom: 10px;
+        }
+        #task-form {
+            margin-bottom: 20px;
+        }
+        #task-form input {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        #task-list {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        #task-list th, #task-list td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        #task-list th {
+            background-color: #f2f2f2;
+        }
+        .task-row button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .task-row button:hover {
+            background-color: #0056b3;
+        }
+        .time-left {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+<div id="clock-container">
+    <canvas id="clock" width="440" height="440"></canvas>
+    <canvas id="animation-circle" width="440" height="440"></canvas>
+    <div id="inner-circle"></div>
+    <!-- Hour Labels -->
+    <div class="hour-label" style="top: 0; left: 205px;">12</div>
+    <div class="hour-label" style="top: 30px; left: 300px;">1</div>
+    <div class="hour-label" style="top: 100px; left: 375px;">2</div>
+    <div class="hour-label" style="top: 190px; left: 405px;">3</div>
+    <div class="hour-label" style="top: 290px; left: 375px;">4</div>
+    <div class="hour-label" style="top: 370px; left: 300px;">5</div>
+    <div class="hour-label" style="top: 410px; left: 205px;">6</div>
+    <div class="hour-label" style="top: 370px; left: 105px;">7</div>
+    <div class="hour-label" style="top: 290px; left: 30px;">8</div>
+    <div class="hour-label" style="top: 190px; left: 0px;">9</div>
+    <div class="hour-label" style="top: 100px; left: 30px;">10</div>
+    <div class="hour-label" style="top: 30px; left: 105px;">11</div>
+</div>
+
+<div id="task-container">
+    <h2>Task List</h2>
+    <form id="task-form">
+        <input type="text" id="task-input" placeholder="Enter task" required>
+        <button type="submit">Add Task</button>
+    </form>
+    <table id="task-list">
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Time Left</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Tasks will be added here dynamically -->
+        </tbody>
+    </table>
+</div>
+
+<div id="timeToReach60Minutes-label"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+$(document).ready(function () {
+    const taskList = $('#task-list tbody');
+    const taskInput = $('#task-input');
+    let taskCounter = 0;
+    const tasks = {};
+
+    // Add task to the list
+    $('#task-form').on('submit', function (e) {
+        e.preventDefault();
+        const taskText = taskInput.val().trim();
+        if (taskText !== '') {
+            taskCounter++;
+            tasks[taskCounter] = {
+                text: taskText,
+                timeLeft: '25:00', // Default Pomodoro time
+                timeInSeconds: 1500, // 25 minutes in seconds
+                intervalId: null
+            };
+            const taskRow = `<tr class="task-row" data-task-id="${taskCounter}">
+                                <td>${taskText}</td>
+                                <td class="time-left">${tasks[taskCounter].timeLeft}</td>
+                                <td><button class="start-pomodoro">Start</button></td>
+                             </tr>`;
+            taskList.append(taskRow);
+            taskInput.val(''); // Clear input field
+
+            updateTabTitle();
+        }
+    });
+
+    // Handle Pomodoro timer
+    taskList.on('click', '.start-pomodoro', function () {
+        const taskRow = $(this).closest('tr');
+        const taskId = taskRow.data('task-id');
+        const taskText = taskRow.find('td:first').text();
+        
+        if (tasks[taskId].intervalId) {
+            clearInterval(tasks[taskId].intervalId);
+        }
+
+        startPomodoro(taskId, taskText);
+    });
+
+    function startPomodoro(taskId, taskText) {
+        const pomodoroMinutes = 25;
+        const breakMinutes = 5;
+        let timeLeft = pomodoroMinutes * 60; // 25 minutes in seconds
+        let isBreak = false;
+
+        tasks[taskId].intervalId = setInterval(() => {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            const formattedTime = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+            tasks[taskId].timeLeft = formattedTime;
+            tasks[taskId].timeInSeconds = timeLeft;
+            updateTaskTimeLeft(taskId, formattedTime);
+            updateClockUI(taskText, formattedTime, isBreak);
+
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                if (isBreak) {
+                    clearInterval(tasks[taskId].intervalId);
+                    alert('Pomodoro session complete!');
+                    delete tasks[taskId]; // Remove task after completion
+                    updateTabTitle();
+                } else {
+                    alert('Break time!');
+                    isBreak = true;
+                    timeLeft = breakMinutes * 60; // 5 minutes break
+                }
+            }
+
+            updateTabTitle();
+        }, 1000);
+    }
+
+    function updateTaskTimeLeft(taskId, time) {
+        $(`tr[data-task-id="${taskId}"] .time-left`).text(time);
+    }
+
+    function updateClockUI(taskText, formattedTime, isBreak) {
+        $('#inner-circle').html(`
+            <div style="text-align: center; padding-top: 140px;">
+                <strong>${taskText}</strong><br>
+                <span style="font-size: 24px;">${formattedTime}</span><br>
+                ${isBreak ? '<small>Break Time</small>' : '<small>Work Time</small>'}
+            </div>
+        `);
+    }
+
+    function updateTabTitle() {
+        const taskCount = Object.keys(tasks).length;
+        let closestTime = null;
+
+        if (taskCount > 0) {
+            closestTime = Math.min(...Object.values(tasks).map(task => task.timeInSeconds));
+            const closestTask = Object.values(tasks).find(task => task.timeInSeconds === closestTime);
+            document.title = `Tasks: ${taskCount} | Closest Time: ${closestTask.timeLeft}`;
+        } else {
+            document.title = 'No Tasks';
+        }
+    }
+	
+		// Clock
+	const clockCanvas = document.getElementById('clock');
+	const animationCanvas = document.getElementById('animation-circle');
+	const clockCtx = clockCanvas.getContext('2d');
+	const animationCtx = animationCanvas.getContext('2d');
+	const outerRadius = clockCanvas.width / 2;
+	const innerRadius = 150; // Inner circle radius (300px diameter)
+	const sleepStartHour = 22;
+	const sleepEndHour = 4;
+	const segmentGap = 2 * Math.PI / 360; // Small gap between segments
+
+	function drawClock() {
+		clockCtx.clearRect(0, 0, clockCanvas.width, clockCanvas.height);
+		clockCtx.translate(outerRadius, outerRadius); // Move to the center of the canvas
+		clockCtx.rotate(-Math.PI / 2); // Rotate to start from the top (12 o'clock)
+		
+		for (let hour = 0; hour < 24; hour++) {
+			drawSegment(hour);
+		}
+		
+		clockCtx.rotate(Math.PI / 2); // Rotate back
+		clockCtx.translate(-outerRadius, -outerRadius); // Move back to the original position
+	}
+
+	function drawSegment(hour) {
+		const angle = (hour * Math.PI) / 12; // Each hour is 1/12th of a circle
+		const nextAngle = ((hour + 1) * Math.PI) / 12 - segmentGap;
+		
+		// Determine the color based on the time of day
+		const now = new Date();
+		const currentHour = now.getHours();
+		
+		if (hour >= sleepStartHour || hour < sleepEndHour) {
+			clockCtx.fillStyle = 'red';
+		} else if (hour < currentHour) {
+			clockCtx.fillStyle = 'blue';
+		} else {
+			clockCtx.fillStyle = 'white';
+		}
+		
+		clockCtx.beginPath();
+		clockCtx.arc(0, 0, outerRadius, angle + segmentGap / 2, nextAngle, false); // Draw the outer arc
+		clockCtx.arc(0, 0, innerRadius, nextAngle, angle + segmentGap / 2, true); // Draw the inner arc (inward)
+		clockCtx.closePath();
+		clockCtx.fill();
+	}
+
+	function timeToReach60Minutes(angle) {
+		const fullCircle = 2 * Math.PI;
+		const adjustedAngle = (angle + Math.PI / 2) % fullCircle; // Adjust to start at 12 o'clock
+
+		const totalSeconds = (adjustedAngle / fullCircle) * 3600;
+		const remainingSeconds = 3600 - totalSeconds;
+
+		const minutes = Math.floor(remainingSeconds / 60);
+		const seconds = Math.floor(remainingSeconds % 60);
+
+		return { minutes, seconds };
+	}
+
+
+	function drawAnimationCircle() {
+		animationCtx.clearRect(0, 0, animationCanvas.width, animationCanvas.height);
+		
+		const now = new Date();
+		const minutes = now.getMinutes();
+		const seconds = now.getSeconds();
+		const totalSeconds = (minutes * 60) + seconds;
+		
+		const angle = (totalSeconds / 3600) * 2 * Math.PI - Math.PI / 2; // Calculate the angle based on the time
+		
+		//console.log(angle);
+		//console.log(timeToReach60Minutes(angle));
+		const timeto60label = document.getElementById("timeToReach60Minutes-label");
+		timeto60label.innerHTML = timeToReach60Minutes(angle).minutes + " : " + timeToReach60Minutes(angle).seconds;
+		
+		
+		animationCtx.beginPath();
+		animationCtx.arc(outerRadius, outerRadius, outerRadius, -Math.PI / 2, angle, false); // Draw the animation arc
+		animationCtx.lineWidth = 8;
+		animationCtx.strokeStyle = '#000'; // Circle color
+		animationCtx.stroke();
+	}
+
+	function updateClock() {
+		drawClock();
+		setTimeout(updateClock, 1000 * 60 * 60); // Update every hour
+	}
+
+	function animate() {
+		drawAnimationCircle();
+		requestAnimationFrame(animate); // Animate every frame
+	}
+
+	drawClock(); // Initial draw
+	updateClock(); // Start the update loop
+	animate(); // Start the animation loop
+	
+});
+
+
+
+
+
+</script>
+</body>
+</html>
