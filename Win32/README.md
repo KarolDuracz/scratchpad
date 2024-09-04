@@ -3,6 +3,13 @@ Znowu bedzie przerwa do nastepnych wakacji, czyli 07-09 2025 co najmniej z wrzuc
 en:<br/>
 There will be a break again until the next vacation, i.e. 07-09 2025 at least with uploading to github. I will throw here a few things that give a good base for further learning win32.
 <br /><br />
+
+<b>This was created on Windows 8.1 and MS Studio 2019. Now I don't make fully functional applications, only demos. 
+I tested it on Windows 10 and everything doesn't work. They need some DLL's like ucrtbased.dll, vcruntime140d.dll etc.
+For now, I haven't uploaded to this repo specific DLLs needed for a given system. I tested also on Virtual Box Win7. Only calculator works.</b> <br />
+So, of course we can load dynamicly like in this example https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/main.cpp
+using LoadLibrary or copy and paste this specific dll to C:\Windows\System32 or \SysWOW64 directory, but right know I don't build multi platform app, only simple demos for myself.
+
 ---- more ----<br />
 https://github.com/gametutorials<br />
 https://github.com/microsoft/Windows-classic-samples/tree/main/Samples/Win7Samples<br />
