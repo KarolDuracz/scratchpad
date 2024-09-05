@@ -13,3 +13,12 @@ Second example - This is commented out at the bottom of the main.cpp file.
 <br />
 ![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/Win32/simple_file_system_with_partitions/last_example_fs.png)
 
+btw.
+In line 355 there is function <br />
+void measurePerformance(const std::function<void()>& operation, const char* operationName) <br />
+In many case C++ is helpful, but orignal line looks like that: <br />
+void measurePerformance(void (*operation)(void), const char *operationName) <br />
+In book "C programming language second edition" there is example about extended declaration<br />
+https://github.com/gerrard00/the-c-programming-language/blob/master/test-dcl.sh <br >
+https://github.com/Heatwave/The-C-Programming-Language-2nd-Edition/tree/master <br />
+I like this book and this repositories with practical example and tiny demos <br />
