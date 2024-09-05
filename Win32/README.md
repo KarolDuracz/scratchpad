@@ -18,6 +18,7 @@ https://github.com/microsoft/Windows-classic-samples/tree/main/Samples/Win7Sampl
 about 3D graphics some stuff.<br />
 https://raytracing.github.io/books/RayTracingInOneWeekend.html<br />
 https://raytracing.github.io/books/RayTracingTheNextWeek.html<br />
+https://raytracing.github.io/books/RayTracingTheRestOfYourLife.html<br />
 https://github.com/RayTracing/raytracing.github.io/<br />
 https://www.youtube.com/@InigoQuilez<br />
 https://github.com/ssloy/tinyrenderer/wiki<br />
