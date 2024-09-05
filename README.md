@@ -1,5 +1,6 @@
 # scratchpad
-
+update : 05.09.2024 : This "scratchpad" repo is theoretically closed. I won't be posting anything more here. These are just a few topics that interest me. Probably end of 2025 I'll be back to posting if there's something interesting finally worth sharing and developing. 
+<br /><br />
 NtQueryInformationProcess_run_example - dump.png
 ![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/dump.png)
 
