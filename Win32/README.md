@@ -9,7 +9,16 @@ I tested it on Windows 10 and everything doesn't work. They need some DLL's like
 For now, I haven't uploaded to this repo specific DLLs needed for a given system. I tested also on Virtual Box Win7. Only calculator works.</b> <br />
 So, of course we can load dynamicly like in this example https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/main.cpp
 using LoadLibrary or copy and paste this specific dll to C:\Windows\System32 or \SysWOW64 directory, but right know I don't build multi platform app, only simple demos for myself.
-
+<br />
 ---- more ----<br />
 https://github.com/gametutorials<br />
 https://github.com/microsoft/Windows-classic-samples/tree/main/Samples/Win7Samples<br />
+
+<br /><br />
+about 3D graphics some stuff.<br />
+https://raytracing.github.io/books/RayTracingInOneWeekend.html<br />
+https://raytracing.github.io/books/RayTracingTheNextWeek.html<br />
+https://github.com/RayTracing/raytracing.github.io/<br />
+https://www.youtube.com/@InigoQuilez<br />
+https://github.com/ssloy/tinyrenderer/wiki<br />
+https://github.com/ssloy/tinyrenderer<br />
