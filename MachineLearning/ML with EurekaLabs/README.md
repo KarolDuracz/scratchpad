@@ -1,3 +1,6 @@
+05-09-2024 - The moment we stopped understanding AI [AlexNet] ((Welch Labs) - https://www.youtube.com/watch?v=UZDiGooFs54&ab_channel=WelchLabs <br />
+Interesing wideo. And this is just the beginning, like the first computers. Year after year... but here we are, and we have the opportunity to learn from the best people on this field, like Andrej Karpathy. What will happen in next 10, 20, 30 years? I wonder what we will say then... ML, this is not my filed, but I like statistics and plots. Tesla autopilot, GPT 4 and other stuff from Open AI, Deep Mind / Google Brain etc show us, this is serious game! So.... ?
+<br /><br />
 Maybe some useful stuff for future learning
 <br /><br />
 Untitled1.ipynb --> https://github.com/EurekaLabsAI/micrograd
