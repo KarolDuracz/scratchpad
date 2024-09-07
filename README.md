@@ -1,6 +1,9 @@
 # scratchpad
 update : 05.09.2024 : This "scratchpad" repo is theoretically closed. I won't be posting anything more here. These are just a few topics that interest me. Probably end of 2025 I'll be back to posting if there's something interesting finally worth sharing and developing. TIME TO GO TO NEXT LEVEL ...in programming skills also. 
 <br /><br />
+<b>update : 07.09.2024 : About "fix typo on README.md and inside code comments" - I apologize for my low quality and many of a typo mistakes. After some time I feel like I could have put more effort into it and spell checked it before posting the code, but I won't be correcting every comment anymore because it's unnecessary. It's about the code, and the demos. I think the comment captures the general gist or context of what is going on here. It is sufficiently readable and understandable. Besides, it is a "scratchpad" for me. Not a public repo. But like I said, I feel like I could have put more care and effort into it.</b>
+
+<br /><br />
 NtQueryInformationProcess_run_example - dump.png
 ![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/dump.png)
 
