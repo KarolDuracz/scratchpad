@@ -1,5 +1,8 @@
 Weekend practice with  07-08.09.2024 - https://github.com/EurekaLabsAI/micrograd
 
+Demo from Andrej's repo
+![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/MachineLearning/ML%20with%20EurekaLabs/07-09-2024%20-%20EurekaLabs%20practice/25%20-%2007-09-2024%20-%20cd.png)
+
 <br />
 ...
 <br />
