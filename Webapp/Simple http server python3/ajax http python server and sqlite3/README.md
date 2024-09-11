@@ -1,7 +1,7 @@
 AJAX + python http serve + sqlite3 - tiny example
 <br />
 1. How to run<br />
-<b>python server2.py</b><br /> - but this .db file from this repo is not needed, because python script create own .db file if not exists.
+<b>cmd.exe > python server2.py</b><br /> - but this .db file from this repo is not needed, because python script create own .db file if not exists.
 2. Like on this picutre. Open 2 page in web browser. Open http://localhost:8080. To open logs http://localhost:8080/logs<br />
 3. Click on the button "send signal" <br />
 
