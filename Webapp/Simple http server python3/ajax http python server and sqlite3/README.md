@@ -12,6 +12,7 @@ One thing that might be useful for this application is that after clicking "star
 ![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/Webapp/Simple%20http%20server%20python3/ajax%20http%20python%20server%20and%20sqlite3/40%20-%2011-09-2024%20-%20ajax%20http%20python%20server%20and%20sqlite3.png)
 
 <br />
+btw. <br />
 This is for remind me, that in MSVC package is useful tool spyxx in folder "C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\Tools\" . For this case this not very useful, but when you press CTRL + F in this tool opened "Find window" to select target window for "listening messages" like you see one this picture.
 <br /><br />
 
