@@ -1,0 +1,42 @@
+<!-- Save this as index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX to Python Server</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Send Signal to Python Server</h1>
+    
+    <button id="sendBtn">Send Signal</button>
+    
+    <p id="responseMessage"></p>
+    
+    <script>
+        $(document).ready(function(){
+            $('#sendBtn').click(function(){
+                // Prepare data to send (could be any data format, here is a simple string)
+                const data = JSON.stringify({ 'signal': 'button_clicked' });
+
+                $.ajax({
+                    url: 'http://localhost:8080',  // Python server URL
+                    type: 'POST',
+                    contentType: 'application/json',  // Sending JSON data
+                    data: data,
+                    success: function(response) {
+                        // Show the server response on the page
+                        $('#responseMessage').html('Server response: ' + response.message);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        // Show an error message if request fails
+                        $('#responseMessage').html('Error: ' + textStatus + ' - ' + errorThrown);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
