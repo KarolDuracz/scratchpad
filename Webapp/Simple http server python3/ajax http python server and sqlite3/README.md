@@ -29,4 +29,7 @@ since I'm already touching on network topics, here's a screenshot from wireshark
 https://github.com/gynvael/zrozumiec-programowanie/blob/master/021-Czesc_V-Rozdzial_14-Komunikacja_miedzyprocesowa/calc_server.c
 <br />
 there are a lot of interesting issues related to https connection and security also, but this is not repo and topic for this. This is for simple webapp to send some data to python http.server and write into .db via using sqlite3. But I remember this exercise from the book "zrozumieć programowanie - gynvael" is very interesting. <br />
+<br />
+second gynvael's repo is here (this is example how to send message to DNS) >> https://github.com/gynvael/zrozumiec-programowanie-cwiczenia/blob/master/NET-udp-dns/udp_dns.py
+<br /><br />
 So, for future learning I want to put here...
