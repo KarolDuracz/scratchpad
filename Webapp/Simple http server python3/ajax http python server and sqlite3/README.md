@@ -17,3 +17,9 @@ This is for remind me, that in MSVC package is useful tool spyxx in folder "C:\P
 <br /><br />
 
 ![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/Webapp/Simple%20http%20server%20python3/ajax%20http%20python%20server%20and%20sqlite3/41%20-%2011-09-2024%20-%20sec%20example%20with%20spy%20window.png)
+
+<br />
+since I'm already touching on network topics, here's a screenshot from wireshark. Similar to this tool is HEXDUMP https://man7.org/linux/man-pages/man1/hexdump.1.html
+<br /><br />
+
+![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/Webapp/Simple%20http%20server%20python3/ajax%20http%20python%20server%20and%20sqlite3/43%20-%2011-09-2024%20-%20sample%20from%20wireshark%20heh.png)
