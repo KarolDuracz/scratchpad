@@ -23,3 +23,10 @@ since I'm already touching on network topics, here's a screenshot from wireshark
 <br /><br />
 
 ![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/Webapp/Simple%20http%20server%20python3/ajax%20http%20python%20server%20and%20sqlite3/43%20-%2011-09-2024%20-%20sample%20from%20wireshark%20heh.png)
+
+<br /><br />
+-- also interesting topic - distributed computing -- <br />
+https://github.com/gynvael/zrozumiec-programowanie/blob/master/021-Czesc_V-Rozdzial_14-Komunikacja_miedzyprocesowa/calc_server.c
+<br />
+there are a lot of interesting issues related to https connection and security also, but this is not repo and topic for this. This is for simple webapp to send some data to python http.server and write into .db via using sqlite3. But I remember this exercise from the book "zrozumieć programowanie - gynvael" is very interesting. <br />
+So, for future learning I want to put here...
