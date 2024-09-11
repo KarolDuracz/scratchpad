@@ -7,7 +7,12 @@ AJAX + python http serve + sqlite3 - tiny example
 
 This might be use to save those tasks (collect data)  for example from this app --> https://github.com/KarolDuracz/scratchpad/tree/main/Webapp/Simple%20http%20server%20python3/pomodoro-app <br />
 One thing that might be useful for this application is that after clicking "start" it will save the information to the server and sqlite3 database on the server side. And user can list all logs call up /logs in adrress bar.
-
 <br />
 
 ![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/Webapp/Simple%20http%20server%20python3/ajax%20http%20python%20server%20and%20sqlite3/40%20-%2011-09-2024%20-%20ajax%20http%20python%20server%20and%20sqlite3.png)
+
+<br />
+This is for remind me, that in MSVC package is useful tool spyxx in folder "C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\Tools\" . For this case this not very useful, but when you press CTRL + F in this tool opened "Find window" to select target window for "listening messages" like you see one this picture.
+<br /><br />
+
+![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/Webapp/Simple%20http%20server%20python3/ajax%20http%20python%20server%20and%20sqlite3/41%20-%2011-09-2024%20-%20sec%20example%20with%20spy%20window.png)
