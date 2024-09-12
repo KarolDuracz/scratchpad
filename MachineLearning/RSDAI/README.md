@@ -13,3 +13,6 @@ TODO - checkpint 12-09-2024 -
 Maybe it will be useful, maybe not. Today I would definitely need a model that understands repos, e.g. DirectX or WINAPI better than me.
 <br />
 Maybe at the end of 2025 i'd back to this... 
+
+<br /><br />
+Transformer can create a projection for each word (token). The model sees all combinations for a word. Human (I) there is no such large memory to understand so many combinations at the same time. IIn mind we can create visualisation like map or something, but to solve this problem, human can do only sequence word by word. If add more context (context length) than 1 token this is probably impossible for anyone to solve. But the transformer model can do it. And that's what's interesting about it.
