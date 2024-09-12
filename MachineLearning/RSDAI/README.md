@@ -11,3 +11,5 @@ TODO - checkpint 12-09-2024 -
 
 <br />
 Maybe it will be useful, maybe not. Today I would definitely need a model that understands repos, e.g. DirectX or WINAPI better than me.
+<br />
+Maybe at the end of 2025 i'd back to this... 
