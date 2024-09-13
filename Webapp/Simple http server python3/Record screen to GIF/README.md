@@ -14,4 +14,3 @@ This is from command <br />
 ```
 cmd.exe > python -m pip list | findstr numpy \\ imageio, pillow, mms
 ```
-
