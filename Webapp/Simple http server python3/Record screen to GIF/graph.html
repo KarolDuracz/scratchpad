@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Layered Graph with Animation and Text</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.110.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.110.0/examples/js/libs/fontloader.js"></script>
+</head>
+<body>
+
+<script>
+    let scene, camera, renderer, controls;
+    let nodes = {}, edges = [], labels = {};
+
+    // Set up the THREE.js scene
+    function init() {
+        // Create the scene
+        scene = new THREE.Scene();
+
+        // Create the camera
+        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 0, 20);
+
+        // Create the renderer
+        renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Add orbit controls for zooming and rotating the scene
+        controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+
+        // Lighting for the scene
+        const light = new THREE.PointLight(0xffffff, 1);
+        light.position.set(0, 50, 50);
+        scene.add(light);
+
+        // Create nodes, edges, and text labels
+        createGraph2();
+        
+        // Begin animation loop
+        animate();
+    }
+
+    // Function to create a layered graph with nodes and edges
+    function createGraph() {
+        // Layer definitions
+        const layers = [
+            { nodes: ['A1', 'A2', 'A3'], z: 0 },
+            { nodes: ['B1', 'B2', 'B3', 'B4'], z: -4 },
+            { nodes: ['C1', 'C2', 'C3'], z: -8 }
+        ];
+
+        // Load font for text labels
+        const fontLoader = new THREE.FontLoader();
+        fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', (font) => {
+            layers.forEach((layer, layerIdx) => {
+                const yOffset = 4 - layerIdx * 3; // Spread nodes vertically
+                layer.nodes.forEach((nodeId, idx) => {
+                    const xOffset = -4 + idx * 3; // Spread nodes horizontally
+                    createNode(xOffset, yOffset, layer.z, nodeId, font);
+                });
+            });
+
+            // Add some cross-layer edges
+            addEdge('A1', 'B2');
+            addEdge('A2', 'B3');
+            addEdge('B1', 'C1');
+            addEdge('B3', 'C3');
+        });
+    }
+	
+	// Function to create a more complex neural network-like graph
+	function createGraph2() {
+    // Neural Network Layer definitions: input, 3 hidden layers, and output
+    const layers = [
+        { name: 'Input Layer', nodes: ['I1', 'I2', 'I3'], z: 0 },
+        { name: 'Hidden Layer 1', nodes: ['H1_1', 'H1_2', 'H1_3', 'H1_4'], z: -4 },
+        { name: 'Hidden Layer 2', nodes: ['H2_1', 'H2_2', 'H2_3', 'H2_4'], z: -8 },
+        { name: 'Hidden Layer 3', nodes: ['H3_1', 'H3_2', 'H3_3', 'H3_4'], z: -12 },
+        { name: 'Output Layer', nodes: ['O1', 'O2'], z: -16 }
+    ];
+
+    // Load font for text labels (asynchronous operation)
+    const fontLoader = new THREE.FontLoader();
+    fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', (font) => {
+        layers.forEach((layer, layerIdx) => {
+            const yOffset = 6 - layerIdx * 3; // Spread nodes vertically per layer
+            layer.nodes.forEach((nodeId, idx) => {
+                const xOffset = -5 + idx * 3; // Spread nodes horizontally
+                createNode(xOffset, yOffset, layer.z, nodeId, font);
+            });
+        });
+
+        // Define connections (edges) between layers
+        // Input Layer to Hidden Layer 1
+        addEdgesBetweenLayers(layers[0].nodes, layers[1].nodes);
+
+        // Hidden Layer 1 to Hidden Layer 2
+        addEdgesBetweenLayers(layers[1].nodes, layers[2].nodes);
+
+        // Hidden Layer 2 to Hidden Layer 3
+        addEdgesBetweenLayers(layers[2].nodes, layers[3].nodes);
+
+        // Hidden Layer 3 to Output Layer
+        addEdgesBetweenLayers(layers[3].nodes, layers[4].nodes);
+		});
+	}
+
+	// Function to create edges between two layers (all-to-all connection)
+	function addEdgesBetweenLayers(layer1Nodes, layer2Nodes) {
+		layer1Nodes.forEach((node1Id) => {
+			layer2Nodes.forEach((node2Id) => {
+				addEdge(node1Id, node2Id);
+			});
+		});
+	}
+
+
+    // Function to create nodes as spheres and add text labels
+    function createNode(x, y, z, nodeId, font) {
+        // Create sphere geometry for the node
+        const geometry = new THREE.SphereGeometry(0.4, 32, 32);
+        const material = new THREE.MeshBasicMaterial({ color: 0x00aaff });
+        const node = new THREE.Mesh(geometry, material);
+        node.position.set(x, y, z);
+        nodes[nodeId] = node;
+        scene.add(node);
+
+        // Create 3D text for the node label
+        const textGeometry = new THREE.TextGeometry(nodeId, {
+            font: font,
+            size: 0.3,
+            height: 0.05
+        });
+        const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+        textMesh.position.set(x - 0.5, y + 0.6, z);
+        labels[nodeId] = textMesh;
+        scene.add(textMesh);
+    }
+
+    // Function to create edges as lines between nodes
+    function addEdge(startId, endId) {
+        const startNode = nodes[startId].position;
+        const endNode = nodes[endId].position;
+
+        const material = new THREE.LineBasicMaterial({ color: 0xaaaaaa });
+        const geometry = new THREE.Geometry();
+        geometry.vertices.push(new THREE.Vector3(startNode.x, startNode.y, startNode.z));
+        geometry.vertices.push(new THREE.Vector3(endNode.x, endNode.y, endNode.z));
+
+        const edge = new THREE.Line(geometry, material);
+        edges.push(edge);
+        scene.add(edge);
+    }
+
+    // Variables to keep track of the animation steps
+    let currentStep = 0;
+    const nodeTraversalOrder = ['A1', 'B2', 'B3', 'C1', 'C3']; // Example traversal order
+    const edgeTraversalOrder = [['A1', 'B2'], ['A2', 'B3'], ['B3', 'C3']]; // Edges to highlight
+
+    // Function to animate node and edge traversal
+    function animateTraversal() {
+		// Example traversal sequence through the layers
+		// for createGraph2 ONLY !!!!
+		const nodeTraversalOrder = ['I1', 'I2', 'I3', 'H1_1', 'H1_2', 'H1_3', 'H2_1', 'H3_1', 'O1']; 
+		const edgeTraversalOrder = [['I1', 'H1_1'], ['I2', 'H1_2'], ['H1_1', 'H2_1'], ['H2_1', 'H3_1'], ['H3_1', 'O1']];
+		// Animate the traversal similar to the previous code -- END -- for createGraph2 ONLY !!!! ^^^
+		// for for createGraph() those two lines remove from  code
+
+        if (currentStep < nodeTraversalOrder.length) {
+            const nodeId = nodeTraversalOrder[currentStep];
+            nodes[nodeId].material.color.set(0xffa500); // Highlight node
+            labels[nodeId].material.color.set(0xff0000); // Highlight label
+
+            if (currentStep > 0) {
+                const [from, to] = edgeTraversalOrder[currentStep - 1];
+                const edge = edges.find(e => {
+                    const v1 = e.geometry.vertices[0];
+                    const v2 = e.geometry.vertices[1];
+                    return (v1.equals(nodes[from].position) && v2.equals(nodes[to].position));
+                });
+                edge.material.color.set(0xff0000); // Highlight edge
+            }
+
+            currentStep++;
+            setTimeout(animateTraversal, 1000); // Traverse next node after 1 second
+        }
+    }
+
+    // Animation loop
+    function animate() {
+        requestAnimationFrame(animate);
+        controls.update(); // Update controls for zoom/pan/rotate
+        renderer.render(scene, camera);
+    }
+
+    // Start the traversal animation after a short delay
+    setTimeout(animateTraversal, 1000);
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // Initialize the scene
+    init();
+</script>
+
+</body>
+</html>
