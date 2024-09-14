@@ -24,7 +24,7 @@ https://github.com/jart/blink -- x86 emulator can boot linux I guess
 https://github.com/redcode/6502
 https://github.com/redcode/Z80
 <br /><br />
-nasm which I used here to compile this in the pictures: <br /> 
+nasm which I used here to compile this in those pictures: <br /> 
 NASM version 2.16.03 compiled on Apr 17 2024
 https://www.nasm.us/pub/nasm/releasebuilds/2.16.03/win64/
 https://www.nasm.us/
