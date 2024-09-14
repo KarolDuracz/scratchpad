@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/45313d8c-49ae-4f21-8a8e-fbac141274ee)
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Webapp/Simple%20http%20server%20python3/Record%20screen%20to%20GIF/output.gif?raw=true)
 
 <br />
 Ok, what's that? <br />
