@@ -36,4 +36,4 @@ The 1986 paper from Rumelhart, Hinton, Williams that popularized and used this a
 
 https://x.com/karpathy/status/1756380066580455557 
 <br /><br />
-Somewhere on the recordings about the history of the first successes of Microsoft and Windows I heard about work on Excel. At that time, from what I heard, 200-300 people worked on this project. At its beginnings. Could you do without this tool in daily tasks? I don't know. But many things can be better organized thanks to it. Stories like this show that in the meantime, a lot of other interesting tools may emerge and become indispensable. But I still have in the back of my head this story that I once heard somewhere on TV about Excel. AI field in the next few years will probably create models and assistants that will be  better and better for daily tasks. And such virtual assistants from law, taxes, who have compressed knowledge are a breakthrough technology. And this change everything. Because the model, just like a human, has access to the same source of knowledge. etc etc etc. That's why LLM is interesting.
+
