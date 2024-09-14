@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Graph with Multiple Balls and Nodes</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tweenjs/tween.js@18.6.4/dist/tween.umd.js"></script>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        // Set up the canvas and context
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Define graph parameters with more nodes
+        const points = [];
+        const numPoints = 20; // Number of points
+        for (let i = 0; i < numPoints; i++) {
+            points.push({ x: i * (canvas.width / numPoints), y: canvas.height / 2 });
+        }
+
+        const pointRadius = 5;
+        const ballRadius = 15;
+        const gravity = 0.5;
+        const bounce = 0.7;
+
+        // Define multiple balls
+        const balls = [];
+        const numBalls = 10;
+        for (let i = 0; i < numBalls; i++) {
+            balls.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height / 2,
+                vx: (Math.random() - 0.5) * 4,
+                vy: (Math.random() - 0.5) * 4,
+                radius: ballRadius,
+                gravity: gravity,
+                bounce: bounce
+            });
+        }
+
+        // Function to draw the graph
+        function drawGraph() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.beginPath();
+            ctx.moveTo(points[0].x, points[0].y);
+            for (const point of points) {
+                ctx.lineTo(point.x, point.y);
+            }
+            ctx.strokeStyle = '#000';
+            ctx.stroke();
+
+            ctx.fillStyle = '#f00';
+            for (const point of points) {
+                ctx.beginPath();
+                ctx.arc(point.x, point.y, pointRadius, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Draw the balls
+            ctx.fillStyle = '#00f';
+            for (const ball of balls) {
+                ctx.beginPath();
+                ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Create a tween for each point to simulate some physics-like movement
+        function animatePoints() {
+            points.forEach((point, index) => {
+                new TWEEN.Tween(point)
+                    .to({ y: canvas.height / 2 + Math.sin(index) * 100 }, 2000) // Target position
+                    .easing(TWEEN.Easing.Quadratic.InOut) // Easing function
+                    .repeat(Infinity) // Repeat indefinitely
+                    .yoyo(true) // Alternate back and forth
+                    .start();
+            });
+        }
+
+        // Function to update balls physics
+        function updateBallsPhysics() {
+            balls.forEach(ball => {
+                ball.vy += ball.gravity; // Apply gravity
+                ball.x += ball.vx;
+                ball.y += ball.vy;
+
+                // Check collision with the animated line
+                let lineY = canvas.height / 2; // Default line position
+                for (let i = 0; i < points.length - 1; i++) {
+                    const p1 = points[i];
+                    const p2 = points[i + 1];
+                    if (ball.x >= p1.x && ball.x <= p2.x) {
+                        const slope = (p2.y - p1.y) / (p2.x - p1.x);
+                        lineY = p1.y + slope * (ball.x - p1.x);
+                        break;
+                    }
+                }
+
+                if (ball.y + ball.radius > lineY) {
+                    ball.y = lineY - ball.radius;
+                    ball.vy *= -ball.bounce;
+                }
+
+                // Prevent balls from moving out of the canvas
+                if (ball.x - ball.radius < 0 || ball.x + ball.radius > canvas.width) {
+                    ball.vx *= -1;
+                }
+                if (ball.y - ball.radius < 0) {
+                    ball.y = ball.radius;
+                    ball.vy *= -ball.bounce;
+                }
+            });
+        }
+
+        // Animation loop
+        function animate(time) {
+            requestAnimationFrame(animate);
+            TWEEN.update(time);
+            updateBallsPhysics();
+            drawGraph();
+        }
+
+        // Start animation
+        animatePoints();
+        animate();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            drawGraph();
+        });
+    </script>
+</body>
+</html>
