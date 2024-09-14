@@ -24,7 +24,7 @@ cmd > python rec.py
 ```
 <br />
 - But for 10 seconds of recording this image, as you can see, it takes almost 15 MB for the .gif file! <br />
-- In my old laptop this takes around 30s to generate and save this file. It takes a while. <br />
+- In my old laptop this takes around 30s - 2min to generate and save this file. It takes a while. <br />
 - Looking at ProcessExplorer and memory usage, it needed 3.2 GB of memory to generate this particular animation!!! A lot.
 <br />
 <br />
@@ -35,7 +35,7 @@ I do test for 30 sec with 30 fps: (in windows 8.1 with 8 GB RAM) <br />
 To generate and saving file total time : 4.56 minutes<br />
 record area: 1600 x 900 px <br />
 cpu usage: mean ~15-20%<br />
-private bates: max 9.5 GB !!! A lot.<br />
+private batys: max 9.5 GB !!! A lot.<br />
 working set: max ~5 GB. mean 4.5 GB. <br />
 output file size: ~40 MB.
 <br />
