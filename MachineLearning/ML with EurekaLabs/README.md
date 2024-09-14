@@ -34,4 +34,4 @@ The 1986 paper from Rumelhart, Hinton, Williams that popularized and used this a
 
 ![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/MachineLearning/ML%20with%20EurekaLabs/GQjvVdCakAEwVgD.jpg)
 
-https://x.com/karpathy/status/1756380066580455557 - 
+https://x.com/karpathy/status/1756380066580455557 
