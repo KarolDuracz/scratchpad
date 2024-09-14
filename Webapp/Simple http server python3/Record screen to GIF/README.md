@@ -21,7 +21,7 @@ cmd.exe > python -m pip list | findstr numpy \\ imageio, pillow, mms
 cmd > python rec.py
 ```
 <br />
-- But for 10 seconds of recording this image, as you can see, it takes almost 10 MB for the .gif file! <br />
+- But for 10 seconds of recording this image, as you can see, it takes almost 15 MB for the .gif file! <br />
 - In my old laptop this takes around 30s to generate and save this file. It takes a while. <br />
 - Looking at ProcessExplorer and memory usage, it needed 3.2 GB of memory to generate this particular animation!!! A lot.
 <br />
