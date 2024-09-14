@@ -27,3 +27,18 @@ cmd > python rec.py
 <br />
 <br />
 TODO : this script can't record extended display in windows. 
+
+<br />
+I do test for 30 sec with 30 fps: (in windows 8.1 with 8 GB RAM) <br />
+To generate and saving file total time : 4.56 minutes<br />
+record area: 1600 x 900 px <br />
+cpu usage: mean ~15-20%<br />
+private bates: max 9.5 GB !!! A lot.<br />
+working set: max ~5 GB. mean 4.5 GB. <br />
+output file size: ~40 MB.
+<br />
+Runing on IE V.11.0.9600.20671 after 15 seconds when private memory rise to ~1.1 GB and working set to ~1.4 GB IE stopped rendering this file ;p <br />
+EDGE  109.0.1518.140 64 bit need less reources, ~66k MB private bytes and ~610k MB working set. And works fine. 
+<br />
+<br />
+So. For 10 sec record is ok. But longer GIFS is not recommended to record with this "tool" :)
