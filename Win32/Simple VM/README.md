@@ -35,5 +35,5 @@ Today when you talk about VM the first thing that comes to mind is qemu or Virtu
  <br />
  In scratchpad/Win32/Simple VM/simple_virtual_machine/simple_virtual_machine/simple_virtual_machine.cpp
 <b>there are several implementations of my VM commented out. The 3 in this image are from one of the implementations in the .cpp file. The last compiled code can execute simple MOV, ADD, SUB instructions as you see on the picture. On the right side write this pseudo asm code, and then click RUN. And PAUSE or STOP.<b/>
- <br />
+
 ![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/Win32/Simple%20VM/54%20-%2014-09-2024%20-%20vm%20cd.png)
