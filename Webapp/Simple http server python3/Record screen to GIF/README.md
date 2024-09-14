@@ -8,7 +8,7 @@ First we need some dependiences. This is list of current version which I install
 1. mms 9.0.2 <br />
 2. imageio 2.35.1 <br />
 3. pillow 10.3.0 <br />
-4.  1.26.4 <br />
+4. numpy 1.26.4 <br />
 This is from command <br />
 
 ```
