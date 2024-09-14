@@ -1,5 +1,7 @@
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Webapp/Simple%20http%20server%20python3/Record%20screen%20to%20GIF/output.gif?raw=true)
 
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Webapp/Simple%20http%20server%20python3/Record%20screen%20to%20GIF/output_phys.gif?raw=true)
+
 <br />
 Ok, what's that? <br />
 There is a lot of stuff about recording screen etc. But this solve the my problem - how to capture screen with 30 fps for 10s and save to GIF file. <br />
