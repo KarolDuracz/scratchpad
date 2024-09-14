@@ -44,3 +44,5 @@ EDGE  109.0.1518.140 64 bit need less reources, ~66k MB private bytes and ~610k 
 <br />
 <br />
 So. For 10 sec record is ok. But longer GIFS is not recommended to record with this "tool" :)
+<br /><br />
+And this is wastfull space and memory. Because there is no compression at all. But for demo reason it is ok.
