@@ -3,7 +3,7 @@
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple%20VM/output_vm_console_test.gif?raw=true)
 <br />2. Print "hello world" text on the console. Standard hello world demo. <br />
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple%20VM/output_vm_hello_world.gif?raw=true)
-<br />3. "My" simple implementation of this but a lot of stuff TODO. But this is not important here right now. Explanation is above this pictures. <br />
+<br />3. "My" simple implementation of this but a lot of stuff TODO. But this is not important here right now. Explanation is above those pictures. <br />
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple%20VM/output_simple_vm_win32.gif?raw=true)
 <br /><br />
 When you start learning low level programming, you wonder how this code executes etc. And at some point you learn the C language, then the gcc compiler, then you look into the assembler code. And then you come across NASM. Then you also go deeper, learning the processor's Instruction Sets (https://en.wikipedia.org/wiki/X86_instruction_listings) etc. Maybe you want to find how this works on the chip side, on the silicon like this guy (https://www.youtube.com/watch?v=IS5ycm7VfXg&ab_channel=SamZeloof) - "Z2" - Upgraded Homemade Silicon Chips
