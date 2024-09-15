@@ -1,3 +1,57 @@
+All of this is to use search in github.com. But there is other problem - how to get stuff from google web search? <br />
+https://stackoverflow.com/questions/75400210/how-to-get-full-html-body-of-google-search-using-requests<br />
+And this headers looks scary for me. btw. Chatgpt can do a lot but good old stackoverflow and community too. But probably soon it will be competitive for this type of services. If someone can find a way to think conceptually about these types of problems.
+
+```
+import urllib.request as urllib2
+
+user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
+
+url = "https://www.google.com/search?q=Everton+stadium+address"
+headers={'User-Agent':user_agent,}
+
+request=urllib2.Request(url,None,headers)
+response = urllib2.urlopen(request)
+data = response.read()
+```
+
+```
+import requests
+
+headers = {
+    'authority': 'www.google.com',
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'accept-language': 'de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,fr;q=0.5,de-CH;q=0.4,es;q=0.3',
+    'cache-control': 'no-cache',
+    'dnt': '1',
+    'pragma': 'no-cache',
+    'sec-ch-ua': '"Not_A Brand";v="99", "Microsoft Edge";v="109", "Chromium";v="109"',
+    'sec-ch-ua-arch': '"x86"',
+    'sec-ch-ua-bitness': '"64"',
+    'sec-ch-ua-full-version': '"109.0.1518.78"',
+    'sec-ch-ua-full-version-list': '"Not_A Brand";v="99.0.0.0", "Microsoft Edge";v="109.0.1518.78", "Chromium";v="109.0.5414.120"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-model': '""',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-ch-ua-platform-version': '"10.0.0"',
+    'sec-ch-ua-wow64': '?0',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'none',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36 Edg/109.0.1518.78',
+}
+
+params = {
+    'q': 'Everton stadium address',
+}
+
+response = requests.get('https://www.google.com/search', params=params, headers=headers)
+print(response.content)
+```
+
+<hr>
 DEMO 1
 ```
 function crawl(seed_urls, max_depth):
