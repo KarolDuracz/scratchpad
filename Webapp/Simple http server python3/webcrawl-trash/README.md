@@ -53,6 +53,7 @@ print(response.content)
 
 <hr>
 DEMO 1
+
 ```
 function crawl(seed_urls, max_depth):
     # Initialize a set to keep track of visited URLs
