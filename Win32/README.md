@@ -23,3 +23,11 @@ https://github.com/RayTracing/raytracing.github.io/<br />
 https://www.youtube.com/@InigoQuilez<br />
 https://github.com/ssloy/tinyrenderer/wiki<br />
 https://github.com/ssloy/tinyrenderer<br />
+<br /><br />
+NVIDIA samples: <br />
+https://nvpro-samples.github.io/vk_raytracing_tutorial_KHR/vkrt_tutorial.md.html<br />
+https://github.com/nvpro-samples/vk_raytracing_tutorial_KHR/tree/master/ray_tracing__before<br />
+https://github.com/nvpro-samples/vk_mini_samples<br />
+<br /><br />
+This project looks interesting for me due to measurements etc. There is some knowledge about this here.<br />
+https://github.com/GPSnoopy/RayTracingInVulkan
