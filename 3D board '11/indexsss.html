@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Graph Simulation with THREE.js</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.110.0/examples/js/controls/OrbitControls.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/three@0.110.0/examples/js/controls/TrackballControls.js"></script>
+</head>
+<body>
+
+<script>
+    // Set up basic scene, camera, and renderer
+    let scene = new THREE.Scene();
+    let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
+    let renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+	
+	camera.position.z = 200;
+	
+	/*
+    // Enable orbit controls to allow zoom and pan
+    let controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true; // Adds smoothness to control movement
+    controls.dampingFactor = 0.01;
+    controls.screenSpacePanning = false;
+    controls.maxPolarAngle = Math.PI / 2;
+	controls.freeMode = false;
+
+    // Setup the camera position
+    camera.position.set(0, 100, 100);
+	
+    controls.update();
+	*/
+	
+	let controls = new THREE.TrackballControls(camera, renderer.domElement);
+	 controls.rotateSpeed = 2.0;
+	 controls.zoomSpeed = 1.2;
+	 controls.panSpeed = 0.8;
+	//controls.update();
+	
+	const geometry = new THREE.BoxGeometry(400, 300, 1 );
+	//const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+	
+	
+	const texture = new THREE.TextureLoader().load('2.jpg' ); 
+	const material = new THREE.MeshBasicMaterial( { map:texture } );
+
+	const cube = new THREE.Mesh( geometry, material );
+	//cube.rotation.set(1, 0, 0);
+	scene.add( cube );
+
+	//camera.position.z = 5;
+	camera.lookAt(cube);
+	//controls.target.set( 0, 2, 0 );
+	
+	const geometry1 = new THREE.BoxGeometry(3, 3, 3)
+	const material1 = new THREE.MeshBasicMaterial({
+		color: 'blue',
+		wireframe: false,
+	});
+	const cube1 = new THREE.Mesh(geometry1, material1);
+	cube1.position.z = 2.5;
+	scene.add(cube1);
+	
+
+    // Render the scene and update the controls
+    function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+		
+		cube1.position.x += 0.1;
+		
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+</script>
+
+</body>
+</html>
