@@ -10,7 +10,9 @@ Amazing.
  (https://www.youtube.com/watch?v=q8SA3rM6ckI). but what I found in internet, first tools came around 2012. This probably based on NumPy, Scipy, and other tools like that, But don't forget about keras and tensorflow which were before pytorch ! (...) But of course on the other side there is Yann Lecun and his model (https://github.com/karpathy/lecun1989-repro) . His Convolutional Network Demo from 1989
 (https://www.youtube.com/watch?v=FwFduRA_L6Q&ab_channel=YannLeCun) and 2016 conference (https://www.youtube.com/watch?v=MkgPUWzpvi8&ab_channel=Talles) . Today this is "hello world" in machine learning, that is, the reproduction of this network for recognizing handwritten digits MNIST 0-9 (https://en.wikipedia.org/wiki/MNIST_database) .<br />
 But there is on YT another video The Thinking Machine (Artificial Intelligence in the 1960s) https://www.youtube.com/watch?v=aygSMgK3BEM&ab_channel=RobertoPieraccini | The History of Artificial Intelligence [Documentary]
- https://www.youtube.com/watch?v=R3YFxF0n8n8&ab_channel=Futurology%E2%80%94AnOptimisticFuture</i>
+ https://www.youtube.com/watch?v=R3YFxF0n8n8&ab_channel=Futurology%E2%80%94AnOptimisticFuture
+ <br /><br />
+And of course the transformer era from 2017 but here is a small timeline and brief history development today's ML. <b>Today what I should be interested in is reading a ton of studies about models between 2010-2024. About transformer model etc. This should interest me today hah and then start it  train !!! </b> Ok, but seriously. This is a short outline for me . </i>
 <br /><br />
 <hr>
 LINK TO LLM CODE SOURCE --> https://github.com/karpathy/llm.c/tree/master
