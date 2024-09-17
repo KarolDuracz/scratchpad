@@ -2,7 +2,11 @@ Ok, ok. But how LLM can undestand TASK like this <br />
 "Here you have a table with "tokens", cut out tokens 16, 12 and 11082 from this table and print the same thing only without these tokens." <br />
 How GPT and LLM can undestand this command? And how to solve this task? <br />
 Because this is similar to introduce of to C language. In C language you have "printf" command. And in C language you can create loop to iterate around this array and separate what you want to print an output. And in my opinion this is similar task, but from LLM perspective. BUT HOW IT FU... POSSIBLE that the model can understand the abstractions of such a command and actually write code similar to what a human could do after reading a book about C and a few hours of training - SOLVE THIS PARTICULAR PROBLEM ??? 
-
+<br /><br />
+Amazing.
+<br /><br />
+<i>But I have to admit that about 10 years ago I also tried to tame the "time series" to play the stock market hahaha. Before the transformer there was LSTM, GRU. But at that moment I don't knew about that. I haven't thought about this problem any deeper at all. Ok, I knew there was decision tree, binary search, etc. But the Transformer era brings it all together. These techniques and algorithms. <b>But they used neural network (neurons)</b>. And magic happened. (...) And I was just thinking about how to pack OHLC and various other components of the "candle" on the chart into one value and  other things like that, like TOKENIZER does, but... this (transformer and GPT-2) solved a lot of stuff that for me was hard to solve 10 years ago. - BTW - (this note is for me).</i>
+<br /><br />
 LINK TO LLM CODE SOURCE --> https://github.com/karpathy/llm.c/tree/master
 
 ```
