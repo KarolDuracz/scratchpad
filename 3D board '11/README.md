@@ -8,4 +8,4 @@ This will be probably my playground for Machine Learning / Deep / Vision / RL le
 <br /><br />
 But, first start from this ===> https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/LLM%20for%20a%20specific%20task/README.md
 <br /><br />
-btw. Fun fact. There are movies about this topic SPORT + STATISTICS. And one of the inspiring movies about this topic is Moneyball (2011) (https://www.imdb.com/title/tt1210166/). This is not about football/soccer but about baseball, but this film based on true story. So, there were people who had already tried this approach. But this is film, and many a lot of the stories are probably embellished. But personally I liked this movie.
+btw. Fun fact. There are movies about this topic SPORT + STATISTICS. And one of the inspiring movies about this topic is Moneyball (2011) (https://www.imdb.com/title/tt1210166/). This is not about football/soccer but about baseball, but this film based on true story. So, there were people who had already tried this approach. But this is only film, and many a lot of the stories are probably embellished. But personally I liked this movie.
