@@ -11,6 +11,8 @@ update : 05.09.2024 : This "scratchpad" repo is theoretically closed. I won't be
 `# IMPORTANT #` update : 11.09.2024 : I do not intend to copy the work of others. Steal someone's work. I DO NOT DO THIS HERE. Links to repositories and materials which I put here is for build memory map for my learning path about programming. For me this is very useful stuff. This is for me only to build knowledge and make progress.
 <br /><br />
 update : 14.09.2024 : still open, but I stop adding new topics here. This is only for educational reason.
+<br /><br />
+update : 18.09.2024 : added last few notes to repos for myself in README. 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 <br /><br />
 NtQueryInformationProcess_run_example - dump.png
