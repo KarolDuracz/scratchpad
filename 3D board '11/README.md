@@ -5,5 +5,5 @@ This is already an old story, but still for me the best area to play with ML and
 This will be probably my playground for Machine Learning / Deep / Vision / RL learning stuff to improve skills to train neural networks. And nothing else.
 <br /><br /><br /><br />
 <i>Today I'm not a football fan anymore. Important here is to stay in main reason about 3D graphics development history and hardware for this purpose and deep learning / computer vision roots. Because improvement on this field is come from not app like this, but exploring fundamental issues such as speech, vision, learning. Development and progress in this field (ML) comes from improving the model for specific tasks such as computer vision etc. Don't forget about this btw. </i>
-<br />
+<br /><br />
 But, first start from this ===> https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/LLM%20for%20a%20specific%20task/README.md
