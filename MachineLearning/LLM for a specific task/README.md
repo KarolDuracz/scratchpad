@@ -14,6 +14,11 @@ But there is on YT another video The Thinking Machine (Artificial Intelligence i
  <br /><br />
 And of course the transformer era from 2017 but here is a small timeline and brief history development today's ML. <b>Today what I should be interested in is reading a ton of studies about models between 2010-2024. About transformer model etc. This should interest me today hah and then start it  train !!! </b> Ok, but seriously. This is a short outline for me . </i>
 <br /><br />
+$${\color{red}}$$	
+		${{\color{red}\Huge{\textsf{     OK\   OK\   stop \  here\   and \   go\   to\   "library"\   ,I\    mean\   the\   internet\   hah  }}}}\$
+<br />
+last update : 17-09-2024
+<br /><br />
 <hr>
 LINK TO LLM CODE SOURCE --> https://github.com/karpathy/llm.c/tree/master
 <br /><br />
