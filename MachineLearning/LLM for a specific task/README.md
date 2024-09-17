@@ -12,7 +12,9 @@ Amazing.
 But there is on YT another video The Thinking Machine (Artificial Intelligence in the 1960s) https://www.youtube.com/watch?v=aygSMgK3BEM&ab_channel=RobertoPieraccini | The History of Artificial Intelligence [Documentary]
  https://www.youtube.com/watch?v=R3YFxF0n8n8&ab_channel=Futurology%E2%80%94AnOptimisticFuture</i>
 <br /><br />
+<hr>
 LINK TO LLM CODE SOURCE --> https://github.com/karpathy/llm.c/tree/master
+<br /><br />
 
 ```
 [3364]
