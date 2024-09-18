@@ -12,7 +12,7 @@ update : 05.09.2024 : This "scratchpad" repo is theoretically closed. I won't be
 <br /><br />
 update : 14.09.2024 : still open, but I stop adding new topics here. This is only for educational reason.
 <br /><br />
-update : 18.09.2024 : added last few notes to repos for myself in README. 
+update : 18.09.2024 : added last few notes to repos for myself in README. At the final I added example from  ammo.js webgl_demo_test_ray do machine learning directory. This is base for further learning.  
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 <br /><br />
 NtQueryInformationProcess_run_example - dump.png
