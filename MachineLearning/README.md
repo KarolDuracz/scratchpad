@@ -18,3 +18,7 @@ This looks like this <br />
 For this demo is suitable (https://github.com/kripken/ammo.js/tree/main/examples/webgl_demo_test_ray) in AMMO.JS library only as 3d. But it also has "sensors" that detect obstacles. So it's a playground to add machine learning in order to build a similar demo to Andrej's karpathy/convnetjs/demo/rldemo.html (https://cs.stanford.edu/people/karpathy/convnetjs/demo/rldemo.html) . 
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/output_creature_3d.gif?raw=true)
+
+With console print when detect or not
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/output_creature_3d_video2.gif?raw=true)
