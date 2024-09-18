@@ -14,7 +14,7 @@ At the end of this topic. A quick note on why this defeats the purpose. The only
 <br /><br />
 A small example
 <br /><br />
-0 -------x------|----|-------x----G-|--|--------------|------x-------|------|---|----|-|-|- 90
+0 -------x------|----|-------x----G-|--|-----------|--|------x-------|------|---|----|-|-|- 90
 <br /><br />
 x - shots on target<br />
 G - goal 1:0 for the opponent<br />
