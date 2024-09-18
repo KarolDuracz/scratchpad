@@ -12,5 +12,17 @@ btw. Fun fact. There are movies about this topic SPORT + STATISTICS. And one of 
 <br /><br />
 At the end of this topic. A quick note on why this defeats the purpose. The only sense I see today in creating this type of application is only so that the team can create more opportunities under the goal at 11-18 meters from the goal for the attackers. And for better organization of the game in general. This counts during the 90 minutes of the game. HOW TO PLAY TO CREATE ACTIONS AND PLAYERS CREATE SPACE AND PUT THE BALL OUT ON 100% create of the goal. And in real time analysis divergences relative to the ideal model / scenario. In other words. It's about measuring the quality of the attack, i.e. the players' movements and creating actions towards the opponent's goal and trying to position and pass the ball in such a way that a goal is scored. This is worth measuring. And reactions on the pitch like this. (...) but this is an already past. I can only have fun with it to confirm my arguments and beliefs, for myself only. Today I feel like it's a waste of my time for doing this, but I want to close this topic somehow! There are much more interesting problems to solve today and opportunities, there is no point in getting fixated and blocking ourselves on that anymore...
 <br /><br />
+A small example
+<br /><br />
+0 -------x------|----|-------x----G-|--|--------------|------x-------|----------|----|-|--- 90
+<br /><br />
+x - shots on target<br />
+G - goal 1:0 for the opponent<br />
+| - attempted shot on goal but out of goal<br />
+<br />
+This is an example of how the course of a match of an average team not fighting for the championship can look like. They have some expectations and theoretically a bigger advantage on the pitch and on paper. But in the '31 minute they score an own goal. And for the rest of the match until the '90 minute they try to chase the result. And for example, at the end of the match, let's look at the statistics, shots on goal 15, but only 3 on target. <br /><br />
+But what did these actions look like and why were they effective or not. Did the striker not get any ball to shoot at goal in clear position to shot? How could it have been played differently. There are many such issues. And this can be simulated and measured.
+
+<br /><br />
 $${\color{red}}$$	
 		${{\color{red}\Huge{\textsf{     [CLOSED]  }}}}\$
