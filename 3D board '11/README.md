@@ -22,7 +22,8 @@ G - goal 1:0 for the opponent<br />
 <br />
 This is an example of how the course of a match of an average team not fighting for the championship can look like. They have some expectations and theoretically a bigger advantage on the pitch and on paper. But in the '31 minute they score an own goal. And for the rest of the match until the '90 minute they try to chase the result. And for example, at the end of the match, let's look at the statistics, shots on goal 15, but only 3 on target. <br /><br />
 But what did these actions look like and why were they effective or not. Did the striker not get any ball to shoot at goal in clear position to shot? How could it have been played differently. There are many such issues. And this can be simulated and measured.
-
+<br /><br />
+Update - 24-09-2024 - A different approach is to measure time between changing the position of the players and direction to opponent or following the ball movement. In other words. The model can "watch" a video of a match and predict the direction a player will go, the direction the ball will go, the next move. And this may seem like a relatively simple task at first glance, but...  It might be interesting.
 <br /><br />
 $${\color{red}}$$	
 		${{\color{red}\Huge{\textsf{     [CLOSED]  }}}}\$
