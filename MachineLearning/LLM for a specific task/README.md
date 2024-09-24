@@ -19,6 +19,8 @@ $${\color{red}}$$
 <br />
 last update : 17-09-2024
 <br /><br />
+update 24-09-2024 - I forgot about https://en.wikipedia.org/wiki/Bayesian_network . This is not important right now, but in timeline of ML it is. It is more important to somehow make up for the shortcomings by the end of 2025. So all vision task, translator language task. Because task to create similar to like google.translate is good exercise. etc etc. But somehow this has to be sorted out by the end of 2025, as much as I can!
+<br /><br />
 <hr>
 LINK TO LLM CODE SOURCE --> https://github.com/karpathy/llm.c/tree/master
 <br /><br />
