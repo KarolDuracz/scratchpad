@@ -19,7 +19,7 @@ $${\color{red}}$$
 <br />
 last update : 17-09-2024
 <br /><br />
-update 24-09-2024 - I forgot about https://en.wikipedia.org/wiki/Bayesian_network . This is not important right now, but in timeline of ML it is. It is more important to somehow make up for the shortcomings by the end of 2025. So all vision task, translator language task. Because task to create similar to like google.translate is good exercise.  But somehow this has to be sorted out by the end of 2025, as much as I can! There is more stuff here like this https://en.wikipedia.org/wiki/Probability_density_function | https://en.wikipedia.org/wiki/Spectral_density#Envelope | https://en.wikipedia.org/wiki/Linear_predictive_coding etc etc etc. There's a lot of interesting stuff here to learn next to ML. But... 
+update 24-09-2024 - I forgot about https://en.wikipedia.org/wiki/Bayesian_network | https://en.wikipedia.org/wiki/Markov_chain. This is not important right now, but in timeline of ML it is. It is more important to somehow make up for the shortcomings by the end of 2025. So all vision task, translator language task. Because task to create similar to like google.translate is good exercise.  But somehow this has to be sorted out by the end of 2025, as much as I can! There is more stuff here like this https://en.wikipedia.org/wiki/Probability_density_function | https://en.wikipedia.org/wiki/Spectral_density#Envelope | https://en.wikipedia.org/wiki/Linear_predictive_coding etc etc etc. There's a lot of interesting stuff here to learn next to ML. But...  (...) Also on wiki there is nice lecture and drawings about Perceptron and idea behind it https://en.wikipedia.org/wiki/Perceptron etc etc etc 
 <br /><br />
 <hr>
 LINK TO LLM CODE SOURCE --> https://github.com/karpathy/llm.c/tree/master
