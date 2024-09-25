@@ -31,3 +31,5 @@ But it's probably better to take the version with BT and WIFI since the price is
 BUT THIS IS NOT IMPORTANT TODAY. <b>This is for me, reminder, my learning path.</b>
 <hr>
 But that was a few years back. Today there are a lot of other interesting boards that use FPGA systems, but I'll probably start with https://rysino.gitlab.io/pl/ if I come back to these topics. Maybe I will manage to 2026 - 2027 :)
+<br /><br />
+Around this whole EMBEDDING term there is a lot of cool stuff. Not only blinking leds and load linux kernel to type some characters via USB. But today my "skills" stopped at running these hello world and that was the end of my learning. 
