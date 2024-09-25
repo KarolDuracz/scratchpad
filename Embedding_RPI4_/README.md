@@ -29,3 +29,5 @@ Right know I don't know for 100% is PICO enough for these experiments but it's g
 But it's probably better to take the version with BT and WIFI since the price is the same shelf to have more to interact with the equipment. Today the price of RPI ZERO is ~70 PLN, and PICO is ~20 PLN. But probably for pico you have to use freeRTOS. But for me better is to implement this as exercise https://github.com/rosly/rados | https://programistamag.pl/programista-112015-42-piszemy-wlasny-rtos/
 <br /><br />
 BUT THIS IS NOT IMPORTANT TODAY. <b>This is for me, reminder, my learning path.</b>
+<hr>
+But that was a few years back. Today there are a lot of other interesting boards that use FPGA systems, but I'll probably start with https://rysino.gitlab.io/pl/ if I come back to these topics. Maybe I will manage to 2026 - 2027 :)
