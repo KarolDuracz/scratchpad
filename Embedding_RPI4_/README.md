@@ -13,11 +13,11 @@ https://www.tme.eu/pl/details/nucleo-l031k6/zestawy-do-ukladow-stm/stmicroelectr
 And for this tiny device is introduction to programming in magazine NO 73, 74, 75 - very qood lecture btw. from Rafał Kozik.<br />
 https://programistamag.pl/programista-6-2018-73/  <br />
 <br />
-Of course I have an Arduino Uno also.
+Of course I have an Arduino Uno also.<br />
 <br />
-I worked for a year in a company in the automotive industry. They Dealing with the production of phones for cars and satellite navigation, maps, GPS etc. Most of the boards had Cortex M3/M4 MCUs and Texas Instruments Delfino C2000 if I remember correctly. 
+I worked for a year in a company in the automotive industry. They dealing with the production of phones for cars and satellite navigation, maps, GPS etc. Most of the boards had Cortex M3/M4 MCUs and Texas Instruments Delfino C2000 if I remember correctly. 
 But definitely the Delfino family of processors with 166 MHz clock up to 200-320 I think. For GPS and GSM transmission they used UBLOX modules. And that's what got me interested in buying these boards and learning more about how to program them. And since then I've learned the basics, but that's all. I did these tutorials 
-from forbot.pl to install Rasbian, start the camera and record something CV2, motion detection. And on Nucleo hello world, i.e. diode blinking, fibonacci do demonstrated stack opperations. And that's it. 
+from forbot.pl to install Rasbian, start the camera and record something CV2, motion detection. And on Nucleo hello world, i.e. diode blinking, fibonacci to demonstrated stack opperations. And that's it. 
 I worked on SMT line, but this was interesting experiences. Thanks to this, you will learn about the structure of the device, components, etc., as well as the code that is loaded into the MCU memory.
 <br /><br />
 <b>But what's interesting for me at this moment is to move some stuff from Machine Learning to this small devices with ARM Cortex A72. Because today's mobile devices use for example MediaTek Helio G35 with Cortex A53.
