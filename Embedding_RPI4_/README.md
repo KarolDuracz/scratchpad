@@ -1,3 +1,5 @@
+![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/refs/heads/main/Embedding_RPI4_/rpi%204%20and%20nucleo.png)
+
 I bought it some time ago RPI4 with 2 GB ram and camera. After reading this course. <br />
 https://forbot.pl/blog/kurs-raspberry-pi-od-podstaw-wstep-spis-tresci-id23139
  <br /> <br />
