@@ -34,8 +34,8 @@ But that was a few years back. Today there are a lot of other interesting boards
 <br /><br />
 Around this whole EMBEDDING term there is a lot of cool stuff. Not only blinking leds and load linux kernel to type some characters via USB. But today my "skills" stopped at running these hello world and that was the end of my learning. 
 <hr>
-In this tutorial they use raspistill (https://forbot.pl/blog/kurs-raspberry-pi-kamera-zdjecia-transmisja-id24480) but for me this
-not working. I was looking how to fix, I don't remember but the problem is hardware revision and some compatibility either 32 bit raspbian or some driver in this revision of the camera. I don't remember now, but there is something to this model RPI or camera. But libcamera library works fine. And motion detect also. Below you don't see picture from this little camera, but this show part of RPI desktop screen with libcamera short test in console as you see on geany in line 2. 
-<br />
+In this tutorial they used raspistill (https://forbot.pl/blog/kurs-raspberry-pi-kamera-zdjecia-transmisja-id24480) but for me this
+is not working. I was looking how to fix that. I don't remember but the problem is hardware revision and some compatibility either 32 bit raspbian or some driver in this revision of the camera. I don't remember now, but there is something to this model RPI or camera. But libcamera library works fine. And motion detect also. Below you don't see picture from this little camera, but this show part of RPI desktop screen with libcamera short test in console as you see on geany in line 2. This is only as reminder for me. Maybe I'd go back here 2-3 years, maybe further maybe not. But the Linux kernel still has many secrets for me to discover so I'll probably come back here soon.
+<br /><br />
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Embedding_RPI4_/1727259573848.jpg?raw=true)
