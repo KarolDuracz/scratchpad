@@ -42,3 +42,17 @@ const char* html_content =
 It would be nice to show a few more mechanisms here because it's a really interesting topic, but it's not the time for that now. 
 <br />
 Today's web browsers it's a cool thing. Nice tool. And now we go back to the C64 era, without this features and again "reinventing the wheel" with drawing this things using sprites hahahaha. The people behind the development of these tools are doing a good job.
+<hr>
+In this file https://github.com/KarolDuracz/scratchpad/blob/main/Win32/web_renderer/web_render_video.cpp there is an attempt to implement video rendering with directx 11. But there is a lot of bugs as you see on this small video below. There is some conflict between threads when rendering video and the JS parser. Maybe InvalidateRect is also messing something up. There is a Timer added 
+
+line 805 ```case WM_TIMER``` 
+
+ line 955 
+```SetTimer(hwnd, 1, 16, NULL);``` 
+
+and line 678 
+```SetTimer(hwnd, 1, 16, NULL);``` 
+
+Maybe is there conflict between timer and InvalidateRect and threds. Anyway. This demo was supposed to render random pixel noise as an image (video) on a page using DX11. Something is working. Not quite how I expect it to be yet, because it should display everything together and not like now, where even the RUN JS and STOP THREAD buttons are not visible because there is a conflict in rendering. Of course this is just a stupid demo. Performance is not important.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/web_renderer/output_video_dx11.gif?raw=true)
