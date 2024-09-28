@@ -17,7 +17,7 @@ TODO
 - HTML parsing only ```<p> <div> <<a href=\"> <a> <table> <tr> <td>``` tags
 - JS parsing only this simple line of code ```strcpy(js.script, "console.log('Starting JS execution'); while(true);");``` in a simple way
 
-<br />
+This demo does not use the NET library. I didn't intend to show anything complicated. This is supposed to be a simple introduction into an HTML, CSS and JS parser.
 
 When you compile last example code from .cpp file then you will see the first demo version which has a simple CSS parser and 
 ```<p> <b> <i>``` tags
