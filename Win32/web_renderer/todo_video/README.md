@@ -1,4 +1,8 @@
-FFMPEG version installed on my system
+FFMPEG version installed on my system and source code of codec dds
+
+```
+https://ffmpeg.org/doxygen/4.3/dds_8c_source.html
+```
 
 ```
 C:\Users\kdhome>ffmpeg --version
