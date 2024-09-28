@@ -162,3 +162,5 @@ float4 PShader(PS_INPUT input) : SV_TARGET
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/web_renderer/rotating%20cube%20d3d11%20vs4%20not%20vs5%20shader.png?raw=true)
 
 OK, this is not the case about html parser, but intentionally I trapped into this issue. And wrote here some stuff for myself. The main file still doesn't have this weird rendering problem solved. But that's not for now.
+<hr>
+The goal here is to capture transmission from youtube service to EDGE browser, decode and render on my implementation of HTML parser. But this hard to solve for me right know. And simplest way to do this is to create random generator videos and run on localhost as python server and send data to this my browser engine. And then render on the same time 8 x 8 tiles as thumbnails 100 x 100 px. Which is 16 videos on the page at the same time. And when user click on this tile then user go to video transmission on 600x400 px video size. https://github.com/KarolDuracz/scratchpad/blob/main/Win32/web_renderer/todo_video/README.md
