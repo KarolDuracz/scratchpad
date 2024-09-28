@@ -43,7 +43,7 @@ It would be nice to show a few more mechanisms here because it's a really intere
 <br />
 Today's web browsers it's a cool thing. Nice tool. And now we go back to the C64 era, without this features and again "reinventing the wheel" with drawing this things using sprites hahahaha. The people behind the development of these tools are doing a good job.
 <hr>
-In this file https://github.com/KarolDuracz/scratchpad/blob/main/Win32/web_renderer/web_render_video.cpp there is an attempt to implement video rendering with directx 11. But there is a lot of bugs as you see on this small video below. There is some conflict between threads when rendering video and the JS parser. Maybe InvalidateRect is also messing something up. There is a Timer added 
+In this file https://github.com/KarolDuracz/scratchpad/blob/main/Win32/web_renderer/web_render_video.cpp there is an attempt to implement video rendering with directx 11. But there is a lot of bugs as you see on this small video below. There is some conflict between threads when rendering video and the JS parser. Maybe InvalidateRect is also messing something up. Maybe queue of messages https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-peekmessagea and this PM_NOREMOVE. Maybe timer. There is a Timer added 
 
 line 805 ```case WM_TIMER``` 
 
