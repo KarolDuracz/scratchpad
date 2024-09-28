@@ -689,7 +689,8 @@ https://www.howtogeek.com/devops/how-to-use-qemu-to-boot-another-os/ <br />
 https://gist.github.com/aalemayhu/0c8664e82c7f6e554e30aeecf74dffad <br />
 https://linux-tips.com/t/booting-from-an-iso-image-using-qemu/136 <br />
 https://github.com/agx-r/Bootloader/blob/main/bootloader.asm <br />
-https://www.youtube.com/watch?v=xFrMXzKCXIc&ab_channel=NirLichtman
+https://www.youtube.com/watch?v=xFrMXzKCXIc&ab_channel=NirLichtman <br />
+https://os.phil-opp.com/multiboot-kernel/
 <hr>
 Final thoughts. Back few years ago... I build on linux booloader and using this command
 
@@ -861,3 +862,7 @@ qemu-system-x86_64 -cdrom MyOS.iso
 ```
 
 But this create .iso file in linux system. And using grub craete on the booting list menu entry point to this kernel. This is not load kernel from CD/DVD. but it worked from what I remember.
+<br /><br />
+This guide is also good. https://os.phil-opp.com/multiboot-kernel/ <br />
+<br />
+Today, I have a big problem to run this on qemu and Virtual Box. But on real hardware it worked. I won't write a list of how to run it on Virtualbox now.
