@@ -28,4 +28,14 @@ But it's a long way from the look and functionality of EDGE. Javascript, JIT, JS
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/web_renderer/web_renderer_goal.png?raw=true)
 
-But this is only small introduction.
+But this is only small introduction to rendering a this simple code 
+```
+const char* html_content =
+        "<div style=\"color:#FF0000;\">This is a div</div>"
+        "<table>"
+        "<tr><td>Row 1, Col 1</td><td>Row 1, Col 2</td></tr>"
+        "<tr><td>Row 2, Col 1</td><td>Row 2, Col 2</td></tr>"
+        "</table>"
+        "<a href=\"http://example.com\">Click here for example</a>";
+```
+It would be nice to show a few more mechanisms here because it's a really interesting topic, but it's not the time for that now.
