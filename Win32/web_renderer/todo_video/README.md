@@ -125,3 +125,54 @@ while (running) {
 ```
 
 And in this "another_impl.cpp" file last two top implementations try to render this .DDS file as video. Frame by frame. But this is not working. This is trash code. But... 
+<hr>
+<b>Reverse from .dds / .png to .mp4</b> <br /><br />
+Ensure Your Files are Sequentially Named: Make sure the .dds files are named in a sequential order, for example:
+
+```
+video_frame_001.dds
+video_frame_002.dds
+video_frame_003.dds
+...
+```
+Option 1: Convert .dds to Another Format (e.g., PNG or BMP) <br />
+Step 1: Convert .dds Files to .png <br />
+
+```
+import os
+from PIL import Image
+
+def convert_dds_to_png(dds_filename):
+    # Open the DDS image
+    with Image.open(dds_filename) as img:
+        # Convert to PNG
+        png_filename = os.path.splitext(dds_filename)[0] + '.png'
+        img.save(png_filename, format='PNG')
+        print(f"Converted {dds_filename} to {png_filename}")
+
+def main():
+    # Get all DDS files in the current directory
+    for filename in os.listdir('.'):
+        if filename.endswith('.dds'):
+            convert_dds_to_png(filename)
+
+if __name__ == "__main__":
+    main()
+```
+
+This script converts all .dds files in the current directory to .png.
+<br /><br />
+Step 2: Combine Converted PNG Files into a Video
+
+```
+ffmpeg -framerate 30 -i video_frame_%03d.png -c:v libx264 -pix_fmt yuv420p output_video.mp4
+```
+
+info --> FFmpeg doesn't support .dds files directly, so converting them first is necessary.
+```
+-framerate 30: Specifies the frame rate (adjust it based on your needs).
+-i video_frame_%03d.png: Tells FFmpeg to use the image sequence (%03d specifies the sequence numbering format).
+-c:v libx264: Specifies the H.264 codec for video compression.
+-pix_fmt yuv420p: Sets the pixel format (required for compatibility with most players).
+```
+But first to png from dds. But in the first step at the top of this readme file as you see you do this. This was the first step, unpack .mp4 video file to .png frames (as images).
