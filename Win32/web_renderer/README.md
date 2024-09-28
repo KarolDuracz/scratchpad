@@ -16,6 +16,7 @@ TODO
 - CSS parsing only color, background-color, font-size
 - HTML parsing only ```<p> <div> <<a href=\"> <a> <table> <tr> <td>``` tags
 - JS parsing only this simple line of code ```strcpy(js.script, "console.log('Starting JS execution'); while(true);");``` in a simple way
+- Color works in 2nd example from bottom. Take a look at this if you have to correct code in the current code at the top.
 
 This demo does not use the NET library. I didn't intend to show anything complicated. This is supposed to be a simple introduction into an HTML, CSS and JS parser.
 
@@ -38,4 +39,4 @@ const char* html_content =
         "</table>"
         "<a href=\"http://example.com\">Click here for example</a>";
 ```
-It would be nice to show a few more mechanisms here because it's a really interesting topic, but it's not the time for that now.
+It would be nice to show a few more mechanisms here because it's a really interesting topic, but it's not the time for that now. 
