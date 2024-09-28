@@ -60,3 +60,27 @@ The line of background color is in 515 ```  float ClearColor[4] = { 0.0f, 0.125f
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/web_renderer/output_video_dx11.gif?raw=true)
 
 Ok, there is some basis for further learning. For now, that's enough.
+<hr>
+Actually, this topic should have started with rendering a simple HTML skeleton like this. And inside the rendering engine create an object to hold this page construction like those meta tags. <br /><br />
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html parser demo</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+
+<script>
+    console.log(1);
+</script>
+
+</body>
+</html>
+```
