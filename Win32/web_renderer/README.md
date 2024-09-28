@@ -27,3 +27,5 @@ When you compile last example code from .cpp file then you will see the first de
 But it's a long way from the look and functionality of EDGE. Javascript, JIT, JS debugger, how HTML structure is represented in the "Elements" tab, communication with the application via the console, e.g. writing document.body.remove(); to clear the canvas. There are many things to learn along the way to the goal of creating at least a semblance of the functionality that today's browser has. What does this type of application offer. Additionally, implementation of Video, GPU acceleration, porting to other devices such as ARM or Linux and Android systems. Today, the browser is a key element of the system and probably the one used the most by most people... Linus Towards they was right 12 years ago https://www.youtube.com/watch?v=ZPUk1yNVeEI&ab_channel=TFiR [Linus Torvalds: Why Linux Is Not Successful On Desktop] - "a lot of people do their work on basically in a web browser"
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/web_renderer/web_renderer_goal.png?raw=true)
+
+But this is only small introduction.
