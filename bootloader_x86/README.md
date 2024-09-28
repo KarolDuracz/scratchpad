@@ -860,4 +860,4 @@ grub-mkrescue -o MyOS.iso isodir
 qemu-system-x86_64 -cdrom MyOS.iso
 ```
 
-But this create .iso file int linux system. And using gtub craete on the booting list menu entry point to this kernel. This is not load kernel from CD/DVD. but it worked from what I remember.
+But this create .iso file in linux system. And using grub craete on the booting list menu entry point to this kernel. This is not load kernel from CD/DVD. but it worked from what I remember.
