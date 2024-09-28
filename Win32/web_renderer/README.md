@@ -40,3 +40,5 @@ const char* html_content =
         "<a href=\"http://example.com\">Click here for example</a>";
 ```
 It would be nice to show a few more mechanisms here because it's a really interesting topic, but it's not the time for that now. 
+<br />
+Today's web browsers it's a cool thing. Nice tool. And now we go back to the C64 era, without this features and again "reinventing the wheel" with drawing this things using sprites hahahaha. The people behind the development of these tools are doing a good job.
