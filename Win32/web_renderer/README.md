@@ -160,3 +160,5 @@ float4 PShader(PS_INPUT input) : SV_TARGET
 
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/web_renderer/rotating%20cube%20d3d11%20vs4%20not%20vs5%20shader.png?raw=true)
+
+OK, this is not the case about html parser, but intentionally I trapped into this issue. And wrote here some stuff for myself. The main file still doesn't have this weird rendering problem solved. But that's not for now.
