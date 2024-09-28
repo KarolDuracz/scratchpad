@@ -1,4 +1,15 @@
-...
+Run this via command
+```
+python file_hosting_server.py --port 8000
+```
+This might paricular be helpful for this issue. I somethimes work on VirtulBox machine. This is not serious issues, but for fun. But, sometimes you'll need share files from host machine to VM or on to the host from VM. And sometimes you can't do it in VM7Box settings just by enabling file transfer and "drag and drop". BECAUSE it doesn't work. This is the solution. HOST or in my case WINDOWS run the server.
+- Using this command run server ``` python file_hosting_server.py --port 8000```
+- On the VirtualBox client as you see on the picture here open web browser and type addres to this server ```129.168.1.102:8000``` in this case.
+- Check connection using ping ```ping 192.168.1.102```
+- That's it. This is simple mechanism how to solve this problem.
+
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Webapp/Simple%20http%20server%20python3/file_hosting/virtual%20box%20-%20how%20to%20share%20file%20between%20host%20and%20client.png?raw=true)
 
 <hr>
 
