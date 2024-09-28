@@ -1,4 +1,4 @@
-First. From this 3 files .ISO / .BIN works only boot_qemu_x86.bin. But this is raw file from disk. This is  any fancy demo. This bootloader.asm and boot_qemu_x86.asm ... by default they were supposed to be bootable via CDROM because they are supposed to be burned to CD ROM / USB. Not via qemu or Virual Box. But the first thing you need to check is to run it on qemu, then on Virual Box.
+First. From this 3 files .ISO / .BIN works only boot_qemu_x86.bin. But this is raw file from disk. This is not fancy demo. This bootloader.asm and boot_qemu_x86.asm ... by default they were supposed to be bootable via CDROM because they are supposed to be burned to CD ROM / USB. Not via qemu or Virual Box. But the first thing you need to check is to run it on qemu, then on Virual Box.
 ```
 cmd.exe > qemu-system-x86_64 -drive format=raw,file=boot_qemu_x86.bin
 ```
