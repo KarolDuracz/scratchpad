@@ -158,6 +158,11 @@ float4 PShader(PS_INPUT input) : SV_TARGET
 }
 ```
 
+some old stuff: <br />
+https://users.polytech.unice.fr/~buffa/cours/synthese_image/DOCS/trant.sgi.com/opengl/examples/win32_tutorial/win32_tutorial.html <br />
+https://learn.microsoft.com/en-us/samples/microsoft/directx-graphics-samples/d3d12-hello-world-samples-win32/ <br />
+http://www.directxtutorial.com/Lesson.aspx?lessonid=11-4-5 <br />
+https://antongerdelan.net/opengl/d3d11.html <br />
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/web_renderer/rotating%20cube%20d3d11%20vs4%20not%20vs5%20shader.png?raw=true)
 
