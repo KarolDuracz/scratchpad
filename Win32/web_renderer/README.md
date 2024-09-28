@@ -12,5 +12,14 @@ On this .gif you see fast demo, but:
 6. And finally I clicked RUN JS again which created 1 thread which is put to sleep for 100 ms and at the end of recording this video I clicked STOP. End of recording.
 
 TODO
-- In 3-4 places it is set to a fixed position, that's why it flashes so much - InvalidateRect(NULL, NULL, TRUE); - to get rid of the blinking change the parts of the code where this line appears
-- ...
+- In 3-4 places it is set to a fixed position, that's why it flashes so much - ```InvalidateRect(NULL, NULL, TRUE);``` - to get rid of the blinking change the parts of the code where this line appears
+- CSS parsing only color, background-color, font-size
+- HTML parsing only ```<p> <div> <<a href=\"> <a> <table> <tr> <td>``` tags
+- JS parsing only this simple line of code ```strcpy(js.script, "console.log('Starting JS execution'); while(true);");``` in a simple way
+
+<br />
+
+When you compile last example code from .cpp file then you will see the first demo version which has a simple CSS parser and 
+```<p> <b> <i>``` tags
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/web_renderer/_web_renderer_example_from_cppfile_.png?raw=true)
