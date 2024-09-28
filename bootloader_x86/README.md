@@ -3,6 +3,12 @@ First. From this 3 files .ISO / .BIN works only boot_qemu_x86.bin. But this is r
 cmd.exe > qemu-system-x86_64 -drive format=raw,file=boot_qemu_x86.bin
 ```
 
+TODO:<br />
+- But on Virtual Box not working! <br />
+- This bootloader.vhd file not working in the way as run on the examination in this readme bellow.
+- GO TO DOWN ON THIS PAGE. Last few notes is ok. This demo I used few years ago.
+
+
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/109%20-%2028-09-2024%20-%20qemu%20test%20bootloader.png?raw=true)
 
 <hr>
