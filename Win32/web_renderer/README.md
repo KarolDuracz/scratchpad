@@ -84,3 +84,79 @@ Actually, this topic should have started with rendering a simple HTML skeleton l
 </body>
 </html>
 ```
+
+<hr>
+Back to this [scratchpad/Win32
+/Direct3D11 and Intel3000 or NvidiaGT540M] https://github.com/KarolDuracz/scratchpad/tree/main/Win32/Direct3D11%20and%20Intel3000%20or%20NvidiaGT540M 
+When I started looking into what was going on there, it turned out that something was working, something wasn't. What was working was based on "ps_4_0" not "ps_5_0". And this is probably the main reason from which I need to start implementing and then possibly look for the reason why it doesn't work. By default, the code runs on my Intel 3000 dedicated GPU. And as you see on this topic in this link, these GPUs have different level of features.
+<br /><br />
+BUT...
+<br /><br />
+I am uploaded the code from vs5 (https://github.com/KarolDuracz/scratchpad/blob/main/Win32/web_renderer/d3d11_cube_rotation_v5.cpp) which does not work and vs4 (https://github.com/KarolDuracz/scratchpad/blob/main/Win32/web_renderer/d3d11_cube_rotation_v4.cpp) which does work and this image at the bottom is generated from this implementation based on the vs_4_0 shader. I'm using MSVC 2019 now. Even the debugger doesn't handle these types of events. You don't know what's going on. I'm just on my own intuition even if I make a stupid mistake and give CreateWindow instead of CreateWindowsEx which is the first step to not running the entire code and showing the window. 
+<br /><br />
+This shader code may come from external file but here is implementation inside code as const str* . If you use an external file then the code fragment that loads this shader using CompileShaderFromMemory does not work. You have to do it using D3DCompileFromFile. Instead of the code that compiles this shader from strings, you have to put something like this in this place of the code. This is for vs_5_0. But this is just an example - how to do.
+<br /><br />
+
+```
+ID3DBlob* VS = nullptr;
+    ID3DBlob* PS = nullptr;
+    ID3DBlob* errorBlob = nullptr;
+
+    HRESULT hr = D3DCompileFromFile(L"C:\\Users\\kdhome\\source\\repos\\web_renderer\\Debug\\shader.hlsl", nullptr, nullptr, "VShader", "vs_5_0", 0, 0, &VS, &errorBlob);
+    if (FAILED(hr)) {
+        if (errorBlob) {
+            OutputDebugStringA((char*)errorBlob->GetBufferPointer());
+            errorBlob->Release();
+        }
+        return;
+    }
+
+    hr = D3DCompileFromFile(L"C:\\Users\\kdhome\\source\\repos\\web_renderer\\Debug\\shader.hlsl", nullptr, nullptr, "PShader", "ps_5_0", 0, 0, &PS, &errorBlob);
+    if (FAILED(hr)) {
+        if (errorBlob) {
+            OutputDebugStringA((char*)errorBlob->GetBufferPointer());
+            errorBlob->Release();
+        }
+        return;
+    }
+
+    // Create shaders
+    dev->CreateVertexShader(VS->GetBufferPointer(), VS->GetBufferSize(), nullptr, &vertexShader);
+    dev->CreatePixelShader(PS->GetBufferPointer(), PS->GetBufferSize(), nullptr, &pixelShader);
+```
+Shader file souce ```shader.hlsl```
+
+```
+cbuffer ConstantBuffer : register(b0)
+{
+    matrix mvp;
+};
+
+struct VS_INPUT
+{
+    float4 Pos : POSITION;
+    float4 Color : COLOR;
+};
+
+struct PS_INPUT
+{
+    float4 Pos : SV_POSITION;
+    float4 Color : COLOR;
+};
+
+PS_INPUT VShader(VS_INPUT input)
+{
+    PS_INPUT output = (PS_INPUT)0;
+    output.Pos = mul(input.Pos, mvp); // Apply MVP transformation
+    output.Color = input.Color;
+    return output;
+}
+
+float4 PShader(PS_INPUT input) : SV_TARGET
+{
+    return input.Color; // Output the color
+}
+```
+
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/web_renderer/rotating%20cube%20d3d11%20vs4%20not%20vs5%20shader.png?raw=true)
