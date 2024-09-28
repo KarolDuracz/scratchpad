@@ -55,6 +55,8 @@ and line 678
 
 Maybe is there conflict between timer and InvalidateRect and threds. Anyway. This demo was supposed to render random pixel noise as an image (video) on a page using DX11. Something is working. Not quite how I expect it to be yet, because it should display everything together and not like now, where even the RUN JS and STOP THREAD buttons are not visible because there is a conflict in rendering. Of course this is just a stupid demo. Performance is not important.
 
+The line of background color is in 515 ```  float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // RGBA ``` when STOP THREAD button is pressed and "video" is rendering. This is the background area btw. Next time start first from here...
+
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/web_renderer/output_video_dx11.gif?raw=true)
 
 Ok, there is some basis for further learning. For now, that's enough.
