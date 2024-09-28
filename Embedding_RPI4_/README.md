@@ -39,3 +39,7 @@ is not working. I was looking how to fix that. I don't remember but the problem 
 <br /><br />
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Embedding_RPI4_/1727259573848.jpg?raw=true)
+
+<hr>
+This is reason why I want to buy this FPGA board from Rafał's. Another great article. On ep.com.pl there is whole series "Eksperymenty z FPGA" but this article is interesting and communication via Ethernet is cool thing to learn. It was nice to read, but making a network device like a router etc. is a different matter.<br />
+https://programistamag.pl/programista-42020-91-czerwiec-lipiec-2020-ethernet-w-fpga/
