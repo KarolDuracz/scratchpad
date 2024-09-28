@@ -19,7 +19,8 @@ update : 24.09.2024 : TODO in 2025 to get more serious tasks with ML. (1) langua
 update : 25.09.2024 : note in Embedding_RPI4_ . Keep in mind only. Maybe one day I'll come back to this, I'd like to learn more about it.
 <br /><br />
 update : 28.09.2024 : When I added Win32/web_renderer/ repo I think, At the end of 2025 this all things it need to be DONE! Everything needs to be done step by step and probably thrown into a small system emulator.
-Some time ago, looking at these types of projects, I thought it was a waste of time, but I need to put it together, because it's been cluttering my head for ~10 years. I just need exercises like this to get it over with. Then I can do something else with my head free from all this...  So, probably in 2025 I'll work it out and at the end I'll upload a new repo where everything will be accumulated. Maybe some small documentation will be created for the future.
+Some time ago, looking at these types of projects, I thought it was a waste of time, but I need to put it together, because it's been cluttering my head for ~10 years. I just need exercises like this to get it over with. Then I can do something else with my head free from all this...  So, probably in 2025 I'll work it out and at the end I'll upload a new repo where everything will be accumulated. Maybe some small documentation will be created for the future. (...) Or I'll just implement it for Linux and Windows. I'll think about it, but I have to put it together. Do these exercises.
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 <br /><br />
 NtQueryInformationProcess_run_example - dump.png
