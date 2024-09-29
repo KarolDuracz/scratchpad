@@ -866,3 +866,11 @@ But this create .iso file in linux system. And using grub craete on the booting 
 This guide is also good. https://os.phil-opp.com/multiboot-kernel/ <br />
 <br />
 Today, I have a big problem to run this on qemu and Virtual Box. But on real hardware it worked. I won't write a list of how to run it on Virtualbox now.
+
+<hr>
+
+Wygląda na to że ten problem z uruchamieniem z polecenia 
+```
+qemu-system-x86_64 -cdrom ...
+```
+Może mieć związek z INT 13 którego tutaj nie obsługuję. W sumie do tej pory nie podchodziłem do robienia bootloadera w pełni funkcjonalnego który obsługuje CDROM. Więc nie znam tematu jeszcze. Zajrzyj tutaj (https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/cdrom_int13)
