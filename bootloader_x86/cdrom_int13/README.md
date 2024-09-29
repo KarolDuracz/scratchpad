@@ -419,4 +419,305 @@ dmesg (kernel messages)
 /proc/cpuinfo and /proc/meminfo (CPU/memory info)
 By using these methods, you can effectively inspect and retrieve detailed information about the devices used by a particular QEMU virtual machine during runtime.
 
+![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/refs/heads/main/bootloader_x86/cdrom_int13/118%20-%2029-09-2024%20-%20cd.png)
 
+<hr>
+<h2>Ok, I have some information about virtual hardware and CDROM device. Write bootloader once again...</h2>
+
+<b>Approach #1</b> <br /><br />
+To write a simple bootloader for x86 using BIOS interrupt INT 13h to read data from a CD-ROM, you need to perform the following steps:
+
+Set the video mode: Usually, we don't need to set the video mode manually, as BIOS does this, but depending on your situation, you might want to switch modes.
+
+Use BIOS interrupts (INT 13h): This interrupt is used for low-level disk I/O, including CD-ROMs. Specifically, the INT 13h service for reading sectors (AH=02h) will help us read from a bootable CD.
+
+Load the Bootloader: Use the BIOS to read sectors from the CD and load the second stage bootloader or operating system into memory.
+
+CD-ROM Bootloader Outline:
+We will use El Torito bootable CD specification (used for booting from a CD-ROM).
+El Torito allows a CD-ROM to emulate a floppy disk, hard disk, or another bootable media.
+Steps for Reading Data from CD-ROM Using INT 13h
+1. Set Up Registers for INT 13h:
+AH = 42h: BIOS Extended Read.
+DL: Drive number of the CD-ROM (likely 0xE0 for the first CD-ROM).
+ES:BX: Pointer to the disk address packet (DAP).
+The Disk Address Packet (DAP) structure is as follows:
+
+```
+Disk_Address_Packet:
+    db 0x10            ; Size of the structure (16 bytes)
+    db 0x00            ; Reserved (must be 0)
+    dw NumberOfSectors  ; Number of sectors to read
+    dw BufferOffset     ; Offset in memory where data will be read
+    dw BufferSegment    ; Segment in memory where data will be read
+    dq LBA              ; Starting LBA (Logical Block Address)
+```
+
+2. Call INT 13h to Read from CD-ROM:
+
+```
+mov ah, 0x42           ; BIOS Extended Read
+mov dl, 0xE0           ; CD-ROM drive number (0xE0 for the first CD-ROM)
+mov si, Disk_Address_Packet
+int 0x13               ; Call BIOS
+jc error               ; Check for carry flag, if set, an error occurred
+```
+
+Example: Bootloader Code in Assembly
+
+```
+[bits 16]              ; Real mode (16-bit code)
+[org 0x7C00]           ; BIOS loads bootloader here in real mode
+
+start:
+    ; Clear registers
+    xor ax, ax
+    xor bx, bx
+    xor cx, cx
+    xor dx, dx
+
+    ; Display message (optional)
+    mov si, boot_message
+    call print_string
+
+    ; Prepare disk address packet for INT 13h, AH = 42h (BIOS Extended Read)
+    mov ax, 0x07C0      ; Load to 0x07C0:0000 (right after bootloader in memory)
+    mov es, ax
+    mov bx, 0x0000      ; Buffer offset
+
+    ; Prepare disk address packet
+    mov byte [DAP], 0x10       ; Size of DAP (16 bytes)
+    mov byte [DAP+1], 0x00     ; Reserved (0)
+    mov word [DAP+2], 1        ; Number of sectors to read
+    mov word [DAP+4], 0x0000   ; Buffer offset in memory (0000)
+    mov word [DAP+6], 0x07C0   ; Buffer segment in memory (07C0)
+    mov dword [DAP+8], 0x10    ; Starting LBA (Logical Block Address)
+
+    ; Call BIOS to read sector from CD-ROM
+    mov ah, 0x42        ; BIOS Extended Read
+    mov dl, 0xE0        ; CD-ROM drive number (0xE0 for first CD-ROM)
+    mov si, DAP         ; Pointer to Disk Address Packet (DAP)
+    int 0x13            ; Call BIOS
+
+    jc error            ; Jump to error if carry flag is set
+
+    ; Continue loading the bootloader from CD (if successful)
+    ; Jump to the loaded code (e.g., at 0x07C0:0000)
+    jmp 0x07C0:0000
+
+error:
+    ; Handle read error (optional)
+    mov si, error_message
+    call print_string
+    cli
+    hlt
+
+; Print a string (terminated by '$')
+print_string:
+    mov ah, 0x0E
+.next_char:
+    lodsb
+    cmp al, '$'
+    je .done
+    int 0x10
+    jmp .next_char
+.done:
+    ret
+
+; Data
+boot_message db "Booting from CD-ROM...$", 0
+error_message db "Error reading CD-ROM!$", 0
+
+; Disk Address Packet (DAP) structure
+DAP:
+    db 0x10, 0x00       ; DAP size and reserved byte
+    dw 1                ; Number of sectors to read
+    dw 0x0000           ; Buffer offset
+    dw 0x07C0           ; Buffer segment
+    dq 0x10             ; Starting LBA (Logical Block Address)
+
+times 510-($-$$) db 0   ; Padding to 510 bytes
+dw 0xAA55               ; Boot signature (0xAA55)
+```
+
+Step-by-Step Breakdown:
+Clear Registers: The code clears the registers at the beginning, making sure there’s no leftover data from earlier.
+
+Display Boot Message: This optional part prints a string (Booting from CD-ROM...) on the screen using BIOS interrupt INT 10h, which handles basic text output in real mode.
+
+Prepare Disk Address Packet: This is the most critical part:
+
+The DAP structure is created in memory with details like the number of sectors to read (1 sector in this case), buffer segment, offset, and the starting LBA (Logical Block Address) of the data to read.
+Here, we set LBA = 0x10, which is a common starting point for bootable CD-ROM sectors (depends on your setup).
+Call INT 13h to Read Data:
+
+Registers are set for INT 13h (Extended Read, AH=42h) and the CD-ROM drive number (DL=0xE0).
+The disk address packet is passed using the SI register, and INT 13h is called to load the sector into memory at address 0x07C0:0000.
+Error Handling: If an error occurs (carry flag is set), the bootloader will display an error message and halt the system.
+
+Jump to Loaded Code: If the sector read is successful, the code jumps to the loaded bootloader code, which resides at 0x07C0:0000.
+
+Key Points:
+Sectors and LBAs: On CD-ROMs, data is usually read in sectors (typically 2048 bytes for ISO-9660 CDs), and sectors are addressed using the Logical Block Address (LBA). The BIOS reads the CD-ROM in units of sectors.
+
+INT 13h Extended Read: The function INT 13h, AH=42h is part of the BIOS Extensions, which support reading from hard drives and CD-ROMs using logical block addressing (LBA) rather than Cylinder-Head-Sector (CHS) addressing.
+
+This bootloader reads 1 sector from the CD-ROM and jumps to it, ready to load the next stage (e.g., a kernel or a more advanced bootloader).
+<br /><br />
+<b>Approach #1</b> <br /><br />
+To write a bootloader that loads a kernel from the ide1-cd0 device (which is a CD-ROM connected via IDE in QEMU) using BIOS interrupts (INT 13h), we will go step-by-step through the bootloading process. This bootloader will:
+
+Use BIOS interrupts to initialize and load sectors from the CD-ROM (INT 13h).
+Detect the correct device (i.e., ide1-cd0) and load the kernel from the boot sector.
+Jump to the kernel's entry point.
+Step 1: Understanding INT 13h for CD-ROM Access
+BIOS provides a series of disk services through INT 13h. CD-ROMs connected via IDE are accessed as drives in the BIOS, starting from drive number 0x80 (first hard drive) or 0x00 (first floppy).
+
+For CD-ROMs specifically, when accessed through INT 13h, you need to understand how to:
+
+Identify the CD-ROM using BIOS disk services.
+Read sectors from the CD-ROM using INT 13h.
+BIOS INT 13h Functions:
+INT 13h, AH = 42h (Extended Read): This function is used to read from large drives (including CD-ROMs).
+INT 13h, AH = 15h (Drive Type Check): Check the type of device connected.
+INT 13h, AH = 41h: Check if BIOS supports extensions for reading CD-ROMs.
+Step 2: Writing the Bootloader
+The bootloader must fit in the first 512 bytes (boot sector). This example assumes you have a bootable ISO (boot_cs_1.iso) and want to load the kernel stored on that ISO.
+
+Here’s a simple x86 assembly code for a bootloader that:
+
+Initializes the system.
+Uses INT 13h to read sectors from ide1-cd0.
+Loads the kernel from the ISO into memory.
+
+```
+BITS 16                   ; We are in 16-bit real mode
+ORG 0x7C00                ; Boot sector loads at 0x7C00 by BIOS
+
+start:
+    ; Clear registers
+    xor ax, ax
+    mov ds, ax
+    mov es, ax
+    mov ss, ax
+    mov sp, 0x7C00         ; Set stack pointer
+
+    ; Print message to screen (for debugging)
+    mov si, boot_msg
+    call print_string
+
+    ; Select the drive (0x01 for `ide1-cd0`, as per QEMU config)
+    mov dl, 0x01           ; DL = 0x01 for secondary IDE (CD-ROM)
+
+    ; Load kernel from CD-ROM (assume it's at LBA 0x10 on CD)
+    mov bx, 0x9000         ; BX = Load the kernel at 0x9000 (arbitrary memory location)
+    mov si, 0x10           ; LBA = 0x10 (sector to load from)
+    call read_sector       ; Call read sector function
+
+    ; Jump to loaded kernel
+    jmp 0x9000             ; Jump to where we loaded the kernel
+
+hang:
+    jmp hang               ; If something goes wrong, loop forever
+
+; Function: read_sector
+; Reads one sector (512 bytes) from the CD-ROM (using LBA addressing)
+read_sector:
+    push ax
+    push bx
+    push cx
+    push dx
+
+    ; LBA to CHS conversion (INT 13h uses CHS, not LBA)
+    mov ah, 0x02           ; AH = 0x02 (Read Sector)
+    mov al, 0x01           ; AL = Number of sectors to read (1 sector = 512 bytes)
+    mov ch, 0x00           ; CH = Cylinder number (0)
+    mov cl, si             ; CL = Sector number (here we use LBA as sector directly for simplicity)
+    mov dh, 0x00           ; DH = Head number (0)
+
+    int 0x13               ; Call BIOS Disk Service to read sector
+
+    jc read_error          ; If error (Carry Flag set), jump to error handler
+
+    ; Sector read successfully
+    pop dx
+    pop cx
+    pop bx
+    pop ax
+    ret                    ; Return to caller
+
+read_error:
+    ; Print error message and halt the system
+    mov si, error_msg
+    call print_string
+    jmp hang
+
+; Function: print_string
+; Print a null-terminated string pointed to by SI to the screen
+print_string:
+    mov ah, 0x0E           ; BIOS teletype output
+.print_char:
+    lodsb                  ; Load byte at [SI] into AL
+    cmp al, 0               ; Check if it's the null terminator
+    je .done
+    int 0x10               ; BIOS interrupt to print character in AL
+    jmp .print_char
+.done:
+    ret
+
+boot_msg db 'Booting kernel from CD-ROM...', 0
+error_msg db 'Error reading from CD-ROM!', 0
+
+TIMES 510-($-$$) db 0      ; Pad boot sector with zeros up to 510 bytes
+DW 0xAA55                  ; Boot signature (0x55AA)
+```
+
+Step 3: Explanation of the Bootloader
+Stack Initialization: The bootloader sets up the stack to avoid potential issues when the kernel starts.
+
+Print a Message: The bootloader prints a message indicating that it is starting the kernel load process.
+
+Select the Device: The dl register is set to 0x01 to select the secondary IDE device (ide1-cd0). QEMU assigns dl values based on the drive number:
+
+0x00: First floppy
+0x80: First hard drive
+0x01: Second IDE device, which is the CD-ROM in this case (ide1-cd0).
+LBA Addressing: The bootloader loads the kernel from the CD-ROM using Logical Block Addressing (LBA). We assume the kernel starts at sector 0x10 on the CD (you can adjust this based on the actual location of the kernel on your ISO).
+
+Reading Sectors via INT 13h: The bootloader uses the BIOS INT 13h, AH = 02h function to read the sector from the CD-ROM into memory. The sector is loaded at address 0x9000.
+
+Jump to the Kernel: After loading the kernel into memory, the bootloader jumps to the kernel's entry point at 0x9000.
+
+Error Handling: If reading from the CD-ROM fails, the bootloader prints an error message and halts the system.
+
+Step 4: Create the Bootable ISO
+Once you have the bootloader assembled and the kernel ready, you need to create a bootable ISO image containing the bootloader and kernel.
+
+Assemble the Bootloader: Use an assembler like nasm to assemble the bootloader:
+
+```
+nasm -f bin bootloader.asm -o bootloader.bin
+```
+
+Create the Bootable ISO: Use genisoimage (or mkisofs) to create the ISO:
+
+```
+genisoimage -b bootloader.bin -o boot_cs_1.iso /path/to/kernel
+```
+
+-b bootloader.bin: Specifies the bootloader file.
+/path/to/kernel: Path to the kernel you want to include in the ISO.
+Step 5: Boot the ISO in QEMU
+Now that you have the bootable ISO, you can boot it in QEMU:
+
+```
+qemu-system-x86_64 -cdrom boot_cs_1.iso -boot d
+```
+
+This will boot from the CD-ROM (ide1-cd0), load the bootloader, and the bootloader will load the kernel from the CD-ROM into memory.
+
+Summary
+The bootloader uses BIOS INT 13h to access the CD-ROM.
+It reads the kernel from the specified sector (LBA).
+The bootloader jumps to the kernel after loading it into memory.
+The ISO is created with the bootloader and kernel, and you boot it using QEMU.
