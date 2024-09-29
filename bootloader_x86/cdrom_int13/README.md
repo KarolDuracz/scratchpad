@@ -564,7 +564,7 @@ INT 13h Extended Read: The function INT 13h, AH=42h is part of the BIOS Extensio
 
 This bootloader reads 1 sector from the CD-ROM and jumps to it, ready to load the next stage (e.g., a kernel or a more advanced bootloader).
 <br /><br />
-<b>Approach #1</b> <br /><br />
+<b>Approach #2</b> <br /><br />
 To write a bootloader that loads a kernel from the ide1-cd0 device (which is a CD-ROM connected via IDE in QEMU) using BIOS interrupts (INT 13h), we will go step-by-step through the bootloading process. This bootloader will:
 
 Use BIOS interrupts to initialize and load sectors from the CD-ROM (INT 13h).
@@ -721,3 +721,254 @@ The bootloader uses BIOS INT 13h to access the CD-ROM.
 It reads the kernel from the specified sector (LBA).
 The bootloader jumps to the kernel after loading it into memory.
 The ISO is created with the bootloader and kernel, and you boot it using QEMU.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/cdrom_int13/119%20-%2029-09-2024%20-%20cd.png?raw=true)
+
+But line ```mov cl, si             ; CL = Sector number (here we use LBA as sector directly for simplicity)``` we need change <br />
+ In my original code, the instruction mov cl, si is incorrect because SI is a 16-bit register, and CL is only an 8-bit register, meaning this would truncate the value of SI. We need to properly split the 16-bit LBA value (Logical Block Address) into appropriate components to work with CHS (Cylinder, Head, Sector) addressing, as BIOS INT 13h does not directly support LBA and uses CHS (Cylinder, Head, Sector) addressing instead.
+
+To handle this properly, we need to calculate Cylinder, Head, and Sector from the 16-bit LBA value and then load them into the appropriate registers.
+
+Correcting the Code for LBA to CHS Translation
+To fix this issue, here’s a better way to convert a 16-bit LBA to CHS format, assuming that the CD-ROM uses 63 sectors per track (which is typical for hard drives and many BIOS configurations).
+
+The CHS calculation works as follows:
+
+Cylinder: High part of the LBA
+Head: Number of heads (often 0 or 1 for CDs)
+Sector: Must be in the range 1–63 (BIOS INT 13h expects this in 1-based format)
+Fixed Bootloader Code with LBA to CHS Conversion
+Here’s an improved version of the code with the correct LBA to CHS conversion:
+
+```
+BITS 16                   ; We are in 16-bit real mode
+ORG 0x7C00                ; Boot sector loads at 0x7C00 by BIOS
+
+start:
+    ; Clear registers
+    xor ax, ax
+    mov ds, ax
+    mov es, ax
+    mov ss, ax
+    mov sp, 0x7C00         ; Set stack pointer
+
+    ; Print message to screen (for debugging)
+    mov si, boot_msg
+    call print_string
+
+    ; Select the drive (0x01 for `ide1-cd0`, as per QEMU config)
+    mov dl, 0x01           ; DL = 0x01 for secondary IDE (CD-ROM)
+
+    ; Load kernel from CD-ROM (assume it's at LBA 0x10 on CD)
+    mov bx, 0x9000         ; BX = Load the kernel at 0x9000 (arbitrary memory location)
+    mov si, 0x10           ; SI = LBA = 0x10 (sector to load from)
+    call read_sector       ; Call read sector function
+
+    ; Jump to loaded kernel
+    jmp 0x9000             ; Jump to where we loaded the kernel
+
+hang:
+    jmp hang               ; If something goes wrong, loop forever
+
+; Function: read_sector
+; Reads one sector (512 bytes) from the CD-ROM (using LBA addressing)
+read_sector:
+    push ax
+    push bx
+    push cx
+    push dx
+
+    ; Convert LBA (in SI) to CHS for INT 13h
+    mov ax, si              ; AX = LBA
+    xor dx, dx              ; DX = 0 (clear upper bits)
+    div WORD [sectors_per_track] ; AX = Cylinder, DX = Sector (1-based)
+
+    ; Load CHS values into the correct registers
+    mov ch, al              ; Cylinder (lower byte into CH)
+    xor dh, dh              ; DH = Head (0 for CD-ROM)
+    inc dl                  ; Convert DX (sector) to 1-based
+    mov cl, dl              ; CL = Sector number
+
+    ; BIOS INT 13h - Read sector
+    mov ah, 0x02            ; AH = 0x02 (Read Sector)
+    mov al, 0x01            ; AL = Number of sectors to read (1 sector = 512 bytes)
+    int 0x13                ; Call BIOS Disk Service to read sector
+
+    jc read_error           ; If error (Carry Flag set), jump to error handler
+
+    ; Sector read successfully
+    pop dx
+    pop cx
+    pop bx
+    pop ax
+    ret                     ; Return to caller
+
+read_error:
+    ; Print error message and halt the system
+    mov si, error_msg
+    call print_string
+    jmp hang
+
+; Function: print_string
+; Print a null-terminated string pointed to by SI to the screen
+print_string:
+    mov ah, 0x0E           ; BIOS teletype output
+.print_char:
+    lodsb                  ; Load byte at [SI] into AL
+    cmp al, 0               ; Check if it's the null terminator
+    je .done
+    int 0x10               ; BIOS interrupt to print character in AL
+    jmp .print_char
+.done:
+    ret
+
+boot_msg db 'Booting kernel from CD-ROM...', 0
+error_msg db 'Error reading from CD-ROM!', 0
+
+sectors_per_track dw 63    ; Common value for sectors per track
+
+TIMES 510-($-$$) db 0      ; Pad boot sector with zeros up to 510 bytes
+DW 0xAA55                  ; Boot signature (0x55AA)
+```
+
+Key Changes:
+LBA to CHS Conversion:
+
+LBA is stored in SI.
+The div instruction divides AX (which holds the LBA) by the number of sectors per track (in this case, 63). This gives the Cylinder and Sector values.
+The quotient (AX) becomes the Cylinder.
+The remainder (DX) gives the Sector (which must be incremented by 1, as BIOS uses 1-based sector numbering).
+The Head is set to 0 (for simplicity, as CDs usually have only one head per track).
+Register Use:
+
+CH holds the Cylinder (calculated from LBA).
+DH is set to 0 for the Head.
+CL holds the Sector (1-based).
+Sector per Track:
+
+In the CD-ROM's case, it often uses the standard 63 sectors per track, which is common in CHS BIOS addressing schemes for hard drives and CD-ROMs.
+Explanation:
+The CHS values are derived by dividing the LBA by the number of sectors per track:
+The Cylinder is the quotient.
+The Sector is the remainder (adjusted to be 1-based).
+The Head is assumed to be 0 for simplicity.
+We load these values into the appropriate registers (CH, CL, and DH) and use INT 13h to read a sector from the CD-ROM.
+Step-by-Step Process for Reading Data:
+Initialize registers: Clear the registers, and set up the stack.
+Print the boot message: Just for debugging, we print a message saying we are booting the kernel.
+Select the CD-ROM device: We use DL = 0x01 to select ide1-cd0 (secondary IDE device, typically the CD-ROM in this setup).
+LBA to CHS conversion: The bootloader converts the Logical Block Address (SI = 0x10) to Cylinder, Head, and Sector using simple division.
+Read the kernel: The bootloader uses BIOS INT 13h to load the sector containing the kernel into memory (BX = 0x9000).
+Jump to the kernel: After successfully loading the kernel, the bootloader jumps to the loaded kernel's memory address (0x9000).
+Error handling: If any error occurs during sector reading, an error message is displayed and the system halts.
+Conclusion:
+This fixed bootloader properly handles the LBA to CHS conversion and reads a sector from the CD-ROM (ide1-cd0). You can further modify it based on where your kernel is located on the ISO image and how large the kernel is (i.e., you might need to read multiple sectors).
+
+Look like something works but print some errors. Run from this command: <br />
+
+```
+qemu-system-x86_64 -cdrom boot_cd_2.iso -boot d -m 64 -d int
+```
+
+<br /><br />
+<b>Approach #3</b> <br /><br />
+"Error reading from CD-ROM!", this suggests that the INT 13h BIOS call to read the sector failed. The cause could be related to one of the following issues:
+
+Invalid LBA/CHS Values: If the LBA to CHS conversion is incorrect, or if the target sector is out of range for the CD-ROM, the BIOS will fail to read the data.
+Incorrect Drive: Ensure that the correct drive number is used (DL = 0x01 for ide1-cd0 in QEMU).
+CD-ROM Configuration in QEMU: Verify that the CD-ROM is properly configured in QEMU and the ISO is accessible.
+INT 13h Errors: The BIOS could return an error, and you may not be handling it correctly.
+Let's walk through a few debugging steps to troubleshoot this issue.
+
+Debugging Steps
+Check the Carry Flag (CF): The BIOS will set the Carry Flag (CF) if there's an error during the INT 13h call. After the INT 13h call, check if the carry flag is set and output the error code returned in the AH register to identify the problem.
+
+Verify LBA to CHS Conversion: Ensure that the LBA to CHS conversion is correct and doesn't result in invalid CHS values that might be out of bounds for the CD-ROM. For example, make sure that the Sector is between 1 and 63 (inclusive).
+
+Output the BIOS Error Code: Print the BIOS error code from AH to help identify the issue. Here's how you can modify the error handling to show the error code.
+
+Improved Error Handling
+Add an error code printout to understand the specific issue during the INT 13h read:
+
+```
+read_error:
+    ; Print error message
+    mov si, error_msg
+    call print_string
+
+    ; Output error code (in AH) as a hexadecimal value
+    mov ah, 0x00            ; Reset AH to clear previous content
+    mov al, ah              ; Move error code from AH to AL
+    call print_hex           ; Print the error code in hexadecimal format
+
+    jmp hang
+
+; Function: print_hex
+; Prints the value in AL as a 2-digit hexadecimal number
+print_hex:
+    push ax
+    push bx
+
+    ; Print high nibble
+    mov bl, al
+    shr al, 4               ; Shift the high nibble into the lower 4 bits
+    call print_nibble
+
+    ; Print low nibble
+    mov al, bl
+    and al, 0x0F            ; Mask out the upper nibble
+    call print_nibble
+
+    pop bx
+    pop ax
+    ret
+
+; Function: print_nibble
+; Prints the nibble (low 4 bits) of AL as a hexadecimal digit
+print_nibble:
+    add al, '0'             ; Convert nibble to ASCII
+    cmp al, '9'             ; If it's greater than '9', adjust for letters
+    jle .print_char
+    add al, 7               ; Adjust ASCII for 'A' through 'F'
+
+.print_char:
+    mov ah, 0x0E            ; BIOS teletype output
+    int 0x10                ; Print the character in AL
+    ret
+```
+
+Explanation of Changes:
+Print Error Code:
+
+When an error occurs during the INT 13h call, the BIOS returns an error code in the AH register.
+This code will print the error message along with the error code as a two-digit hexadecimal value, allowing you to see exactly what error occurred.
+Handling Nibbles:
+
+```
+print_hex splits the byte in AL into two 4-bit nibbles (the high and low parts of the byte), and prints them as hexadecimal digits.
+BIOS Error Codes from INT 13h:
+0x00: No error.
+0x01: Invalid function or parameter.
+0x02: Address mark not found.
+0x03: Disk write-protected.
+0x04: Sector not found (this can occur if the CHS values are wrong).
+0x05: Reset failed.
+0x10: CRC error during data transfer.
+0x20: Controller failure.
+0x40: Seek failure.
+0x80: Timeout error (drive not ready).
+0xAA: Drive not ready.
+```
+
+Possible Fixes Based on the Error Code:
+Error 0x04 (Sector Not Found): This could indicate that the LBA to CHS conversion resulted in an invalid CHS address (such as a sector number out of range).
+
+Double-check the LBA value and conversion logic to ensure you're reading from the correct sector.
+Verify that the kernel is located at the correct sector in the ISO.
+Error 0x80 (Drive Not Ready): This could indicate that the CD-ROM is not accessible or not ready.
+
+Ensure that the QEMU configuration properly mounts the ISO and that the CD-ROM is available as ide1-cd0.
+Error 0x01 (Invalid Function/Parameter): This could indicate an issue with the INT 13h parameters, such as passing an invalid drive number or using incorrect CHS values.
+
+Further Steps:
+If you're still having issues after obtaining the error code, we can further investigate based on the specific BIOS error, or adjust the QEMU configuration to ensure the CD-ROM device is correctly initialized.
