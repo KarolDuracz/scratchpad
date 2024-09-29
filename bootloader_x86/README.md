@@ -876,3 +876,8 @@ qemu-system-x86_64 -cdrom ...
 Może mieć związek z INT 13 którego tutaj nie obsługuję. W sumie do tej pory nie podchodziłem do robienia bootloadera w pełni funkcjonalnego który obsługuje CDROM. Więc nie znam tematu jeszcze. Zajrzyj tutaj (https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/cdrom_int13)
 <br /><br />
 Patrząc tylko na wiki INT 13 widać jak bardzo temat jest złożony https://en.wikipedia.org/wiki/INT_13H .
+<br />
+Następna rzecz to ustawienia Virtual Box. Okazało się że w ustawieniach miałem przestawione domyślnie. Trzeba ustawić CDROM jako pierwsze urządzenie. Jest jeszcze tabelka w System > okienko kolejność bootowania > pierwsza jest dyskietka domyślnie <br />
+To nie sprawi że zadziała ten bootloader. Na qemu nie działa to czemu miałby tutaj. Ale czytałem że może być tak że tutaj na VB zacziała a na qemu nie. I odwrotnie. Ale to nie działa.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/cdrom_int13/116%20-%2029-09-2024%20-%20virtual%20box%20ustawienia%20cdrom%20first.png?raw=true)
