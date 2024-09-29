@@ -972,3 +972,9 @@ Error 0x01 (Invalid Function/Parameter): This could indicate an issue with the I
 
 Further Steps:
 If you're still having issues after obtaining the error code, we can further investigate based on the specific BIOS error, or adjust the QEMU configuration to ensure the CD-ROM device is correctly initialized.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/cdrom_int13/120%20-%2029-09-2024%20-%20cd.png?raw=true)
+
+Again. Somethings work but... probably I need to learn more about qemu and CTRL + ALT + 2 to debug what's going on etc.
+<br /><br />
+THIS FILES boot_cs_1, boot_cs_2, boot_cs_3 is there in this repo !
