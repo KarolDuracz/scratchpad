@@ -874,3 +874,5 @@ Wygląda na to że ten problem z uruchamieniem z polecenia
 qemu-system-x86_64 -cdrom ...
 ```
 Może mieć związek z INT 13 którego tutaj nie obsługuję. W sumie do tej pory nie podchodziłem do robienia bootloadera w pełni funkcjonalnego który obsługuje CDROM. Więc nie znam tematu jeszcze. Zajrzyj tutaj (https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/cdrom_int13)
+<br /><br />
+Patrząc tylko na wiki INT 13 widać jak bardzo temat jest złożony https://en.wikipedia.org/wiki/INT_13H .
