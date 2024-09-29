@@ -978,3 +978,9 @@ If you're still having issues after obtaining the error code, we can further inv
 Again. Somethings work but... probably I need to learn more about qemu and CTRL + ALT + 2 to debug what's going on etc.
 <br /><br />
 THIS FILES boot_cs_1, boot_cs_2, boot_cs_3 is there in this repo !
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/cdrom_int13/121%20-%2029-09-2024%20-%20finally%20on%20vm%20it%20works.png?raw=true)
+
+Finally it works on Virtualbox 7 too ;p
+<br /><br />
+update 29-09-2024 : OK. That's it. That's it for now. Over the course of 2 days this weekend I've refreshed this topic a bit. But from what I can see, there's a ton of learning to get through it. It's probably pointless. Just yesterday I thought that learning this was a "priority" but it's really a huge amount of knowledge to learn to have the basics. I'm struggling at the moment. But I've taken a step further than last time when I started learning how to write a bootloader and hello world x86.
