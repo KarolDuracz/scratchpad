@@ -415,5 +415,7 @@ https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/controlling-
 https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/p--step-<br />
 https://codemachine.com/articles/windbg_quickstart.html <--- quick tutorial how to use WINDBG<br />
 
+<h1>What is that? What this demonstrate?</h1>
+The main goal it to attach any process, for example start from calc.exe and notepad.exe and  have more control over the context and execution of code. But in here I start from simple assembler code inside debugger to explore and learn bahviours like this and more.
 
-
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo2/the%20end.png?raw=true)
