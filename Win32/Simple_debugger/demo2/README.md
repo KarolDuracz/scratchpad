@@ -7,7 +7,7 @@ C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Auxiliary\Bu
 ```
 For this demo I used vcvars32.bat (When I setup x64 environment using vcvars64.bat you got error, probably 30 but I don't exatly remember ath this moment -> https://learn.microsoft.com/en-us/windows/win32/debug/system-error-codes--0-499- . But reason for what you get this error is because you ru 32 bit regiters like EAX, etc code that prepare for 32 bits environemnt. This is one of reasons. )
 
-(pic)
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo2/path%20to%20vcvars%20bat.png?raw=true)
 
 So, when we open "cmd.exe" and run this .bat script we get something like that
 ```
@@ -67,7 +67,7 @@ For this example we will use x86 windbg. (not x64 version) - Run as administrato
 <br /><br />
 <b>Ok, time for code.</b>
 <br /><br />
-<i>writer.c</i>
+<i>writer.c</i> == w2.c
 ```
 #include <windows.h>
 #include <stdio.h>
@@ -252,7 +252,7 @@ That's it.
 
 <br /><br /><br />
 
-<i>reader.c</i>
+<i>reader.c</i> == r2.c
 ```
 #include <windows.h>
 #include <stdio.h>
@@ -324,7 +324,7 @@ cl.exe reader.c
 
 <br /><br /><br />
 
-<i>stack.c</i>
+<i>stack.c</i> == reader.c
 ```
 #include <windows.h>
 #include <stdio.h>
@@ -379,6 +379,7 @@ cl.exe stack.c
 
 <h1>FIRST RUN</h1>
 As you see in write.c code in line from 43 you see that
+
 ```
     // Continuously get the register states
     while (1) {
@@ -388,15 +389,31 @@ As you see in write.c code in line from 43 you see that
 			int 3
 		}
 ```
-That means we have 10 seconds (we can change it) to start the debugger. This is important. So:
-1. Start WinDbg x86 version as administrator. And run write.exe file.
-2. You have 10 seconds to find (using F6 key) process "write.exe" and to attach debugger to this process
-3. When you attached debugger and it running you see something like this
 
-4. Run reader.exe
-5. Run stack.exe
+That means we have 10 seconds (we can change it) to start the debugger. This is important. So:<br />
+<b>1. Start WinDbg x86 version as administrator. And run write.exe file.</b><br />
+<b>2. You have 10 seconds to find (using F6 key) process "write.exe" and to attach debugger to this process</b><br />
+<b>3. When you attached debugger and it running you see something like this</b><br />
 
-6. In windbg hit 3 times "g" command to run debugger
-https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/controlling-the-target
-https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/p--step-
-https://codemachine.com/articles/windbg_quickstart.html <--- quick tutorial how to use WINDBG
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo2/in%20my%20example%20write%20equals%20w2%20exe.png?raw=true)
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo2/after%20attached.png?raw=true)
+
+
+<b>4. Run reader.exe</b><br />
+<b>5. Run stack.exe</b><br />
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo2/step%205.png?raw=true)
+
+<b>6. In windbg hit 3 times "g" command to run debugger</b><br />
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo2/3x%20g%20command.png?raw=true)
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo2/output.png?raw=true)
+
+https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/controlling-the-target<br />
+https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/p--step-<br />
+https://codemachine.com/articles/windbg_quickstart.html <--- quick tutorial how to use WINDBG<br />
+
+
+
