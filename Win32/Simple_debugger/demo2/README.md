@@ -525,3 +525,5 @@ int main() {
 ```
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo2/last%20example.png?raw=true)
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo2/stack%20print%20vs%20windbg.png?raw=true)
