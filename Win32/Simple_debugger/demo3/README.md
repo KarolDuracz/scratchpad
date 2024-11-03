@@ -96,7 +96,7 @@ We can create again and again this remote process using this Project15.exe and d
 <br />
 Ok, now we run "notepad.exe"<br />
 Back to point #6 -  In Project15 change line 118 . Compile it with CTRL + SHIFT + B . And run in CMD as administrator Project15.exe<br />
-And change in line 118 to DWORD pid = GetProcessIdByName("simple_demo.exe");<br />
+And change in line 118 to DWORD pid = GetProcessIdByName("notepad.exe");<br />
 Open notepad.exe - for example with Windows + R keys and type "notepad.exe" and ENTER key.<br />
 And again, compile Project15. And then run from CMD as admnistrator. (we see in ProcessExplorer new thread inside notepad.exe)<br />
 And then, run WinDbg x64 as administrator<br />
