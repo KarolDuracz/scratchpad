@@ -1,0 +1,10 @@
+﻿  main.cpp
+C:\Users\kdhome\source\repos\Project15\Project15\main.cpp(26,12): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'size_t'
+C:\Users\kdhome\source\repos\Project15\Project15\main.cpp(26,12): message : consider using '%zd' in the format string
+C:\Users\kdhome\source\repos\Project15\Project15\main.cpp(32,20): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'size_t'
+C:\Users\kdhome\source\repos\Project15\Project15\main.cpp(32,20): message : consider using '%zd' in the format string
+C:\Users\kdhome\source\repos\Project15\Project15\main.cpp(251,8): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'FARPROC'
+C:\Users\kdhome\source\repos\Project15\Project15\main.cpp(251,8): warning C4313: 'printf': '%d' in format string conflicts with argument 1 of type 'FARPROC'
+C:\Users\kdhome\source\repos\Project15\Project15\main.cpp(251,8): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'HMODULE'
+C:\Users\kdhome\source\repos\Project15\Project15\main.cpp(251,8): warning C4313: 'printf': '%d' in format string conflicts with argument 2 of type 'HMODULE'
+  Project15.vcxproj -> C:\Users\kdhome\source\repos\Project15\x64\Debug\Project15.exe

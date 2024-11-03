@@ -1,0 +1,4 @@
+﻿  main.cpp
+C:\Users\kdhome\source\repos\Project15\Project15\main.cpp(238,8): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'FARPROC'
+C:\Users\kdhome\source\repos\Project15\Project15\main.cpp(238,8): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'HMODULE'
+  Project15.vcxproj -> C:\Users\kdhome\source\repos\Project15\Debug\Project15.exe
