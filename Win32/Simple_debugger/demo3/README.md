@@ -93,3 +93,44 @@ And press "g" to run again<br />
 <h3>For this issue we create Remote Thread inside another process and run step by step using WinDbg successfully.</h3>
 We can create again and again this remote process using this Project15.exe and do in loop this things. Ad nauseam. But that's not the point.
 <hr>
+<br />
+Ok, now we run "notepad.exe"<br />
+Back to point #6 -  In Project15 change line 118 . Compile it with CTRL + SHIFT + B . And run in CMD as administrator Project15.exe<br />
+And change in line 118 to DWORD pid = GetProcessIdByName("simple_demo.exe");<br />
+Open notepad.exe - for example with Windows + R keys and type "notepad.exe" and ENTER key.<br />
+And again, compile Project15. And then run from CMD as admnistrator. (we see in ProcessExplorer new thread inside notepad.exe)<br />
+And then, run WinDbg x64 as administrator<br />
+And then press CTRL + C in CMD to stop Project 15.exe when the remote thread with suspend state is created inside notepad process.<br />
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo3/pics/11%20-%20for%20notepad.png?raw=true)
+
+In WinDbg if already is running Break current process (CTRL + Break) and detach debuggee following top menu Debug > Break | Debug > Detach Debuggee<br />
+Or run fresh start WinDbg x64 as Administrator. And attach to process notepad.exe in my example with PID 7224.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo3/pics/12%20-%20notepad%20is%20debug.png?raw=true)
+
+And again we need set break point at MessageBoxA function and then run "g" command again.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo3/pics/13%20-%20we%20need%20set%20break%20point.png?raw=true)
+
+And then click "resume" in ProcessExplorer
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo3/pics/14%20-%20click%20resume.png?raw=true)
+
+And on the next picture we see something is wrong with CMP instruction. This is weird address do DS. And this based on value from RDX register. In the example with "simple_demo.exe" if you look above we had a normal address.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo3/pics/15%20-%20result.png?raw=true)
+
+Ok, now detach debuggee and see ERROR (crash)
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo3/pics/16%20-%20error.png?raw=true)
+
+Looking into Event Viewer probably won't tell us much either, but I don't know how to read it very well. Only that it's somewhere in user32.dll and that we have an access error (Access denied)
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo3/pics/17%20-%20access%20denied%205.png?raw=true)
+
+And this is a topic I need to delve into more deeply. This is probably about ACL etc. things.
+<br /><br />
+If you run this without debugger you will open the same result - crash application with code error 5.
+<hr>
+<br />
