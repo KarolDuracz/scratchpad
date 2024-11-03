@@ -134,3 +134,12 @@ And this is a topic I need to delve into more deeply. This is probably about ACL
 If you run this without debugger you will open the same result - crash application with code error 5.
 <hr>
 <br />
+<h2>Ok, back to previous examples</h2>
+In the previous image I wrote that the CMP instruction in MBSToWCS is important. And second important fact is value in RDX register. Because if you start following the instructions step by step by going from MessageBoxA to MessageBoxTimeoutA and then to MBToWCSEx exactly where this instruction is the program crashes. But only because that's where the address for searching data for executing CMP is calculated. If you trace the RDX address for the simple_demo.exe process everything is fine, the address is in the range of imported DLLs for the process. But here there is some strange 041000110.... something. And that's the reason why it crashes just like that. But why this address is there in the case of notepad.exe I don't know. This is something I have to figure out further.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo3/pics/18%20-%20run%20again%20but%20print%20RDX%20state.png?raw=true)
+
+But, we can modify register RDX before execute this instruction
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo3/pics/19%20-%20thats%20it.png?raw=true)
+I don't know what is going on here right now but this is interesting. An interesting example on CreateRemoteThread for me.
