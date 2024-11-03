@@ -91,4 +91,5 @@ And press "g" to run again<br />
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo3/pics/10%20-%20press%20g%20and%20enter%20and%20get%20message%20box.png?raw=true)
 
 <h3>For this issue we create Remote Thread inside other process and run step be step using WinDbg successfully.</h3>
+We can create again and again this remote process using this Project15.exe and do in loop this things. Ad nauseam. But that's not the point.
 <hr>
