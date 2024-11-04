@@ -28,3 +28,6 @@ This is few example of path to process but this is tricky, because we need also 
 So, for CMD.exe as path we need "L"C:\\Windows\\System32\\cmd.exe"," but as windows name "HWND hCalcWnd = FindWindow(NULL, L"C:\\Windows\\System32\\cmd.exe");"
 <br /><br />
 Under construction.
+<br /><br />
+https://nexus-6.uk/joomla/index.php/multiple-document-interface-menu-item <br />
+https://learn.microsoft.com/en-us/windows/win32/winmsg/about-the-multiple-document-interface
