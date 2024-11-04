@@ -2,7 +2,10 @@
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Multi%20Windows%20Manager/71%20-%204-11-2024%20-%20win32%20%20multiple%20window%20manger.png?raw=true)
 
-Guide, how it works in simple way.
+<h2>Guide, how it works in simple way.</h2>
+
+Create "NEW" window from top menu, and when MIDI window show inside parent window click "OK". 
+<br /><br />
 1. In file https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Multi%20Windows%20Manager/Clipboard_popupWindow/Clipboard_popupWindow/Clipboard_popupWindow.cpp
    in lines 166 to 171 is that
 
