@@ -531,4 +531,5 @@ int main() {
 <hr>
 On the Windows 7 installed on Virtualbox also run properly. But you need compile it again as x86 exe. Setup x86 environment for cl.exe and compile without "int 3" instructions inside code! Because In this case I don't installed WinDbg on this Win7. Comile r2.c and w2.c. This demo shown live state of registers. And we have data inside share memory about it after 100 ms in this case.
 <br />
+
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo2/68%20-%204-11-2024%20-%20demo%20win7%20virtual%20box.png?raw=true)
