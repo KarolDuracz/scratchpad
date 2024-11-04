@@ -34,3 +34,9 @@ Under construction.
 <br /><br />
 https://nexus-6.uk/joomla/index.php/multiple-document-interface-menu-item <br />
 https://learn.microsoft.com/en-us/windows/win32/winmsg/about-the-multiple-document-interface
+
+<hr>
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Multi%20Windows%20Manager/8%20-%201-11-2024%20-%20cdc.png?raw=true)
+
+First time, I try to creted this without MIDI, but it didn't work out right. Then I switched to the midi version. Because I have guide from this links. But I'll definitely put it here sometime. I just need to spend more time working out the basic functions. 
