@@ -40,3 +40,5 @@ https://learn.microsoft.com/en-us/windows/win32/winmsg/about-the-multiple-docume
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Multi%20Windows%20Manager/8%20-%201-11-2024%20-%20cdc.png?raw=true)
 
 First time, I try to creted this without MIDI, but it didn't work out right. Then I switched to the midi version. Because I have guide from this links. But I'll definitely put it here sometime. I just need to spend more time working out the basic functions. 
+
+<h2> This is worth to development, it's easy to manage like that than show from task bar all windows and select as popups. Better sometimes is running 4 CMD or something under 1 window.</h2>
