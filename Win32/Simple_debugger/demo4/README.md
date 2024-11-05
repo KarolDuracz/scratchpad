@@ -10,16 +10,18 @@ One more thing. (btw. something new will appear from these things every now and 
 5. You see result like on image<br />
 <br /><br />
 The main goal is to trace scenario like this (for example using WinDbg):<br />
-1. ? rcx + 0x8 // identify the addres <br />
-2. ba r4 0x00007FF683590008 ".if (poi(0x00007FF683590008) == 201) { .echo Condition met: *(RCX + 0x8) == 201; }" // setup break point on address with contion RCX + 8 == 201 this is for Left mouse click on window <br />
-or <br />
-bp user32!DispatchMessageW ".if (poi(@rcx+0x8) == 201) { .echo Condition met: RCX+0x8 == 201; }"<br />
-3. bp user32!DispatchMessageW // setup bp on this function <br />
-4. dt user32!tagMSG @rcx   // 64-bit systems<br />
-or dt user32!tagMSG poi(esp+4) // 32 bit system<br />
-5. When "Symbol user32!tagMSG not found." you'll need
-6. ? rcx // address to  this structure
+1. bp user32!DispatchMessageW // break point user32!DispatchMessageW
+2. When you press in windbg "g" and move mouse on the window or restore from menu bar only debugger catch break point here. What is interesting to me is the MSG structure
 
+```
+// Run the message loop
+    MSG msg = {};
+    while (GetMessage(&msg, NULL, 0, 0)) {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
+    }
+```
+example what looks like but in real x64 bit process this all have if I correctly think 8 bytes
 ```
 user32!tagMSG
    +0x000 hwnd            : 0x12345678 HWND
@@ -29,7 +31,12 @@ user32!tagMSG
    +0x020 time            : 123456789
    +0x024 pt              : _POINT ( X = 0x100, Y = 0x200 )
 ```
+3. dt user32!tagMSG @rcx   // 64-bit systems or dt user32!tagMSG poi(esp+4) // 32 bit system<br />
+3a.  When "Symbol user32!tagMSG not found." you'll need - Typically nn 64-bit systems, the MSG pointer is typically found in the RCX register (for x64 calling conventions). On 32-bit systems, it will be on the stack (esp+4).<br />
+4. ? rcx + 0x8 // identify the addres <br />
+5.  ba r4 0x00007FF683590008 ".if (poi(0x00007FF683590008) == 201) { .echo Condition met: *(RCX + 0x8) == 201; }" // setup break point on address with contion RCX + 8 == 201 this is for Left mouse click on window <--- but for me this is not working properly<br /> 
+
 <br /><br />
-This must solve scenario when user KNOW what is RCX address and then set bp on user32!DispatchMessageW, then remove and find RCX+0x8 value. But in that case still don't does it what I want. But this demo4 shown somehting  what I will need and develop
+This must solve scenario when user KNOW what is  ```user32!DispatchMessageW```  address (but for all process is the same) and then set bp on user32!DispatchMessageW, then remove and find RCX+0x8 value which corespont to ```+0x008 message``` . But in that case still don't does it what I want. But this demo4 shown something  what I will need and develop. If you look at image you see there is somethings wrong with value from context.Rcx + 0xXX but it's ok for now. In the meantime everything will improve and come together as a whole.
  <br /><br />
 TODO.......
