@@ -18,6 +18,8 @@ And then this look OK. From 0x8 offset is 0x200 and this is correspond to ```WM_
 ```
 So, this is looks correct. But for this case I need to filter each type of events and message. But this is yet to be done here. To be sure that this is correct you would need to check HANDLE window from first parameter, first 0-7 bytes. But... not this time.
 
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo4/5-11-2024-b/82%20-%205-11-2024%20-%20message%20is%20comming%20looks%20correct.png?raw=true)
+
 <br /><br />
 <b>fixed</b>
 <br /><br />
