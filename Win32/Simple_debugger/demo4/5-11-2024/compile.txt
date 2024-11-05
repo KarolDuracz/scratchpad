@@ -1,0 +1,4 @@
+cl /EHsc /D_UNICODE /DUNICODE /W4 /Zi SimpleGUI.cpp /link /SUBSYSTEM:WINDOWS /OUT:SimpleGUI.exe
+
+// new
+cl /EHsc /D_UNICODE /DUNICODE /W4 /Zi SimpleGUI.cpp /link /SUBSYSTEM:WINDOWS /OUT:SimpleGUI.exe User32.lib
