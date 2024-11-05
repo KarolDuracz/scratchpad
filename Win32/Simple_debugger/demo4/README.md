@@ -37,6 +37,6 @@ user32!tagMSG
 5.  ba r4 0x00007FF683590008 ".if (poi(0x00007FF683590008) == 201) { .echo Condition met: *(RCX + 0x8) == 201; }" // setup break point on address with contion RCX + 8 == 201 this is for Left mouse click on window <--- but for me this is not working properly<br /> 
 
 <br /><br />
-This must solve scenario when user KNOW what is  ```user32!DispatchMessageW```  address (but for all process is the same) and then set bp on user32!DispatchMessageW, then remove and find RCX+0x8 value which corespont to ```+0x008 message``` . But in that case still don't does it what I want. But this demo4 shown something  what I will need and develop. If you look at image you see there is somethings wrong with value from context.Rcx + 0xXX but it's ok for now. In the meantime everything will improve and come together as a whole.
+This must solve scenario when user KNOW what is  ```user32!DispatchMessageW```  address (but for all process is the same) and then set bp on user32!DispatchMessageW, then remove and find RCX+0x8 value which correspond to ```+0x008 message``` . But in that case still don't does it what I want. But this demo4 shown something  what I will need and develop. If you look at image you see there is somethings wrong with value from context.Rcx + 0xXX but it's ok for now. In the meantime everything will improve and come together as a whole.
  <br /><br />
 TODO.......
