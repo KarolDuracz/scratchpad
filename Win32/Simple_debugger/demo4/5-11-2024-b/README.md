@@ -1,6 +1,6 @@
 NOT FIXED <br />
 you must change<br />
-In debugger.cpp in line 97 : har ret[64]; to >>>> unsigned char ret[64]; <br />
+In debugger.cpp in line 97 : char ret[64]; to >>>> unsigned char ret[64]; <br />
 This means, form type ```char``` to ```unsigned char``` !
 <br /><br />
 fixed
