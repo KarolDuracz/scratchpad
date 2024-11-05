@@ -16,6 +16,8 @@ And then this look OK. From 0x8 offset is 0x200 and this is correspond to ```WM_
 #define WM_LBUTTONDOWN                  0x0201
 #define WM_LBUTTONUP                    0x0202
 ```
+So, this is looks correct. But for this case I need to filter each type of events and message. But this is yet to be done here. To be sure that this is correct you would need to check HANDLE window from first parameter, first 0-7 bytes. But... not this time.
+
 <br /><br />
 <b>fixed</b>
 <br /><br />
