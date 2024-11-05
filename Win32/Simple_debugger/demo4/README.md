@@ -66,3 +66,7 @@ case WM_LBUTTONDOWN:
 ```
 
 TODO.......
+
+<h1>Jump to 5-11-2024-b</h1>
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo4/5-11-2024-b/81%20-%205-11-2024%20-debugger%20cd.png?raw=true)
