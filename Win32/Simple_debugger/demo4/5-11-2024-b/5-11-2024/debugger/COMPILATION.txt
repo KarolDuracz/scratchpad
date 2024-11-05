@@ -1,0 +1,1 @@
+cl /EHsc /D_UNICODE /DUNICODE /W4 /Zi debugger.cpp /link /SUBSYSTEM:CONSOLE /OUT:debugger.exe User32.lib
