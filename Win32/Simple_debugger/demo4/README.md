@@ -39,4 +39,30 @@ user32!tagMSG
 <br /><br />
 This must solve scenario when user KNOW what is  ```user32!DispatchMessageW```  address (but for all process is the same) and then set bp on user32!DispatchMessageW, then remove and find RCX+0x8 value which correspond to ```+0x008 message``` . But in that case still don't does it what I want. But this demo4 shown something  what I will need and develop. If you look at image you see there is somethings wrong with value from context.Rcx + 0xXX but it's ok for now. In the meantime everything will improve and come together as a whole.
  <br /><br />
+In other words. The question is how to catch these events ```WM_LBUTTONDOWN``` and ```WM_RBUTTONDOWN``` and tracing from the beginning ```user32!DispatchMessageW``` 
+
+```
+case WM_LBUTTONDOWN:
+    {
+        // Move tab control horizontally when left-clicked
+        static int tabPosX = 10;
+        tabPosX += 10; // Move by 10 pixels each click
+
+        // Limit movement within window bounds
+        RECT rect;
+        GetClientRect(hwnd, &rect);
+        if (tabPosX + 200 > rect.right) {
+            tabPosX = 10; // Reset position if it goes out of bounds
+        }
+        SetWindowPos(hTabControl, NULL, tabPosX, 10, 200, 30, SWP_NOZORDER | SWP_NOSIZE);
+    }
+    break;
+
+    case WM_RBUTTONDOWN:
+    {
+        static int pos = 0xff;
+    }
+    break;
+```
+
 TODO.......
