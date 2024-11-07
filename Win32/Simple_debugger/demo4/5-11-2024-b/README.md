@@ -25,3 +25,12 @@ So, this is looks correct. But for this case I need to filter each type of event
 <br /><br />
 1. Add PID as window title in SimpleGUI.cpp ```SetWindowTextA(hwnd, std::to_string(GetProcessId(GetCurrentProcess())).c_str());``` <br >
 2. Add some stuff to debugger.cpp but still not working well.
+<hr>
+<br />
+For this case we can use the Spy tool with
+```
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\Tools\spyxx_amd64.exe
+```
+And now I quickly checked if the address from the first 0-7 bytes is correct. And it is ok.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo4/5-11-2024-b/use%20Spyx64%20to%20get%20info%20about%20handles.png?raw=true)
