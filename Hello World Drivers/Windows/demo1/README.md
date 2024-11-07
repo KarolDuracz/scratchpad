@@ -39,3 +39,6 @@ There are a few topics behind this that I have learned about along the way, but 
 4. enable kernel debugging and debug it with kd.exe - bcdedit /debug on<br />
 5. How to configure windbg to catch this message - how to capture the KdPrint messages<br />
 etc.
+
+<hr>
+It's not easy or pleasant for me. But I want to learn more about these topics. So, after some time I back again to this point - create simple hello world, run and catch message from it successfully.
