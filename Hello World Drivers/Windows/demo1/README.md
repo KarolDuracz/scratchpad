@@ -1,3 +1,5 @@
+I don't have a screenshot of the demo of the working driver when it caught the message via Dbgview.exe because PrintScreen key in bcdedit /debug mode generates a crash signal or something like that, so... 
+<br /><
 Tested on Windows 8.1 64 bit.
 <br /><br />
 quick demo how to compile and how to get this message from driver. <br />
