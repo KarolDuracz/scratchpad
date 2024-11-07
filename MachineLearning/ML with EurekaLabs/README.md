@@ -37,3 +37,7 @@ The 1986 paper from Rumelhart, Hinton, Williams that popularized and used this a
 https://x.com/karpathy/status/1756380066580455557 
 <br /><br />
 
+<hr>
+I forgot about this post by Andrej. http://karpathy.github.io/neuralnets/ <br />
+And after this post neuralnets + Andrej's first video about micrograd I understood how backpropagation works. <br />
+Everyone should read this post after the micrograd video IMHO.
