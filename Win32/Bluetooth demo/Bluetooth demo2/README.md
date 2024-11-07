@@ -12,7 +12,8 @@ https://manuals.plus/qf-tech/f9-bluetooth-earbuds-manual
 
 This example of recording sound for a few seconds to the file "C\Windows\Temp\out.wav" works, but the sound is noise, there is no clear speech. Either I have something set incorrectly in F9 or in the system. But the trick is to set the default device in the system and with this demo you can record commands with length a few seconds.
 <br /><br />
-
+What might be interesting in future demos... How to create sequence and user behaviour and training neural net for recognize and build sequence to controlling the system. And how teach to move mouse and type on virtual keyboard, and manage windows on the screen etc.
+<br /><br />
 But this is not working properly right now. TODO.
 <br /><br />
 
