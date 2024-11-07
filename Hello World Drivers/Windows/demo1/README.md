@@ -1,4 +1,3 @@
-<br /><br />
 Tested on Windows 8.1 64 bit.
 <br /><br />
 quick demo how to compile and how to get this message from driver. <br />
