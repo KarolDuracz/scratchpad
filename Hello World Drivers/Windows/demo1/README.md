@@ -42,3 +42,7 @@ etc.
 
 <hr>
 It's not easy or pleasant for me. But I want to learn more about these topics. So, after some time I back again to this point - create simple hello world, run and catch message from it successfully.
+<br/><br />
+https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-very-small-kmdf--driver<br />
+https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/debug-universal-drivers---step-by-step-lab--echo-kernel-mode-<br />
+https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/<br />
