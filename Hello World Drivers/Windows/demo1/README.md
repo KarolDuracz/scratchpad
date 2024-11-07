@@ -35,7 +35,7 @@ This is simple demo to start somewhere. At this moment I have few demos, but I h
 There are a few topics behind this that I have learned about along the way, but I am not posting anything more about it here at the moment.:<br />
 1. The first thing to achieve is to configure the environment and compile and link. There are a few mistakes that are worth mentioning by the way related to linking headers and ntoskrnl.lib. And with /ENTRY:DriverEntry /SUBSYSTEM:NATIVE.<br />
 2. using SC.exe to create and manage service (driver)<br />
-3. using  makecert.exe  , signtool.exe  and   certmgr.msc  to create self signed dertificate<br />
+3. using  makecert.exe  , signtool.exe  and   certmgr.msc  to create self signed certificate<br />
 4. enable kernel debugging and debug it with kd.exe - bcdedit /debug on<br />
 5. How to configure windbg to catch this message - how to capture the KdPrint messages<br />
 etc.
