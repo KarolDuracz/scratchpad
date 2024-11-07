@@ -2,7 +2,7 @@ Created 7-11-2024 - One more thing
 <br /><br />
 <b>TO FIX : fix sound noise in wav. Why this create noise?</b>
 <br /><br />
-This is more deep topic than this demo. But what is interesting for me is recording voice commands and recognizing them to control the system, e.g. moving the mouse or typing on the keyboard while controlling it with voice (speech recognition). Specifically, through a very simple device F9 headsets. This device communicates via Bluetooth, can record, has touch control and a few simple commands that can be activated by touching the housing with finger (touch multi-function). This device has a range of ~10 meters and the battery lasts ~4 hours. 
+This is more deep topic than this demo. But what is interesting for me is recording voice commands and recognizing them to control the system, e.g. moving the mouse or typing on the keyboard while controlling it with voice (speech recognition). Specifically, through a very simple device F9 headsets. This device communicates via Bluetooth, can record, has touch control and a few simple commands that can be activated by touching the panel with finger (touch multi-function). This device has a range of ~10 meters and the battery lasts ~4 hours. 
 <br /><br />
 It may be responsible for recognizing commands and controlling the system WHISPER (https://github.com/openai/whisper/tree/main) or (https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition). To control with high precision you can train a network like nanoGPT with a different token structure. But for now it's theory. Practice will come soon. 
 <br /><br />
