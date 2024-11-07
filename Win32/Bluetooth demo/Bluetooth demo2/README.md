@@ -12,6 +12,9 @@ This example of recording sound for a few seconds to the file "C\Windows\Temp\ou
 <br /><br />
 
 But this is not working properly right now. TODO.
+<br /><br />
+
+Windows has a mechanism for recognizing commands but I'm trying to approach the API manually ===> Control Panel\All Control Panel Items\Speech Recognition even win8.1
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Bluetooth%20demo/Bluetooth%20demo2/pic%201-%20demo%20bluetooth%20record%20audio.png?raw=true)
 
