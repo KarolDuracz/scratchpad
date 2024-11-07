@@ -48,3 +48,6 @@ It's not easy or pleasant for me. But I want to learn more about these topics. S
 https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-very-small-kmdf--driver<br />
 https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/debug-universal-drivers---step-by-step-lab--echo-kernel-mode-<br />
 https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/<br />
+<br />
+I read this PDF once. Or it was Windows Internals 6/7 edition. But somewhere there are examples of commands how to get to IRPs, ISRs, objects, etc. things using kd.exe with kernel debug on mode.
+https://learn.microsoft.com/pdf?url=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fwindows-hardware%2Fdrivers%2Fdebugger%2Ftoc.json
