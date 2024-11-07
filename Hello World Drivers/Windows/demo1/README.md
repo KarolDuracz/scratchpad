@@ -1,4 +1,3 @@
-![448 - 30-10-2024 - sciezki do waznych narzedzi](https://github.com/user-attachments/assets/39a21f18-6d52-48d8-a8f5-68dcfca17e9f)Simple Hello World
 <br /><br />
 Tested on Windows 8.1 64 bit.
 <br /><br />
@@ -7,10 +6,14 @@ quick demo how to compile and how to get this message from driver. <br />
 https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/boot-to-uefi-mode-or-legacy-bios-mode?view=windows-11 <br />
 https://www.simple-shop.si/en/disable-enable-driver-signature-enforcement-on-windows-10
 2. Without entering the system in that mode, we will not be able to load the driver as a services. We get message [SC] StartService FAILED 577. Windows cannon verify the digital signature....
-3. (Probably I used 64 bit environment for CL.exe but...)
+3. (Probably I used 64 bit environment for CL.exe but... the same as Windows system) - 
 
 ```
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Auxiliary\Build\vcvars64
+```
+And compile it HelloWorld.c running "run.bat"
+```
+run.bat
 ```
 
 4. Run service - run CMD as Administrator and execute these commands<br />
