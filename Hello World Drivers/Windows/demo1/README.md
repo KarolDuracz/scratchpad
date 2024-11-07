@@ -22,7 +22,7 @@ run.bat
 <b>Delete Driver:</b> sc delete HelloWorld<br />
 5. When you have problem with stop or delete driver remove from REGEDIT.exe and restart computer (with Disable Device Driver Signing)
 6. To catch message from driver I used "Dbgview.exe" (x86, not x64) as Administrator.
-7. Following this video from  ```6:28``` https://youtu.be/GTrekHE8A00?t=388 - set the same options to capture kernel and enable verbose kernel output. 
+7. Watching this video from  ```6:28``` https://youtu.be/GTrekHE8A00?t=388 - set the same options to capture kernel and enable verbose kernel output. 
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Hello%20World%20Drivers/Windows/demo1/450%20-%2030-10-2024%20-%20c.png?raw=true)
 
