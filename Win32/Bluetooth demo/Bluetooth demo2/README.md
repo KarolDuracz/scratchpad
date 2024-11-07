@@ -10,7 +10,7 @@ It may be responsible for recognizing commands and controlling the system WHISPE
 https://manuals.plus/qf-tech/f9-bluetooth-earbuds-manual
 <br /><br />
 
-This example of recording sound for a few seconds to the file "C\Windows\Temp\out.wav" works, but the sound is noise, there is no clear speech. Either I have something set incorrectly in F9 or in the system. But the trick is to set the default device in the system and with this demo you can record commands lasting a few seconds.
+This example of recording sound for a few seconds to the file "C\Windows\Temp\out.wav" works, but the sound is noise, there is no clear speech. Either I have something set incorrectly in F9 or in the system. But the trick is to set the default device in the system and with this demo you can record commands with length a few seconds.
 <br /><br />
 
 But this is not working properly right now. TODO.
