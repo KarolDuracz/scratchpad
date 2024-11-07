@@ -16,3 +16,6 @@ But this is not working properly right now. TODO.
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Bluetooth%20demo/Bluetooth%20demo2/pic%201-%20demo%20bluetooth%20record%20audio.png?raw=true)
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Bluetooth%20demo/Bluetooth%20demo2/pic%202%20-%20demo%20record%20audio.png?raw=true)
+
+<hr>
+There will be more demos here including a sniffer with RPI4 and wireshark to decode bluetooth packets and listen for low level communication. And looking deeper into Windows drivers. But this is more advanced topics for me. But I want to have this demo here.
