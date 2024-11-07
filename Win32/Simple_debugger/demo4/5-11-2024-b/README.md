@@ -33,6 +33,6 @@ For this case we can use the Spy tool with
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\Tools\spyxx_amd64.exe
 ```
 
-And now I quickly checked if the address from the first 0-7 bytes is correct. And it is ok.
+And now I quickly checked if the address from the first 0-7 bytes is correct. And it is ok. (I selected 9 bytes on image, my mistake, but it's about bytes 0-7 (64 bit)) 
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple_debugger/demo4/5-11-2024-b/use%20Spyx64%20to%20get%20info%20about%20handles.png?raw=true)
