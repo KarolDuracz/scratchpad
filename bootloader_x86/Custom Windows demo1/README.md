@@ -6,6 +6,25 @@ Sorry, but I can't write anything more here for now. I managed to compile a cust
 <br />
 After installing ADK 10.1.26100.1 and Windows PE add-on for the Windows ADK 10.1.26100.1 (May 2024) there are only a few commands 5-6 steps and in a few minutes you can build such an ISO image which works as you can see. But I haven't tested it on real hardware yet. I just managed to run it today. Finally. I still need to review step by step what I did and what I got. I tried to manually copy the files required by UEFI, paths and folders. But this requires configuring bootmgr I think. Nothing came of it. Only installing ADK 10.1.26100.1 worked for me. FINALLY.
 <br/><br />
+Last time I tried to open such a file system and nothing else was there. It was possible to create an image but it did not boot in VirtualBox. And I did not know how to verify it... but I extracted this file from live CD etc. Without any configuration.
+```
+minimal_win_iso/
+├── Boot/
+│   ├── BCD               # Boot Configuration Data
+│   ├── boot.sdi          # (Optional, used in recovery environments)
+│   ├── bootmgr           # Windows Boot Manager (Optional, if using custom bootloader, skip this)
+├── EFI/
+│   ├── Boot/
+│       ├── bootx64.efi    # EFI bootloader (can be winload.efi)
+└── Windows/
+    ├── System32/
+        ├── ntoskrnl.exe   # Windows kernel
+        ├── hal.dll        # Hardware Abstraction Layer
+        ├── winload.exe    # Windows loader (optional, used if bootmgr)
+
+```
+
+<br/><br />
 to be continued...
 
 https://learn.microsoft.com/pl-pl/windows-hardware/get-started/adk-install <br />
