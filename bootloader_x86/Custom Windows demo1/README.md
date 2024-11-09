@@ -4,7 +4,7 @@ Sorry, but I can't write anything more here for now. I managed to compile a cust
 <br /><br />
 ... 
 <br />
-Po instalacji ADK 10.1.26100.1 oraz Windows PE add-on for the Windows ADK 10.1.26100.1 (May 2024) there are only a few commands 5-6 steps and in a few minutes you can build such an ISO image which works as you can see. But I haven't tested it on real hardware yet. I just managed to run it today. Finally. I still need to review step by step what I did and what I got. I tried to manually copy the files required by UEFI, paths and folders. But this requires configuring bootmgr I think. Nothing came of it. Only installing ADK 10.1.26100.1 worked for me. FINALLY.
+After installing ADK 10.1.26100.1 and Windows PE add-on for the Windows ADK 10.1.26100.1 (May 2024) there are only a few commands 5-6 steps and in a few minutes you can build such an ISO image which works as you can see. But I haven't tested it on real hardware yet. I just managed to run it today. Finally. I still need to review step by step what I did and what I got. I tried to manually copy the files required by UEFI, paths and folders. But this requires configuring bootmgr I think. Nothing came of it. Only installing ADK 10.1.26100.1 worked for me. FINALLY.
 <br/><br />
 to be continued...
 
