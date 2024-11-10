@@ -59,6 +59,9 @@ And run this command
 copype amd64 C:\usr_bin\customWindows_demo2\mount
 ```
 <br />
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1/pics/step%201%20-%20copy%20file.png?raw=true)
+
 <h2>Step 3 : Mount the Windows PE Image</h2> This mounts the Windows PE image to C:\usr_bin\customWindows_demo2, allowing you to make modifications.
 <br />
 Inside C:\usr_bin\customWindows_demo2 crete another folder, for example offline in my case
@@ -80,7 +83,10 @@ Type and run this command
 C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\amd64\DISM>DISM /Mount-Image /ImageFile:C:\usr_bin\customWindows_demo2\mount\media\sources\boot.wim /Index:1 /MountDir:C:\usr_bin\customWindows_demo2\offline
 ```
 
-<br /><br />
+<br />
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1/pics/step%202%20-%20create%20offline%20folder%20and%20follow%20dism%20command.png?raw=true)
+
 <h2>Step 4 : Customize the Minimal Windows PE Image</h2> At this stage, you have a basic Windows PE image mounted, and you can add or remove components based on your requirements. Here are some possible customizations:
 <br /><br />
 Example commands : Remove Unnecessary Packages
@@ -145,7 +151,10 @@ C:\WinPE_amd64\media\sources\boot.wim
 But for this command : DISM /Unmount-Image /MountDir:C:\usr_bin\customWindows_demo2\offline /Commit <-- we need this source offline, not first mounted folder. But second from step 3.
 <br/><br />
 After this step folder C:\usr_bin\customWindows_demo2\offline is empty !
-<br /><br />
+<br />
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1/pics/step%206%20-%20cd.png?raw=true)
+
 <h2>Step 7 : Create a Bootable ISO (Minimal Windows PE Image)</h2> Once your minimal Windows PE environment is configured, you can create a bootable ISO:
 <br />
 Generate the ISO using the MakeWinPEMedia command. First Open next CMD prompt as Administrator (but this is not necessary)
@@ -167,7 +176,13 @@ Success
 C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallati
 on Environment>
 ```
-<br /><br />
+<br />
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1/pics/step%207%20-%20final%20step.png?raw=true)
+
+
+<br />
+
 <h2>Summary of Commands</h2>
 
 ```
