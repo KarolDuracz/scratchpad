@@ -122,7 +122,7 @@ If you need basic automation or setup scripts, copy them into the mounted image
 copy C:\Path\To\YourScript.bat C:\WinPE_Mount\Windows\System32\
 ```
 
-<h1>II SKIPPED THIS PART #4 !!!</h1> 
+<h1>I SKIPPED THIS PART #4 !!!</h1> 
 
 <br />
 <h2>Step 5 : Set Up Boot Configuration for Minimal Boot</h2> Windows PE is already set up with minimal boot files, but you can customize its boot configuration:
@@ -130,12 +130,14 @@ copy C:\Path\To\YourScript.bat C:\WinPE_Mount\Windows\System32\
 Configure Boot Settings:
 Windows PE boots to X:\ by default, which is a RAM disk. Modify winpeshl.ini to control startup programs. 
 Save this configuration to run the command prompt by default upon boot.
+
 ```
 [LaunchApp]
 AppPath = %SYSTEMROOT%\System32\cmd.exe
 ```
+
 <br />
-<h1>II SKIPPED THIS PART  #5 !!!</h1> 
+<h1>I SKIPPED THIS PART  #5 !!!</h1> 
 <br />
 <h2>Step 6 : Commit Changes and Unmount the Image</h2> After you’ve customized the image, commit the changes to the boot.wim file
 
@@ -203,3 +205,34 @@ DISM /Unmount-Image /MountDir:C:\WinPE_Mount /Commit
 # 5. Create a bootable ISO
 MakeWinPEMedia /ISO C:\WinPE_amd64 C:\WinPE_amd64\MinimalWinPE.iso
 ```
+
+<br />
+<hr>
+<br />
+Many many tools not exists in that minimalist image.
+
+```
+net use Z: \\192.168.1.100\customwin_demo1 /user:admin password123 // for now I can't setup this
+netstat -an | find "445" // SMD status not exists
+netsh interface ipv4 set dns name="Local Area Connection" static <DNS_IP_Address> // netsh works but...
+netsh interface ipv4 set global netbios=enabled // netbios command is not exist
+net view // in here username is empty !!!
+net user Guest /active:yes // command to create guest user for anonymous connection
+net user Guest // ...
+Enter the user name for '192.168.1.102': Guest // ...
+Enter the password for '192.168.1.102': [Press Enter if blank] // ...
+ipconfig // it works ok
+ping 192.168.1.102 // ping to host machine works
+wpeinit // Run wpeinit to initialize networking. This is start after system console is booted.
+net start dhcp // it run after wpeinit - it works in backround
+// I have an some errors with
+diskpart // open diskpart
+list disk
+list volume
+wmic diskdrive get caption,deviceid,model,size // wmic doesn't exists in this image
+net use Z: \\VBOXSVR\Shared_Folder // this command not working can't handle conection 
+dir \\VBOXSVR\Shared_Folder // not working can't handle conection 
+bitsadmin /transfer myDownloadJob /download /priority normal https://example.com/file.txt C:\file.txt // this command doesn't exists in this minimalist image
+```
+
+Many things is to learn but next thing is to customize image for example by uploading CURL etc tools and then creating an ISO image with these tools.
