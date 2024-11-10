@@ -213,7 +213,7 @@ Many many tools not exists in that minimalist image.
 
 ```
 net use Z: \\192.168.1.100\customwin_demo1 /user:admin password123 // for now I can't setup this
-netstat -an | find "445" // SMD status not exists
+netstat -an | find "445" // SMB status not exists
 netsh interface ipv4 set dns name="Local Area Connection" static <DNS_IP_Address> // netsh works but...
 netsh interface ipv4 set global netbios=enabled // netbios command is not exist
 net view // in here username is empty !!!
