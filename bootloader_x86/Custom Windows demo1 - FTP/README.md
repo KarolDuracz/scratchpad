@@ -5,6 +5,7 @@
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1%20-%20FTP/189%20-%2011-11-2024%20-%20ustawienie%20bridge%20i%20komenda%20get%20test.png?raw=true)
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1%20-%20FTP/190%20-%2011-11-2024%20-%20PEx64.png?raw=true)
+system commit: 702.6 MB / Physical memory: 770.3 MB - I thought it would be around 500 MB  
 
 <br />
 <h2>// GUEST MACHINE CONFIGURATION</h2>
