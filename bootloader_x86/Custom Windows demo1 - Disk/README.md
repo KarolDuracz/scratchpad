@@ -366,7 +366,7 @@ now I can just type
 Wpeutil Shutdown
 ```
 
-And I press ENTER to shutdown virtual machine guest system all files next time I turn on, they will still be on the disk.
+And when I press ENTER to shutdown virtual machine guest system, all files next time when I turn on, they will still be on the disk.
 <br /><br />
 
 UPDATE - 11-11-2024 - 
