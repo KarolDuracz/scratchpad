@@ -11,6 +11,9 @@ https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-8.1-a
 https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-8.1-and-8/hh825089(v=win.10)<br />
 <br />
 
+<h2>For this part I don't have screenshots. But follow line by line for UEFI.</h2>
+
+<br />
 1. Open DiskPart to manage disk partitions
 
 ```
