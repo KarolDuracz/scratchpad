@@ -82,6 +82,14 @@ First, open new CMD in new window just typing in main windows "start cmd" for ne
 X:\Windows\System32\start cmd.exe
 ```
 
+Go to C:\Windows\temp
+
+```
+cmd > cd d:\windows\tmp
+```
+
+And then run "ftp" command . When yout start from C:\Windows\System32 etc you can't download files from ftp to this system folder probably.
+
 <br />
 Commands from image
 
