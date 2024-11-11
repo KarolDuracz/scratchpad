@@ -137,3 +137,5 @@ ftp> bye
 
 <br /><br />
 This is not complete guide. And many issues is around this. I fighted with this 1 day, so... 
+<br /><br />
+<b>This requires a detailed explanation but I don't feel competent enough to do so right now.</b>
