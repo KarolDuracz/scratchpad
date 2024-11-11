@@ -201,4 +201,135 @@ dumpbin /dependents yourapp.exe
 
  ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1%20-%20Disk/step%203%20-%20this%20is%20reason%20why%20this%20not%20working.png?raw=true)
 
- 
+<hr>
+<h2>The solution</h2>
+<br/>
+1. Is to upload these .dll files into Windows PE file system. Reboot system and try run. <b></b>But I haven't tried it in this approach.</b> .  
+<br/><br/>
+2. For my case, I want to run custom application. 
+<br/><br/>
+For me, the setting helped<br />
+Under Configuration Properties > C/C++ > Code Generation, find the Runtime Library option. <br />
+<b></b>Select Multi-threaded (/MT) instead of Multi-threaded DLL (/MD).</b> <br />
+/MT: Statically links the C runtime into your executable. This eliminates the dependency on VCRUNTIME140.dll. <br />
+/MD: Dynamically links to the C runtime (the default), which is what brings in VCRUNTIME140.dll. <br />
+<br /><br />
+Disable Exception Handling and RTTI (if Applicable) <br />
+Under Configuration Properties > C/C++ > Code Generation <br />
+Set Enable C++ Exceptions to No (unless you need exceptions).
+<br/>
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1%20-%20Disk/step%204%20-%20build%20apps.png?raw=true)
+
+<h2>Guide from chat gpt how to configure MSVC 2019 for this case</h2>
+<br/><br/>
+Building a project for Windows PE (WinPE) AMD64 using MSVC (Microsoft Visual Studio 2019) involves setting up a build configuration that produces binaries compatible with the minimalistic Windows PE environment. This setup requires targeting the 64-bit (AMD64) architecture and minimizing dependencies that Windows PE might not support.
+
+Here are the steps to set up and build a project in MSVC 2019 for Windows PE AMD64:
+
+1. Create or Open Your Project in Visual Studio
+Open Visual Studio 2019 and either:
+
+Open an existing project.
+Create a new project targeting Windows Desktop Application or Console Application.
+Ensure that you select C++ (if applicable) or another suitable language for the project.
+
+2. Configure Project Properties for Windows PE Compatibility
+To ensure compatibility with the WinPE environment, you’ll need to adjust some build settings in the project’s configuration:
+
+Open Project Properties:
+
+Right-click on the project in Solution Explorer.
+Select Properties.
+Set Target Platform:
+
+Under Configuration Properties > General, set:
+Platform Toolset to a recent version (e.g., Visual Studio 2019 (v142)).
+Configuration Type to Application (.exe) or Dynamic Library (.dll), depending on your needs.
+Target Platform to x64 (for AMD64 compatibility).
+Disable Unsupported Windows Features:
+
+Go to Configuration Properties > Linker > System and set Subsystem to Console (if it’s a console application) or Windows (for GUI applications).
+In Configuration Properties > Linker > Advanced, set Entry Point to main (or your specific entry point) if it’s a console application.
+Optimize for Minimal Dependencies:
+
+Avoid using libraries and dependencies that are unavailable in Windows PE.
+Under Configuration Properties > C/C++ > Code Generation:
+Set Runtime Library to Multi-threaded (/MT) or Multi-threaded DLL (/MD) if you’re including runtime DLLs. Using /MT statically links the runtime, which is helpful if you want fewer dependencies.
+Avoid using features that require .NET Framework, COM, or MFC/ATL, as these are generally unsupported in Windows PE.
+Add Conditional Compilation for Windows PE:
+
+You may want to add conditional compilation definitions specific to Windows PE.
+Go to Configuration Properties > C/C++ > Preprocessor and add WINPE as a Preprocessor Definition to allow for any platform-specific code you might need.
+Minimize Dependencies:
+
+Limit dependencies to essential components. Many libraries (such as .NET or third-party DLLs) may not be available in Windows PE.
+3. Build the Project
+Build the Project:
+
+Set the Solution Configuration to Release and Solution Platform to x64.
+Go to Build > Build Solution (or press Ctrl+Shift+B).
+This generates an AMD64-compatible binary in the project’s Release folder, suitable for running on Windows PE.
+Verify Dependencies:
+
+After building, use the Dependency Walker (depends.exe) or the dumpbin utility to verify that your binary doesn’t rely on unsupported DLLs (like user32.dll, gdi32.dll, etc.).
+
+4. Deploy and Test on Windows PE
+Copy the Binary to Windows PE:
+
+Copy your built .exe or .dll files to the Windows PE environment, either by including them in a bootable WinPE ISO or mounting the WinPE image with DISM and adding the files.
+Boot into Windows PE and Run the Application:
+
+Boot into Windows PE and open a command prompt.
+Navigate to the folder where your application is located and run it.
+Additional Considerations
+Dependency Issues: If your application fails to run, check for missing dependencies. Windows PE is very limited in its available components.
+Using Visual C++ Redistributables: If your app requires Visual C++ runtime libraries, copy the appropriate runtime DLLs (like msvcrt.dll) directly into the same folder as your executable in Windows PE, or link the runtime statically by using /MT in the Runtime Library setting.
+This setup ensures you’re creating a minimal, AMD64-compatible binary for Windows PE using MSVC 2019.
+<br />
+If you want to remove dependencies on the Visual C++ runtime library (VCRUNTIME140.dll) and rely only on basic libraries such as kernel32.dll (for minimal, low-level functions) while still using stdio.h functions in your project, you need to adjust your Visual Studio project to avoid linking against the Visual C++ runtime.
+
+Here's how to achieve this:
+
+1. Set Runtime Library to /MT (Static Linking)
+By statically linking the runtime, you can avoid requiring VCRUNTIME140.dll and other dynamic runtime libraries.
+
+Open your project in Visual Studio.
+
+Go to Project Properties (right-click on the project in Solution Explorer and select Properties).
+
+Under Configuration Properties > C/C++ > Code Generation, find the Runtime Library option.
+
+Select Multi-threaded (/MT) instead of Multi-threaded DLL (/MD).
+
+/MT: Statically links the C runtime into your executable. This eliminates the dependency on VCRUNTIME140.dll.
+/MD: Dynamically links to the C runtime (the default), which is what brings in VCRUNTIME140.dll.
+Click OK to save your changes.
+
+2. Avoid C++ Standard Library Features That Pull in Extra Dependencies
+The stdio.h library functions can typically be linked with kernel32.dll and msvcrt.lib (if statically linked), so as long as your application sticks to basic C functions like printf, fopen, etc., you can avoid heavier runtime dependencies.
+
+However, if your code uses C++ standard library features, you may inadvertently pull in dependencies on additional runtime libraries. Avoid C++ standard libraries (such as iostream, <string>, <vector>, etc.) if possible, and stick to C-style code (stdio.h, stdlib.h, etc.) when aiming for minimal dependencies.
+
+3. Disable Exception Handling and RTTI (if Applicable)
+To further reduce dependencies:
+
+Under Configuration Properties > C/C++ > Code Generation:
+Set Enable C++ Exceptions to No (unless you need exceptions).
+Set Runtime Type Information (RTTI) to No.
+These settings reduce dependencies on runtime support code that Visual C++ otherwise includes.
+
+4. Rebuild and Test
+After making these adjustments, rebuild your project. Your output executable should no longer have dependencies on VCRUNTIME140.dll or other Visual C++ runtime DLLs.
+
+5. Verify Dependencies
+Use dumpbin or Dependency Walker to verify that your executable only depends on core Windows libraries (kernel32.dll, msvcrt.dll, etc.):
+
+```
+dumpbin /dependents yourapp.exe
+```
+
+This command will show you the exact DLL dependencies of your executable. Ideally, you should see only minimal dependencies, such as kernel32.dll and msvcrt.dll (if you used standard C libraries).
+
+Summary
+By using /MT for static linking, removing C++ standard library features, and disabling exception handling and RTTI, you can create a minimal executable that avoids VCRUNTIME140.dll and uses only basic system libraries like kernel32.dll for stdio.h functionality. This approach works well in environments like Windows PE, where runtime dependencies should be minimal.
