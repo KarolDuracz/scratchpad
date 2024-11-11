@@ -107,5 +107,9 @@ Reboot the Machine:
 Wpeutil Reboot
 ```
 
+The system should now boot into the Windows installation on the hard drive, proceeding through any first-time setup steps. Without this step you need press key to boot CD and then you jump to Windows PE. But after this installation you don't press any keys. Wait. This is scenario similar to this, when the BIOS is set CD/DVD as the first boot device but you don't click to enter the installer, you just wait for the system to load. The same thing happens after creating a disk this way. You wait for the system to load.
+
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1%20-%20Disk/step%201%20-%20create%20partition.png?raw=true)
+
+<hr>
 
