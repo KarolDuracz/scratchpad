@@ -3,7 +3,7 @@
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1%20-%20FTP/188%20-%2011-11-2024%20-%20ftp%20configured%20and%20works.png?raw=true)
 
 <br />
-// GUEST MACHINE CONFIGURATION
+<h2>// GUEST MACHINE CONFIGURATION</h2>
 <br /><br />
 This is a complex topic and I am still completely newbie when it comes to networking... <br /><br />
 After 1 day I find solution. But this is quick guide.<br />
@@ -15,7 +15,7 @@ After 1 day I find solution. But this is quick guide.<br />
 <br /><br />
 For guest machine that's it.
 <br /><br />
-// HOST machine (in my case Windows 8.1 is host machine)
+<h2>// HOST machine (in my case Windows 8.1 is host machine)</h2>
 <br /><br />
 1. I installed for python pyftpdlib
 
@@ -73,7 +73,49 @@ if __name__ == "__main__":
 python ftp_server.py
 ```
 
+<br />
+<h2>// Guest to host connection </h2>
+<br />
 
+```
+ftp> // enter to ftp in cmd
+ftp> open 192.168.1.102  // open connection to ip host
+
+220 Welcome to the FTP server.
+User (host: (none)): anonymous // type anonymous - look at ftp server implementation in validate_authentication function
+pass: // empty - press enter only
+230 Login successful.
+
+ftp> dir // test ftp command 
+```
+The FTP server should display a list of files from the folder as in the image above
+
+
+<br /><br />
+Example 
+```
+ftp <host_ip_address>
+Connected to <host_ip_address>
+220 Welcome to the FTP server.
+User (host: (none)): anonymous
+230 Login successful.
+ftp> ls
+200 EPRT command successful.
+150 Opening data connection.
+-rw-r--r--    1 0        0            1000 May 10 12:34 example.txt
+226 Transfer complete.
+ftp> get example.txt
+local: example.txt remote: example.txt
+200 EPRT command successful.
+150 Opening data connection.
+226 Transfer complete.
+ftp> put newfile.txt
+local: newfile.txt remote: newfile.txt
+200 EPRT command successful.
+150 Opening data connection.
+226 Transfer complete.
+ftp> bye
+```
 
 <br /><br />
 This is not complete guide. And many issues is around this. I fighted with this 1 day, so... 
