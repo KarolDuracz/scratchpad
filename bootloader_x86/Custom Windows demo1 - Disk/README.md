@@ -217,7 +217,7 @@ Under Configuration Properties > C/C++ > Code Generation, find the Runtime Libra
 Disable Exception Handling and RTTI (if Applicable) <br />
 Under Configuration Properties > C/C++ > Code Generation <br />
 Set Enable C++ Exceptions to No (unless you need exceptions).
-<br/>
+<br/><br/>
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1%20-%20Disk/step%204%20-%20build%20apps.png?raw=true)
 
