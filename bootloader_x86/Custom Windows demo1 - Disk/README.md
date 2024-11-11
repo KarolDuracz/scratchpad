@@ -83,7 +83,7 @@ But im my case I used. Because when you find CDROM drive, and for me that is D:\
 ```
 dism /apply-image /imagefile:D:\sources\boot.wim /index:1 /applydir:C:\
 ```
-<h2>Configure the Bootloader</h2>
+<h2>Configure the Bootloader</h2> 
 Create Boot Files:
 
 Run bcdboot to create the necessary boot files on the System partition
@@ -156,4 +156,6 @@ dism /apply-image /imagefile:[Drive Letter]:\sources\install.wim /index:1 /apply
 ```
 
 Replace [Drive Letter] with the actual drive letter of the Windows installation ISO.
+<hr>
+<b>That's it. Now we have "installed" Windows PE on disk. Just Wait and watch "Enter to boot..." something. Few seconds. <b/>
 <hr>
