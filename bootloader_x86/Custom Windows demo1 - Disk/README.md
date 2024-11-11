@@ -65,12 +65,19 @@ Exit
 ```
 <hr>
 <h2>Apply the Windows Image to the New Partition</h2>
+<br />
+
 Use this command to find DVD_ROM / CD_ROM
+<br />
 
 ```
 CMD > diskpart
 diskpart > list volume
 ```
+
+<br />
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1%20-%20Disk/step%20x%20-%20find%20cd%20rom%20using%20diskpart.png?raw=true)
 
 Locate the Windows Installation Image:
 
@@ -87,6 +94,8 @@ Replace X: with the drive letter of the installation media, and adjust the /inde
 <br /><br />
 But im my case I used this. Because when you find CDROM drive using diskpart, and for me that was D:\ , this *.wim file is not named "install.wim", but "boot.wim". And when you use DIR command to list CD-ROM D:\ drive. You find it in D:\sources\ 
 
+<h3>1</h3>
+
 ```
 dism /apply-image /imagefile:D:\sources\boot.wim /index:1 /applydir:C:\
 ```
@@ -94,6 +103,8 @@ dism /apply-image /imagefile:D:\sources\boot.wim /index:1 /applydir:C:\
 Create Boot Files:
 
 Run bcdboot to create the necessary boot files on the System partition
+
+<h3>2</h3>
 
 ```
 bcdboot C:\Windows /s S: /f UEFI
@@ -109,6 +120,8 @@ Remove the Windows PE Media:
 
 Eject the USB drive or unmount the ISO from the virtual machine to avoid booting into Windows PE again.
 Reboot the Machine:
+
+<h3>3</h3>
 
 ```
 Wpeutil Reboot
