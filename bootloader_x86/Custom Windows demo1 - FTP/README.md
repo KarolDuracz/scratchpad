@@ -4,6 +4,8 @@
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1%20-%20FTP/189%20-%2011-11-2024%20-%20ustawienie%20bridge%20i%20komenda%20get%20test.png?raw=true)
 
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1%20-%20FTP/190%20-%2011-11-2024%20-%20PEx64.png?raw=true)
+
 <br />
 <h2>// GUEST MACHINE CONFIGURATION</h2>
 <br /><br />
