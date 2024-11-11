@@ -48,7 +48,7 @@ format fs=ntfs quick label="Windows"
 assign letter=C
 ```
 
-<b>For BIOS (MBR)</b>
+<b>For BIOS (MBR)</b> // I don't use these commands. But it is important to know that. I built for UEFI. 
 
 ```
 convert mbr
