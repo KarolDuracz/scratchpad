@@ -7,13 +7,13 @@
 <br /><br />
 This is a complex topic and I am still completely newbie when it comes to networking... <br /><br />
 After 1 day I find solution. But this is quick guide.<br />
-1. First we need to reconfigure VirtualBox Adapter1 from NAT to bridged network card (bridge /  Bridged Adapter) - send option - This set ip addres for guest OS on VirtualBox from 10.0.2.x to 192.168.1.xxx. <br />
-2. In this live Windows PE (btw Windows PE (Preinstallation Environment) does not include the netsh advfirewall commands, as it is a minimal environment focused on troubleshooting, installation, and recovery, and does not have all the features of a full Windows installation, including advanced firewall management) we need to turn off the firewall with the command <b>Wpeutil DisableFirewall</b> https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/wpeutil-command-line-options?view=windows-11 <br />
-3. We can't directly change <b>reg add "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile" /v EnableFirewall /t REG_DWORD /d 0 /f</b> register in this path and set EnableFirwall from 1 to 0 in live mode, like that. This need reboot system. After <b>Wpeutil Reboot</b> register still has 1. That's why this command is needed <b>Wpeutil DisableFirewall</b> in this live CD mode. --> HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy <br />
+1. First we need to reconfigure VirtualBox Adapter1 from NAT to bridged network card (bridge /  Bridged Adapter) - second option - This set ip addres for guest OS on VirtualBox from 10.0.2.x to 192.168.1.xxx. <br />
+2. In this live Windows PE (btw. Windows PE (Preinstallation Environment) does not include the netsh advfirewall commands, as it is a minimal environment focused on troubleshooting, installation, and recovery, and does not have all the features of a full Windows installation, including advanced firewall management) we need to turn off  firewall with the command <b>Wpeutil DisableFirewall</b> https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/wpeutil-command-line-options?view=windows-11 <br />
+3. We can't directly change <b>reg add "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile" /v EnableFirewall /t REG_DWORD /d 0 /f</b> register in this path and set EnableFirwall from 1 to 0 in live mode, like that. This needs reboot system. After <b>Wpeutil Reboot</b> register still has 1. That's why this command is needed <b>Wpeutil DisableFirewall</b> in this live CD mode. --> HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy <br />
 4. I created a folder on the host computer in c:\usr_bin\share_file . And in Properties > Sharing (tab) > Advenced Sharing > "share this folder" turn on. (this is necessary?) <br />
 5. In "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" there is information about the TCPIP configuration (in general, information about the system and configuration, mainly in Windows PE, can be found in the registry)
 <br /><br />
-For guest machine that's it.
+For guest machine that's all.
 <br /><br />
 <h2>// HOST machine (in my case Windows 8.1 is host machine)</h2>
 <br /><br />
@@ -23,7 +23,7 @@ For guest machine that's it.
 pip install pyftpdlib
 ```
 
-2. Here it is FTP simple server
+2. Here it is FTP simple server script
 
 ```
 from pyftpdlib.authorizers import DummyAuthorizer
@@ -76,6 +76,14 @@ python ftp_server.py
 <br />
 <h2>// Guest to host connection </h2>
 <br />
+First, open new CMD in new window just typing in main windows "start cmd" for netstat, ipconfig etc. Or for FTP connection.
+
+```
+X:\Windows\System32\start cmd.exe
+```
+
+<br />
+Commands from image
 
 ```
 ftp> // enter to ftp in cmd
