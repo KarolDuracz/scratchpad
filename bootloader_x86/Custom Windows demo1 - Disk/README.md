@@ -189,3 +189,16 @@ notepad.exe C:\sxstrate_log.txt
 ```
 <hr>
 
+From this sxstrace I found out that it is trying to run a win32 application and this minimalist Windows PE can't handle this for some reasons. It's not even about the fact that the application was 32 bit. Because 64 bit didn't work either. Nothing worked, except Process Explorer which was visible in the previous pictures.
+<br /><br />
+the reason why it doesn't work is that it requires dependencies that Windows PE doesn't have, i.e. the DLL files you see here, like VCRUNTIME14.dll, ucrtbased.dll etc.
+<br /><br />
+Command to check this:
+
+```
+dumpbin /dependents yourapp.exe
+```
+
+ ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1%20-%20Disk/step%203%20-%20this%20is%20reason%20why%20this%20not%20working.png?raw=true)
+
+ 
