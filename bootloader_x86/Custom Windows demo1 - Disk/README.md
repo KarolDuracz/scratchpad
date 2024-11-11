@@ -157,5 +157,35 @@ dism /apply-image /imagefile:[Drive Letter]:\sources\install.wim /index:1 /apply
 
 Replace [Drive Letter] with the actual drive letter of the Windows installation ISO.
 <hr>
-<b>That's it. Now we have "installed" Windows PE on disk. Just Wait and watch "Enter to boot..." something. Few seconds. <b/>
+<b>That's it. Now we have "installed" Windows PE on disk. Just Wait and watch "Enter to boot..." something. Few seconds. </b>
 <hr>
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1%20-%20Disk/step%202%20-%20try%20to%20run%20some%20apps.png?raw=true)
+
+When I moved directly for tests some application, first try is to move calc.exe and explorer.exe from HOST machine (win 8.1). And in this environment there is no error information. Silence. The process simply was not created. Then I did some tests using my demo versions from the \win32\ repository folder. And I got some information "use Sxstrace (Side-by-Side) ... something's". And in this Windows PE this tool exists. And on this image you see log from this tool.
+<br /><br />
+Run this command to start the trace:
+```
+start cmd.exe // open new window with cmd
+sxstrace.exe trace -logfile:C:\sxstrace_log.etl
+
+```
+To stop CTRL + C or press ENTER key. Alternatively, you can stop it by running
+
+```
+sxstrace.exe stoptrace
+```
+
+Convert the Trace Log to a Readable Format
+
+```
+sxstrace.exe parse -logfile:C:\sxstrace_log.etl -outfile:C:\sxstrace_log.txt
+```
+
+When this tool worked in background on the other instance of CMD, I used FTP configuration from previous folder (https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/Custom%20Windows%20demo1%20-%20FTP) to upload some applications for tests. Then I stopped sxstrace, conver log to .txt  and opened :
+
+```
+notepad.exe C:\sxstrate_log.txt
+```
+<hr>
+
