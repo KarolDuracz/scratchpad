@@ -177,7 +177,7 @@ dism /apply-image /imagefile:[Drive Letter]:\sources\install.wim /index:1 /apply
 
 Replace [Drive Letter] with the actual drive letter of the Windows installation ISO.
 <hr>
-<b>That's it. Now we have "installed" Windows PE on disk. Just Wait and watch "Pres any key to boot from CD or DVD....". </b>
+<b>That's it. Now we have "installed" Windows PE on disk. Just Wait and watch "Press any key to boot from CD or DVD....". </b>
 <hr>
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1%20-%20Disk/step%202%20-%20try%20to%20run%20some%20apps.png?raw=true)
