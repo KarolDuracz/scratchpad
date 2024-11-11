@@ -138,4 +138,4 @@ ftp> bye
 <br /><br />
 This is not complete guide. And many issues is around this. I fighted with this 1 day, so... 
 <br /><br />
-<b>This need a detailed explanation but I don't feel competent enough to do so right now.</b>
+<b>This need a detailed explanation but I don't feel competent enough to do so right now. The main goal for me was, to setup this Windows PE and FTP or something. And this is all for now.</b>
