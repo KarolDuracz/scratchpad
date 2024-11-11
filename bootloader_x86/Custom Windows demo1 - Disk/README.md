@@ -65,6 +65,13 @@ Exit
 ```
 <hr>
 <h2>Apply the Windows Image to the New Partition</h2>
+Use this command to find DVD_ROM / CD_ROM
+
+```
+CMD > diskpart
+diskpart > list volume
+```
+
 Locate the Windows Installation Image:
 
 Typically, this is in the install.wim or install.esd file on the Windows installation media (e.g., X:\sources\install.wim where X: is the drive letter for your installation media). 
@@ -73,12 +80,12 @@ Use DISM to Apply the Image:
 Use the DISM tool to apply the Windows image from the installation media to the C: drive (the Windows partition you created).
 
 ```
-dism /apply-image /imagefile:X:\sources\install.wim /index:1 /applydir:C:\
+dism /apply-image /imagefile:X:\sources\install.wim /index:1 /applydir:C:\ // this is example script
 ```
 
 Replace X: with the drive letter of the installation media, and adjust the /index if you want to install a different edition (you can list available editions in install.wim using dism /get-wiminfo).
 <br /><br />
-But im my case I used. Because when you find CDROM drive, and for me that is D:\ this *.wim file there is no name install.wim, only boot.wim when you use DIR to list this D:\ drive. And you find in D:\sources\ 
+But im my case I used this. Because when you find CDROM drive using diskpart, and for me that was D:\ , this *.wim file is not named "install.wim", but "boot.wim". And when you use DIR command to list CD-ROM D:\ drive. You find it in D:\sources\ 
 
 ```
 dism /apply-image /imagefile:D:\sources\boot.wim /index:1 /applydir:C:\
