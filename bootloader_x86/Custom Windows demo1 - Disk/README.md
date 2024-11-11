@@ -113,3 +113,47 @@ The system should now boot into the Windows installation on the hard drive, proc
 
 <hr>
 
+<h2>After booting live CD this path to install.wim doesn't exists X:\sources\install.wim</h2>
+If you're booting from a Windows PE environment and don’t have access to the install.wim file, this could mean that either:
+
+The installation files (including install.wim) are not present on the boot media, or
+You are using a custom Windows PE image that does not include the installation files.
+Steps to Access install.wim or install.esd
+Option 1: Check the Installation Media
+If you’re using a Windows installation ISO, you should be able to find install.wim or install.esd on the installation media, typically located in:
+
+```
+[ISO or USB Drive Letter]:\sources\install.wim
+```
+
+Option 2: Mount the Windows Installation ISO in the Virtual Machine or Physical Machine
+If install.wim is not present on the Windows PE media itself, you can do the following:
+
+Mount the Windows Installation ISO on the virtual machine or physical machine:
+
+If using VirtualBox, open the virtual machine settings, navigate to Storage, and add the Windows installation ISO to the CD/DVD drive.
+If you're on a physical machine, insert the Windows installation USB or DVD with the full installation files.
+Find the Drive Letter of the Mounted ISO:
+
+After mounting, return to your Windows PE command prompt.
+Use diskpart to identify the drive letter of the newly mounted ISO
+
+```
+diskpart
+list volume // <--- this line find CDROM device . For me that was D:\
+exit
+```
+
+Look for a volume labeled "DVD-ROM" or similar, which represents the Windows installation media. Locate the install.wim or install.esd File:
+
+Check if the file is available in [Drive Letter]:\sources\install.wim or [Drive Letter]:\sources\install.esd.
+Apply the Image with DISM:
+
+Once you've identified the drive letter, use the DISM command to apply the image to your hard drive as shown previously:
+
+```
+dism /apply-image /imagefile:[Drive Letter]:\sources\install.wim /index:1 /applydir:C:\
+```
+
+Replace [Drive Letter] with the actual drive letter of the Windows installation ISO.
+<hr>
