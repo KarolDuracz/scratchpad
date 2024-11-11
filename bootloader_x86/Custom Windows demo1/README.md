@@ -236,3 +236,6 @@ bitsadmin /transfer myDownloadJob /download /priority normal https://example.com
 ```
 
 Many things is to learn but next thing is to customize image for example by uploading CURL etc tools and then creating an ISO image with these tools.
+<br />
+<hr>
+https://learn.microsoft.com/pdf?url=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fwindows-hardware%2Fmanufacture%2Ftoc.json%3Fview%3Dwindows-11
