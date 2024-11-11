@@ -221,6 +221,9 @@ Set Enable C++ Exceptions to No (unless you need exceptions).
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1%20-%20Disk/step%204%20-%20build%20apps.png?raw=true)
 
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1%20-%20Disk/step%204%20-%20another%20pic.png?raw=true)
+
+
 <h2>Guide from chat gpt how to configure MSVC 2019 for this case</h2>
 <br/><br/>
 Building a project for Windows PE (WinPE) AMD64 using MSVC (Microsoft Visual Studio 2019) involves setting up a build configuration that produces binaries compatible with the minimalistic Windows PE environment. This setup requires targeting the 64-bit (AMD64) architecture and minimizing dependencies that Windows PE might not support.
@@ -333,3 +336,17 @@ This command will show you the exact DLL dependencies of your executable. Ideall
 
 Summary
 By using /MT for static linking, removing C++ standard library features, and disabling exception handling and RTTI, you can create a minimal executable that avoids VCRUNTIME140.dll and uses only basic system libraries like kernel32.dll for stdio.h functionality. This approach works well in environments like Windows PE, where runtime dependencies should be minimal.
+<hr>
+<h2>Summary for this part</h2>
+Ok, I still haven't touched on the topic of building a custom Windows from, i.e. adding drivers, uploading custom programs like CURL, etc. This is more advanced topic for me right now. This is a topic for the next part no. 4 but it will take some time. At this point my goals have been achieved in a sense when it comes to building a custom windows (minimalist windows kernel).
+<br/><br />
+now I can just type
+
+```
+Wpeutil Shutdown
+```
+
+And I press ENTER to shutdown virtual machine guest system all files next time I turn on, they will still be on the disk.
+<br /><br />
+
+UPDATE - 11-11-2024 - 
