@@ -1,6 +1,9 @@
 <h2>What Windows PE is?</h2> 
 Here is a quick introduce of what is Windows PE <br />
 https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/winpe-intro?view=windows-11
+<br /><br />
+For me, this is an opportunity to learn more about the basic mechanisms of Windows. Learn to build a custom system from scratch and custom applications. Why? I have been interested in Windows for a long time. Linux has a lot of tutorials, it has open source code. Windows is not like that. But it has documentation. So why? Simply to improve my skills in programming and knowledge about operating systems and interaction with hardware. 
+https://learn.microsoft.com/pdf?url=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fwindows-hardware%2Fdrivers%2Fdebugger%2Ftoc.json
 <hr>
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1/135%20-%209-11-2024%20-%20custom%20windows%20with%20a%20minimal%20file%20system%20and%20tools.png?raw=true)
