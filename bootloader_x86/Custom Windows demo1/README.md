@@ -239,6 +239,10 @@ wmic diskdrive get caption,deviceid,model,size // wmic doesn't exists in this im
 net use Z: \\VBOXSVR\Shared_Folder // this command not working can't handle conection 
 dir \\VBOXSVR\Shared_Folder // not working can't handle conection 
 bitsadmin /transfer myDownloadJob /download /priority normal https://example.com/file.txt C:\file.txt // this command doesn't exists in this minimalist image
+// update 11-11-2024
+where sc // to find location SC.exe doesn't work
+sc.exe // doesn't work !!! So now we can't just simply run SC command to manage services.
+// etc etc
 ```
 
 Many things is to learn but next thing is to customize image for example by uploading CURL etc tools and then creating an ISO image with these tools.
