@@ -1,4 +1,5 @@
-Hmm... I wonder how the 4o model understands and associates tokens so well, and is able to generate such accurate answers despite the fact that these topics are scattered on the Internet in many places, in many links. KEYWORD - LINKS. GTP 4o. [PL] <br />
+Hmm... I wonder how the 4o model understands and associates tokens so well, and is able to generate such accurate answers despite the fact that these topics are scattered on the Internet in many places, in many links. KEYWORD - LINKS. This system is not perfect but really good.<br /><br />
+GTP 4o. [PL] <br />
 
 
 ```
