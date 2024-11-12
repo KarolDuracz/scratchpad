@@ -45,4 +45,4 @@ There is also a link to https://cs231n.github.io/ in this post. I haven't found 
 
 <br />
 <hr>
-And ofcourse this series, and CS231n Winter 2016: Lecture 5: Neural Networks Part 2 https://www.youtube.com/watch?v=gYpoJMlgyXA&ab_channel=AndrejKarpathy . I saw this video some time ago,  were "makemore" series came out etc. on his new YT channel. But back then he had a really good mindset and he was able to explain these topics in detail in an understandable way. The new Andrej's channel describes in detail how it works and how to implement it.
+And ofcourse this series, and CS231n Winter 2016: Lecture 5: Neural Networks Part 2 https://www.youtube.com/watch?v=gYpoJMlgyXA&ab_channel=AndrejKarpathy . I saw this video some time ago,  were "makemore" series came out etc. on his new YT channel. But back then he had a really good mindset and he has able to explain these topics in detail in an understandable way. The new Andrej's channel describes in detail how it works and how to implement it.
