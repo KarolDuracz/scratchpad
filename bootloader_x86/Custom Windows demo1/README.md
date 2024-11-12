@@ -221,6 +221,7 @@ net use Z: \\192.168.1.100\customwin_demo1 /user:admin password123 // for now I 
 netstat -an | find "445" // SMB status not exists
 netsh interface ipv4 set dns name="Local Area Connection" static <DNS_IP_Address> // netsh works but...
 netsh interface ipv4 set global netbios=enabled // netbios command is not exist
+// update 11-11-2024 - nbtstat (NETBIOS) works but in first run I've made some mistakes https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/nbtstat
 net view // in here username is empty !!!
 net user Guest /active:yes // command to create guest user for anonymous connection
 net user Guest // ...
