@@ -182,4 +182,10 @@ DoCli ENDP
 END
 ```
 
-
+<hr>
+https://www.singlix.com/trdos/archive/OSDev_Wiki/IOPL.pdf - push, pop eflags example <br />
+link to intel manual - Intel® 64 and IA-32 Architectures
+Software Developer’s Manual
+Combined Volumes:
+1, 2A, 2B, 2C, 2D, 3A, 3B, 3C, 3D, and 4<br />
+https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjYof-DlOOJAxVQIRAIHdhkG9oQFnoECBQQAQ&url=https%3A%2F%2Fcdrdv2-public.intel.com%2F671200%2F325462-sdm-vol-1-2abcd-3abcd.pdf&usg=AOvVaw004y3Ieq_CROz-BRxT08g1&opi=89978449
