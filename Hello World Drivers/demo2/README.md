@@ -182,6 +182,10 @@ DoCli ENDP
 END
 ```
 
+btw. When you put ``` DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_INFO_LEVEL, "_vartest: 0x%llx\n", _vartest); ``` 
+before DoCli, you see 0x1234 value. So this is important for test if this works and get correct value into this _vartest from the stack.
+<br />
+
 <hr>
 https://www.singlix.com/trdos/archive/OSDev_Wiki/IOPL.pdf - push, pop eflags example <br />
 link to intel manual - Intel® 64 and IA-32 Architectures
