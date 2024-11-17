@@ -27,7 +27,7 @@ sc start PrivInstDriver
 8. If you want to run again -> open run.bat > then create service "sc create..." > then watch DbgView > start service ... 
 
 <hr>
-In "privileged.asm" you can execute a sequence of asm code and do an "insert" into the main code as shown by the CLI operation. You just have to do RET because there is a CALL before. But on this picture I do test to check EFLAGS (https://en.wikipedia.org/wiki/FLAGS_register) using (https://learn.microsoft.com/en-us/cpp/intrinsics/readeflags?view=msvc-170). This is only introduce... how to get access to these instructions.
+In "privileged.asm" you can execute a sequence of asm code and do an "insert" into the main code as shown by the CLI operation. You just have to do RET because there is a CALL before. But on this picture I do test to check EFLAGS (https://en.wikipedia.org/wiki/FLAGS_register) using (https://learn.microsoft.com/en-us/cpp/intrinsics/readeflags?view=msvc-170). This is only introduce... how to get access to these instructions. But EFLAGS in this demo don't show IOPL bit. Only first 10 bit max, for first test 0x282 and for second after CLI 0x82. This is only bytes 0-9.<br /><br />
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Hello%20World%20Drivers/demo2/17112024%20-%20pic3%20-%20eflags.png?raw=true)
 
