@@ -1,5 +1,7 @@
 4-11-2024 - This is only beginning. But this might be helpful for running few CMD in one window. But here you see 3 mspaint.exe running inside MIDI under parent window. Under construction.<br /><br />
 
+17-11-2024 - In sysinternals (https://learn.microsoft.com/en-us/sysinternals/downloads/desktops) tools these is Desktops64.exe . And this app correspond to Desktop.exe in some way. But this is just the beginning of the demo.
+
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Multi%20Windows%20Manager/71%20-%204-11-2024%20-%20win32%20%20multiple%20window%20manger.png?raw=true)
 
 <h2>Guide, how it works in simple way.</h2>
