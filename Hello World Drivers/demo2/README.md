@@ -1,5 +1,7 @@
 <h2>Demo2</h2>
 Execute unprivileged instruction to read MSR and CR0 state. 
+<br /><br />
+
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Hello%20World%20Drivers/demo2/17112024%20-%20pic1%20-%20read%20msr%20and%20cr0.png?raw=true)
 
