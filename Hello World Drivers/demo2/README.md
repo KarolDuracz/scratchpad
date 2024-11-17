@@ -183,7 +183,7 @@ END
 ```
 
 btw. When you put ``` DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_INFO_LEVEL, "_vartest: 0x%llx\n", _vartest); ``` 
-before DoCli, you see 0x1234 value. So this is important for test if this works and get correct value into this _vartest from the stack.
+before DoCli, you will see 0x1234 value. So this is important for test if this works and get correct value into this _vartest from the stack.
 <br />
 
 <hr>
