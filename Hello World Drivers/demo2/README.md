@@ -26,6 +26,9 @@ sc start PrivInstDriver
 7. sc delete PrivInstDriver - to delete
 8. If you want to run again -> open run.bat > then create service "sc create..." > then watch DbgView > start service ... 
 
+<hr>
+In "privileged.asm" you can execute a sequence of asm code and do an "insert" into the main code as shown by the CLI operation. You just have to do RET because there is a CALL before. But on this picture I do test to check EFLAGS (https://en.wikipedia.org/wiki/FLAGS_register) using (https://learn.microsoft.com/en-us/cpp/intrinsics/readeflags?view=msvc-170). This is only introduce... how to get access to these instructions.
 
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Hello%20World%20Drivers/demo2/17112024%20-%20pic3%20-%20eflags.png?raw=true)
 
 
