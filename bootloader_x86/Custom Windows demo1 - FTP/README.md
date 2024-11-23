@@ -1,3 +1,6 @@
+Update 23-11-2024 - In general, I made a lot of stupid things and mistakes in this scratchpad. A lot. But I had a break of several years, 10-15 years, when it comes to computers. About tinkering with computers in general. For m own. Never mind. (...) I tried to reinvent the wheel with this FTP. And all you have to do is connect a pendrive to USB. Virtual Box has drivers for USB. Windows 10 x64 Pro easily detects "Generic Mass Storage [0103]". I don't know how it's supposed to work on Windows PE. But this is information by the way. Because I installed Windows 10 again to have MSVC 2022 again with the current Windows kits for drivers development and for to learn more about that. And FTP and these types of connections through bridges, NAT, etc. at some point cause the host system to crash. Something with .sys files to handle network communication. So a regular pendrive connected to USB can work as "share memory". Another issue is how to approach it on WinPE, what the driver looks like, communication, etc. etc. 
+https://www.techrepublic.com/article/how-to-enable-usb-in-virtualbox/
+<br /><br />
 <h2>This is a continuation from the "Custom Windows demo1" folder </h2>
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1%20-%20FTP/188%20-%2011-11-2024%20-%20ftp%20configured%20and%20works.png?raw=true)
