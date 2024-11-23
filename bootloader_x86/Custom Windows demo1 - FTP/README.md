@@ -6,6 +6,8 @@ command shows the drive letter. But this demo is not installed on the disk but i
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/Custom%20Windows%20demo1%20-%20FTP/407%20-%2023-11-2024%20-%20winpe%20tez%20wykrywa%20normalnie%20ten%20driver.png?raw=true)
 <br />
+btw. As I started playing around with these installs again I remembered Partition Magic 8. The quintessential Windows app IMHO. heh.
+<br />
 <hr>
 <h2>This is a continuation from the "Custom Windows demo1" folder </h2>
 
