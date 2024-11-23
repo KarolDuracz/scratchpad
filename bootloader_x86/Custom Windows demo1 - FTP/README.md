@@ -8,6 +8,17 @@ command shows the drive letter. But this demo is not installed on the disk but i
 <br />
 btw. As I started playing around with these installs again I remembered Partition Magic 8. The quintessential of Windows app / tools IMHO. Simply, easy to use for everyone, and with nice design. And practical.
 <br />
+So, from here we can simpy do in cmd on live CD windows pe
+
+```
+c: // and press enter to enter to pendrive in this case
+echo 1 > demo.txt // this create text for example "1" for test and write into demo.txt on c: disk (pendrive)
+Wpeutil Shutdown // when guest machine is running host system detach this drive - only windows PE cane use it simultaneously
+// on the host machine I can copy, change etc things with these files on pendrive, and then run Windows PE again
+c: // enter to c again
+copy demo.txt > x:\users\public // copy to x:\users\public this demo.txt for test
+```
+
 <hr>
 <h2>This is a continuation from the "Custom Windows demo1" folder </h2>
 
