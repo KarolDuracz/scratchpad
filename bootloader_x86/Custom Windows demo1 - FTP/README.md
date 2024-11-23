@@ -19,6 +19,7 @@ c: // enter to c again
 copy demo.txt > x:\users\public // copy to x:\users\public this demo.txt for test
 ```
 
+This is not perfect, but more quickly than ftp, ssh etc.
 <hr>
 <h2>This is a continuation from the "Custom Windows demo1" folder </h2>
 
