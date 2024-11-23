@@ -17,6 +17,7 @@ Wpeutil Shutdown // when guest machine is running host system detach this drive 
 // on the host machine I can copy, change etc things with these files on pendrive, and then run Windows PE again
 c: // enter to c again
 copy demo.txt > x:\users\public // copy to x:\users\public this demo.txt for test
+notepad x:\users\public\demo.txt // open with notepad on windows pe 
 ```
 
 This is not perfect, but more quickly than ftp, ssh etc.
