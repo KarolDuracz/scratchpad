@@ -6,7 +6,15 @@ Look at line 1092 in scratchpad/OpenCL via ASUS with GT540M/demo1-4/Project12_op
 
 In this project12_opencl from line 214 to 888 PTX code tests. Look at "kernelSource" variables <br /><br />
 
-In line 895 there is "// testCoresKernel example" - this is probably test to detect al 96 cores. To fix this first implementation (https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/main.cpp#L204)
+In line 895 there is "// testCoresKernel example" - this is probably test to detect al 96 cores. To fix this first implementation (https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/main.cpp#L204) - But what I found on this topic, there is no way (???) to detect all cores like that using opencl. But there are methods like this simple PTX kernel, which detects based on --> int idx = get_global_id(0); number of threads.
+
+```
+const char* kernelSource = "__kernel void testCoresKernel(__global int* data) {"
+"    int idx = get_global_id(0);"
+"    data[idx] = idx;"
+"}";
+```
+
 <hr>
 
 Project 11
