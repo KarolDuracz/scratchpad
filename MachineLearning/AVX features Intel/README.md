@@ -1,5 +1,18 @@
 <h2>SIMD demo</h2>
-<br />
+Without using GPU this might be speed up some matrix calculations. But on my laptop I have install Intel i3 from 2011 rev. So, this is not modern CPU and AVX 512 and other things is not supported. And keep in mind, in this main.cpp in line 310 there is 
+
+```
+sum = _mm256_add_ps(sum, _mm256_mul_ps(x_vec, w_vec));
+```
+
+This is without FMA support. With FMA this line is 309 and look like that
+
+```
+sum = _mm256_fmadd_ps(x_vec, w_vec, sum);
+```
+
+
+<br /><br />
 If in <b>main.cpp</b> in line 12 
 
 ``` //#define SECOND_TEST_TODO ```
