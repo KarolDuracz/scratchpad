@@ -11,6 +11,7 @@ This is without FMA support. With FMA this line is 309 and look like that
 sum = _mm256_fmadd_ps(x_vec, w_vec, sum);
 ```
 
+<b>But in this demo is many bugs to fix and things "TODO" </b> - these examples 1-6 from uncommented version is to fix. Dot product is wrong etc.
 
 <br /><br />
 If in <b>main.cpp</b> in line 12 
