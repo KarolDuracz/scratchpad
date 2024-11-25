@@ -12,7 +12,8 @@ sum = _mm256_fmadd_ps(x_vec, w_vec, sum);
 ```
 
 <b>But in this demo is many bugs to fix and things "TODO" </b> - these examples 1-6 from uncommented version is to fix. Dot product is wrong etc.
-
+<br /><br />
+This is supposed to simulate XW + B . And comparison scalar methods with basic instructions and general registers vs. SIMD
 <br /><br />
 If in <b>main.cpp</b> in line 12 
 
