@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\Users\kdhome\source\repos\Project12_cpu_vs_gpu_opencl_kernel_benchamark\Project12_cpu_vs_gpu_opencl_kernel_benchamark\main.cpp(24,57): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Project12_cpu_vs_gpu_opencl_kernel_benchamark.vcxproj -> C:\Users\kdhome\source\repos\Project12_cpu_vs_gpu_opencl_kernel_benchamark\Debug\Project12_cpu_vs_gpu_opencl_kernel_benchamark.exe
