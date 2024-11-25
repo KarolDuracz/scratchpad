@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\Users\kdhome\source\repos\Project12_cuda\Project12_cuda\main.cpp(162,13): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  Project12_cuda.vcxproj -> C:\Users\kdhome\source\repos\Project12_cuda\x64\Debug\Project12_cuda.exe
