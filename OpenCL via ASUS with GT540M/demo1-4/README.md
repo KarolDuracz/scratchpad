@@ -6,6 +6,8 @@ Look at line 1092 in scratchpad/OpenCL via ASUS with GT540M/demo1-4/Project12_op
 
 In this project12_opencl from line 214 to 888 PTX code tests. Look at "kernelSource" variables. This needs to be do again here, but looking into this file (https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/demo1-4/Project12_opencl/Project12_opencl/windowsTempkernel.bin) - when you open Project12_opencl .cpp file and find "kernel.bin" inside code this is probably some kernel compiled to PTX. But if I remember last time when I do this test, kernel.bin is biggest than this one. And in this .cpp open cl demo there is implementation to write kernel into PTX, and load from .bin (PTX format) to device. But right now I upload only this all stuff here.<br /><br />
 
+I have this "kernel.bin" (https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/demo1-4/kernel.bin) but this must be compile again using this demo "Project12_opencl" and some implementation from inside, to rewrite the kernel Source as PTX (kernel.bin) again. And test to laod this kernel.bin file and execute. <br /><br />
+
 In line 895 there is "// testCoresKernel example" - this is probably test to detect al 96 cores. To fix this first implementation (https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/main.cpp#L204) - But what I found on this topic, there is no way (???) to detect all cores like that using opencl. But there are methods like this simple PTX kernel, which detects based on --> int idx = get_global_id(0); number of threads.
 
 ```
