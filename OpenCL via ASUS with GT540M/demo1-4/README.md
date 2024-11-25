@@ -21,7 +21,7 @@ That's why I used "Project 12 cuda api" and API from  LoadLibrary(L"C:\\CUDA\\bi
 <br /><br />
 But there are more questions here about how the driver itself works... In here I learned how to use API and docs and how to use DLL to do that. Even that requires a better explanation of what I was doing here, but not now. I'm just posting what's there for now. <br />
 
-This kernel is probably running and it's doing 99% of the GPU utilization. And it raises the temperature to ~80 C.  (https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/demo1-4/Project12_opencl/Project12_opencl/main.cpp#L228)
+This kernel is probably works and it's doing 99% of the GPU utilization. And it raises the temperature to ~80 C.  (https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/demo1-4/Project12_opencl/Project12_opencl/main.cpp#L228)
 
 ```
 // default :
