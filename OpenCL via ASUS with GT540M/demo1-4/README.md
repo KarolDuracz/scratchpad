@@ -73,3 +73,7 @@ Project 12 opencl
 
 Project 12 CPU vs GPU - 4 threads test for some computing 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/demo1-4/project12cpuvsgpubench.png?raw=true)
+
+<hr> Add more iterations to this kernel to trace utilization
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/demo1-4/add%20more%20iters.png?raw=true)
