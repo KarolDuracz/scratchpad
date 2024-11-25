@@ -1,0 +1,880 @@
+# demo1 
+
+```
+#define _CRT_SECURE_NO_WARNINGS
+#include <Windows.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <malloc.h>
+#include <wtypes.h>
+#include <stdarg.h>
+
+#include <intrin.h>
+#include <xmmintrin.h>
+
+
+struct MyClass {
+    void __vectorcall mymethod();
+};
+void MyClass::mymethod() { return; }
+typedef __m256 (__vectorcall* vcfnptr)(double, double, double, double);
+
+typedef struct {
+    __m256 x;
+    __m256 y;
+    __m256 z;
+} hva3;    // 3 element HVA type on __m256
+
+typedef struct {
+    __m128 array[2];
+} hva2;    // 2 element HVA type on __m128
+
+typedef struct {
+    __m256 array[4];
+} hva4;    // 4 element HVA type on __m256
+
+// Example 1: All vectors
+// Passes a in XMM0, b in XMM1, c in YMM2, d in XMM3, e in YMM4.
+// Return value in XMM0.
+__m128 __vectorcall
+example1(__m128 a, __m128 b, __m256 c, __m128 d, __m256 e) {
+    return d;
+}
+
+// Example 2: Mixed int, float and vector parameters
+// Passes a in RCX, b in XMM1, c in R8, d in XMM3, e in YMM4,
+// f in XMM5, g pushed on stack.
+// Return value in YMM0.
+__m256 __vectorcall
+example2(int a, __m128 b, int c, __m128 d, __m256 e, float f, int g) {
+    return e;
+}
+
+// Example 3: Mixed int and HVA parameters
+// Passes a in RCX, c in R8, d in R9, and e pushed on stack.
+// Passes b by element in [XMM0:XMM1];
+// b's stack shadow area is 8-bytes of undefined value.
+// Return value in XMM0.
+__m128 __vectorcall example3(int a, hva2 b, int c, int d, int e) {
+    return b.array[0];
+}
+
+// Example 4: Discontiguous HVA
+// Passes a in RCX, b in XMM1, d in XMM3, and e is pushed on stack.
+// Passes c by element in [YMM0,YMM2,YMM4,YMM5], discontiguous because
+// vector arguments b and d were allocated first.
+// Shadow area for c is an 8-byte undefined value.
+// Return value in XMM0.
+float __vectorcall example4(int a, float b, hva4 c, __m128 d, int e) {
+    return b;
+}
+
+// Example 5: Multiple HVA arguments
+// Passes a in RCX, c in R8, e pushed on stack.
+// Passes b in [XMM0:XMM1], d in [YMM2:YMM5], each with
+// stack shadow areas of an 8-byte undefined value.
+// Return value in RAX.
+int __vectorcall example5(int a, hva2 b, int c, hva4 d, int e) {
+    return c + e;
+}
+
+// Example 6: HVA argument passed by reference, returned by register
+// Passes a in [XMM0:XMM1], b passed by reference in RDX, c in YMM2,
+// d in [XMM3:XMM4].
+// Register space was insufficient for b, but not for d.
+// Return value in [YMM0:YMM3].
+hva4 __vectorcall example6(hva2 a, hva4 b, __m256 c, hva2 d) {
+    return b;
+}
+
+#define BUFFCOUNT (10)
+
+void FormatOutput(const char* formatstring, ...)
+{
+    int nSize = 0;
+    char buff[BUFFCOUNT];
+    memset(buff, 0, sizeof(buff));
+    va_list args;
+    va_start(args, formatstring);
+    nSize = vsnprintf(buff, sizeof(buff), formatstring, args);
+    printf("nSize: %d, buff: %s\n", nSize, buff);
+    va_end(args);
+}
+
+// Print __m128
+void print_m128(const char* name, __m128 v) {
+    float values[4];
+    _mm_storeu_ps(values, v);
+    printf("%s = { %f, %f, %f, %f }\n", name, values[0], values[1], values[2], values[3]);
+}
+
+// Print __m256
+void print_m256(const char* name, __m256 v) {
+    float values[8];
+    _mm256_storeu_ps(values, v);
+    printf("%s = { %f, %f, %f, %f, %f, %f, %f, %f }\n", name,
+        values[0], values[1], values[2], values[3],
+        values[4], values[5], values[6], values[7]);
+}
+
+// Print hva2
+void print_hva2(const char* name, hva2 h) {
+    printf("%s:\n", name);
+    for (int i = 0; i < 2; i++) {
+        char element_name[16];
+        snprintf(element_name, sizeof(element_name), "  array[%d]", i);
+        print_m128(element_name, h.array[i]);
+    }
+}
+
+// Print hva4
+void print_hva4(const char* name, hva4 h) {
+    printf("%s:\n", name);
+    for (int i = 0; i < 4; i++) {
+        char element_name[16];
+        snprintf(element_name, sizeof(element_name), "  array[%d]", i);
+        print_m256(element_name, h.array[i]);
+    }
+}
+
+int __cdecl main( void )
+{
+    // Original text in ANSI
+    const char* buf = "text12345698283kaiwj";
+    DWORD ret;
+
+    // Convert ANSI to wide-character string
+    wchar_t wbuf[256];
+    mbstowcs(wbuf, buf, sizeof(wbuf) / sizeof(wchar_t));
+
+    // Write to console
+    WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), wbuf, wcslen(wbuf), &ret, NULL);
+
+    // Print the number of characters written
+    printf("%lu %zu \n", ret, strlen(buf));
+
+    void *p = _alloca(20);
+
+    FormatOutput("%s %s", "Hi", "there");   //  8 chars + null
+    FormatOutput("%s %s", "Hi", "there!");  //  9 chars + null
+    FormatOutput("%s %s", "Hi", "there!!"); // 10 chars + null
+
+    /*hva4 h4;
+    hva2 h2;
+    int i;
+    float f;
+    __m128 a, b, d;
+    __m256 c, e;
+
+    a = b = d = _mm_set1_ps(3.0f);
+    c = e = _mm256_set1_ps(5.0f);
+    h2.array[0] = _mm_set1_ps(6.0f);
+    h4.array[0] = _mm256_set1_ps(7.0f);
+
+    b = example1(a, b, c, d, e);
+    e = example2(1, b, 3, d, e, 6.0f, 7);
+    d = example3(1, h2, 3, 4, 5);
+    f = example4(1, 2.0f, h4, d, 5);
+    i = example5(1, h2, 3, h4, 5);
+    h4 = example6(h2, h4, c, h2);
+
+    printf("")*/
+
+    hva4 h4;
+    hva2 h2;
+    int i;
+    float f;
+    __m128 a, b, d;
+    __m256 c, e;
+
+    a = b = d = _mm_set1_ps(3.0f);
+    c = e = _mm256_set1_ps(5.0f);
+    h2.array[0] = _mm_set1_ps(6.0f);
+    h2.array[1] = _mm_set1_ps(8.0f);
+    h4.array[0] = _mm256_set1_ps(7.0f);
+    h4.array[1] = _mm256_set1_ps(9.0f);
+    h4.array[2] = _mm256_set1_ps(11.0f);
+    h4.array[3] = _mm256_set1_ps(13.0f);
+
+    b = example1(a, b, c, d, e);
+    print_m128("Result of example1", b);
+
+    e = example2(1, b, 3, d, e, 6.0f, 7);
+    print_m256("Result of example2", e);
+
+    d = example3(1, h2, 3, 4, 5);
+    print_m128("Result of example3", d);
+
+    f = example4(1, 2.0f, h4, d, 5);
+    printf("Result of example4 = %f\n", f);
+
+    i = example5(1, h2, 3, h4, 5);
+    printf("Result of example5 = %d\n", i);
+
+    h4 = example6(h2, h4, c, h2);
+    print_hva4("Result of example6", h4);
+
+    return 0;
+}
+```
+
+demo 2
+
+```
+#include <intrin.h>
+#include <xmmintrin.h>
+#include <immintrin.h>
+#include <stdio.h>
+#include <windows.h>
+
+struct MyClass {
+    void __vectorcall mymethod();
+};
+void MyClass::mymethod() { return; }
+typedef __m256 (__vectorcall* vcfnptr)(double, double, double, double);
+
+typedef struct {
+    __m256 x;
+    __m256 y;
+    __m256 z;
+} hva3;    // 3 element HVA type on __m256
+
+typedef struct {
+    __m128 array[2];
+} hva2;    // 2 element HVA type on __m128
+
+typedef struct {
+    __m256 array[4];
+} hva4;    // 4 element HVA type on __m256
+
+// High-precision timer
+double measure_time(LARGE_INTEGER start, LARGE_INTEGER end, LARGE_INTEGER freq) {
+    return (double)(end.QuadPart - start.QuadPart) * 1000000.0 / freq.QuadPart; // Milliseconds
+}
+
+// Print __m128
+void print_m128(const char* name, __m128 v) {
+    float values[4];
+    _mm_storeu_ps(values, v);
+    printf("%s = { %f, %f, %f, %f }\n", name, values[0], values[1], values[2], values[3]);
+}
+
+// Print __m256
+void print_m256(const char* name, __m256 v) {
+    float values[8];
+    _mm256_storeu_ps(values, v);
+    printf("%s = { %f, %f, %f, %f, %f, %f, %f, %f }\n", name,
+        values[0], values[1], values[2], values[3],
+        values[4], values[5], values[6], values[7]);
+}
+
+// Function 1: Matrix-vector multiplication
+__m128 __vectorcall example1(__m128 a, __m128 b, __m256 c, __m128 d, __m256 e) {
+    // Multiply a 4x4 matrix (in `b` and `d`) by a 4-element vector (`a`)
+    __m128 row1 = _mm_mul_ps(b, a);
+    __m128 row2 = _mm_mul_ps(d, a);
+    return _mm_add_ps(row1, row2);
+}
+
+// Function 2: Dot product
+__m256 __vectorcall example2(int a, __m128 b, int c, __m128 d, __m256 e, float f, int g) {
+    __m128 dot_product = _mm_dp_ps(b, d, 0xFF);  // Compute dot product of b and d
+    __m256 scaled = _mm256_mul_ps(e, _mm256_set1_ps(f)); // Scale e by f
+    return scaled;
+}
+
+// Function 3: Matrix multiplication
+__m128 __vectorcall example3(int a, hva2 b, int c, int d, int e) {
+    // Multiply two 2x2 matrices stored in `b`
+    __m128 result = _mm_add_ps(
+        _mm_mul_ps(b.array[0], _mm_set1_ps(c)),
+        _mm_mul_ps(b.array[1], _mm_set1_ps(d))
+    );
+    return result;
+}
+
+// Function 4: Cross product and scalar scaling
+float __vectorcall example4(int a, float b, hva4 c, __m128 d, int e) {
+    __m256 cross = _mm256_mul_ps(c.array[0], c.array[1]); // Simulate cross product
+    __m256 scaled = _mm256_mul_ps(cross, _mm256_set1_ps(b));
+    float result[8];
+    _mm256_storeu_ps(result, scaled);
+    return result[0]; // Return the first element
+}
+
+// Function 5: Vector sum
+int __vectorcall example5(int a, hva2 b, int c, hva4 d, int e) {
+    __m256 sum = _mm256_add_ps(d.array[0], d.array[1]);
+    float result[8];
+    _mm256_storeu_ps(result, sum);
+    return (int)(result[0] + c + e); // Example sum
+}
+
+// Function 6: Large matrix addition
+hva4 __vectorcall example6(hva2 a, hva4 b, __m256 c, hva2 d) {
+    hva4 result;
+    for (int i = 0; i < 4; i++) {
+        result.array[i] = _mm256_add_ps(b.array[i], c);
+    }
+    return result;
+}
+
+int __cdecl main(void)
+{
+    hva4 h4;
+    hva2 h2;
+    int i;
+    float f;
+    __m128 a, b, d;
+    __m256 c, e;
+
+    LARGE_INTEGER freq, start, end;
+
+    QueryPerformanceFrequency(&freq);
+
+    a = b = d = _mm_set1_ps(3.0f);
+    c = e = _mm256_set1_ps(5.0f);
+    h2.array[0] = _mm_set1_ps(6.0f);
+    h2.array[1] = _mm_set1_ps(8.0f);
+    for (int i = 0; i < 4; i++) {
+        h4.array[i] = _mm256_set1_ps(7.0f + i);
+    }
+
+    QueryPerformanceCounter(&start);
+    b = example1(a, b, c, d, e);
+    QueryPerformanceCounter(&end);
+    print_m128("Result of example1", b);
+    printf("Execution time: %.3f ms\n", measure_time(start, end, freq));
+
+    QueryPerformanceCounter(&start);
+    e = example2(1, b, 3, d, e, 6.0f, 7);
+    QueryPerformanceCounter(&end);
+    print_m256("Result of example2", e);
+    printf("Execution time: %.3f ms\n", measure_time(start, end, freq));
+
+    QueryPerformanceCounter(&start);
+    d = example3(1, h2, 3, 4, 5);
+    QueryPerformanceCounter(&end);
+    print_m128("Result of example3", d);
+    printf("Execution time: %.3f ms\n", measure_time(start, end, freq));
+
+    QueryPerformanceCounter(&start);
+    f = example4(1, 2.0f, h4, d, 5);
+    QueryPerformanceCounter(&end);
+    printf("Result of example4 = %f\n", f);
+    printf("Execution time: %.3f ms\n", measure_time(start, end, freq));
+
+    QueryPerformanceCounter(&start);
+    i = example5(1, h2, 3, h4, 5);
+    QueryPerformanceCounter(&end);
+    printf("Result of example5 = %d\n", i);
+    printf("Execution time: %.3f ms\n", measure_time(start, end, freq));
+
+    QueryPerformanceCounter(&start);
+    h4 = example6(h2, h4, c, h2);
+    QueryPerformanceCounter(&end);
+    printf("Result of example6:\n");
+    for (int i = 0; i < 4; i++) {
+        char name[16];
+        snprintf(name, sizeof(name), "  array[%d]", i);
+        print_m256(name, h4.array[i]);
+    }
+    printf("Execution time: %.3f ms\n", measure_time(start, end, freq));
+
+    return 0;
+}
+```
+
+demo 3
+
+```
+#include <intrin.h>
+#include <xmmintrin.h>
+#include <immintrin.h>
+#include <stdio.h>
+#include <windows.h>
+
+// High-precision timer
+double measure_time(LARGE_INTEGER start, LARGE_INTEGER end, LARGE_INTEGER freq) {
+    return (double)(end.QuadPart - start.QuadPart) * 1000000.0 / freq.QuadPart; // Milliseconds
+}
+
+// Scalar implementation for 4x4 matrix-vector multiplication
+void scalar_example1(float* result, const float* matrix, const float* vector) {
+    for (int i = 0; i < 4; i++) {
+        result[i] = 0.0f;
+        for (int j = 0; j < 4; j++) {
+            result[i] += matrix[i * 4 + j] * vector[j];
+        }
+    }
+}
+
+// Scalar implementation for dot product
+float scalar_example2(const float* v1, const float* v2, float scalar) {
+    float dot = 0.0f;
+    for (int i = 0; i < 4; i++) {
+        dot += v1[i] * v2[i];
+    }
+    return dot * scalar;
+}
+
+// Scalar implementation for matrix multiplication
+void scalar_example3(float* result, const float* m1, const float* m2) {
+    for (int i = 0; i < 4; i++) {
+        result[i] = m1[i] * m2[i];
+    }
+}
+
+// Scalar implementation for cross product and scaling
+float scalar_example4(const float* v1, const float* v2, float scalar) {
+    return (v1[0] * v2[1] - v1[1] * v2[0]) * scalar;
+}
+
+// Scalar implementation for vector sum
+float scalar_example5(const float* v1, const float* v2, float scalar) {
+    float sum = scalar;
+    for (int i = 0; i < 8; i++) {
+        sum += v1[i] + v2[i];
+    }
+    return sum;
+}
+
+// Scalar implementation for matrix addition
+void scalar_example6(float* result, const float* m1, const float* m2, int size) {
+    for (int i = 0; i < size; i++) {
+        result[i] = m1[i] + m2[i];
+    }
+}
+
+int __cdecl main(void) {
+    // Initialize variables
+    float matrix[16] = {
+        1.0f, 2.0f, 3.0f, 4.0f,
+        5.0f, 6.0f, 7.0f, 8.0f,
+        9.0f, 10.0f, 11.0f, 12.0f,
+        13.0f, 14.0f, 15.0f, 16.0f
+    };
+    float vector[4] = { 1.0f, 2.0f, 3.0f, 4.0f };
+    float result[4] = { 0.0f };
+
+    LARGE_INTEGER freq, start, end;
+
+    QueryPerformanceFrequency(&freq);
+
+    // SIMD Example 1: Matrix-vector multiplication
+    QueryPerformanceCounter(&start);
+    __m128 simd_matrix = _mm_loadu_ps(matrix);
+    __m128 simd_vector = _mm_loadu_ps(vector);
+    __m128 simd_result = _mm_mul_ps(simd_matrix, simd_vector);
+    QueryPerformanceCounter(&end);
+    printf("SIMD Example 1 Time: %.3f ms\n", measure_time(start, end, freq));
+
+    QueryPerformanceCounter(&start);
+    scalar_example1(result, matrix, vector);
+    QueryPerformanceCounter(&end);
+    printf("Scalar Example 1 Time: %.3f ms\n", measure_time(start, end, freq));
+
+    // SIMD Example 2: Dot product
+    QueryPerformanceCounter(&start);
+    simd_result = _mm_dp_ps(simd_matrix, simd_vector, 0xFF);
+    QueryPerformanceCounter(&end);
+    printf("SIMD Example 2 Time: %.3f ms\n", measure_time(start, end, freq));
+
+    QueryPerformanceCounter(&start);
+    float scalar_dot = scalar_example2(matrix, vector, 2.0f);
+    QueryPerformanceCounter(&end);
+    printf("Scalar Example 2 Time: %.3f ms\n", measure_time(start, end, freq));
+
+    // SIMD Example 3: Matrix multiplication
+    QueryPerformanceCounter(&start);
+    __m128 simd_multiplication = _mm_mul_ps(simd_matrix, simd_vector);
+    QueryPerformanceCounter(&end);
+    printf("SIMD Example 3 Time: %.3f ms\n", measure_time(start, end, freq));
+
+    QueryPerformanceCounter(&start);
+    scalar_example3(result, matrix, vector);
+    QueryPerformanceCounter(&end);
+    printf("Scalar Example 3 Time: %.3f ms\n", measure_time(start, end, freq));
+
+    // Additional functions for examples 4, 5, and 6 can follow the same pattern.
+
+    return 0;
+}
+```
+
+demo 4
+
+```
+#include <intrin.h>
+#include <xmmintrin.h>
+#include <immintrin.h>
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+#include <Windows.h>
+
+struct MyClass {
+    void __vectorcall mymethod();
+};
+void MyClass::mymethod() { return; }
+typedef __m256 (__vectorcall* vcfnptr)(double, double, double, double);
+
+typedef struct {
+    __m256 x;
+    __m256 y;
+    __m256 z;
+} hva3;    // 3 element HVA type on __m256
+
+typedef struct {
+    __m128 array[2];
+} hva2;    // 2 element HVA type on __m128
+
+typedef struct {
+    __m256 array[4];
+} hva4;    // 4 element HVA type on __m256
+
+// High-precision timer
+double measure_time(LARGE_INTEGER start, LARGE_INTEGER end, LARGE_INTEGER freq) {
+    return (double)(end.QuadPart - start.QuadPart) * 1000000.0 / freq.QuadPart; // Milliseconds
+}
+
+// Print __m128
+void print_m128(const char* name, __m128 v) {
+    float values[4];
+    _mm_storeu_ps(values, v);
+    printf("%s = { %f, %f, %f, %f }\n", name, values[0], values[1], values[2], values[3]);
+}
+
+// Print __m256
+void print_m256(const char* name, __m256 v) {
+    float values[8];
+    _mm256_storeu_ps(values, v);
+    printf("%s = { %f, %f, %f, %f, %f, %f, %f, %f }\n", name,
+        values[0], values[1], values[2], values[3],
+        values[4], values[5], values[6], values[7]);
+}
+
+// Function 1: Matrix-vector multiplication
+__m128 __vectorcall example1(__m128 a, __m128 b, __m256 c, __m128 d, __m256 e) {
+    // Multiply a 4x4 matrix (in `b` and `d`) by a 4-element vector (`a`)
+    __m128 row1 = _mm_mul_ps(b, a);
+    __m128 row2 = _mm_mul_ps(d, a);
+    return _mm_add_ps(row1, row2);
+}
+
+// Function 2: Dot product
+__m256 __vectorcall example2(int a, __m128 b, int c, __m128 d, __m256 e, float f, int g) {
+    __m128 dot_product = _mm_dp_ps(b, d, 0xFF);  // Compute dot product of b and d
+    __m256 scaled = _mm256_mul_ps(e, _mm256_set1_ps(f)); // Scale e by f
+    return scaled;
+}
+
+// Function 3: Matrix multiplication
+__m128 __vectorcall example3(int a, hva2 b, int c, int d, int e) {
+    // Multiply two 2x2 matrices stored in `b`
+    __m128 result = _mm_add_ps(
+        _mm_mul_ps(b.array[0], _mm_set1_ps(c)),
+        _mm_mul_ps(b.array[1], _mm_set1_ps(d))
+    );
+    return result;
+}
+
+// Function 4: Cross product and scalar scaling
+float __vectorcall example4(int a, float b, hva4 c, __m128 d, int e) {
+    __m256 cross = _mm256_mul_ps(c.array[0], c.array[1]); // Simulate cross product
+    __m256 scaled = _mm256_mul_ps(cross, _mm256_set1_ps(b));
+    float result[8];
+    _mm256_storeu_ps(result, scaled);
+    return result[0]; // Return the first element
+}
+
+// Function 5: Vector sum
+int __vectorcall example5(int a, hva2 b, int c, hva4 d, int e) {
+    __m256 sum = _mm256_add_ps(d.array[0], d.array[1]);
+    float result[8];
+    _mm256_storeu_ps(result, sum);
+    return (int)(result[0] + c + e); // Example sum
+}
+
+// Function 6: Large matrix addition
+hva4 __vectorcall example6(hva2 a, hva4 b, __m256 c, hva2 d) {
+    hva4 result;
+    for (int i = 0; i < 4; i++) {
+        result.array[i] = _mm256_add_ps(b.array[i], c);
+    }
+    return result;
+}
+
+void scalar_matrix_mult(float* A, float* B, float* C, int N) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            C[i * N + j] = 0;
+            for (int k = 0; k < N; k++) {
+                C[i * N + j] += A[i * N + k] * B[k * N + j];
+            }
+        }
+    }
+}
+//
+//void simd_matrix_mult(float* A, float* B, float* C, int N) {
+//    for (int i = 0; i < N; i++) {
+//        for (int j = 0; j < N; j++) {
+//            __m256 sum = _mm256_setzero_ps();
+//            for (int k = 0; k < N; k += 8) { // Process 8 elements at once
+//                __m256 a = _mm256_loadu_ps(&A[i * N + k]);
+//                __m256 b = _mm256_loadu_ps(&B[k * N + j]);
+//                sum = _mm256_add_ps(sum, _mm256_mul_ps(a, b));
+//            }
+//            _mm256_storeu_ps(&C[i * N + j], sum);
+//        }
+//    }
+//}
+
+// VER 1
+// Scalar matrix multiplication
+//void scalar_matrix_mult(float* A, float* B, float* C, int N) {
+//    for (int i = 0; i < N; i++) {
+//        for (int j = 0; j < N; j++) {
+//            C[i * N + j] = 0;
+//            for (int k = 0; k < N; k++) {
+//                C[i * N + j] += A[i * N + k] * B[k * N + j];
+//            }
+//        }
+//    }
+//}
+
+//void scalar_matrix_mult(float* A, float* B, float* C, int N) {
+//    for (int i = 0; i < N; i++) {
+//        for (int j = 0; j < N; j++) {
+//            float sum = 0.0f;
+//            for (int k = 0; k < N; k += 8) { // Process 8 elements at once
+//                float partial_sum[8] = { 0.0f };
+//                // Load elements manually for 8-wide block
+//                for (int p = 0; p < 8 && k + p < N; p++) { // Handle edge cases when N is not divisible by 8
+//                    partial_sum[p] = A[i * N + k + p] * B[(k + p) * N + j];
+//                }
+//                // Sum the partial results to mimic _mm256_add_ps and _mm256_storeu_ps behavior
+//                for (int p = 0; p < 8; p++) {
+//                    sum += partial_sum[p];
+//                }
+//            }
+//            C[i * N + j] = sum;
+//        }
+//    }
+//}
+
+
+// SIMD matrix multiplication
+void simd_matrix_mult(float* A, float* B, float* C, int N) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            __m256 sum = _mm256_setzero_ps();
+            for (int k = 0; k < N; k += 8) { // Process 8 elements at once
+                __m256 a = _mm256_loadu_ps(&A[i * N + k]);
+                __m256 b = _mm256_loadu_ps(&B[k * N + j]);
+                sum = _mm256_add_ps(sum, _mm256_mul_ps(a, b));
+            }
+            float temp[8];
+            _mm256_storeu_ps(temp, sum);
+            C[i * N + j] = temp[0] + temp[1] + temp[2] + temp[3] + temp[4] + temp[5] + temp[6] + temp[7];
+        }
+    }
+}
+
+// Utility to initialize matrices with random values
+void initialize_matrix(float* matrix, int N) {
+    for (int i = 0; i < N * N; i++) {
+        matrix[i] = (float)(rand() % 10 + 1); // Random values between 1 and 10
+    }
+}
+
+// function to initialize A nad B
+void initialize_matrix_AandB(float* matrixA, float* matrixB, int N) {
+    for (int i = 0; i < N * N; i++) {
+        float val = (float)(rand() % 10 + 1);  // Random values between 1 and 10
+        matrixA[i] = val;
+        matrixB[i] = val;
+    }
+}
+
+#define DEBUG 0
+
+// Utility to print matrices
+void print_matrix(const char* label, float* matrix, int N) {
+#if DEBUG
+    printf("%s:\n", label);
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            printf("%6.2f ", matrix[i * N + j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+#endif
+}
+
+int __cdecl main(void)
+{
+    hva4 h4;
+    hva2 h2;
+    int i;
+    float f;
+    __m128 a, b, d;
+    __m256 c, e;
+
+    LARGE_INTEGER freq, start, end;
+
+    QueryPerformanceFrequency(&freq);
+
+    a = b = d = _mm_set1_ps(3.0f);
+    c = e = _mm256_set1_ps(5.0f);
+    h2.array[0] = _mm_set1_ps(6.0f);
+    h2.array[1] = _mm_set1_ps(8.0f);
+    for (int i = 0; i < 4; i++) {
+        h4.array[i] = _mm256_set1_ps(7.0f + i);
+    }
+
+    QueryPerformanceCounter(&start);
+    b = example1(a, b, c, d, e);
+    QueryPerformanceCounter(&end);
+    print_m128("Result of example1", b);
+    printf("Execution time: %.3f ms\n", measure_time(start, end, freq));
+
+    QueryPerformanceCounter(&start);
+    e = example2(1, b, 3, d, e, 6.0f, 7);
+    QueryPerformanceCounter(&end);
+    print_m256("Result of example2", e);
+    printf("Execution time: %.3f ms\n", measure_time(start, end, freq));
+
+    QueryPerformanceCounter(&start);
+    d = example3(1, h2, 3, 4, 5);
+    QueryPerformanceCounter(&end);
+    print_m128("Result of example3", d);
+    printf("Execution time: %.3f ms\n", measure_time(start, end, freq));
+
+    QueryPerformanceCounter(&start);
+    f = example4(1, 2.0f, h4, d, 5);
+    QueryPerformanceCounter(&end);
+    printf("Result of example4 = %f\n", f);
+    printf("Execution time: %.3f ms\n", measure_time(start, end, freq));
+
+    QueryPerformanceCounter(&start);
+    i = example5(1, h2, 3, h4, 5);
+    QueryPerformanceCounter(&end);
+    printf("Result of example5 = %d\n", i);
+    printf("Execution time: %.3f ms\n", measure_time(start, end, freq));
+
+    QueryPerformanceCounter(&start);
+    h4 = example6(h2, h4, c, h2);
+    QueryPerformanceCounter(&end);
+    printf("Result of example6:\n");
+    for (int i = 0; i < 4; i++) {
+        char name[16];
+        snprintf(name, sizeof(name), "  array[%d]", i);
+        print_m256(name, h4.array[i]);
+    }
+    printf("Execution time: %.3f ms\n", measure_time(start, end, freq));
+
+    // edge
+
+    const int N = 256; // Matrix size (N x N), adjust for larger tests
+    float* A = (float*)_aligned_malloc(N * N * sizeof(float), 32);
+    float* B = (float*)_aligned_malloc(N * N * sizeof(float), 32);
+    float* C_scalar = (float*)_aligned_malloc(N * N * sizeof(float), 32);
+    float* C_simd = (float*)_aligned_malloc(N * N * sizeof(float), 32);
+
+    // Initialize matrices
+    srand((unsigned int)time(NULL));
+    //initialize_matrix(A, N);
+    //initialize_matrix(B, N); // if you want to 2 diffrent matix 
+    // but here I want to 2 equal initialization of A na B matrix
+    initialize_matrix_AandB(A, B, N);
+
+    // Print matrices (optional for debugging)
+    print_matrix("Matrix A", A, N);
+    print_matrix("Matrix B", B, N);
+
+    // Measure time for scalar multiplication
+    //LARGE_INTEGER freq, start, end;
+    QueryPerformanceFrequency(&freq);
+
+    QueryPerformanceCounter(&start);
+    scalar_matrix_mult(A, B, C_scalar, N);
+    QueryPerformanceCounter(&end);
+    double scalar_time = measure_time(start, end, freq);
+
+    // Measure time for SIMD multiplication
+    QueryPerformanceCounter(&start);
+    simd_matrix_mult(A, B, C_simd, N);
+    QueryPerformanceCounter(&end);
+    double simd_time = measure_time(start, end, freq);
+
+    // Print results
+    print_matrix("Result (Scalar)", C_scalar, N);
+    print_matrix("Result (SIMD)", C_simd, N);
+
+    printf("Scalar Time: %.3f ms\n", scalar_time);
+    printf("SIMD Time: %.3f ms\n", simd_time);
+    printf("Speedup: %.2fx\n", scalar_time / simd_time);
+
+    // Cleanup
+    _aligned_free(A);
+    _aligned_free(B);
+    _aligned_free(C_scalar);
+    _aligned_free(C_simd);
+
+    return 0;
+}
+```
+
+Nice example from https://github.com/fordsfords/rdtsc/blob/main/rdtsc.c - how to measure and initialize rtdsc properly
+
+```
+/* rdtsc.c - code for rdtsc module.
+# For documentation, see https://github.com/fordsfords/rdtsc
+#
+# This code and its documentation is Copyright 2022 Steven Ford
+# and licensed "public domain" style under Creative Commons "CC0":
+#   http://creativecommons.org/publicdomain/zero/1.0/
+# To the extent possible under law, the contributors to this project have
+# waived all copyright and related or neighboring rights to this work.
+# In other words, you can use this code for any purpose without any
+# restrictions.  This work is published from: United States.  The project home
+# is https://github.com/fordsfords/rdtsc
+*/
+
+#include <inttypes.h>
+#include <unistd.h>
+#include <time.h>
+#include "rdtsc.h"
+
+
+uint64_t rdtsc_ticks_per_sec = 0;
+
+void rdtsc_calibrate()
+{
+  struct timespec start_ts;
+  struct timespec end_ts;
+  uint64_t start_ns, end_ns, duration_ns;
+  uint64_t start_ticks, end_ticks, duration_ticks;
+
+  /* We will calibrate with an approx 2 ms sleep. But usleep() is
+   * not very accurate, so we will use clock_gettime() to measure
+   * precisely how long the sleep was.
+   */
+  clock_gettime(CLOCK_MONOTONIC, &start_ts);
+  RDTSC(start_ticks);
+  usleep(2000);  /* ~2 ms. */
+  RDTSC(end_ticks);
+  clock_gettime(CLOCK_MONOTONIC, &end_ts);
+
+  start_ns = (uint64_t)start_ts.tv_sec * UINT64_C(1000000000)
+      + (uint64_t)start_ts.tv_nsec;
+  end_ns = (uint64_t)end_ts.tv_sec * UINT64_C(1000000000)
+      + (uint64_t)end_ts.tv_nsec;
+  duration_ns = end_ns - start_ns;
+  duration_ticks = end_ticks - start_ticks;
+  /* sec * ns/sec * ticks/ns = ticks. */
+  rdtsc_ticks_per_sec = (UINT64_C(1000000000) * duration_ticks) / duration_ns;
+}  /* rdtsc_calibrate */
+```
