@@ -1,6 +1,6 @@
 <h2>SIMD demo</h2>
 <br />
-If in line 12 
+If in <b>main.cpp</b> in line 12 
 
 ``` //#define SECOND_TEST_TODO ```
 is commented do first test, when is define (uncommented) do second test <br /> Intel i3 on my laptop does not support AVX512. Only 256. <br /><br />
@@ -14,3 +14,4 @@ is commented do first test, when is define (uncommented) do second test <br /> I
 [7] https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/fabs-fabsf-fabsl?view=msvc-170<br />
 [8] https://en.wikipedia.org/wiki/CPUID#cite_note-46<br />
 [9] https://en.wikipedia.org/wiki/Advanced_Vector_Extensions<br />
+[10] https://github.com/fordsfords/rdtsc/blob/main/rdtsc.c<br />
