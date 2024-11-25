@@ -1,0 +1,8 @@
+﻿  main.cpp
+C:\Users\kdhome\source\repos\Project12_opencl\Project12_opencl\main.cpp(89,20): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 4 has type 'cl_platform_id'
+C:\Users\kdhome\source\repos\Project12_opencl\Project12_opencl\main.cpp(91,20): warning C4477: 'printf' : format string '%x' requires an argument of type 'unsigned int', but variadic argument 1 has type 'cl_device_id'
+C:\Users\kdhome\source\repos\Project12_opencl\Project12_opencl\main.cpp(102,20): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 3 has type 'cl_device_type'
+C:\Users\kdhome\source\repos\Project12_opencl\Project12_opencl\main.cpp(102,20): message : consider using '%lld' in the format string
+C:\Users\kdhome\source\repos\Project12_opencl\Project12_opencl\main.cpp(102,20): message : consider using '%I64d' in the format string
+C:\Users\kdhome\source\repos\Project12_opencl\Project12_opencl\main.cpp(60,18): warning C4101: 'buf': unreferenced local variable
+  Project12_opencl.vcxproj -> C:\Users\kdhome\source\repos\Project12_opencl\Debug\Project12_opencl.exe
