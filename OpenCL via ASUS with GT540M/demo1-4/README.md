@@ -16,6 +16,8 @@ const char* kernelSource = "__kernel void testCoresKernel(__global int* data) {"
 ```
 
 That's why I used "Project 12 cuda api" and API from  LoadLibrary(L"C:\\CUDA\\bin\\cudart.dll"); to get some information about GPU device.
+<br /><br />
+But there are more questions here about how the driver itself works...
 <hr>
 
 Project 11
