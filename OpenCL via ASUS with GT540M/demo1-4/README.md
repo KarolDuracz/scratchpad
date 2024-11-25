@@ -1,5 +1,5 @@
 TODO <br /><br />
-Some stuff to get access to GPU. Inside this code there is some tests using PTX raw code via OpenCL. And in other hand, using common functions. To jest skomentowane inside this .cpp files. <br /><br />
+Some stuff to get access to GPU. Inside this code there is some tests using PTX raw code via OpenCL. And in other hand, using common functions. This is commented inside this .cpp files. <br /><br />
 
 Look at line 1092 in scratchpad/OpenCL via ASUS with GT540M/demo1-4/Project12_opencl/Project12_opencl
 /main.cpp - // REVERSED VERSION -> load PTX kernel.bin, compile it and run test - PASS :) - this test write kernel to .bin file and in next commented code load this .bin file and execute. <br /><br />
