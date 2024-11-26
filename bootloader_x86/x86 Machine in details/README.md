@@ -5,5 +5,5 @@ For each topic I need a separate folder here. There is no detailed list of topic
 And how threads works, how multiprocessor system works, how scheduler works on x86 Linux/Windows from the inside etc etc. All this things is on the Internet or in the manufacturer's documentation, but I want to systematize it here in this repo at least a bit.
 <br /><br />
 And finally something about USB, CAN, SERIAL, etc. And again, there are many cool materials and books about USB itself etc, but...
-<br/ ><br />
-I think this needs to be done at least as a sketch of how it works and looks before attempting to make a virtual machine and emulate devices.
+<br /><br />
+I think this needs to be done at least as a sketch of how it works and looks before attempting to make a virtual machine and emulate devices. Because I set myself a "goal" to do it as an exercise. And in the win32 folder here is the beginning of a topic about it, but a few months later I know that it is a more complex topic and it cannot be done on 1 page "README.md", it must be divided into subtopics, stages, etc. This requires breaking down into stages and plans...
