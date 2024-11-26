@@ -8,7 +8,7 @@ In project12_opencl from line 214 to 888 PTX code tests. Look at "kernelSource" 
 
 I have "kernel.bin" (https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/demo1-4/kernel.bin) but this must be compile again using demo "Project12_opencl" and some implementation from inside, to rewrite the kernel Source as PTX (kernel.bin) again. And tests to load kernel.bin file and execute. I put kernel.bin file here, to see what it looks like.<br /><br />
 
-In line 895 there is "// testCoresKernel example" - this is probably test to detect all 96 cores. To fix first implementation (https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/main.cpp#L204) - But what I found on this topic, there is no way (???) to detect all cores like that using opencl. But there are methods like this simple PTX kernel, which detects based on --> int idx = get_global_id(0); number of threads.
+In line 895 there is "// testCoresKernel example" - this is probably test to detect all 96 cores. To fix first implementation (https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/main.cpp#L204) - But what I found on this topic, there is no way (???) to detect all cores like that using opencl. But there are methods like this simple kernel, which detects based on --> int idx = get_global_id(0); - this shows number of threads (???).
 
 ```
 const char* kernelSource = "__kernel void testCoresKernel(__global int* data) {"
