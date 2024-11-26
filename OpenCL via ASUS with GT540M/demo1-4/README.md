@@ -63,6 +63,9 @@ const char* kernelSource =
 
 <h2>How write to kernel.bin as PTX and read - line 1616 and 1204</h2>
 In (https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/demo1-4/Project12_opencl/Project12_opencl/main.cpp#L1204) there is only 1 "fread" function (https://learn.microsoft.com/pl-pl/cpp/c-runtime-library/reference/fread?view=msvc-170) . This means, that is implementation to LOAD kernel.bin. And in other hand, only one "fwrite" in line 1611 (https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/demo1-4/Project12_opencl/Project12_opencl/main.cpp#L1616) that means, this is implementation how to write to kernel.bin. 
+
+<h2>How to find solution to fix error from second picture "Project 12 cuda api"?</h2>
+This is only idea. But when use ReadProcessMemory to manually check stack and each fields of this structure like here (https://github.com/KarolDuracz/scratchpad/blob/main/NtQueryInformationProcess_run_example) --- maybe you find proper structure for this implementation. As you see, I was try to different types but no one works. Current example is work in some way(https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/demo1-4/Project12_cuda/Project12_cuda/main.cpp#L115) --- So, the solution is to read manually stack process and pass start address to this structure to examine each fields with this diffrent types (size) --- ReadProcessMemory API (https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-readprocessmemory)
 <hr>
 
 Project 11
