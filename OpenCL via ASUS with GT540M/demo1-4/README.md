@@ -84,6 +84,6 @@ Project 12 CPU vs GPU - 4 threads test for some computing
 <hr>
 <br />
 [1] https://developer.download.nvidia.com/assets/cuda/files/CUDADownloads/NVML/nvml.pdf <-- Here is guide how to Initialize and Cleanup using nvmlInit() and nvmlShutdown() etc. <br />
-[2] https://docs.nvidia.com/deploy/nvml-api/group__nvmlDeviceQueries.html <--  random choice topic in docs NVIDIA. _nvmlDeviceQueries. I Used some functions from this list like <br />
+[2] https://docs.nvidia.com/deploy/nvml-api/group__nvmlDeviceQueries.html <--  random choice topic from docs NVIDIA. _nvmlDeviceQueries. I Used some functions from this list like <br />
 https://docs.nvidia.com/deploy/nvml-api/group__nvmlDeviceQueries.html#group__nvmlDeviceQueries_1g2efc4dd4096173f01d80b2a8bbfd97ad <br />
 [3] https://github.com/victusfate/opencl-book-examples/blob/master/src/Chapter_6/HelloBinaryWorld/HelloBinaryWorld.cpp <-- nice example  how to use opencl to retrieving and loading program binaries<br />
