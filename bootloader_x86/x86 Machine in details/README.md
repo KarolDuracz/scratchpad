@@ -22,3 +22,10 @@ Starting with the market segment CPU:<br />
 ------: it will be maybe in 2026<br />
 <br />
 For now, this is only challange for myself to remember certain things and raise the current skill to the next level in some way. Public repo is a form of exhibitionism in some ways. But even though I show my flaws, imperfections, mistakes here, I still have a chance to confront other people and their views or opinions. And it gives me more discipline to do it systematically. I don't intend to put myself in the role of a mentor or scholar or to show how to do something, I'm just doing it for myself. That's it. 
+ <br /><br />
+ At the end of 2025 I want to know !!! <br />
+ [ 1 ] How the system starts and what happens after pressing POWER ON until Windows / Linux starts.
+<br />
+[ 2 ] How looks like internals of system, how window applications works from the system side etc
+<br />
+[ 3 ] To improve quality and methods, to do that these all things
