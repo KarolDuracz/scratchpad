@@ -28,6 +28,6 @@ For now, this is only challange for myself to remember certain things and raise 
 <br />
 [ 2 ] How looks like internals of system, how window applications works from the system side etc
 <br />
-[ 3 ] How to build virtual machine x86 and how to emulate devices
+[ 3 ] How to build virtual machine x86 and how to emulate devices - to run Windows or Linux that think they are running on real hardware
 <br />
 [ 4 ] To improve quality and methods, to do that these all things
