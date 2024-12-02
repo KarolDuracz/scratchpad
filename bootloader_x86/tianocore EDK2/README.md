@@ -61,3 +61,7 @@ This gives me a way to explore the bootloader more. This includes GRUB and Legac
 <br /><br />
 https://tianocore-docs.github.io/edk2-BuildSpecification/release-1.28/#edk-ii-build-specification <br />
 https://tianocore-docs.github.io/edk2-BuildSpecification/release-1.28/4_edk_ii_build_process_overview/#4-edk-ii-build-process-overview
+<hr >
+Beside tianocore.But for now more interesting me deeply understand windows bootloader. But Linux is more straightforward in its approach to many things. <br />
+https://www.gnu.org/software/grub/manual/grub/grub.html <br />
+https://github.com/rhboot/grub2
