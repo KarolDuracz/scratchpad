@@ -35,3 +35,6 @@ cd ..
 ```
 
 And then https://github.com/tianocore/tianocore.github.io/wiki/Windows-systems this guide. And instal nasm and setup NASM_PREFIX. And that's it. For win 8.1 right now I can't build this all things. I have many errors. But on the fresh installation of windows 10 with NASM 2.16.03 and MSVC2022 it just works just like that.
+
+<hr>
+This gives me a way to explore the bootloader more. This includes GRUB and Legacy BIOS at some point once I get through the basics of EDK.
