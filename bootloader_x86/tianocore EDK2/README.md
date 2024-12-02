@@ -87,7 +87,7 @@ but this needs analysis etc. to write something more sensible on this topic. Sec
 <hr>
 btw. This YT channel is very helpful, this playlist about EDK2 https://www.youtube.com/watch?v=1qdk0XJ6gCw&list=PLz-YdBAdSGeh8MT3c7_sfolRzXM8cNXPk&ab_channel=AshrafAliS to see how it is done in practice, specifically. 
 <hr>
-In other hand. What I found. FreeBSD have nice handbooks.  There is also a topic about booting the kernel
+In other hand. What I found. FreeBSD have a nice handbooks and tutorials.  There is also a topic about booting the kernel
 https://man.freebsd.org/cgi/man.cgi?query=uefi&sektion=8&apropos=0&manpath=FreeBSD+14.1-RELEASE+and+Ports <br />
 https://man.freebsd.org/cgi/man.cgi?query=efibootmgr&sektion=8&apropos=0&manpath=FreeBSD+14.1-RELEASE+and+Ports <br />
 https://docs.freebsd.org/en/books/ <br />
