@@ -93,3 +93,5 @@ https://man.freebsd.org/cgi/man.cgi?query=efibootmgr&sektion=8&apropos=0&manpath
 https://docs.freebsd.org/en/books/ <br />
 And this book -> FreeBSD Architecture Handbook
 https://docs.freebsd.org/en/books/arch-handbook/boot/
+From what I see, for many topics it is better to use Linux than to look for help in Windows topics to better understand these topics from the Windows side...
+
