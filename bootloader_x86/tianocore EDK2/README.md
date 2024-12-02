@@ -84,4 +84,5 @@ C:\edk2> dir /s Build\MdeModule\DEBUG_...\IA32\HelloWorld.efi
 but this needs analysis etc. to write something more sensible on this topic. Second case. In this efi demo list is UiApp.efi. And for now, what interests me most is how it is built this UiApp.efi. TODO.
 
 <br /><br />
+<hr>
 btw. This YT channel is very helpful, this playlist about EDK2 https://www.youtube.com/watch?v=1qdk0XJ6gCw&list=PLz-YdBAdSGeh8MT3c7_sfolRzXM8cNXPk&ab_channel=AshrafAliS to see how it is done in practice, specifically. 
