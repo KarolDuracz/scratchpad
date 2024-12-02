@@ -67,6 +67,21 @@ https://www.gnu.org/software/grub/manual/grub/grub.html <br />
 https://github.com/rhboot/grub2
 <hr>
 But looking deeply into guidelines https://github.com/tianocore/tianocore.github.io/wiki/start-using-UEFI. For example here 
-https://github.com/tianocore/tianocore.github.io/wiki/EDK-II-Platforms they write, to build environment for Windows I need https://github.com/tianocore/tianocore.github.io/wiki/Nt32Pkg . TODO 
+https://github.com/tianocore/tianocore.github.io/wiki/EDK-II-Platforms they write, to build environment for Windows I need https://github.com/tianocore/tianocore.github.io/wiki/Nt32Pkg . TODO  <br />
+And then back to this https://github.com/tianocore/tianocore.github.io/wiki/Windows-systems#build as it is written at the bottom 
+<br /><br />
+
+```
+As a tangible result of the build, you should have the HelloWorld UEFI application. If you have a UEFI system available to you which matches the processor architecture that you built, then this application should be able to run successfully under the shell.
+<br />
+C:\edk2> dir /s Build\MdeModule\DEBUG_...\IA32\HelloWorld.efi
+```
+
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/19%20-%202-11-2024%20-%20edk2%20test.png?raw=true)
+
+<br />
+but this needs analysis etc. to write something more sensible on this topic. Second case. In this efi demo list is UiApp.efi. And for now, what interests me most is how it is built this UiApp.efi. TODO.
+
 <br /><br />
 btw. This YT channel is very helpful, this playlist about EDK2 https://www.youtube.com/watch?v=1qdk0XJ6gCw&list=PLz-YdBAdSGeh8MT3c7_sfolRzXM8cNXPk&ab_channel=AshrafAliS to see how it is done in practice, specifically. 
