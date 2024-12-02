@@ -65,3 +65,8 @@ https://tianocore-docs.github.io/edk2-BuildSpecification/release-1.28/4_edk_ii_b
 Beside tianocore.But for now more interesting me deeply understand windows bootloader. But Linux is more straightforward in its approach to many things. <br />
 https://www.gnu.org/software/grub/manual/grub/grub.html <br />
 https://github.com/rhboot/grub2
+<hr>
+But looking deeply into guidelines https://github.com/tianocore/tianocore.github.io/wiki/start-using-UEFI. For example here 
+https://github.com/tianocore/tianocore.github.io/wiki/EDK-II-Platforms they write, to build environment for Windows I need https://github.com/tianocore/tianocore.github.io/wiki/Nt32Pkg . TODO 
+<br /><br />
+btw. This YT channel is very helpful, this playlist about EDK2 https://www.youtube.com/watch?v=1qdk0XJ6gCw&list=PLz-YdBAdSGeh8MT3c7_sfolRzXM8cNXPk&ab_channel=AshrafAliS to see how it is done in practice, specifically. 
