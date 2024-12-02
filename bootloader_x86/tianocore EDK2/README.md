@@ -34,6 +34,17 @@ git submodule update --init
 cd ..
 ```
 
+```
+// on the page https://github.com/tianocore/edk2 look on the right side - Releases 29
+// edk2-stable202411
+// Latest
+// last week
+// + 28 releases
+// I used this command before nmake from this tutorial https://www.youtube.com/watch?v=jrY4oqgHV0o&ab_channel=papst5
+git tag
+git checkout tags/{copy here last version} // current https://github.com/tianocore/edk2/releases/tag/edk2-stable202411
+```
+
 And then https://github.com/tianocore/tianocore.github.io/wiki/Windows-systems this guide. And instal nasm and setup NASM_PREFIX. And that's it. Then I used guide from papst5 channel.
 
 ```
@@ -41,7 +52,7 @@ cd BasTools
 nmake
 ```
 
-And then back to AshrafAliS version, and build for X64, emulator, to get WinHost.exe
+And then back to AshrafAliS's version, and build for X64, emulator, to get WinHost.exe
  <br /><br />
 For win 8.1 right now I can't build this all things. I have many errors. But on the fresh installation of windows 10 with NASM 2.16.03 and MSVC2022 it just works just like that.
 
