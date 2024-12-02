@@ -96,4 +96,4 @@ https://docs.freebsd.org/en/books/arch-handbook/boot/
 From what I see, for many topics it is better to use Linux than to look for help in Windows topics to better understand these topics from the Windows side...
 
 <hr>
-And last words in this introduce. I wonder more and more why I'm doing this, why the hell do I need it  :sweat_smile: . This is hard. But I think it's the best way to touch on the subject of hardware in the future. I mean the motherboard, and the devices connected to it. And somehow to remind the basics. 
+And last words in this introduce. I wonder more and more why I'm doing this, why the hell do I need it  :sweat_smile: . This is hard. But I think it's the best way to touch on the subject of hardware in the future. I mean the motherboard, and the devices connected to it. And somehow to remind the basics. To also better understand the IT environment in general.
