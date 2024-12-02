@@ -47,3 +47,5 @@ For win 8.1 right now I can't build this all things. I have many errors. But on 
 
 <hr>
 This gives me a way to explore the bootloader more. This includes GRUB and Legacy BIOS at some point once I get through the basics of EDK.
+<br /><br />
+https://tianocore-docs.github.io/edk2-BuildSpecification/release-1.28/#edk-ii-build-specification
