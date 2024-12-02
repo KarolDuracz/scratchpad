@@ -22,3 +22,16 @@ C:\Users\test\AppData\Local\bin\NASM\
 ```
 
 And like on this tutorial https://www.youtube.com/watch?v=V2EAccnaSvo&ab_channel=AshrafAliS I ran WinHost.exe. And it works. So I can analyze a little bit how it works meantime. In this "AshrafAliS" channel, there is playlist how to write EFI demos.
+<br />
+<hr >
+<br />
+All guide is here https://github.com/tianocore/tianocore.github.io/wiki/Windows-systems but these 2 videos is great. For Windows 10 https://github.com/tianocore/edk2 just download git and initialize like here
+
+```
+git clone https://github.com/tianocore/edk2.git
+cd edk2
+git submodule update --init
+cd ..
+```
+
+And then https://github.com/tianocore/tianocore.github.io/wiki/Windows-systems this guide. And instal nasm and setup NASM_PREFIX. And that's it. For win 8.1 right now I can't build this all things. I have many errors. But on the fresh installation of windows 10 with NASM 2.16.03 and MSVC2022 it just works just like that.
