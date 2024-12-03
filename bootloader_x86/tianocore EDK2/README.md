@@ -15,7 +15,7 @@ TARGET_ARCH  = X64
 TOOL_CHAIN_TAG  = VS2019
 ```
 
-for the paths environment I gave the location as NASM_PREFIX. Without nasm.exe in path, only target folder.
+for the paths environment I gave the location as NASM_PREFIX. Without nasm.exe in path, only target folder. 
 
 ```
 C:\Users\test\AppData\Local\bin\NASM\
@@ -97,3 +97,11 @@ From what I see, for many topics it is better to use Linux than to look for help
 
 <hr>
 And last words in this introduce. I wonder more and more why I'm doing this, why the hell do I need it  :sweat_smile: . This is hard. But I think it's the best way to touch on the subject of hardware in the future. I mean the motherboard, and the devices connected to it. And somehow to remind the basics. To also better understand the IT environment in general. And to have a chance and opportunity to build something in future maybe...
+<hr>
+I forget about python. I installed on Win10 latest version https://www.python.org/ftp/python/3.13.0/python-3.13.0-amd64.exe - probaly I set first in CMD this variable usign command like that. And this was probably before run edksetup.bat.
+
+
+```
+set PYTHON_HOME=C:\path\to\python
+echo %PYTHON_HOME% // if exists return path to app python
+```
