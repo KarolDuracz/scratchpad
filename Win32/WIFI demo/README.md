@@ -9,3 +9,6 @@ const std::wstring password = L"1234567890";
 This is not topic to learn for now, but I will probably touch on this topic in a later phase regarding the network. 
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/WIFI%20demo/21%20-%205-12-2024%20-%20gopro%20cam.png?raw=true)
+
+<h2>To fix</h2>
+This is not http from what wireshark shows, only SMB on port 217 and 218. UDP.
