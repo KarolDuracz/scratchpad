@@ -21,6 +21,9 @@ last update : 17-09-2024
 <br /><br />
 update 24-09-2024 - I forgot about https://en.wikipedia.org/wiki/Bayesian_network | https://en.wikipedia.org/wiki/Markov_chain. This is not important right now, but in timeline of ML it is. It is more important to somehow make up for the shortcomings by the end of 2025. So all vision task, translator language task. Because task to create similar to like google.translate is good exercise.  But somehow this has to be sorted out by the end of 2025, as much as I can! There is more stuff here like this https://en.wikipedia.org/wiki/Probability_density_function | https://en.wikipedia.org/wiki/Spectral_density#Envelope | https://en.wikipedia.org/wiki/Linear_predictive_coding etc etc etc. There's a lot of interesting stuff here to learn next to ML. But...  (...) Also on wiki there is nice lecture and drawings about Perceptron and idea behind it https://en.wikipedia.org/wiki/Perceptron etc etc etc 
 <br /><br />
+Update 05-12-2024 - I forget about one important fact in timeline. Improvement of this architectures (e.g. Transformers GPT-2) is also due to the transfer of large matrix calculations to the GPU. From LSTM and GRU like people said, this can't run in parallel effectively. So in a way it means that hardware is the bottleneck and determines everything. But also respect for optimizing to the extent that it is in GPT2. For networks to compute tanh(XW+B) as matrix computing on GPU. And they could do it on a large matrix.
+
+<br /><br />
 <hr>
 LINK TO LLM CODE SOURCE --> https://github.com/karpathy/llm.c/tree/master
 <br /><br />
