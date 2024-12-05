@@ -13,4 +13,4 @@ This is not topic to learn for now, but I will probably touch on this topic in a
 <h2>To fix</h2>
 1 - This is not http from what wireshark shows, only SMB on port 217 and 218. UDP. <br />
 2 - First I need to find way to get data from it. This sends something after catch connection. I see it in wireshark. ~300 packets. I don't know, maybe for this class device there is some protocol... ???
-3 - Then proceed to display the image as a video stream. After fixed 1 and 2.
+3 - Then proceed to display the image as a video stream. After fixed 1 and 2. example code (https://github.com/KarolDuracz/scratchpad/blob/main/Win32/WIFI%20demo/capture_frames_example.cpp)
