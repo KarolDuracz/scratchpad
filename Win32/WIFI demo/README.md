@@ -16,4 +16,7 @@ This is not topic to learn for now, but I will probably touch on this topic in a
 3 - Then proceed to display the image as a video stream. After fixed 1 and 2. example code (https://github.com/KarolDuracz/scratchpad/blob/main/Win32/WIFI%20demo/capture_frames_example.cpp)
 <hr>
 This was only quick demo. But this is importants facts. XDV 1.9.62 version. And this app can manage 3 modes, and record stream. But when I switch to 720P 90/120FPS and swithc to 1080P 60FPS without recording, only set on menu this option, then the screen of stream becomes dark. As if the camera had lost focus and light. Event switch to 4K mode this not back to default settings of CMOS. Only turning on 4K recording resets these errors and the image becomes clearer and sharper, adjusting itself frame by frame in relation to lighting. I'm writing this because maybe there really is some protocol for this, but I don't know anything specific about it now.
+<br /><br />
+But this demo, and other demos in future here is about Windows system and how to handle this issue as above from Windows perspective.
+ 
   
