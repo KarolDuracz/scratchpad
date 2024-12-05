@@ -1,5 +1,5 @@
 <h2>TODO</h2>
-Get live stream from GoPro cam. For android and apk XDV it works. But how to do this on windows? How to capture live streaming from camera for example to use in car as an auxiliary reversing camera.
+Get live stream from GoPro cam. For android and apk XDV it works. But how to do this on windows? How to capture live streaming from camera for example to use in car as an auxiliary reversing camera. Camera using in this demo: Pro4U BLOW 4k, but the older version without front display, only with rear display. Camera has a WIFI mode after turn it on transmits video. And you can control basic functions from android app.
 
 ```
 const std::wstring ssid = L"X10000_01cf";
