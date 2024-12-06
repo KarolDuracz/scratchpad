@@ -227,6 +227,10 @@ Post-Defragmentation Validation:
 
 Verify file integrity and ensure no data was lost during the process.
 
+Important Notes
+Permissions: Defragmentation requires administrative privileges.
+Data Safety: Always back up data before running defragmentation to avoid accidental loss during cluster movement.
+Practical Use: Most modern systems handle defragmentation automatically (e.g., Windows Disk Optimization).
 
 ```
 #include <windows.h>
