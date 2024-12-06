@@ -1,7 +1,8 @@
 // this is only demo from ChatGPT 4o. This is a more complex topic. I am interested in a driver (service) that tracks this topic more comprehensively. Process Explorer shows usage but this thread needs to be expanded here. This is more of a driver topic but here are 2 examples for userland.
 <br /><br />
 Another topic is to examine and break down HAL driver etc. What does the anatomy of a disk driver look like, what happens on the kernel side and what does the path to it from userspace look like?
-
+<br /><br />
+This is also start for topic about "Error detection" and in general memory devices and how to interact with it. 
 <h2>Check drive health</h2>
 <br />
 Example program that benchmarks disk performance by measuring the speed of reading, writing, and searching for files on the filesystem
