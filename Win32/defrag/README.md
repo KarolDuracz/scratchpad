@@ -1,4 +1,4 @@
-// this is only demo from ChatGPT 4o. This is a more complex topic. I am interested in a driver that tracks this topic more comprehensively. Process Explorer shows usage but this thread needs to be expanded here.
+// this is only demo from ChatGPT 4o. This is a more complex topic. I am interested in a driver (service) that tracks this topic more comprehensively. Process Explorer shows usage but this thread needs to be expanded here.
 
 <h2>Check drive health</h2>
 <br />
