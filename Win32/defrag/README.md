@@ -343,3 +343,8 @@ int main() {
     return 0;
 }
 ```
+
+<hr>
+This is more about driver topic. But digging deeper you eventually have to figure out how the disk is handled, and how the entire file system works in general at the level of drivers, kernel, and the bridge between user space and kernel space. But this is only disk. How about RAM. How about DVD. Hou about Flash memory. etc.
+<br /><br />
+TODO
