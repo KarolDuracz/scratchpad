@@ -2,7 +2,9 @@
 <br /><br />
 Another topic is to examine and break down HAL driver etc. What does the anatomy of a disk driver look like, what happens on the kernel side and what does the path to it from userspace look like?
 <br /><br />
-This is also start for topic about "Error detection" and in general memory devices and how to interact with it. 
+This is also start for topic about "Errors detection" and in general memory devices and how to interact with it. 
+<br /><br />
+And even for this code below needs break it down to examine, how current standards and compiler produce code and how it looks like asm and what it does. TODO.
 <h2>Check drive health</h2>
 <br />
 Example program that benchmarks disk performance by measuring the speed of reading, writing, and searching for files on the filesystem
