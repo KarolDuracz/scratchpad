@@ -1,3 +1,6 @@
+Update - 07-12-2024 - And this is probably the end of "planning". I hope I won't litter here anymore. Because from now on I just have to handle it manually and work through these topics https://learn.microsoft.com/en-us/windows/win32/api/ . I have already browsed, read, and coded some of the things, and I have also read Windows Internal 6 and 7. But it is my individual matter what I will do and whether I will do what I have planned for 2025, starting with these code in this "scratchpad". This link has everything, there are headers, structures, API description, links, etc. I need to educate myself a bit from this point on, there is no other option. 😶
+
+<hr>
 // this is only demo from ChatGPT 4o. This is a more complex topic. I am interested in a driver (service) that tracks this topic more comprehensively. Process Explorer shows usage but this thread needs to be expanded here. This is more of a driver topic but here are 2 examples for userland.
 <br /><br />
 Another topic is to examine and break down HAL driver etc. What does the anatomy of a disk driver look like, what happens on the kernel side and what does the path to it from userspace look like?
