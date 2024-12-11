@@ -27,7 +27,7 @@ This is guide for Windows. There is similar version for linux, but using linux c
 
 Workflow Example: Modify and Test ACPI Tables
 
-Step 1: Extract ACPI Tables. Use acpidump to dump the ACPI tables. This creates .dat files like dsdt.dat for the DSDT table.
+Step 1: Extract ACPI Tables. Use acpidump to dump the ACPI tables. This creates .dat files like dsdt.dat for the DSDT table. <b>This command get ACPI table from my host machine probably, this is ASUS laptop for ma case</b>
 
 ```
 acpidump -b 
@@ -97,3 +97,5 @@ As I wrote. This is not a topic for an A4 size Readme. This is a quick intro.
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/AML%20Intel/119%20-%2010-12-2024%20-%20ok%20.png?raw=true)
 
+<hr>
+Sending to search engine GOOGLE > "EDK2 .aml" or "EDK2 intel package asl" - first results refer to tianocore. For example https://github.com/tianocore/edk2-platforms/blob/master/Platform/Intel/Readme.md | https://github.com/tianocore/edk2-platforms/blob/master/Platform/Intel/KabylakeOpenBoardPkg/Acpi/BoardAcpiDxe/Dsdt/CPU.asl
