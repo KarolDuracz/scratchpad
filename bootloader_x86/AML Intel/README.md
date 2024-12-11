@@ -27,7 +27,7 @@ This is guide for Windows. There is similar version for linux, but using linux c
 
 Workflow Example: Modify and Test ACPI Tables
 
-Step 1: Extract ACPI Tables. Use acpidump to dump the ACPI tables. This creates .dat files like dsdt.dat for the DSDT table. <b>This command get ACPI table from my host machine probably, this is ASUS laptop for ma case</b>
+Step 1: Extract ACPI Tables. Use acpidump to dump the ACPI tables. This creates .dat files like dsdt.dat for the DSDT table. <b>This command gets ACPI table from my host machine probably, this is ASUS laptop for ma case</b>
 
 ```
 acpidump -b 
