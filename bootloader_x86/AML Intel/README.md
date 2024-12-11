@@ -101,11 +101,13 @@ As I wrote. This is not a topic for an A4 size Readme. This is a quick intro.
 Sending to search engine GOOGLE > "EDK2 .aml" or "EDK2 intel package asl" - first results refer to tianocore. For example https://github.com/tianocore/edk2-platforms/blob/master/Platform/Intel/Readme.md | https://github.com/tianocore/edk2-platforms/blob/master/Platform/Intel/KabylakeOpenBoardPkg/Acpi/BoardAcpiDxe/Dsdt/CPU.asl
 <br /><br />
 <h2>But from what I see there are a few things to read</h2> 
-https://uefi.org/htmlspecs/ACPI_Spec_6_4_html/03_ACPI_Concepts/ACPI_Concepts.html#acpi-concepts - webpage version acpi spec 6.4<br />
-https://uefi.org/sites/default/files/resources/ACPI_Spec_6_4_Jan22.pdf - ACPI spec 6.4 pdf<br />
+https://uefi.org/htmlspecs/ACPI_Spec_6_4_html/03_ACPI_Concepts/ACPI_Concepts.html#acpi-concepts - webpage version - acpi spec 6.4<br />
+https://uefi.org/sites/default/files/resources/ACPI_Spec_6_4_Jan22.pdf - ACPI spec 6.4 - pdf version<br />
 https://uefi.org/sites/default/files/resources/ACPI_5.pdf - acpi 5 pdf<br />
 https://uefi.org/acpi - links for example to this https://datatracker.ietf.org/doc/html/rfc4122<br />
 https://learn.microsoft.com/en-us/windows-hardware/drivers/bringup/acpi-system-description-tables<br />
 https://dox.ipxe.org/AcpiTable_8h_source.html | https://dox.ipxe.org/AcpiTable_8h.html<br />
 https://secret.club/2020/05/26/introduction-to-uefi-part-1.html<br />
 http://www.x86asm.net/articles/uefi-programming-first-steps/index.html#Getting-the-hardware<br />
+And source of tianocore EDK2 like this one<br />
+https://github.com/tianocore/edk2/blob/master/MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableProtocol.c
