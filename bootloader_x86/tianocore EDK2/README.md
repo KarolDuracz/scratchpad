@@ -119,3 +119,5 @@ What I mean is just installing everything that's necessary for this demos, to wo
 This repo exists among other things, to understand how it works. And how OS handle this after boot stages. This is complex topic, but I want to understand. There are many topics around this. <br /> <br />
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/how%20it%20works%20-%20achieve%20in%202025.png?raw=true)
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/load%20kernel%20bootx64%20efi.png?raw=true)
