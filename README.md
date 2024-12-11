@@ -26,7 +26,7 @@ So. <b>Ok, I stop here!</b> Today I understood that it is better to create a fol
 <br /><br />
 Update 11-12-2024 - I added WinPE, tianocore EDK2 and ASL/AML Intel quick intro. At first I threw in some pieces of code to do something as a warm-up. At the end of 2024 I think it's time to change the approach to uploading ready, finished work. It was mainly planning what I have to do now, to remind myself of the basics. There has to be some purpose to it. It can't be learning for the sake of learning, but I have to push myself because this is not trivial. <b>Typical, of what I was used to so far.</b>. Such things are not done in public, in fact I despise such challenges if someone does it in public, but in a way it can help. But only up to a point. Because some things are better done quietly. After a while, this type of "challenge", which was originally intended to serve as a journal, begins to take time, and instead of spending time studying and improving your skills in what you do, you focus more on what you publish. For example. Will learning to play the guitar and posting it on YT make you better guitar player like Jimi Hendrix, Slash, etc.? Nope. No, it doesn't. It's just practice and you either have the talent for it or you don't. This is just an example to have a point of reference.(...)  <b>But since I already have this repo on github, I need to "summarize it somehow".</b> Because, willingly or unwillingly, I started publishing certain things and thoughts.
 <br /><br />
-That's it for 2024!
+That's it for 2024 !!!
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 <br /><br />
 NtQueryInformationProcess_run_example - dump.png
