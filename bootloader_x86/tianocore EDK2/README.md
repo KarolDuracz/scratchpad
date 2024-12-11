@@ -120,4 +120,4 @@ This repo exists among other things, to understand how it works. And how OS hand
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/how%20it%20works%20-%20achieve%20in%202025.png?raw=true)
 
-![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/load%20kernel%20bootx64%20efi.png?raw=true)
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/load%20kernel%20bootx64%20efi%20from%20cdrom.png?raw=true)
