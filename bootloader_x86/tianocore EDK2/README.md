@@ -114,3 +114,8 @@ because I'm not making my CV or anything like that here to show what I know, wha
 <hr>
 And one more thing. Since I started messing around with WinPE, I've been thinking more and more about packing it up later as a WinPE image, I mean installing basic tools, setting up the environment and building an ISO. I don't know if it's legal to do things like that and then share them. But I'm thinking more and more about this solution. Downloading an ISO as a LiveCD to run on a virtual machine without installing it is easier than compiling, building, setting up the environment. It's better to do it all once. I'll just think about it again, whether it's legal and whether I can do it. And whether the standard 72h of kernel operation doesn't interfere, etc.
 What I mean is just installing everything that's necessary for this demos, to work and just running it as a process, just like that, as LIVE CD WinPE. I'll think about it...
+<hr>
+<h2>TODO</h2>
+This repo exists among other things, to understand how it works. And how OS handle this after boot stages. This is complex topic, but I want to undesrtand.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/how%20it%20works%20-%20achieve%20in%202025.png?raw=true)
