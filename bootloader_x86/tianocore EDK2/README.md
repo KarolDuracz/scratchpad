@@ -111,7 +111,7 @@ For this case better to write BAT script to automate copying folders and then ru
 <br />
 <br />
 <br />
-Everything below is a first attempt to install EDK2 and run something like Hello World. But just below there are links to videos with good guides on how to install EDK2. More spam than what is actually needed, but also review.
+Everything below is a first attempt to install EDK2 and run something like Hello World. But just below there are links to videos with good guides on how to install EDK2. More spam than what is actually needed, but read this also.
 <br />
 <br />
 <br />
