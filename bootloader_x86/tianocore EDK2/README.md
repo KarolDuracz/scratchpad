@@ -58,6 +58,15 @@ cd C:\Path\To\edk2\CryptoPkg
 "C:\Program Files (x86)\Microsoft Visual Studio\<Version>\VC\Auxiliary\Build\vcvarsall.bat" x64
 nmake -f Makefile
 ```
+Why I wrote this in #9 step? Because I had errors several times while building. Errors like error 7000 and error F002 and nmake fatal error U1077 and maybe something else. And the only thing that worked was <b>git submodule update --init --recursive</b> 
+
+```
+Error 7000: This error occurs when the build system fails to execute a specific command, such as compiling a source file or linking an object file.
+
+Error F002: This is a more generic failure indicating that a particular module in the package could not be built successfully.
+
+nmake fatal error U1077
+```
 
 <h2>My first EFI demo comparing to @QuesoFuego</h2>
 
