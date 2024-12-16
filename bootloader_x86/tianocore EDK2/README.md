@@ -110,7 +110,9 @@ For this case better to write BAT script to automate copying folders and then ru
 <h2>Replicate demo 1 from example of @QuesoFuego</h2> https://youtu.be/t3iwBQg_Gik?list=PLT7NbkyNWaqZYHNLtOZ1MNxOt8myP5K0p&t=1927 --> https://github.com/queso-fuego/uefi-dev/blob/main/hello_efi/efi.c <br /><br />
 [1] Just copy only helloworld.efi to the main folder of the Emulator where fs0: is <br />
 [2] No need to do "build clean" / "build cleanall". But don't forget turn of emulator when you compile helloworld.inf, If you have an error with helloworld.dll <br />
-[3] I copied exactly those lines of code. There is no elf.h. It's all built in the HelloWorld project and folder with .inf files and the rest. That's where you configure the necessary libraries etc. But the basic configuration for those API functions used in this demo is sufficient, nothing else needs to be added.
+[3] I copied exactly those lines of code. There is no elf.h. It's all built in the HelloWorld project and folder with .inf files and the rest. That's where you configure the necessary libraries etc. But the basic configuration for those API functions used in this demo is sufficient, nothing else needs to be added.<br />
+[4] Keys event works also. As in the example.
+<br />
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/187%20-%2016-12-2024%20-%20first%20demo%20cmp%20to%20queso-fuego.png?raw=true)
 
