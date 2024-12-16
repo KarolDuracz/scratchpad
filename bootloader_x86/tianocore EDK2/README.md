@@ -108,6 +108,8 @@ Build
 For this case better to write BAT script to automate copying folders and then running the emulator etc. But this is just a demo to see if it works. <b>BECAUSE !!!. @QuesoFuego on his first video shows how to configure the environment https://youtu.be/t3iwBQg_Gik?list=PLT7NbkyNWaqZYHNLtOZ1MNxOt8myP5K0p . And he use OVMF and QEMU to run efi-s. But here, I want to use EMULATOR. </b>
 
 <hr>
+Everything below is a first attempt to install EDK2 and run something like Hello World
+<hr>
 <h2>Only information for myself</h2>
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/17%20-%202-11-2024%20-%20edk2.png?raw=true)
