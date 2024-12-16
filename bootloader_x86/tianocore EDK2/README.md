@@ -18,7 +18,7 @@ git checkout tags/edk2-stable202411
 
 [4] But better is to run first "edksetup.bat" from main folder of edk2\ - this will show which PATHS are set and if there is python, nasm etc. If something is wrong it will throw ERROR. DO THIS AS NEXT STEP, before you start setting paths manually after installing nasm and python
 
-[5] o setup path in CMD environment use these commands - https://github.com/tianocore/tianocore.github.io/wiki/Windows-systems#build
+[5] Setup path in CMD environment use these commands - https://github.com/tianocore/tianocore.github.io/wiki/Windows-systems#build
 
 ```
 where python // to find path to python 
@@ -72,7 +72,7 @@ nmake fatal error U1077
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/how%20to%20create%20EFI%20app%20for%20emulator.png?raw=true)
 
-This is stupid demo. With "Print" and that's it. And I turned off features for basic string "UEFI Hello World" in .inf file.
+This is stupid demo. With "Print" and that's it. And I turned off features for basic string "UEFI Hello World" in .inf file. And I changed GUID from here http://www.guidgen.com/ instead of what was in the base HelloWorld.c in MdeModulePkg
 
 ```
 EFI_STATUS EFIAPI UefiMain ( IN EFI_HANDLE        ImageHandle,  IN EFI_SYSTEM_TABLE  *SystemTable  )
