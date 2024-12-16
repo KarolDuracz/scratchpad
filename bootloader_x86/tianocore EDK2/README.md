@@ -45,7 +45,7 @@ nmake
 
 [8] Use command like this : build -p MdeModulePkg/MdeModulePkg.dsc -m <path-to-module>.inf and edksetup.bat Rebuild to setup environment again or build specific module
 
-[9] Main documentation discourage using this command
+[9] Main documentation discourage using this command (<b>"Ensure the workspace is setup correctly. Make sure you've initialized all submodules, as OpenSSL might be in a submodule. Run the following command"</b>)
 
 ```
 git submodule update --init --recursive
