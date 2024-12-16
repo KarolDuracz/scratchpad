@@ -45,6 +45,20 @@ nmake
 
 [8] Use command like this : build -p MdeModulePkg/MdeModulePkg.dsc -m <path-to-module>.inf and edksetup.bat Rebuild to setup environment again or build specific module
 
+[9] Main documentation discourage using this command
+
+```
+git submodule update --init --recursive
+```
+
+But for errors from edk2/CryptoPkg/Library/OpensslLib/openssl/ maybe this is necessary to build manually module using 
+
+```
+cd C:\Path\To\edk2\CryptoPkg
+"C:\Program Files (x86)\Microsoft Visual Studio\<Version>\VC\Auxiliary\Build\vcvarsall.bat" x64
+nmake -f Makefile
+```
+
 <hr>
 <h2>Only information for myself</h2>
 
