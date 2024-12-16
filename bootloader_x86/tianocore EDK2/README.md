@@ -41,7 +41,7 @@ cd BaseTools
 nmake
 ```
 
-[7] If it finishes without errors and creates the win32 folder in baseTools according to the path indicated after running edksetup.bat, go back to main edk2 folder and run the build command.
+[7] If it finishes without errors and creates the win32 folder in baseTools according to the path indicated after running edksetup.bat, go back to main edk2 folder and run the build command. <b>In this stage, if everything is OK it should build the .efi files and other stuff in the Build\EmulatorX64\X64 folder</b>
 
 [8] Use command like this : build -p MdeModulePkg/MdeModulePkg.dsc -m <path-to-module>.inf and edksetup.bat Rebuild to setup environment again or build specific module
 
