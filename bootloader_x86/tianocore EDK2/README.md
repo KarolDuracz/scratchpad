@@ -118,7 +118,8 @@ For this case better to write BAT script to automate copying folders and then ru
 
 <br />
 To sum up. @AshrafAliS from description below, and @QuesoFuego that's a lot of knowledge, but both of them didn't touch the topic of hardware at its core. @QuesoFuego from what I see he tried to display something with ACPI, create a system loader and many more advanced topics. Which is valuable. But they still haven't touched the drivers topic. But at least it's less work for me, because after I've got it figured out I can move on to this topic.
-
+<br /><br />
+And last important question! Is this work on real hardware?! YES. I won't be uploading any more photos, but yes, it works. As I wrote above, I made a WinPE pendrive and put this helloworld.efi there and changed the name to bootx64.efi (F:\EFI\Boot\helloworld.efi > bootx64.efi), just like that. I set the BIOS to boot first on the pendrive and it works like on an emulator. And when I press any key this shutdown machine. Power OFF.
 <hr>
 <br />
 <br />
