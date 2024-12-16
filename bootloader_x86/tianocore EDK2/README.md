@@ -18,11 +18,12 @@ git checkout tags/edk2-stable202411
 
 [4] But better is to run first "edksetup.bat" from main folder of edk2\ - this will show which PATHS are set and if there is python, nasm etc. If something is wrong it will throw ERROR. DO THIS AS NEXT STEP, before you start setting paths manually after installing nasm and python
 
-[5] o setup path in CMD environment use these commands
+[5] o setup path in CMD environment use these commands - https://github.com/tianocore/tianocore.github.io/wiki/Windows-systems#build
 
 ```
 where python // to find path to python 
 set PYTHON_HOME=C:\Users\kdhome\AppData\Local\Programs\Python\Python312 // setup path variable
+edksetup Rebuild // maybe run again after setup PYTHON_HOME
 ```
 
 [6] Change  Conf/target.txt for MdeModulePkg, X64, VS2019, DEBUG and enter to BaseTools folder and run nmake
