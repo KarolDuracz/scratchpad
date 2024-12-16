@@ -59,6 +59,44 @@ cd C:\Path\To\edk2\CryptoPkg
 nmake -f Makefile
 ```
 
+<h2>First my EFI demo</h2>
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/how%20to%20create%20EFI%20app%20for%20emulator.png?raw=true)
+
+This is stupid demo. With "Print" and that's it. And I turned off features for basic string "UEFI Hello World" in .inf file.
+
+```
+EFI_STATUS EFIAPI UefiMain ( IN EFI_HANDLE        ImageHandle,  IN EFI_SYSTEM_TABLE  *SystemTable  )
+{// Print directly the string "Czesc"
+  Print(L"Hi\n");   return EFI_SUCCESS;}
+```
+
+I created this for one purpose only. Because from what I see, I need to build the emulator first (EmulatorX64), then change Conf/target.txt to MdeModulePkg and build only HelloWorld.efi with the command, if I take it as a base for coding demo.
+
+```
+build -p MdeModulePkg/MdeModulePkg.dcs -m MdeModulePkg/Application/HelloWorld/HelloWorld.inf
+```
+
+And then I need to copy all folder "HelloWorld" to location in EmulatorX64 as you see on picture. 
+
+```
+Build
+  MdeModule
+    DEBUG_VS2019
+      X64
+        MdeModulePkg
+          Application
+            HelloWorld
+              HelloWorld // <<--- this folder, I copied this folder with all files and folders inside
+                DEBUG
+                OUTPUT
+                deps.txt
+                Makefile
+                ... (etc)
+```
+
+For this case better to write BAT script to automate copying folders and then running the emulator etc. But this is just a demo to see if it works. BEACUSE !!!. @QuesoFuego on his first video shows how to configure the environment https://youtu.be/t3iwBQg_Gik?list=PLT7NbkyNWaqZYHNLtOZ1MNxOt8myP5K0p . And he use OVMF and QEMU to run efi-s. But here, I want to use EMULATOR.
+
 <hr>
 <h2>Only information for myself</h2>
 
