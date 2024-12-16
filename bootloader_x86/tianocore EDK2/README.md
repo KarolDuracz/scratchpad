@@ -112,9 +112,12 @@ For this case better to write BAT script to automate copying folders and then ru
 [2] No need to do "build clean" / "build cleanall". But don't forget turn of emulator when you compile helloworld.inf, If you have an error with helloworld.dll <br />
 [3] I copied exactly those lines of code. There is no elf.h. It's all built in the HelloWorld project and folder with .inf files and the rest. That's where you configure the necessary libraries etc. But the basic configuration for those API functions used in this demo is sufficient, nothing else needs to be added.<br />
 [4] Keys event works also. As in the example.
-<br />
+<br /><br />
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/187%20-%2016-12-2024%20-%20first%20demo%20cmp%20to%20queso-fuego.png?raw=true)
+
+<br />
+To sum up. @AshrafAliS from description below, and @QuesoFuego that's a lot of knowledge, but both of them didn't touch the topic of hardware at its core. @QuesoFuego from what I see he tried to display something with ACPI, create a system loader and many more advanced topics. Which is valuable. But they still haven't touched the drivers topic. But at least it's less work for me, because after I've got it figured out I can move on to this topic.
 
 <hr>
 <br />
