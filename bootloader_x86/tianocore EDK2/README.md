@@ -59,7 +59,7 @@ cd C:\Path\To\edk2\CryptoPkg
 nmake -f Makefile
 ```
 
-<h2>First my EFI demo</h2>
+<h2>My first EFI demo comparing to @QuesoFuego</h2>
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/how%20to%20create%20EFI%20app%20for%20emulator.png?raw=true)
 
