@@ -108,7 +108,11 @@ Build
 For this case better to write BAT script to automate copying folders and then running the emulator etc. But this is just a demo to see if it works. <b>BECAUSE !!!. @QuesoFuego on his first video shows how to configure the environment https://youtu.be/t3iwBQg_Gik?list=PLT7NbkyNWaqZYHNLtOZ1MNxOt8myP5K0p . And he use OVMF and QEMU to run efi-s. But here, I want to use EMULATOR. </b>
 
 <hr>
-Everything below is a first attempt to install EDK2 and run something like Hello World
+<br />
+<br />
+Everything below is a first attempt to install EDK2 and run something like Hello World. But just below there are links to videos with good guides on how to install EDK2. More spam than what is actually needed, but also review.
+<br />
+<br />
 <hr>
 <h2>Only information for myself</h2>
 
