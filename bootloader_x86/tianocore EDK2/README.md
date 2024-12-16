@@ -1,7 +1,50 @@
 Update 15-12-2024 - I found great channel on YT @QuesoFuego and a competent person who has clearly been studying this topic for several years, looking at the videos posted on the channel. It shortens the learning path a lot for me. Great tutorials. https://www.youtube.com/watch?v=t3iwBQg_Gik&list=PLT7NbkyNWaqZYHNLtOZ1MNxOt8myP5K0p .I guess he won't hold it against me, but it's really good and maybe someone else will look here, so it's good to have a redirect to a really solid dose of knowledge about UEFI programming, how to do it properly, according to official documentation and standards. Without stupid mistakes.<br /><br />
 Second. This is not part of UEFI but is connected to this. This is about WinPE. I created USB boot image (pendrive with WinPE connected to USB) using this guide https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/winpe-create-usb-bootable-drive?view=windows-11 and step 3 example code - MakeWinPEMedia /UFD C:\WinPE_amd64 P: - And I checked it on my ASUS and on a newer HP laptop, what drivers are detected in the registry, in ACPI and ENUM. And for example, on my laptop it actually sees 2 devices GFX0 at the address 0x00000000 and 0x00020000 something like that they are under PCI etc. But it does not recognize the GT540M. Does not recognize VENDOR and MODEL at all. Only that it is a VGA adapter. Which is similar to the behavior of the standard Windows which detects the hardware in the Device Manager but shows that there are no drivers. So it will be a CHALLENGE. And one of the things that will be discovered from this point will be not only the installation of the driver itself but also the general understanding of how it works (...) btw. For a few years, after I finished using Windows XP, I used Linux Ubuntu from 8, 10, 12, 14, (Ubuntu 14.04 LTS) (<i> One of the reasons was this "worm" https://www.giac.org/paper/gcih/634/w32sasserb-incident/105020 </i>). I tried 16, 18, recently 24.04 LTS, but for my ASUS everything works fine until 14.04 LTS. And there was also a problem with drivers for this dedicated GT540M. 
 <hr>
+Update 16-12-2024 - It would be best to record a video, but I don't feel like messing with it right now. I tried to build Hello World.efi again from this guide. It's only been 2 weeks since I installed it for the first time... and I forgot everything.
+<br /><br />
+[1] - Don't use x64 Native Tools Command Prompt for VS 2019 or x64_x86 Cross Tools Command Prompt for VS 2019 or x86 Native Tools Command Prompt for VS 2019 or x86_x64 Cross Tools Command Prompt for VS 2019 from C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2019\Visual Studio Tools\VC !!! Only Developer Command Prompt for VS 2019 from C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2019\Visual Studio Tools to run edksetup.bat and then nmake and then build command . Now I tried using x64 native cmd and I had a bunch of errors during the build command. Nothing worked. And I had to re-download the entire repo from git and re-install everything. But ok, I know it works.
+[2] - First we need downlaod from git
 
+```
+git clone https://github.com/tianocore/edk2.git
+cd edk2
+git submodule update --init
+git tag
+git checkout tags/edk2-stable202411
+```
+
+[3] Next. Install nasm and python. Setup environemnts paths like PYTHON_PATH, NASM_PREFIX. Look at these videos @papst5 and @AshrafAliS
+
+[4] But better is to run first "edksetup.bat" from main folder of edk2\ - this will show which PATHS are set and if there is python, nasm etc. If something is wrong it will throw ERROR. DO THIS AS NEXT STEP, before you start setting paths manually after installing nasm and python
+
+[5] o setup path in CMD environment use these commands
+
+```
+where python // to find path to python 
+set PYTHON_HOME=C:\Users\kdhome\AppData\Local\Programs\Python\Python312 // setup path variable
+```
+
+[6] Change  Conf/target.txt for MdeModulePkg, X64, VS2019, DEBUG and enter to BaseTools folder and run nmake
+
+```
+ACTIVE_PLATFORM    = MdeModulePkg/MdeModulePkg.dsc
+TARGET_ARCH  = X64
+TOOL_CHAIN_TAG  = VS2019
+TARGET = DEBUG
+```
+
+
+```
+cd BaseTools
+nmake
+```
+
+[7] If it finishes without errors and creates the win32 folder in baseTools according to the path indicated after running edksetup.bat, go back to main edk2 folder and run the build command.
+
+[8] Use command like this : build -p MdeModulePkg/MdeModulePkg.dsc -m <path-to-module>.inf and edksetup.bat Rebuild to setup environment again or build specific module
+
+<hr>
 <h2>Only information for myself</h2>
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/17%20-%202-11-2024%20-%20edk2.png?raw=true)
