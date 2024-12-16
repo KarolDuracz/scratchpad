@@ -45,7 +45,7 @@ nmake
 
 [8] Use command like this : build -p MdeModulePkg/MdeModulePkg.dsc -m <path-to-module>.inf and edksetup.bat Rebuild to setup environment again or build specific module
 
-[9] Main documentation discourage using this command (<b>"Ensure the workspace is setup correctly. Make sure you've initialized all submodules, as OpenSSL might be in a submodule. Run the following command"</b>). But now that I look at it again https://github.com/tianocore/tianocore.github.io/wiki/Windows-systems they write "Check Recursively clone submodules too"
+[9] Main documentation discourage using this command (<b>"Ensure the workspace is setup correctly. Make sure you've initialized all submodules, as OpenSSL might be in a submodule. Run the following command"</b>). But now that I look at it again https://github.com/tianocore/tianocore.github.io/wiki/Windows-systems they write "Check Recursively clone submodules too" . But on the main page https://github.com/tianocore/edk2 we see "Note: When cloning submodule repos, '--recursive' option is not recommended. EDK II itself will not use any code/feature from submodules in above submodules. So using '--recursive' adds a dependency on being able to reach servers we do not actually want any code from, as well as needlessly downloading code we will not use." - In my first approach I relied mainly on this, but you can see that --recursive helps for these errors.
 
 ```
 git submodule update --init --recursive
