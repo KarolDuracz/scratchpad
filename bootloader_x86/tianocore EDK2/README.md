@@ -257,3 +257,7 @@ This repo exists among other things, to understand how it works. And how OS hand
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/how%20it%20works%20-%20achieve%20in%202025.png?raw=true)
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/load%20kernel%20bootx64%20efi%20from%20cdrom.png?raw=true)
+<hr>
+<br />
+It's definitely a topic related to UEFI and voltage management etc. But will it be possible to touch on the topic of OVERCLOCKING at the end, I'd like to get to that point. Maybe not like these guys who overclock this particular motherboard and CPU, I don't want to do this for my laptop, but some kind of intro to later take a motherboard that can be overclocked and customized... hmm. <br /><br />
+First 9.1 GHz CPU (overclocked 14900KS) https://www.youtube.com/watch?v=qr26jxPIDm0&ab_channel=ElmorLabs 😁
