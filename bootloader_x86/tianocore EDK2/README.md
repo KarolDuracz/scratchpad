@@ -121,12 +121,12 @@ To sum up. @AshrafAliS from description below, and @QuesoFuego that's a lot of k
 <br /><br />
 And last important question! Is this work on real hardware?! YES. I won't be uploading any more photos, but yes, it works. As I wrote above, I made a WinPE pendrive and put this helloworld.efi there and changed the name to bootx64.efi (F:\EFI\Boot\helloworld.efi > bootx64.efi), just like that. I set the BIOS to boot first on the pendrive and it works like on an emulator. And when I press any key this shutdown machine. Power OFF.
 <hr>
-Of course, now you can jump to the COREBOOT topic and review it. The documentation has examples of how to flash ROMs for some motherboards, also has photos, and descriptions of the circuits, MCUs. It's worth taking a look at https://doc.coreboot.org/mainboard/index.html
+Of course, now you can jump to the COREBOOT topic and review it. The documentation has examples of how to flash ROMs for some motherboards, also has photos, and descriptions of the circuits, MCUs. It's worth taking a look at https://doc.coreboot.org/mainboard/index.html  (...) Maybe I didn't see it in EDK2, maybe it's there but in coreboot there is information about this tool https://github.com/LongSoft/UEFITool . And this can read orignal firmware which is used as the official BIOS firmware.
 <hr>
 <br />
 <br />
 <br />
-Everything below is a first attempt to install EDK2 and run something like Hello World. But just below there are links to videos with good guides on how to install EDK2. More spam than what is actually needed, but read this also. (...) Maybe I didn't see it in EDK2, maybe it's there but in coreboot there is information about this tool https://github.com/LongSoft/UEFITool . And this can read orignal firmware which is used as the official BIOS firmware.
+Everything below is a first attempt to install EDK2 and run something like Hello World. But just below there are links to videos with good guides on how to install EDK2. More spam than what is actually needed, but read this also.
 <br />
 <br />
 <br />
