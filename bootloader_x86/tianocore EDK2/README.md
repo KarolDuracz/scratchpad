@@ -126,7 +126,7 @@ Of course, now you can jump to the COREBOOT topic and review it. The documentati
 <br />
 <br />
 <br />
-Everything below is a first attempt to install EDK2 and run something like Hello World. But just below there are links to videos with good guides on how to install EDK2. More spam than what is actually needed, but read this also.
+Everything below is a first attempt to install EDK2 and run something like Hello World. But just below there are links to videos with good guides on how to install EDK2. More spam than what is actually needed, but read this also. (...) Maybe I didn't see it in EDK2, maybe it's there but in coreboot there is information about this tool https://github.com/LongSoft/UEFITool . And this can read orignal firmware which is used as the official BIOS firmware.
 <br />
 <br />
 <br />
