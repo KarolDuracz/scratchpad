@@ -1,3 +1,5 @@
+Update 18-12-2024 - There will be an update here at the end of 2025. This is just the beginning of the topic after the break. Most of the code for legacy BIOS demos not working properly. This INT13 demo needs fixing. Most for the legacy BIOS examples. But on the other hand the UEFI stuff is ok. There are also some of my thoughts here, but that's just information for me. Nothing technical.
+<hr>
 First. From this 3 files .ISO / .BIN works only boot_qemu_x86.bin. But this is raw file from disk. This is not fancy demo. This bootloader.asm and boot_qemu_x86.asm ... by default they were supposed to be bootable via CDROM because they are supposed to be burned to CD ROM / USB. Not via qemu or Virual Box. But the first thing you need to check is to run it on qemu, then on Virual Box.
 ```
 cmd.exe > qemu-system-x86_64 -drive format=raw,file=boot_qemu_x86.bin
