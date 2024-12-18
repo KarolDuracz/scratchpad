@@ -1,2 +1,2 @@
-I want to learn something about it, because the interactive 3D world is an interesting topic. <br /><br />
+I want to learn something about it, because the interactive 3D world is an interesting topic. And this is very close to what I wanted to do back then, to enter the first person perspective and train behavioral skills. https://github.com/KarolDuracz/scratchpad/tree/main/3D%20board%20'11<br /><br />
 So far I've only tried running it with three.js. First result from google for the keywords "three js AR". https://stemkoski.github.io/AR-Examples/
