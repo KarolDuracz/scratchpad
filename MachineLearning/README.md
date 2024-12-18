@@ -1,3 +1,5 @@
+<h2>Update 18-12-2024 - Most of this is just my bullshit, I've set goals to learn this in 2025. Some targets and goals. Nothing technical here, just some information for me. </h2>
+<hr>
 <b>Demo 1</b><br />
 In this case: <br />
 - Transfer learning is the same as the survival of the entire species, i.e. it is to serve the transfer of knowledge that will allow it not to die as a whole species. <br />
