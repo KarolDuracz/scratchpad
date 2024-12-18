@@ -3,7 +3,7 @@ Update 18-12-2024 - I removed some bulshit from this folder. This needs to get t
 Ok, ok. But how LLM can undestand TASK like this <br />
 "Here you have a table with "tokens", cut out tokens 16, 12 and 11082 from this table and print the same thing only without these tokens." <br />
 How GPT and LLM can undestand this command? And how to solve this task? <br />
-Because this is similar to introduce of to C language. In C language you have "printf" command. And in C language you can create loop to iterate around this array and separate what you want to print an output. And in my opinion this is similar task, but from LLM perspective. BUT HOW IT FU... POSSIBLE that the model can understand the abstractions of such a command and actually write code similar to what a human could do after reading a book about C and a few hours of training - SOLVE THIS PARTICULAR PROBLEM ??? 
+Because this is similar to introduce of to C language. In C language you have "printf" command. And in C language you can create loop to iterate around this array and separate what you want to print an output. And in my opinion this is similar task, but from LLM perspective. 
 <br /><br />
 Amazing.
 <br /><br />
