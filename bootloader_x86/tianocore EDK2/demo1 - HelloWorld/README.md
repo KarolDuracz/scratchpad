@@ -138,7 +138,7 @@ UINT32 eax, ebx, ecx, edx;
 <br /><br />
 <h2>Back to driver level</h2>
 https://github.com/KarolDuracz/scratchpad/tree/main/Hello%20World%20Drivers
-This msrValue = __readmsr(0xe7);  produce exception and blue screen in ma case.
+This msrValue = __readmsr(0xe7);  produce exception and blue screen for my case.
 
 ```
 #include <ntddk.h> // WDK headers
