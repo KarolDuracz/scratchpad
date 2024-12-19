@@ -63,4 +63,74 @@ Output - 0b1001
 <h2>Summary</h2>
 This is introduce and example of hello world to read certain registers from this manual https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-3b-part-2-manual.pdf
 
+<h2>Some examples how to read semething</h2>
 
+How to use AsmReadMsr64 maybe 
+```
+#include <PiPei.h>
+#include <Library/DebugLib.h>
+#include <Library/MsrLib.h>
+
+EFI_STATUS
+EFIAPI
+MyPeimEntryPoint (
+  IN EFI_PEI_FILE_HANDLE FileHandle,
+  IN CONST EFI_PEI_SERVICES **PeiServices
+  )
+{
+    UINT64 mperf, aperf;
+
+    // Read IA32_MPERF and IA32_APERF MSRs
+    mperf = AsmReadMsr64(0xE7);
+    aperf = AsmReadMsr64(0xE8);
+
+    // Output to debug log
+    DEBUG((DEBUG_INFO, "IA32_MPERF: 0x%lx\n", mperf));
+    DEBUG((DEBUG_INFO, "IA32_APERF: 0x%lx\n", aperf));
+
+    return EFI_SUCCESS;
+}
+
+```
+
+How to read CPUID, but for me I can't configure library for DEBUG that's why I used this style from third code on the bootom with buffer and *hexchar
+```
+#include <Library/BaseLib.h>
+#include <Library/DebugLib.h>
+
+VOID CheckPStateSupport(VOID)
+{
+    UINT32 Eax, Ebx, Ecx, Edx;
+
+    // Execute CPUID with EAX=0x06
+    AsmCpuid(0x06, &Eax, &Ebx, &Ecx, &Edx);
+
+    if (Ecx & 0x1) {
+        DEBUG((DEBUG_INFO, "P-State feedback supported (IA32_MPERF & IA32_APERF).\n"));
+    } else {
+        DEBUG((DEBUG_INFO, "P-State feedback NOT supported.\n"));
+    }
+}
+```
+
+third which I used here - read CPUID from efi level
+
+```
+UINT32 eax, ebx, ecx, edx;
+  AsmCpuid(0x06, &eax, &ebx, &ecx, &edx);
+  
+  
+  
+  CHAR16 buffer[64];
+  //UnicodeSPrint(buffer, sizeof(buffer), L"eax: 0x%08x\n", eax);
+  //UnicodeValueToString(buffer, LEFT_JUSTIFY, eax, 16);
+  
+  CHAR16 *hexchar = L"01234567890ABCDEF";
+  
+  for (INTN i = 0; i < 8; i++) {
+	buffer[7 - i] = hexchar[(eax >> (i * 4)) & 0xf];
+  }
+  buffer[8] = L'\0';
+  
+  SystemTable->ConOut->OutputString(SystemTable->ConOut, buffer);
+```
