@@ -12,7 +12,7 @@ Few links: <br />
 <br /><br />
 This is confusing, because according to what CPUID shows I have these bits set which allow reading MSR or features via CPUID(0x6). Maybe I'm doing something wrong or I don't know something yet...
 <br /><br />
-At first I did it from the drivers windows level, I loaded sc start PrivInstDriver from demo2 about drivers. And I got a system exception. Blue screen. On the host Win 8.1 and on the virtual machine Win 10. Well, I thought, since I already have access to EDK2, why not try to display what CPUID shows on EAX, for example? Here are 3 screenshots from 3 runs, on the host, on the virtual machine and from a pendrive as raw helloworld.efi
+At first I did it from the drivers windows level, I loaded sc start PrivInstDriver from demo2 about drivers. And I got a system exception. Blue screen. On the host Win 8.1 and on the virtual machine Win 10. Well, I thought, since I already have access to EDK2, why not try to display what CPUID shows on EAX, for example? Here are 3 screenshots from 3 runs, on the host, on the virtual machine and from a pendrive as raw helloworld.efi<br /><br />
 
 HOST WIN 8.1 - 0x75
 
@@ -50,3 +50,14 @@ Output - 0b1001
 ```
 1 9
 ```
+
+<h2>Summary</h2>
+Compiling - This compiles just this helloworld example and just produces a .efi for it. Nothing else. This is to speed up the compilation process a bit and not compile the entire MdeModulePkg module.
+
+```
+cd edk2 // main edk2 folder, go here first
+edksetup.bat // setup environemnt - read guide for edk2 installation and configuration which I wrote here
+build -p MdeModulePkg/MdeModulePkg.dsc -m MdeModulePkg/Application/HelloWorld/HelloWorld.inf // compile via .inf just like that
+```
+
+
