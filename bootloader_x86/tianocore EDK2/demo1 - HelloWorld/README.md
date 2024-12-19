@@ -63,7 +63,7 @@ Output - 0b1001
 <h2>Summary</h2>
 This is introduce and example of hello world to read certain registers from this manual https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-3b-part-2-manual.pdf
 
-<h2>Some examples how to read semething</h2>
+<h2>Some examples how to read something</h2>
 
 How to use AsmReadMsr64 maybe 
 ```
@@ -93,7 +93,7 @@ MyPeimEntryPoint (
 
 ```
 
-How to read CPUID, but for me I can't configure library for DEBUG that's why I used this style from third code on the bootom with buffer and *hexchar
+How to read CPUID, but for me I can't configure library for DEBUG that's why I used this style from third code on the bottom with buffer and *hexchar
 ```
 #include <Library/BaseLib.h>
 #include <Library/DebugLib.h>
