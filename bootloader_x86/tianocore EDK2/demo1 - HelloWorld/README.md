@@ -1,7 +1,16 @@
 Main .c code for helloworld.efi -> https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo1%20-%20HelloWorld/HelloWorld_source_MdeModulePkg-Application-/HelloWorld/HelloWorld.c<br /><br />
 .inf -> https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo1%20-%20HelloWorld/HelloWorld_source_MdeModulePkg-Application-/HelloWorld/HelloWorld.inf
 <br /><br />
-This is compiled code with .efi files https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo1%20-%20HelloWorld/HelloWorld
+This is compiled code with .efi files https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo1%20-%20HelloWorld/HelloWorld <br />
+<h2>Compilation</h2>
+Compiling - This compiles just this helloworld example and just produces a .efi for it. Nothing else. This is to speed up the compilation process a bit and not compile the entire MdeModulePkg module.<br /><br />
+
+```
+cd edk2 // main edk2 folder, go here first
+edksetup.bat // setup environemnt - read guide for edk2 installation and configuration which I wrote here
+build -p MdeModulePkg/MdeModulePkg.dsc -m MdeModulePkg/Application/HelloWorld/HelloWorld.inf // compile via .inf just like that
+```
+
 <h2>Explanation</h2>
 I thought I'd throw here HelloWorld.c code for EFI also. Because I started getting deeper into the CPU configuration, and I can't read certain MSR regions. Here is an example of how to read some registers from MSR. I can read 0xC0000080 https://github.com/KarolDuracz/scratchpad/tree/main/Hello%20World%20Drivers/demo2 which corespond do AMD but Intel support this, but I can' read A32_MPERF (Addr: E7H) and IA32_APERF (E8H) etc like IA32_PERF_CTL . This is confusing ... 
 <br /><br />
@@ -52,12 +61,6 @@ Output - 0b1001
 ```
 
 <h2>Summary</h2>
-Compiling - This compiles just this helloworld example and just produces a .efi for it. Nothing else. This is to speed up the compilation process a bit and not compile the entire MdeModulePkg module.
-
-```
-cd edk2 // main edk2 folder, go here first
-edksetup.bat // setup environemnt - read guide for edk2 installation and configuration which I wrote here
-build -p MdeModulePkg/MdeModulePkg.dsc -m MdeModulePkg/Application/HelloWorld/HelloWorld.inf // compile via .inf just like that
-```
+This is introduce and example of hello world to read certain registers from this manual https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-3b-part-2-manual.pdf
 
 
