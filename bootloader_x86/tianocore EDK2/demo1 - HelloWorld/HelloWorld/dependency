@@ -1,0 +1,11 @@
+
+
+!IF EXIST(c:\users\test\progs\edk2\Build\MdeModule\DEBUG_VS2019\X64\MdeModulePkg\Application\HelloWorld\HelloWorld\OUTPUT\AutoGen.c.deps)
+!INCLUDE c:\users\test\progs\edk2\Build\MdeModule\DEBUG_VS2019\X64\MdeModulePkg\Application\HelloWorld\HelloWorld\OUTPUT\AutoGen.c.deps
+!ENDIF
+
+!IF EXIST(c:\users\test\progs\edk2\Build\MdeModule\DEBUG_VS2019\X64\MdeModulePkg\Application\HelloWorld\HelloWorld\OUTPUT\HelloWorld.c.deps)
+!INCLUDE c:\users\test\progs\edk2\Build\MdeModule\DEBUG_VS2019\X64\MdeModulePkg\Application\HelloWorld\HelloWorld\OUTPUT\HelloWorld.c.deps
+!ENDIF
+
+               
