@@ -1,3 +1,5 @@
+Update 19-12-2024 - I added the source code of helloworld.efi and the description, guid how to do this. [demo1 - HelloWorld]
+<hr>
 Update 17-12-2024 - https://en.wikipedia.org/wiki/UEFI - Wiki is a wealth of knowledge and links to various topics that are related.
 <hr>
 Update 15-12-2024 - I found great channel on YT @QuesoFuego and a competent person who has clearly been studying this topic for several years, looking at the videos posted on the channel. It shortens the learning path a lot for me. Great tutorials. https://www.youtube.com/watch?v=t3iwBQg_Gik&list=PLT7NbkyNWaqZYHNLtOZ1MNxOt8myP5K0p .I guess he won't hold it against me, but it's really good and maybe someone else will look here, so it's good to have a redirect to a really solid dose of knowledge about UEFI programming, how to do it properly, according to official documentation and standards. Without stupid mistakes.<br /><br />
