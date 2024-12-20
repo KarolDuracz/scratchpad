@@ -1,6 +1,7 @@
 <h2>TO FIX</h2>
 Go to bottom of this page. the code to compile works, but there is a bad implementation of the decimal to string as hex converter. In this form it can be compiled and run, but it may display wrong values. <b>OK, a few things still need to be checked so that I can display meaningful information. I did it quickly. But what is important here is that there is a folder with the source code. And a description of how I compiled and ran it. This is important here in this demo1. The rest of the details can be fixed.</b> <br />I just changed what is default here ->
 https://github.com/tianocore/edk2/tree/master/MdeModulePkg/Application/HelloWorld
+<br />
 <h2>Code source</h2>
 Main .c code for helloworld.efi -> https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo1%20-%20HelloWorld/HelloWorld_source_MdeModulePkg-Application-/HelloWorld/HelloWorld.c<br /><br />
 .inf -> https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo1%20-%20HelloWorld/HelloWorld_source_MdeModulePkg-Application-/HelloWorld/HelloWorld.inf
