@@ -492,3 +492,5 @@ But at a certain stage the question arises - is what someone has implemented rea
 <hr>
 <h2>other projects based on EDK2</h2>
 [1] This looks interesting :  https://github.com/slimbootloader/slimbootloader/tree/master   ---> docs https://slimbootloader.github.io/ - Nice and clear explanation and code. Configuration examples for some platforms.
+<br />
+someone clearly put a lot of work and attention into it. OK, ok > https://github.com/slimbootloader/slimbootloader/blob/master/LICENSE
