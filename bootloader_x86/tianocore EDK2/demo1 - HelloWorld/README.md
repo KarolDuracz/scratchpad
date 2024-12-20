@@ -340,7 +340,8 @@ int main()
 }
 ```
 
-The problem is that I'm just starting with EDK2. I don't really know what types are and how to convert them correctly. There are a few methods to convert integer (register value) > hex as string, int to bin as string etc. This is another example of how to convert to binary instead of hex, but it still needs to be as a string if you want to use in SystemTable->ConOut->OutputString(SystemTable->ConOut, buffer); as parameter . This is only another example HOW TO FIX THAT... 
+The problem is that I'm just starting with EDK2. I don't really know what types are and how to convert them correctly. There are a few methods to convert integer (register value) > hex as string, int to bin as string etc. This is another example of how to convert to binary instead of hex, but it still needs to be as a string if you want to use in SystemTable->ConOut->OutputString(SystemTable->ConOut, buffer); as parameter . This is only another example HOW TO FIX THAT... <br />
+https://learn.microsoft.com/pl-pl/cpp/cpp/char-wchar-t-char16-t-char32-t?view=msvc-170
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo1%20-%20HelloWorld/__to_fix_some_example_how_to_do.png?raw=true)
 
