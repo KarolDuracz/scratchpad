@@ -1,4 +1,4 @@
-Update 19-12-2024 - I added the source code of helloworld.efi and the description, guide how to do this. [demo1 - HelloWorld]
+Update 19-12-2024 - Added the source code of helloworld.efi and the description, guide how to do this. [demo1 - HelloWorld]
 <hr>
 Update 17-12-2024 - https://en.wikipedia.org/wiki/UEFI - Wiki is a wealth of knowledge and links to various topics that are related.
 <hr>
