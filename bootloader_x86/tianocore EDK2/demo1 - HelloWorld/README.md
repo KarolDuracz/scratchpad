@@ -11,9 +11,14 @@ This is compiled code with .efi files https://github.com/KarolDuracz/scratchpad/
 Compiling - This compiles just this helloworld example and just produces a .efi for it. Nothing else. This is to speed up the compilation process a bit and not compile the entire MdeModulePkg module.<br /><br />
 
 ```
-cd edk2 // main edk2 folder, go here first
-edksetup.bat // setup environemnt - read guide for edk2 installation and configuration which I wrote here
-build -p MdeModulePkg/MdeModulePkg.dsc -m MdeModulePkg/Application/HelloWorld/HelloWorld.inf // compile via .inf just like that
+// main edk2 folder, go here first
+cd edk2
+
+// setup environemnt - read guide for edk2 installation and configuration which I wrote here
+edksetup.bat
+
+// compile via .inf just like that
+build -p MdeModulePkg/MdeModulePkg.dsc -m MdeModulePkg/Application/HelloWorld/HelloWorld.inf 
 ```
 
 <h2>Explanation</h2>
