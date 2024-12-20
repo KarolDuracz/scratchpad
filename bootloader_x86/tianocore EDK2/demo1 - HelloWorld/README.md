@@ -486,3 +486,6 @@ int main()
 I added it here to reference to the hello world I wrote about when describing how I installed EDK2. I'm not messing with it for now, so I'm leaving it as it is, but I know someone is watching and reading it, so I'm posting what's there...
 <br /><br />
 That's all for demo1.
+<hr>
+<br /><br />
+But at a certain stage the question arises - is what someone has implemented really a good solution to the essence of the problem? just think about all this for a moment instead of copying and pasting. Times are changing, today we need different tools than 100, 80, 60, 40, 20 years ago... 
