@@ -233,3 +233,35 @@ VOID ExecutePrivilegedInstructions(void)
 	
 }
 ```
+
+<h2>Disassembly EFI - how looks like assembler</h2>
+
+Most efi or modules downloaded from a tool like EFI Tool It has a subsystem set up to 0xb (11). So to run in the emulator you need to change this bit in the process image, e.g. use python to open the file open(file, "rb").read() and save it to a temporary array as to_bytes()... this is how looks like pseudo code:
+
+```
+f = open("path to .efi", "rb").read()
+arr=[]
+idx=0
+for i in f:
+  if i == 0xb:
+    Print(idx) // this is to find all elements compare to 0xb
+  arr.append(i) // add elements to array 
+  idx += 1
+// change particular index in process image for example byte 267 0xb > 0xa
+arr[267] = 0xa
+// write to file from arr
+f2 = open("path to new .efi", "wb")
+for k in arr:
+  // convert class int to bytes
+  f2.write(k.to_bytes(1, 'big')))
+f2.close()
+```
+
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo1%20-%20HelloWorld/disasm%20ida%201.png?raw=true)
+
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo1%20-%20HelloWorld/disasm%20ida%202.png?raw=true)
+
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo1%20-%20HelloWorld/195%20-%2018-12-2024%20-%20no%20to%20juz%20chyba%20mam%20dlaczego%20nie%20dziala.png?raw=true)
