@@ -1,4 +1,4 @@
-Some exercises and examples of how Fibers, Threads, Events, Context work.
+Some basic exercises and examples of how Fibers, Threads, Events, Context work.
 <br /><br />
 Project20
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Win32/Simple%20VM/Exercises%20part%201/project20.png?raw=true)
