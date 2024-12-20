@@ -1,5 +1,5 @@
 <h2>TO FIX</h2>
-Go to bottom of this page
+Go to bottom of this page. the code to compile works, but there is a bad implementation of the decimal to string as hex converter. In this form it can be compiled and run, but it may display wrong values.
 <h2>Code source</h2>
 Main .c code for helloworld.efi -> https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo1%20-%20HelloWorld/HelloWorld_source_MdeModulePkg-Application-/HelloWorld/HelloWorld.c<br /><br />
 .inf -> https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo1%20-%20HelloWorld/HelloWorld_source_MdeModulePkg-Application-/HelloWorld/HelloWorld.inf
@@ -270,7 +270,8 @@ f2.close()
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo1%20-%20HelloWorld/195%20-%2018-12-2024%20-%20no%20to%20juz%20chyba%20mam%20dlaczego%20nie%20dziala.png?raw=true)
 
 <hr>
-To fix...part which I used in helloworld.efi to print registers values probably it probably has a bad implementation. But I'm not 100% sure right now. I'm leaving this as information here.
+<h2>to fix...</h2>
+To fix...part which I used in helloworld.efi to print registers values probably it probably has a bad implementation. But I'm not 100% sure right now. I'm leaving this as information here. That means something is wrong. But that's not important now. I'm just leaving it to double check converting DECIMAL to HEX AS STRING. It's trivial. I'm just posting it as a TODO.
 
 
 ```
