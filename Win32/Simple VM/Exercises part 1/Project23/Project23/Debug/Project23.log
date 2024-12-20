@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\Users\kdhome\source\repos\Project23\Project23\main.cpp(70,16): warning C4101: 'fq': unreferenced local variable
+  Project23.vcxproj -> C:\Users\kdhome\source\repos\Project23\Debug\Project23.exe
