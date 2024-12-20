@@ -1,3 +1,6 @@
+<h2>TO FIX</h2>
+Go to bottom of this page
+<h2>Code source</h2>
 Main .c code for helloworld.efi -> https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo1%20-%20HelloWorld/HelloWorld_source_MdeModulePkg-Application-/HelloWorld/HelloWorld.c<br /><br />
 .inf -> https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo1%20-%20HelloWorld/HelloWorld_source_MdeModulePkg-Application-/HelloWorld/HelloWorld.inf
 <br /><br />
@@ -265,3 +268,77 @@ f2.close()
 
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo1%20-%20HelloWorld/195%20-%2018-12-2024%20-%20no%20to%20juz%20chyba%20mam%20dlaczego%20nie%20dziala.png?raw=true)
+
+<hr>
+To fix...part which I used in helloworld.efi to print registers values probably it probably has a bad implementation. But I'm not 100% sure right now. I'm leaving this as information here.
+
+
+```
+int eax = 3735929054; //  0xdeadc0de;
+	const wchar_t* hexchar = L"01234567890ABCDEF";
+	wchar_t buffer[64];
+
+	for (int i = 0; i < 8; i++) {
+		printf("%c %x  %x \n", hexchar[(eax >> (i * 4)) & 0xf], ((eax >> (i * 4))), ((eax >> (i * 4)) & 0xf));
+		buffer[7 - i] = hexchar[(eax >> (i * 4)) & 0xf];
+	}
+	buffer[8] = L'\0';
+```
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo1%20-%20HelloWorld/to%20fix.png?raw=true)
+
+```
+#include <Windows.h>
+#include <stdio.h>
+#include <intrin.h> // For __cpuid intrinsic
+
+int main()
+{
+
+	int cpuInfo[4];
+	__cpuid(cpuInfo, 0x06);
+
+	printf("%d %d \n", (cpuInfo[2] & (1 << 0)), cpuInfo[2]);
+
+	int retVal;
+	const char* buf = "0xdeadc0de";
+	retVal = (int)strtol(buf, NULL, 16);
+	printf("Converted value: %d (0x%x)\n", retVal, retVal);
+
+	const wchar_t* hexchar1 = L"0123456789ABCDEF";
+	wchar_t buffer1[] = L"DEADC0DE";
+	buffer1[8] = L'\0'; // Ensure null termination
+	int eax1 = 0; // Resulting integer
+	for (int i = 0; i < 8; i++) {
+		// Find the numeric value of the character in the hexchar array
+		wchar_t c = buffer1[i];
+		int value = 0;
+		for (int j = 0; j < 16; j++) {
+			if (hexchar1[j] == c) {
+				value = j;
+				break;
+			}
+		}
+
+		// Accumulate the result
+		eax1 = (eax1 << 4) | value;
+		printf("Character: %lc, Value: %x, EAX: %x\n", c, value, eax1);
+	}
+
+	printf("Final result: %d (0x%x)\n", eax1, eax1);
+
+	int eax = 3735929054; //  0xdeadc0de;
+	const wchar_t* hexchar = L"01234567890ABCDEF";
+	wchar_t buffer[64];
+
+	for (int i = 0; i < 8; i++) {
+		printf("%c %x  %x \n", hexchar[(eax >> (i * 4)) & 0xf], ((eax >> (i * 4))), ((eax >> (i * 4)) & 0xf));
+		buffer[7 - i] = hexchar[(eax >> (i * 4)) & 0xf];
+	}
+	buffer[8] = L'\0';
+
+	printf("%ws \n", buffer);
+
+	return 0;
+}
+```
