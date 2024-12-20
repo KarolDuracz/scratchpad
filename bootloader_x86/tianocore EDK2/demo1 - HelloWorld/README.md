@@ -489,3 +489,6 @@ That's all for demo1.
 <hr>
 <br /><br />
 But at a certain stage the question arises - is what someone has implemented really a good solution to the essence of the problem? just think about all this for a moment instead of copying and pasting. Times are changing, today we need different tools than 100, 80, 60, 40, 20 years ago... 
+<hr>
+<h2>other projects based on EDK2</h2>
+[1] This looks interesting :  https://github.com/slimbootloader/slimbootloader/tree/master   ---> docs https://slimbootloader.github.io/ - Nice and clear explanation and code. Configuration examples for some platforms.
