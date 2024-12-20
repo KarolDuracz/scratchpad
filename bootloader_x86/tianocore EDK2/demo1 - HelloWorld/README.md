@@ -70,10 +70,6 @@ This is introduce and example of hello world to read certain registers from this
 
 How to use AsmReadMsr64 maybe 
 ```
-#include <PiPei.h>
-#include <Library/DebugLib.h>
-#include <Library/MsrLib.h>
-
 EFI_STATUS
 EFIAPI
 MyPeimEntryPoint (
@@ -98,8 +94,6 @@ MyPeimEntryPoint (
 
 How to read CPUID, but for me I can't configure library for DEBUG that's why I used this style from third code on the bottom with buffer and *hexchar
 ```
-#include <Library/BaseLib.h>
-#include <Library/DebugLib.h>
 
 VOID CheckPStateSupport(VOID)
 {
