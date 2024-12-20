@@ -339,3 +339,144 @@ int main()
 	return 0;
 }
 ```
+
+The problem is that I'm just starting with EDK2. I don't really know what types are and how to convert them correctly. There are a few methods to convert integer (register value) > hex as string, int to bin as string etc. This is another example of how to convert to binary instead of hex, but it still needs to be as a string if you want to use in SystemTable->ConOut->OutputString(SystemTable->ConOut, buffer); as parameter . This is only another example HOW TO FIX THAT... 
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo1%20-%20HelloWorld/__to_fix_some_example_how_to_do.png?raw=true)
+
+```
+#include <Windows.h>
+#include <stdio.h>
+#include <intrin.h> // For __cpuid intrinsic
+#include <stdlib.h>
+
+
+VOID PrintAsBinary(UINT32 value, __int16* buffer) {
+	buffer[0] = L'0';
+	buffer[1] = L'b'; // Binary prefix
+
+	for (UINT32 i = 0; i < 32; i++) {
+		// Extract each bit and store it in the buffer
+		buffer[2 + i] = (value & (1U << (31 - i))) ? L'1' : L'0';
+	}
+
+	buffer[34] = L'\0'; // Null-terminate the string
+}
+
+
+VOID PrintAsBinary_standard_types(int value, char* buffer) {
+	buffer[0] = L'0';
+	buffer[1] = L'b'; // Binary prefix
+
+	for (int i = 0; i < 32; i++) {
+		// Extract each bit and store it in the buffer
+		buffer[2 + i] = (value & (1U << (31 - i))) ? L'1' : L'0';
+	}
+
+	buffer[34] = L'\0'; // Null-terminate the string
+}
+
+/*
+ * Original implementation in helloworld.efi and types 
+ *
+  UINT32 eax, ebx, ecx, edx;
+  AsmCpuid(0x06, &eax, &ebx, &ecx, &edx);
+  
+  
+  
+  CHAR16 buffer[64];
+  //UnicodeSPrint(buffer, sizeof(buffer), L"eax: 0x%08x\n", eax);
+  //UnicodeValueToString(buffer, LEFT_JUSTIFY, eax, 16);
+  
+  CHAR16 *hexchar = L"01234567890ABCDEF";
+  
+  for (INTN i = 0; i < 8; i++) {
+	buffer[7 - i] = hexchar[(eax >> (i * 4)) & 0xf];
+  }
+  buffer[8] = L'\0';
+*/
+
+int main()
+{
+
+	int cpuInfo[4];
+	__cpuid(cpuInfo, 0x06);
+
+	printf("%d %d \n", (cpuInfo[2] & (1 << 0)), cpuInfo[2]);
+
+	int retVal;
+	const char* buf = "0xdeadc0de";
+	retVal = (int)strtol(buf, NULL, 16);
+	printf("Converted value: %d (0x%x)\n", retVal, retVal);
+
+	const wchar_t* hexchar1 = L"0123456789ABCDEF";
+	wchar_t buffer1[] = L"DEADC0DE";
+	buffer1[8] = L'\0'; // Ensure null termination
+	int eax1 = 0; // Resulting integer
+	for (int i = 0; i < 8; i++) {
+		// Find the numeric value of the character in the hexchar array
+		wchar_t c = buffer1[i];
+		int value = 0;
+		for (int j = 0; j < 16; j++) {
+			if (hexchar1[j] == c) {
+				value = j;
+				break;
+			}
+		}
+
+		// Accumulate the result
+		eax1 = (eax1 << 4) | value;
+		printf("Character: %lc, Value: %x, EAX: %x\n", c, value, eax1);
+	}
+
+	printf("Final result: %d (0x%x)\n", eax1, eax1);
+
+	int eax = 3735929054; //  0xdeadc0de;
+	const wchar_t* hexchar = L"01234567890ABCDEF";
+	wchar_t buffer[64];
+
+	for (int i = 0; i < 8; i++) {
+		printf("%c %x  %x \n", hexchar[(eax >> (i * 4)) & 0xf], ((eax >> (i * 4))), ((eax >> (i * 4)) & 0xf));
+		buffer[7 - i] = hexchar[(eax >> (i * 4)) & 0xf];
+	}
+	buffer[8] = L'\0';
+
+	printf("%ws \n", buffer);
+
+	//
+	for (int i = 0; i < 50; i++) {
+		printf("-");
+	}
+	printf("\n");
+	//
+
+	int val = 0xff;
+	__int16 buf1[64];
+
+	PrintAsBinary(val, buf1);
+
+	printf("1: %s \n", buf1);
+	printf("2: %ws \n", buf1);
+
+	int val1 = 0xff;
+	char buf2[64];
+
+	PrintAsBinary_standard_types(val1, buf2);
+
+	printf("3: %s \n", buf2);
+	printf("4: %ws \n", buf2);
+
+	int dead_val = 0xdeadc0de;
+
+	PrintAsBinary_standard_types(dead_val, buf2);
+
+	printf("5: %s \n", buf2);
+	printf("6: %ws \n", buf2);
+
+	return 0;
+}
+```
+
+I added it here to reference to the hello world I wrote about when describing how I installed EDK2. I'm not messing with it for now, so I'm leaving it as it is, but I know someone is watching and reading it, so I'm posting what's there...
+<br /><br />
+That's all for demo1.
