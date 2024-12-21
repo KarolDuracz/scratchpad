@@ -20,7 +20,7 @@ iASL Compiler and Windows ACPI Tools (.zip, 1.3 MB) toolchain - Get https://www.
 <hr>
 <h2>Quick look on motherboard ASUS K73SV</h2>
 
-HM65 datasheet
+HM65 datasheet | For Windows Device Manager > BIOS Device Name : <b>\_SB.PCI0.SBRG</b> | Look into dsdt.dsl
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/213%20-%2021-12-2024%20-%20no%20jest%20HM65.png?raw=true)
 
 Top side motherboard and
