@@ -18,7 +18,7 @@ iASL Compiler and Windows ACPI Tools (.zip, 1.3 MB) toolchain - Get https://www.
 [3] https://www.youtube.com/watch?v=toCDtDdd2oU&ab_channel=FIXstudio - disassemble laptop asus<br />
 [4] https://www.datasheets360.com/part/detail/asm1442/-7813675855283622004/ -  C.S ASM1442 QFN-48 ASMEDIA hdmi controller
 <hr>
-<h2>Quick look on motheboard ASUS K73SV</h2>
+<h2>Quick look on motherboard ASUS K73SV</h2>
 
 HM65 datasheet
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/213%20-%2021-12-2024%20-%20no%20jest%20HM65.png?raw=true)
