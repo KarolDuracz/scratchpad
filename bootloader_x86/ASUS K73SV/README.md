@@ -1,3 +1,6 @@
+<h3>Placing this here is for educational purposes only. 
+</h3>
+<hr>
 <h2>"backup" for review and learn sth about it - this is not original firmware from my laptop - only for tests and research</h2>
 bios firmware [K73SVAS.209]<br />
 vrom [nvidia GT540M vbios.rom]<br />
