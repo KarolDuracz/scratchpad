@@ -1,4 +1,4 @@
-<h3>Placing this here is for educational purposes only. 
+<h3>Placing this here is for educational purposes only. To have a rough idea of ​​what it looks like on real hardware.
 </h3>
 <hr>
 <h2>"backup" for review and learn sth about it - this is not original firmware from my laptop - only for tests and research</h2>
