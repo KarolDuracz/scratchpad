@@ -38,7 +38,7 @@ This ITE chip (U3001) is connected one of the pin CPU. PECI. Platform Environmen
 This make sense, because U3001 is attached to FAN connector for CPU cooling
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/220%20-%2021-12-2024%20-%20cd.png?raw=true)
 
-HM65 and some pins to DVI connector. I haven't checked the connections thoroughly, but I think it goes through the HDMI controller. Some pins to control R G V VSYNC HSYNC (PCH)
+HM65 and some pins to DVI connector. I haven't checked the connections thoroughly, but I think it goes through the HDMI controller. Some pins to control R G B VSYNC HSYNC (PCH)
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/215%20-%2021-12-2024%20-%20cd.png?raw=true)
 
 Bottom side 
