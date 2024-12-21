@@ -1,3 +1,7 @@
+<h2>"backup" for review and learn sth about it</h2>
+bios firmware [K73SVAS.209]<br />
+vrom [nvidia GT540M vbios.rom]<br />
+dump dsdt.dsl <br />
 <h2>Tools</h2>
 
 BoardViewer 2.0.1.9 beta http://boardviewer.net/
@@ -6,9 +10,9 @@ Uefitool ne alpha A68 https://github.com/LongSoft/UEFITool/releases
 <br /><br />
 iASL Compiler and Windows ACPI Tools (.zip, 1.3 MB) toolchain - Get https://www.intel.com/content/www/us/en/developer/topic-technology/open/acpica/download.html 
 <hr >
-[1] https://www.alldatasheet.pl/datasheet-pdf/pdf/1178999/INTEL/BD82HM65.html - HM 65 - windows driver
-[2] file:///C:/Users/kdhome/Downloads/IT8502E.PDF - not exactly U3001 (IT8572E) but pinout is similar 
-[3] https://www.youtube.com/watch?v=toCDtDdd2oU&ab_channel=FIXstudio - disassemble laptop asus
+[1] https://www.alldatasheet.pl/datasheet-pdf/pdf/1178999/INTEL/BD82HM65.html - HM 65 - windows driver <br />
+[2] https://www.alldatasheet.com/datasheet-pdf/pdf/1995319/ITE/IT8502E.html - not exactly U3001 (IT8572E) but pinout is similar  <br />
+[3] https://www.youtube.com/watch?v=toCDtDdd2oU&ab_channel=FIXstudio - disassemble laptop asus<br />
 <hr>
 <h2>Quick look on motheboard ASUS K73SV</h2>
 
