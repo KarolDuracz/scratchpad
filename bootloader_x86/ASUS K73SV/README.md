@@ -1,4 +1,4 @@
-<h2>"backup" for review and learn sth about it</h2>
+<h2>"backup" for review and learn sth about it - this is not original firmware from my laptop - only for tests and research</h2>
 bios firmware [K73SVAS.209]<br />
 vrom [nvidia GT540M vbios.rom]<br />
 dump dsdt.dsl <br />
