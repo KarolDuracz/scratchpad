@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/c5dc4193-efd4-4b42-beea-b9c429240a53)<h3>Placing this here is for educational purposes only. To have a rough idea of ​​what it looks like on real hardware.
+<h3>Placing this here is for educational purposes only. To have a rough idea of ​​what it looks like on real hardware.
 </h3>
 <hr>
 <h2>"backup" for review and learn sth about it - this is not original firmware from my laptop - only for tests and research</h2>
@@ -59,6 +59,11 @@ Another chip next to KBC and BIOS flash
 
 Pin 5 from BIOS chip is onnected to PIN 102 (U3001) - SI_SEC
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/226%20-%2022-12-2024%20-%20cd.png?raw=true)
+
+Pin 2 from BIOS connected to 103 on KBC (EC_SO_PCH)
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/227%20-%2022-12-2024%20-%20cd.png?raw=true)
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/228%20-%2022-12-2024%20-%20cd.png?raw=true)
 
 Explain for this BIOS chip.  Because typical information about memory layout looks like that. Because I still don't know at what point this K73SVAS.209 is loaded. From the UEFI standard it is known that for Windows it looks for EFI\Boot\bootx64.efi but where do these strange memory regions that are outside the EFI areas come from? (0x00100000 - 0x7FFFFFFF: Available memory for EFI applications, OS loaders, and boot services.) - One answer is that it is loaded from external FLASH SPI memory. If you look at the memory region of this EFITool dump which is above it has the following addresses FFF70000, FFF30000, FFE10000, i.e. beyond what the guide says.
 
