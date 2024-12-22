@@ -49,7 +49,7 @@ Bottom side
 quick look at dump via EFITool bios and vbios
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/bios%20and%20vbios.png?raw=true)
 
-BIOS flash chip (probably)
+BIOS flash chip (probably) - I took the datasheet of another system which is similar but after closer look I can see that it is probably WINBOND, like on here https://expressit.pl/porady-komputerowe/programowanie-ukladu-kbc-w-laptopie-wgrywanie-wsadu-ec-kbc-programator-kbc/   -----> https://www.mouser.pl/ProductDetail/Winbond/W25X10CLSNIG?qs=qSfuJ%252Bfl%2Fd58%252Bc3wxS8Vmg%3D%3D&srsltid=AfmBOooJJhTgmUqUAIzapoC7VdQg5TwAGzVESEX518Wao65tPLrEGiMT -----> https://www.mouser.pl/datasheet/2/949/w25x10cl_revg_021714-1489755.pdf ----> But pinout is similar . Pins 2 and 5 is for data In/Out. WP is on 3. GND 4, VCC 8, so looks the same.
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/223%20-%2022-12-2024%20-%20bios%20chip.png?raw=true)
 
 Another chip next to KBC and BIOS flash
