@@ -159,4 +159,39 @@ The discrepancy arises because the EFI memory map only exposes usable system mem
 If you are examining these mappings with tools like UEFITool, you're looking at how the firmware is structured on the SPI flash, not the memory map provided to the operating system or applications.
 ```
 
+```
+Steps for Real-Mode to Long-Mode Transition
+Start in Real Mode (16-bit)
+
+At power-on, the CPU starts executing the reset vector (0xFFFF0).
+The reset vector code typically contains a JMP instruction to a bootstrap routine in the firmware.
+Switch to Protected Mode (32-bit)
+
+Load the Global Descriptor Table (GDT) to define memory segments.
+Set the CR0 register's PE (Protection Enable) bit to enter protected mode.
+Update segment registers to point to appropriate descriptors in the GDT.
+Initialize Memory Controller
+
+Initialize DRAM and other hardware resources for full memory access.
+Transition to Long Mode (64-bit)
+
+Load a 64-bit-capable GDT with descriptors for flat memory addressing.
+Enable PAE (Physical Address Extension) in the CR4 register.
+Load the Page Tables for long-mode addressing.
+Set the LME (Long Mode Enable) bit in the Extended Feature Enable Register (EFER).
+Set the PG (Paging Enable) bit in CR0 to enable paging.
+```
+
+Some configuration for antother model of ASUS K73xx
+
+```
+Model: ASUS X73SV
+Platforma: K73SD REV 2.3
+CPU: Intel Core i5-2430M SR04W / Core i7-2670QM SR02N
+GPU: nVidia N12P-GS-A1 (GT 540M)
+PCH: Intel HM65 BD82HM65
+KBC: ITE IT8572E
+BIOS IC: 25L3206E (4MB)
+```
+
 
