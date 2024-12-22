@@ -207,4 +207,8 @@ KBC: ITE IT8572E
 BIOS IC: 25L3206E (4MB)
 ```
 
+<hr>
+[1] https://opensecuritytraining.info/IntroBIOS_files/Day2_01_Advanced%20x86%20-%20BIOS%20and%20SMM%20Internals%20-%20SPI%20Flash.pdf - some info about SPI flash bios memory
 
+<br /><br />
+That's it for this quick intro to this topic.
