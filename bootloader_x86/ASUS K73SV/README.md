@@ -1,4 +1,4 @@
-<h3>Placing this here is for educational purposes only. To have a rough idea of ​​what it looks like on real hardware.
+![image](https://github.com/user-attachments/assets/c5dc4193-efd4-4b42-beea-b9c429240a53)<h3>Placing this here is for educational purposes only. To have a rough idea of ​​what it looks like on real hardware.
 </h3>
 <hr>
 <h2>"backup" for review and learn sth about it - this is not original firmware from my laptop - only for tests and research</h2>
@@ -18,7 +18,7 @@ iASL Compiler and Windows ACPI Tools (.zip, 1.3 MB) toolchain - Get https://www.
 [3] https://www.youtube.com/watch?v=toCDtDdd2oU&ab_channel=FIXstudio - disassemble laptop asus<br />
 [4] https://www.datasheets360.com/part/detail/asm1442/-7813675855283622004/ -  C.S ASM1442 QFN-48 ASMEDIA hdmi controller<br />
 [5] https://www.alldatasheet.com/datasheet-pdf/pdf/575462/MCNIX/25L3206E.html - BIOS flash chip<br />
-[6] [KBC ](https://www.rom.by/files/uP7706.pdf - the chip next to KBC and bios flash to know that it is not a bios chip
+[6] https://www.rom.by/files/uP7706.pdf - the chip next to KBC and bios flash to know that it is not a bios chip
 <hr>
 <h2>Quick look on motherboard ASUS K73SV</h2>
 
@@ -54,6 +54,11 @@ BIOS flash chip (probably)
 
 Another chip next to KBC and BIOS flash
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/224%20-%2022-12-2024%20-%20bios%20chip%20%232.png?raw=true)
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/225%20-%2022-12-2024%20-%20cd.png?raw=true)
+
+Pin 5 from BIOS chip is onnected to PIN 102 (U3001) - SI_SEC
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/226%20-%2022-12-2024%20-%20cd.png?raw=true)
 
 Explain for this BIOS chip.  Because typical information about memory layout looks like that. Because I still don't know at what point this K73SVAS.209 is loaded. From the UEFI standard it is known that for Windows it looks for EFI\Boot\bootx64.efi but where do these strange memory regions that are outside the EFI areas come from? (0x00100000 - 0x7FFFFFFF: Available memory for EFI applications, OS loaders, and boot services.) - One answer is that it is loaded from external FLASH SPI memory. If you look at the memory region of this EFITool dump which is above it has the following addresses FFF70000, FFF30000, FFE10000, i.e. beyond what the guide says.
 
