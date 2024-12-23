@@ -14,11 +14,13 @@ Uefitool ne alpha A68 https://github.com/LongSoft/UEFITool/releases
 iASL Compiler and Windows ACPI Tools (.zip, 1.3 MB) toolchain - Get https://www.intel.com/content/www/us/en/developer/topic-technology/open/acpica/download.html 
 <hr >
 [1] https://www.alldatasheet.pl/datasheet-pdf/pdf/1178999/INTEL/BD82HM65.html - HM 65 - windows driver <br />
+[1a] https://www.intel.com/content/dam/www/public/us/en/documents/datasheets/6-chipset-c200-chipset-datasheet.pdf - 6-chipset-c200-chipset<br />
 [2] https://www.alldatasheet.com/datasheet-pdf/pdf/1995319/ITE/IT8502E.html - not exactly U3001 (IT8572E) but pinout is similar  [ the common name is probably also "KBC" ] <br />
 [3] https://www.youtube.com/watch?v=toCDtDdd2oU&ab_channel=FIXstudio - disassemble laptop asus<br />
 [4] https://www.datasheets360.com/part/detail/asm1442/-7813675855283622004/ -  C.S ASM1442 QFN-48 ASMEDIA hdmi controller<br />
 [5] https://www.alldatasheet.com/datasheet-pdf/pdf/575462/MCNIX/25L3206E.html - BIOS flash chip<br />
-[6] https://www.rom.by/files/uP7706.pdf - the chip next to KBC and bios flash to know that it is not a bios chip
+[6] https://www.rom.by/files/uP7706.pdf - the chip next to KBC and bios flash to know that it is not a bios chip<br />
+[7] https://www.datasheetcafe.com/it8572e-datasheet-pdf/ - it8572e
 <hr>
 <h2>Quick look on motherboard ASUS K73SV</h2>
 
@@ -39,6 +41,9 @@ This ITE chip (U3001) is connected one of the pin CPU. PECI. Platform Environmen
 
 This make sense, because U3001 is attached to FAN connector for CPU cooling
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/220%20-%2021-12-2024%20-%20cd.png?raw=true)
+
+All PECI connecitons
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/232%20-%2023-12-2024%20-%20PECI.png?raw=true)
 
 HM65 and some pins to DVI connector. I haven't checked the connections thoroughly, but I think it goes through the HDMI controller. Some pins to control R G B VSYNC HSYNC (PCH)
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/215%20-%2021-12-2024%20-%20cd.png?raw=true)
@@ -67,6 +72,9 @@ Pin 2 from BIOS connected to 103 on KBC (EC_SO_PCH)
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/227%20-%2022-12-2024%20-%20cd.png?raw=true)
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/228%20-%2022-12-2024%20-%20cd.png?raw=true)
+
+KBC layout pinout - it8572e model
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/IT8572E-Datasheet.jpg?raw=true)
 
 Explain for this BIOS chip.  Because typical information about memory layout looks like that. Because I still don't know at what point this K73SVAS.209 is loaded. From the UEFI standard it is known that for Windows it looks for EFI\Boot\bootx64.efi but where do these strange memory regions that are outside the EFI areas come from? (0x00100000 - 0x7FFFFFFF: Available memory for EFI applications, OS loaders, and boot services.) - One answer is that it is loaded from external FLASH SPI memory. If you look at the memory region of this EFITool dump which is above it has the following addresses FFF70000, FFF30000, FFE10000, i.e. beyond what the guide says.
 
