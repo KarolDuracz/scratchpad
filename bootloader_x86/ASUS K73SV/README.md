@@ -76,7 +76,7 @@ Pin 2 from BIOS connected to 103 on KBC (EC_SO_PCH)
 KBC layout pinout - it8572e model <br />
 Look at right top corner to find 117 and 118 pins <br />
 PIN 117 and 118 is connected to PECI. <br />
-118 pin --> Q2001 (N-MOSFET 2N7002         SOT-23 PHILIPS) pin 1 --> this philips from pin 3 to R2043 in pin 2 --> And from this pin 2 to U2001 ( BD82HM65 PHC) PIN HDA_SDO ACZ_SDOUT<br />
+118 pin --> Q2001 (N-MOSFET 2N7002         SOT-23 PHILIPS) pin 1 --> this philips from pin 3 to R2043 in pin 2 --> And from this pin 2 to U2001 ( BD82HM65 PCH) PIN HDA_SDO ACZ_SDOUT<br />
 117 pin --> U3001 to R3007 ------> TO U0301 this means direct to CPU chip to pin PECI (peci_ec)
 <br /><br />
 And in other hand. Pin 103 from previous picture 228.xxxxxxxxx  is connected to SPI. Exactly to pin 103. Look at KBC schema which is below.
