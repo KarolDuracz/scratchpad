@@ -42,7 +42,7 @@ This ITE chip (U3001) is connected one of the pin CPU. PECI. Platform Environmen
 This make sense, because U3001 is attached to FAN connector for CPU cooling
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/220%20-%2021-12-2024%20-%20cd.png?raw=true)
 
-All PECI connecitons
+All PECI connecitons - I choose this, that was the first thing I started analyzing for this quick intro. But you can download "Asus K73SJ Rev2.4 Boardview(FZ).fz" file and BoardViewer to examine all connections.
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/232%20-%2023-12-2024%20-%20PECI.png?raw=true)
 
 HM65 and some pins to DVI connector. I haven't checked the connections thoroughly, but I think it goes through the HDMI controller. Some pins to control R G B VSYNC HSYNC (PCH)
@@ -73,7 +73,11 @@ Pin 2 from BIOS connected to 103 on KBC (EC_SO_PCH)
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/228%20-%2022-12-2024%20-%20cd.png?raw=true)
 
-KBC layout pinout - it8572e model
+KBC layout pinout - it8572e model <br />
+Look at right top corner to find 117 and 118 pins <br />
+PIN 117 and 118 is connected to PECI. <br />
+118 pin --> Q2001 (N-MOSFET 2N7002         SOT-23 PHILIPS) pin 1 --> this philips from pin 3 to R2043 in pin 2 --> And from this pin 2 to U2001 ( BD82HM65 PHC) PIN HDA_SDO ACZ_SDOUT<br />
+117 pin --> U3001 to R3007 ------> TO U0301 this means direct to CPU chip to pin PECI (peci_ec)
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/ASUS%20K73SV/board%20view%20pics/IT8572E-Datasheet.jpg?raw=true)
 
 Explain for this BIOS chip.  Because typical information about memory layout looks like that. Because I still don't know at what point this K73SVAS.209 is loaded. From the UEFI standard it is known that for Windows it looks for EFI\Boot\bootx64.efi but where do these strange memory regions that are outside the EFI areas come from? (0x00100000 - 0x7FFFFFFF: Available memory for EFI applications, OS loaders, and boot services.) - One answer is that it is loaded from external FLASH SPI memory. If you look at the memory region of this EFITool dump which is above it has the following addresses FFF70000, FFF30000, FFE10000, i.e. beyond what the guide says.
