@@ -27,3 +27,6 @@ Update - 24-09-2024 - A different approach is to measure time between changing t
 <br /><br />
 $${\color{red}}$$	
 		${{\color{red}\Huge{\textsf{     [CLOSED]  }}}}\$
+
+<br />
+Update 31-12-2024 - I wrote some nonsense here about ML. It doesn't matter in general, but to be clear. Such applications are known not to be a reason for the development of ML (AI) because it's about the way of learning, about how to teach Perceptron / Neuron. It's just about how to teach it, how to train. And that's grown now into training entire networks, called deep networks. But at its core, it's just about how you train machines to understand, et cetera, in some way. (...) Ok. I'll probably make a demo of this app because I want to learn something about computer vision and simulation with current ML algorithms.
