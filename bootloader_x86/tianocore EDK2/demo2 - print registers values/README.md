@@ -137,4 +137,5 @@ Adding your own custom assembler snippets requires a better understanding of the
 <br /><br />
 https://www.philadelphia.edu.jo/academics/qhamarsheh/uploads/Lecture%2018%20Conditional%20Jumps%20Instructions.pdf <br />
 https://learn.microsoft.com/en-us/cpp/build/x64-calling-convention?view=msvc-170 - ABI fo x64 <br />
-https://userpages.cs.umbc.edu/chang/cs313.f04/nasmdoc/html/nasmdoc5.html - extern in NASM
+https://userpages.cs.umbc.edu/chang/cs313.f04/nasmdoc/html/nasmdoc5.html - extern in NASM <br />
+https://uefi.org/specs/UEFI/2.10/04_EFI_System_Table.html - on the bottom page there is little demo here
