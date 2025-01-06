@@ -132,6 +132,9 @@ added in HelloWorld.c lines 213 - 236. In case of x64 it needs 32 bit argument f
   buffer[8] = L'\r'; buffer[9] = L'\n'; buffer[10] = L'\0'; 
   SystemTable->ConOut->OutputString(SystemTable->ConOut, buffer);
 ```
-
+<h2>Summary for this control flow demo with argument</h2>
+Adding your own custom assembler snippets requires a better understanding of the library. In MdePkg\Library\BaseLib there is BaseLib.inf file with all file names. So you can probably add your inserts here to this list during the EDK2 build phase. But from what I see the compiler or preprocessor also sees what arguments this function must have, what type to return, but I'm not 100% sure now because I haven't checked it yet. I just wanted to see if it's possible to mix C and ASM code.
+<br /><br />
 https://www.philadelphia.edu.jo/academics/qhamarsheh/uploads/Lecture%2018%20Conditional%20Jumps%20Instructions.pdf <br />
-https://learn.microsoft.com/en-us/cpp/build/x64-calling-convention?view=msvc-170 - ABI fo x64
+https://learn.microsoft.com/en-us/cpp/build/x64-calling-convention?view=msvc-170 - ABI fo x64 <br />
+https://userpages.cs.umbc.edu/chang/cs313.f04/nasmdoc/html/nasmdoc5.html - extern in NASM
