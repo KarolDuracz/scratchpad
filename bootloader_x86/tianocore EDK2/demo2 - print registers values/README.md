@@ -30,4 +30,5 @@ invd_asm.txt from scratchpad/bootloader_x86/tianocore EDK2/demo2 - print registe
 
 <br />
 <h2>Summary this demo2</h2>
-In this demo. Checked errors from demo1. But also shown how to make external variables, pass register values ​​and then display them. Additionally, there is timer1 (_vartest4_timer1) in the loop. Lots of garbage in the comments and in the code. But I'm posting it as is.
+In this demo. Checked errors from demo1. But also shown how to make external variables, pass register values ​​and then display them. Additionally, there is timer1 (_vartest4_timer1) in the loop. Lots of garbage in the comments and in the code. But I'm posting it as is. How to pass external variable and mix nasm and c code I also checked here <br /><br /> https://github.com/KarolDuracz/scratchpad/tree/main/Hello%20World%20Drivers/demo2 but for EDK2 instead of PUBLIC there is global, instead of QWORD there is DQ etc. 
+
