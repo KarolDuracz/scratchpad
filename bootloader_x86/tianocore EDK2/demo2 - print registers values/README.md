@@ -20,7 +20,7 @@ build -p MdeModulePkg/MdeModulePkg.dsc -m MdeModulePkg/Application/HelloWorld/He
 ```
 
 [ 3 ] <b>Some information about files in this folder</b> <br /><br />
-HelloWorld.efi - this is file from screenshot running on emulator. I checked also in real hardware running from bios and pnedrive from path EFI/Boot/bootx64.efi. And on "real hardware" values for RBP and RSP is A7B033F0 and A7B032E8. For CPUID values is the same because VirtualBox not emualte CPU, but use it directly. <br /><br />
+HelloWorld.efi - this is file from screenshot running on emulator. I checked also in "real hardware" running from bios and pendrive from path EFI/Boot/bootx64.efi. And on "real hardware" values for RBP and RSP is A7B033F0 and A7B032E8. For CPUID values is the same because VirtualBox not emualte CPU, but use it directly. <br /><br />
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo2%20-%20print%20registers%20values/132%20-%2006-01-2025%20-%20test%20demo%202%20github.png?raw=true)
 
