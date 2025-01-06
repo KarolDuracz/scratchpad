@@ -30,5 +30,108 @@ invd_asm.txt from scratchpad/bootloader_x86/tianocore EDK2/demo2 - print registe
 
 <br />
 <h2>Summary this demo2</h2>
-In this demo. Checked errors from demo1. But also shown how to make external variables, pass register values ​​and then display them. Additionally, there is timer1 (_vartest4_timer1) in the loop. Lots of garbage in the comments and in the code. But I'm posting it as is. How to pass external variable and mix nasm and c code I also checked here <br /><br /> https://github.com/KarolDuracz/scratchpad/tree/main/Hello%20World%20Drivers/demo2 but for EDK2 instead of PUBLIC there is global, instead of QWORD there is DQ etc. 
+In this demo. Checked errors from demo1. But also shown how to make external variables, pass register values ​​and then display them. Additionally, there is timer1 (_vartest4_timer1) in the loop. Lots of garbage in the comments and in the code. But I'm posting it as is. How to pass external variable and mix nasm and c code I also checked here https://github.com/KarolDuracz/scratchpad/tree/main/Hello%20World%20Drivers/demo2 but for EDK2 instead of PUBLIC there is global, instead of QWORD there is DQ etc. 
+<br />
+<hr>
+<h2>Control flow of execution using first argument</h2>
 
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo2%20-%20print%20registers%20values/133%20-%2006-01-2025%20-%20demo%202%20-%20b.png?raw=true)
+
+For this demo I modified ReadPmc.nasm from MdePkg\Library\BaseLib\x64\
+
+```
+;------------------------------------------------------------------------------
+;
+; Copyright (c) 2006, Intel Corporation. All rights reserved.<BR>
+; SPDX-License-Identifier: BSD-2-Clause-Patent
+;
+; Module Name:
+;
+;   ReadPmc.Asm
+;
+; Abstract:
+;
+;   AsmReadPmc function
+;
+; Notes:
+;
+;------------------------------------------------------------------------------
+
+    DEFAULT REL
+
+	
+	SECTION .data
+		;global ASM_PFX(_vartest)
+		extern _vartest
+	
+    SECTION .text
+
+;------------------------------------------------------------------------------
+; UINT64
+; EFIAPI
+; AsmReadPmc (
+;   IN UINT32   PmcIndex
+;   );
+;------------------------------------------------------------------------------
+;global ASM_PFX(AsmReadPmc)
+;ASM_PFX(AsmReadPmc):
+;    rdpmc
+;    shl     rdx, 0x20
+;    or      rax, rdx
+;    ret
+
+global ASM_PFX(AsmReadPmc)
+ASM_PFX(AsmReadPmc):
+	;mov eax, 0xabcd
+    ;mov [_vartest], eax
+    
+	cmp rcx, 0xff
+	je label1
+	cmp rcx, 0xa
+	je label2
+	
+	mov rax, 0xabcd
+	mov [_vartest], rax
+
+label1:
+	mov rax, 0x1
+	mov [_vartest], rax
+	
+label2:
+	mov rax, rcx
+	mov [_vartest], rax
+
+	ret
+```
+
+added in HelloWorld.c lines 213 - 236. In case of x64 it needs 32 bit argument for ReadPmc, so there is conversion to UINT32. But this way you can read interesting values ​​and return in assembler to _vartest then read on console after code execution.
+
+```
+// demo x
+  _vartest = (UINT64)SystemTable;
+  
+  _vartest = 0xff; // temp value for tests
+  
+  AsmReadPmc((UINT32)_vartest);
+
+  for (INTN j = 0; j < 8; j++) {
+	buffer[7 - j] = hexchar[(_vartest >> (j * 4)) & 0xf];
+  }
+  buffer[8] = L'\r'; buffer[9] = L'\n'; buffer[10] = L'\0'; 
+  SystemTable->ConOut->OutputString(SystemTable->ConOut, buffer);
+  
+  //_vartest = (UINT64)SystemTable;
+  
+  _vartest = 0xa; // temp value for tests
+  
+  AsmReadPmc((UINT32)_vartest);
+
+  for (INTN j = 0; j < 8; j++) {
+	buffer[7 - j] = hexchar[(_vartest >> (j * 4)) & 0xf];
+  }
+  buffer[8] = L'\r'; buffer[9] = L'\n'; buffer[10] = L'\0'; 
+  SystemTable->ConOut->OutputString(SystemTable->ConOut, buffer);
+```
+
+https://www.philadelphia.edu.jo/academics/qhamarsheh/uploads/Lecture%2018%20Conditional%20Jumps%20Instructions.pdf <br />
+https://learn.microsoft.com/en-us/cpp/build/x64-calling-convention?view=msvc-170 - ABI fo x64
