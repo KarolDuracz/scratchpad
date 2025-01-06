@@ -96,6 +96,7 @@ ASM_PFX(AsmReadPmc):
 label1:
 	mov rax, 0x1
 	mov [_vartest], rax
+	ret ; <<--- DONT FORGET PLACE RET here because you will see the effect as in the picture - 0xFF instead of 0x1 -, i.e. instead of exiting the subfunction "label1" it will continue to execute the code.
 	
 label2:
 	mov rax, rcx
