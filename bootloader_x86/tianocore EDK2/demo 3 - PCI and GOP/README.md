@@ -28,10 +28,10 @@ build cleanall
 build -p MdeModulePkg/MdeModulePkg.dsc -m MdeModulePkg/Application/HelloWorld/HelloWorld.inf
 ```
 
-This is from shell rinning on VirtualBox under Windows 10. On the right Configuration space header
+This is from shell running on VirtualBox under Windows 10. On the right Configuration space header
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo%203%20-%20PCI%20and%20GOP/246%20-%2018-01-2025%20-%20ok%20pierwszy%20test%20na%20VM.png?raw=true)
 
-From shell rinning on VirtualBox under Windows 10 value for E1000 device - ethernet controller and all (6) BAR 32 bit vectors.
+From shell running on VirtualBox under Windows 10 value for E1000 device - ethernet controller and all (6) BAR 32 bit vectors.
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo%203%20-%20PCI%20and%20GOP/249%20-%2018-01-2025%20-%20cd.png?raw=true)
 
 Snapshot running on real hardware on my ASUS '11 Intel i3. It's work as you see. GOP has only 2 modes but it works, the most important thing is that there is support and you don't have to bother further just for the demo. In this picture is the detection of NVIDIA and a dump of 6 BAR vectors and the last config header vector which contains information about the interrupt lines and the pin
