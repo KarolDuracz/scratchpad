@@ -1,5 +1,5 @@
 <h2>About PCI and GOP</h2>
-Lif of files:<br /><br />
+List of files:<br /><br />
 HelloWorld.c<br />
 HelloWorld.inf<br />
 ReadPmd.nasm<br />
@@ -28,7 +28,7 @@ build cleanall
 build -p MdeModulePkg/MdeModulePkg.dsc -m MdeModulePkg/Application/HelloWorld/HelloWorld.inf
 ```
 
-This is from shell running on VirtualBox under Windows 10. On the right Configuration space header
+This is from VirtualBox BIOS under Windows 10. In this verion of bios is entry to shell. But also USB device is detected. So, just rename and place this helloworld.efi as \EFI\BOOT\bootx64.efi. And run via USB from bios boot option section. And this is result of that. On the right Configuration space header
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo%203%20-%20PCI%20and%20GOP/246%20-%2018-01-2025%20-%20ok%20pierwszy%20test%20na%20VM.png?raw=true)
 
 From shell running on VirtualBox under Windows 10 value for E1000 device - ethernet controller and all (6) BAR 32 bit vectors.
