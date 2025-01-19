@@ -1,1 +1,40 @@
-...
+<h2>About PCI and GOP</h2>
+Lif of files:<br /><br />
+HelloWorld.c<br />
+HelloWorld.inf<br />
+ReadPmd.nasm
+<hr>
+<br />
+1. This is full spec for PCI 3.0 https://lekensteyn.nl/files/docs/PCI_SPEV_V3_0.pdf . But there are earlier versions from the early '90s, then 2.0, 2.1 etc. Search on the internet. But this document is really full of information about PCI itself.
+<br /><br />
+2. Here is documentations for every architectures https://www.intel.com/content/www/us/en/docs/graphics-for-linux/developer-reference/1-0/overview.html . For example Intel is producing i9 CPUs now, but my old laptops is from '11 and '14. Intel i3 and i5. I wrote this, becuase I checked GOP, the basic GOP graphics protocol, among others from this tutorial https://www.youtube.com/watch?v=9tPYNwjtQfQ and in my laptop there are only 2 modes! 400 x 300 and 320 x 258. And that's it. On the second laptop it does not read GOP at all, I do not know if it is a matter of lack of support or something else, there is definitely a different address to the graphics card buffer than on my ASUS with Intel i3 '11. But waiting for a keypress event works, it just doesn't display anything on the screen.
+<br /><br />
+3. About GOP. In this helloworld.c there is demo from https://youtu.be/y0JAycBdTjA?list=PLT7NbkyNWaqZYHNLtOZ1MNxOt8myP5K0p in line 263 - 339 https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo%203%20-%20PCI%20and%20GOP/HelloWorld.c#L263
+<br /><br />
+Compile is the same as demo 2:
+
+```
+// main edk2 folder, go here first
+cd edk2
+
+// setup environemnt - read guide for edk2 installation and configuration which I wrote here
+edksetup.bat
+
+// maybe you need to clean directory in Build folder for MdeModulePkg in Conf/target.txt if you have some errors in compilation
+build cleanall
+
+// compile via .inf just like that
+build -p MdeModulePkg/MdeModulePkg.dsc -m MdeModulePkg/Application/HelloWorld/HelloWorld.inf
+```
+
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo%203%20-%20PCI%20and%20GOP/246%20-%2018-01-2025%20-%20ok%20pierwszy%20test%20na%20VM.png?raw=true)
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo%203%20-%20PCI%20and%20GOP/249%20-%2018-01-2025%20-%20cd.png?raw=true)
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo%203%20-%20PCI%20and%20GOP/250%20-%2018-01-2025%20-%20ok%20fajnie%20odczytalem%20te%20informacje%20z%20config%20header%20ale%20o%20co%20cmon.png?raw=true)
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo%203%20-%20PCI%20and%20GOP/259%20-%2019-01-2025%20-%20rozkmin%20ciag%20dalszy.png?raw=true)
+
+Dump MSR registers MSR_PLATFORM INFO, MSR PERF STATUS 0x198, MSR_RAPL_POWER_UNIT, MSR_TURBO_RATIO_LIMIT etc
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo%203%20-%20PCI%20and%20GOP/read%20cpu%20MSR.png?raw=true)
