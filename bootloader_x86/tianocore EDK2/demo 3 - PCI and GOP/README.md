@@ -2,7 +2,8 @@
 Lif of files:<br /><br />
 HelloWorld.c<br />
 HelloWorld.inf<br />
-ReadPmd.nasm
+ReadPmd.nasm<br />
+bootx64.efi - <<< compiled PCI demo code
 <hr>
 <br />
 1. This is full spec for PCI 3.0 https://lekensteyn.nl/files/docs/PCI_SPEV_V3_0.pdf . But there are earlier versions from the early '90s, then 2.0, 2.1 etc. Search on the internet. But this document is really full of information about PCI itself.
