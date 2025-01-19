@@ -48,14 +48,14 @@ I ran it from BIOS with a USB pendrive under the path \EFI\BOOT\bootx64.efi. Jus
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo%203%20-%20PCI%20and%20GOP/boot%20from%20bios%20via%20USB%20drive.png?raw=true)
 
 <hr>
-The PCI Configuration Address corresponding to this device formula. The Address value reported in the first line of the pci in shell commmand "pci"<br />
+The PCI Configuration Address corresponding to this device formula. The Address value reported in the first line of the pci in shell commmand "pci". <br />
 
 ```
 // [Bus Number: 8 bits | Device Number: 5 bits | Function Number: 3 bits]
 
-Address = (Bus x 0x10000) + (Device x 0x10000) + (Function x 0x100)
+Address = (Bus x 0x10000) + (Device x 0x1000) + (Function x 0x100)
 
 // for Bus 0, Device 3, Function 0
-Address = (0 x 0x10000) + (3 x 0x10000) + (0 x 0x100) = 0x00030000
+Address = (0 x 0x10000) + (3 x 0x1000) + (0 x 0x100) = 0x00030000
 ```
 <br />
