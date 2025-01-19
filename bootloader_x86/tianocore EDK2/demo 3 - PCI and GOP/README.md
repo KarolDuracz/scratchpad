@@ -31,7 +31,7 @@ build -p MdeModulePkg/MdeModulePkg.dsc -m MdeModulePkg/Application/HelloWorld/He
 This is from VirtualBox BIOS under Windows 10. In this verion of bios is entry to shell. But also USB device is detected. So, just rename and place this helloworld.efi as \EFI\BOOT\bootx64.efi. And run via USB from bios boot option section. And this is result of that. On the right Configuration space header
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo%203%20-%20PCI%20and%20GOP/246%20-%2018-01-2025%20-%20ok%20pierwszy%20test%20na%20VM.png?raw=true)
 
-From shell running on VirtualBox under Windows 10 value for E1000 device - ethernet controller and all (6) BAR 32 bit vectors.
+From shell running on VirtualBox under Windows 10 value for E1000 device - ethernet controller and all (6) BAR 32 bit vectors. I tried to understand interrupts from EFI side and Windows side. Because default for EFI is different than Windows represent. There is mention of this in this PCI document. Also why some bits from the control registers below have additional bits lit inside the BASE ADDRESS vector. E1000 is virtual adapter support as ethernet controller device in Virtual Box. 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo%203%20-%20PCI%20and%20GOP/249%20-%2018-01-2025%20-%20cd.png?raw=true)
 
 Snapshot running on real hardware on my ASUS '11 Intel i3. It's work as you see. GOP has only 2 modes but it works, the most important thing is that there is support and you don't have to bother further just for the demo. In this picture is the detection of NVIDIA and a dump of 6 BAR vectors and the last config header vector which contains information about the interrupt lines and the pin
