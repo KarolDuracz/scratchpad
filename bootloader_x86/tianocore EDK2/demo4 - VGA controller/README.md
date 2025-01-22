@@ -1,14 +1,16 @@
 <h2>Quick dump of VGA controll registers Intel 3000</h2>
-This is only dump from GOP and VGA registers for my machine. <br /><br />
-This this get documentations from link in my case - https://www.intel.com/content/www/us/en/docs/graphics-for-linux/developer-reference/1-0/intel-core-processor-2011.html - I have Intel i3 with integrated Intel 3000.
+This is only dump from GOP and VGA registers from my machine. <br /><br />
+I used documentations from link in my case - https://www.intel.com/content/www/us/en/docs/graphics-for-linux/developer-reference/1-0/intel-core-processor-2011.html - I have Intel i3 with integrated Intel HD 3000.
 <br /><br />
-Compile the as previous demos.
+Compile the same as previous demos.
 <br /><br />
 bootx64.efi << compiled current code for this demo4 . GOP + dump registers VGA from IO address 0x3CF, 0x3D4, 0x3D5, and registers GR10 etc.<br />
 HelloWorld.c - code<br />
 HelloWorld.inf - added only IoLib<br /><br />
 
-This is exactly in sequence what you see on the right. See in the code. Before that there is GRX register with offset 0x5, 0x10, 0x11. Then 0x5f - HorizontalTotal, 0x4F - HorizontalDisplayEnd, and so on... Previously there is GOP information, as you can see only 2 modes. Currently mode 1, which is 320 x 258. I'm trying to figure this out on real hardware, rather than creating simple stupid virtual demos. I don't really know what I'm doing yet. But this result for this demo 4.
+This is exactly in sequence what you see on the right. See in the code. Before that there is GRX register with offset 0x5, 0x10, 0x11. Then 0x5f - HorizontalTotal, 0x4F - HorizontalDisplayEnd, and so on... Previously there is GOP information, as you can see only 2 modes. Currently mode 1, which is 320 x 258. I'm trying to figure this out on real hardware, rather than creating simple stupid virtual demos. I don't really know what I'm doing yet. But this result for this demo 4.<br /><br />
+320 x 258 in hex, for decimal is equal to 800 x 600 <br />
+400 x 300 hex = 1024 x 768 px
 
 <br />
 
