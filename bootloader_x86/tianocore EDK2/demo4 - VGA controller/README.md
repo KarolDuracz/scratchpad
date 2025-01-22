@@ -11,7 +11,8 @@ HelloWorld.inf - added only IoLib<br /><br />
 This is exactly in sequence what you see on the right. See in the code. Before that there is GRX register with offset 0x5, 0x10, 0x11. Then 0x5f - HorizontalTotal, 0x4F - HorizontalDisplayEnd, and so on... Previously there is GOP information, as you can see only 2 modes. Currently mode 1, which is 320 x 258. I'm trying to figure this out on real hardware, rather than creating simple stupid virtual demos. I don't really know what I'm doing yet. But this result for this demo 4.<br /><br />
 320 x 258 in hex, for decimal is equal to 800 x 600 <br />
 400 x 300 hex = 1024 x 768 px
-
+<br />
+But right now I don't understand why this is only 80 x 32...
 <br />
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo4%20-%20VGA%20controller/268%20-%2022-01-2025%20-%20zrzut%20z%20rejestrow%20VGA%20intel%203000.png?raw=true)
