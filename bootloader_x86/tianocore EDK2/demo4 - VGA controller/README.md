@@ -8,7 +8,8 @@ bootx64.efi << compiled current code for this demo4 . GOP + dump registers VGA f
 HelloWorld.c - code<br />
 HelloWorld.inf - added only IoLib<br /><br />
 
-This is exactly in sequence what you see on the right. See in the code. Before that there is GRX register with offset 0x5, 0x10, 0x11. Then 0x5f - HorizontalTotal, 0x4F - HorizontalDisplayEnd, and so on...<br />
+This is exactly in sequence what you see on the right. See in the code. Before that there is GRX register with offset 0x5, 0x10, 0x11. Then 0x5f - HorizontalTotal, 0x4F - HorizontalDisplayEnd, and so on... Previously there is GOP information, as you can see only 2 modes. Currently mode 1, which is 320 x 258.
+<br />
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo4%20-%20VGA%20controller/268%20-%2022-01-2025%20-%20zrzut%20z%20rejestrow%20VGA%20intel%203000.png?raw=true)
 
