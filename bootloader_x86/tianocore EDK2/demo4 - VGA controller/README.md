@@ -14,6 +14,30 @@ This is exactly in sequence what you see on the right. See in the code. Before t
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo4%20-%20VGA%20controller/266%20-%2022-01-2025%20-%20bedzie%20lista%20rejestrow%20ale%20jeszcze%20ten%20potrzebuje.png?raw=true)
 
+This is what a typical screenshot looks like for this example
+```
+Horizontal Timing:
+  Total: 800
+  Display End: 640
+  Blank Start: 656
+  Blank End: 752
+  Sync Start: 656
+  Sync End: 752
+
+Vertical Timing:
+  Total: 525
+  Display End: 480
+  Blank Start: 490
+  Blank End: 491
+  Sync Start: 490
+  Sync End: 492
+
+Other Settings:
+  Interlaced Mode: No
+
+Detected Resolution: 640x480
+```
+
 <br />
 References:<br />
 [ 1 ] https://www.virtualbox.org/browser/vbox/trunk/src/VBox/Devices/Graphics/ - Virtual Box source code 
