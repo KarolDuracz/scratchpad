@@ -2,6 +2,8 @@ Update 23-01-2025 - 5:08 - In the "switch gop" folder (should be "switch gop", h
 So back to the point. I wanted to see if the registers displaying would show different values ​​when I change the mode from 0 to 1 and vice versa. AND NOTHING CHANGES IN THE REGISTERS. The GOP mode changes, the screen actually shows that it's 800x600 60Hz, or 1024x768 60Hz, but the register values ​​are the same in both cases. For now timers don't work for me (I must figure out many topics like timers but...), so slow down the change in such a simple way by doing it in a loop. These values ​​are displayed on the screen in Y = 40 X = 10 and Y = 40 X = 11 for tmpVal2 and state1.<br /><br />
 The purpose of this demo was to understand how high resolution (1600x900, 1366x786 etc) works when there is no access to the GOP, only a graphics card is detected on PCI and I have a BAR dump 0 - 5, with buffer addresses etc. In general, I have never tried to understand how displays work before. But now I want to know. That's all for now.
 
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo4%20-%20VGA%20controller/swtich%20gop/switch%20mode%20picture.png?raw=true)
+
 <h2>Quick dump of VGA controll registers Intel 3000</h2>
 This is only dump from GOP and VGA registers from my machine. <br /><br />
 I used documentations from link in my case - https://www.intel.com/content/www/us/en/docs/graphics-for-linux/developer-reference/1-0/intel-core-processor-2011.html - I have Intel i3 with integrated Intel HD 3000.
