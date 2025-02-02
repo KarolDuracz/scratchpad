@@ -25,6 +25,9 @@ __vmx_on is on line 62 https://github.com/KarolDuracz/scratchpad/blob/main/Hello
 
 ![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/refs/heads/main/Hello%20World%20Drivers/demo%203%20-%20Windows%20__vmx_on/22%20-%2002-02-2025%20-%20chyba%20dziala.png)
 
+This requires deeper analysis and explanation, but that's all for now.
+<br /><br />
+
 References:<br />
 https://rayanfam.com/topics/hypervisor-from-scratch-part-3/ <br />
 https://wiki.osdev.org/VMX <br />
