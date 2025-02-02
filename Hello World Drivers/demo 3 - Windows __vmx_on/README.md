@@ -29,6 +29,7 @@ This requires deeper analysis and explanation, but that's all for now.
 <br /><br />
 
 References:<br />
+https://learn.microsoft.com/en-us/cpp/intrinsics/vmx-on?view=msvc-170 <br />
 https://rayanfam.com/topics/hypervisor-from-scratch-part-3/ <br />
 https://wiki.osdev.org/VMX <br />
 https://alice.climent-pommeret.red/posts/a-syscall-journey-in-the-windows-kernel/ <-- this is next step for this issue
