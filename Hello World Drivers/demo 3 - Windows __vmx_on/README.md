@@ -27,7 +27,8 @@ __vmx_on is on line 62 https://github.com/KarolDuracz/scratchpad/blob/main/Hello
 
 This requires deeper analysis and explanation, but that's all for now.
 <br /><br />
-
+One important thing I have to write is that the value 0x5 from the listing "test VMX value at:" shows that VMX is not available, and you need to enable bit 13 on CR4. Otherwise you will get a blue screen. Crash system error.
+<br /><br />
 References:<br />
 https://learn.microsoft.com/en-us/cpp/intrinsics/vmx-on?view=msvc-170 <br />
 https://rayanfam.com/topics/hypervisor-from-scratch-part-3/ <br />
