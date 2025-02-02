@@ -27,7 +27,8 @@ __vmx_on is on line 62 https://github.com/KarolDuracz/scratchpad/blob/main/Hello
 
 This requires deeper analysis and explanation, but that's all for now.
 <br /><br />
-One important thing I have to write is that the value 0x5 from the listing "test VMX value at:" shows that VMX is not available, and you need to enable bit 13 on CR4. Otherwise you will get a blue screen. Crash system error.
+One important thing I have to write is that the value 0x5 from the listing "test VMX value at:" shows that VMX is not available, and you need to enable bit 13 on CR4. Otherwise you will get a blue screen. Crash system error. (...) Although I don't know if it actually matters, because after enabling bit 13 I still have 0x5 in this MSR register. But definitely bit 13 on CR4 is needed to avoid blue screen. At least for me it started working after setting this...
+
 <br /><br />
 References:<br />
 https://learn.microsoft.com/en-us/cpp/intrinsics/vmx-on?view=msvc-170 <br />
