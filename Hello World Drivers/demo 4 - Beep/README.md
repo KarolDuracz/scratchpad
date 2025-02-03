@@ -1,14 +1,14 @@
 <h2>TODO</h2>
 I'm starting this topic today as an "anchor" for me. From what I see, BEEP is the "simplest" because it is one of the smallest drivers/services
 to analyze because it is only 8 kB - C:\Windows\System32\drivers\beep.sys. But at the same time it has interaction with the sound card process.
-So this is quite interesting to analyze. From what I initially checked tt some point beep.sys executes NtCraeteFile and NtDeviceIoControlFile 
+So this is quite interesting to analyze. From what I initially checked at some point beep.sys executes NtCraeteFile and NtDeviceIoControlFile 
 from KernelBase.dll (from WOW64 folder if it is x86 process). And the second function contains the InputBuffer parameter which has as first 8 bytes 
 the frequency and wavelength, that is the arguments Beep(1000, 450) as hexadecimal in stack. And you can change it using the debugger before 
 executing the next instructions inside to generate a different type of sound.
 <br /><br />
 This is good exercises,before analyzing drivers for Intel HD 3000 and Nvidia GT540M. Because for my purposes I will need it.
-<b>I plan to do it in the first half of 2025</b>. Analyzing the entire driver is not really an option, but what controls it after BasicDriver. Generally, 
-the BasicDriver itself from Windows also requires analysis on the side.
+<b>I plan to do it in the first half of 2025</b>. Analyzing the entire driver is not really an option, but what controls it after BasicDisplay. Generally, 
+the BasicDisplay itself from Windows also requires analysis on the side.
 <br /><br />
 https://www.nvidia.com/en-us/geforce/drivers/results/103988/ - Windows 8.1 - this is driver for list of graphics cards<br />
 https://www.nvidia.com/en-us/geforce/drivers/results/87791/ - Windows 10<br />
