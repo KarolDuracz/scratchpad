@@ -21,6 +21,13 @@ drivers for particular GPU model, we have full access to high resolution and smo
 <br /><br />
 For VM case it's important. There are several things here like fake device in system which can be detected by this driver. 
 Like bridge between VM and Host to accelerate VM itself etc. And that's why I need to understand the basics of how it works.
-
+<br /><br />
+<h3>Just to be clear about what I'm doing here.</h3>
+  Today, Nvidia releases the GeForce RTX 5090 Mobile for laptops. But from what I see on YT, some people are upgrading their laptops using the RTX 3090 and 4090. But the whole point of this exercise is to understand the driver in general. Because as you can see from the list of cards that this NVIDIA driver supports, there is a huge gap between my GT540M and the "newer" '14 system, the GTX 980M. But it's still the same driver, it's just looking for a different DEVICE ID on the list on INF file and dependiences for it.<br />
+https://www.techpowerup.com/gpu-specs/geforce-gt-540m.c702 <br />
+https://www.techpowerup.com/gpu-specs/geforce-gtx-980m.c2746 <br />
+https://www.techpowerup.com/gpu-specs/geforce-rtx-4090-mobile.c3949 <br />
+https://www.techpowerup.com/gpu-specs/geforce-rtx-5090-mobile.c4235 <br />
+But you have to start somewhere, and my current chip to do exercises is this GT540M... from 2011.
 <br /><br />
 Try to do in first half of '25.
