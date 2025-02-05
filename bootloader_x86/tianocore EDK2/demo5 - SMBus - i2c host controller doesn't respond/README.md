@@ -7,7 +7,7 @@ https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20E
 So if not I2C then SMBus and the EFI_SMBUS_HC_PROTOCOL protocol which is detected in Windows. In line 238
 https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo5%20-%20SMBus%20-%20i2c%20host%20controller%20doesn't%20respond/HelloWorld.c#L238
 <br /><br />
-Everything looked ok, so I iterated through the addresses. I don't checked if something is between 0x50 - 0x57, I just displayed everything that is in between 0x03 - 0x77 to see what it finds. In this test I was specifically looking for DISPLAYS. And as you can see in the picture there is something between 0x50 - 0x57. It is possible that these are 2 devices for displaying the image, but I have not done a loop to EDID yet. I don't know yet what these two devices are doing at addresses 0x33 and x045.
+Everything looked ok, so I iterated through the addresses. I don't checked if something is between 0x50 - 0x57, I just displayed everything that is in between 0x03 - 0x77 to see what it finds. In this test I was specifically looking for a DISPLAYS devices. And as you can see in the picture there is something between 0x50 - 0x57. It is possible that these are 2 devices for displaying the image, but I have not done a loop to EDID yet. I don't know yet what these two devices are doing at addresses 0x33 and x045.
 
 ```
 #define SMBUS_MIN_ADDR  0x03  // Lowest SMBus address
