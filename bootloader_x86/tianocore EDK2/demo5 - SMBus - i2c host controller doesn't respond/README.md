@@ -77,3 +77,7 @@ System Management Bus (SMBus) Specification. The resulting transaction will be e
 SMBus slave devices accept this transaction or that this function returns with error.<br />
 https://glenwing.github.io/docs/VESA-EEDID-A2.pdf<br />
 https://www.extron.com/article/uedid<br />
+<hr>
+One more thing. SMBus in my laptop configuration is on PCI Dev 31, Fun 3.| PAGE 739 | 
+6-chipset-c200-chipset-datasheet.pdf - 2011 - 
+https://www.intel.com/content/dam/www/public/us/en/documents/datasheets/6-chipset-c200-chipset-datasheet.pdf
