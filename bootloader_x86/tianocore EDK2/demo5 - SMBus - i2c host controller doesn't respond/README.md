@@ -83,3 +83,4 @@ https://www.extron.com/article/uedid<br />
 One more thing. SMBus in my laptop configuration is on PCI Dev 31, Fun 3.| PAGE 739 | 
 6-chipset-c200-chipset-datasheet.pdf - 2011 - 
 https://www.intel.com/content/dam/www/public/us/en/documents/datasheets/6-chipset-c200-chipset-datasheet.pdf
+On page 365 there is a table with a description of PCI devices.
