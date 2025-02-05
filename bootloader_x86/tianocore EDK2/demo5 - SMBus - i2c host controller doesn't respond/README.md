@@ -96,3 +96,62 @@ I place here C220 version, because second laptop have this HM87 chip. If INF Win
 https://www.intel.com/content/www/us/en/products/sku/75528/intel-hm87-chipset/specifications.html
 <br />
 For now I have a problem with the basic GOP protocol there. Win PE works, so I must be doing something wrong. But it responds to keys, so EFI works to some extent. Only GOP does not display anything. But as you can see it is similar in structure, and these EDK2 TianoCore UEFI protocols work.
+<hr>
+Tried to EFI_SMBUS_UDID to read EfiSmbusReadBlock - <b></B>Not working</b>. "SMBus ARP (Address Resolution Protocol) is used to retrieve a device's UDID" - 
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo5%20-%20SMBus%20-%20i2c%20host%20controller%20doesn't%20respond/1738796910017.jpg?raw=true)
+
+ScanBus function update for EFI_SMBUS_UDID
+
+```
+EFI_STATUS ScanBus(IN EFI_SYSTEM_TABLE  *SystemTable, EFI_SMBUS_HC_PROTOCOL *Smbus)
+{
+	EFI_STATUS Status;
+	static EFI_SMBUS_DEVICE_ADDRESS smbus_addr;
+	EFI_SMBUS_DEVICE_COMMAND command = 0x00;
+	/*
+	UINTN length = 1;
+	UINT8 data;
+	
+	// scanning bus for connected device code 
+	_print(SystemTable, (UINT32)0xFF1FFFFF, 0, 0, 0, 0, 0);
+	
+	
+	for (UINT8 Address = SMBUS_MIN_ADDR; Address <= SMBUS_MAX_ADDR; Address++) {
+		Status = Smbus->Execute(Smbus, smbus_addr, command, EfiSmbusReadByte, FALSE, &length, &data);
+		smbus_addr.SmbusDeviceAddress = Address;
+		if (EFI_ERROR(Status)) {
+			_print(SystemTable, (UINT32)0xabcdef00, 0, 0, 0, 0, 1);
+		} else {
+		_print(SystemTable, (UINT32)Address, 0, 0, 0, 0, 1);
+		_print(SystemTable, (UINT32)length, 0, 0, 0, 0, 1);
+		_print(SystemTable, (UINT32)data, 0, 0, 0, 0, 1);
+		}
+	}
+	
+	// scan complete info
+	_print(SystemTable, (UINT32)0xFF1111FF, 0, 0, 0, 0, 0);
+	*/
+	
+	// read block of data - UDID
+	EFI_SMBUS_UDID udid;
+	UINTN len2 = sizeof(EFI_SMBUS_UDID);
+	
+	for (UINT8 Address = SMBUS_MIN_ADDR; Address <= 0x7F; Address++) {
+		Status = Smbus->Execute(Smbus, smbus_addr, command, EfiSmbusReadBlock, FALSE, &len2, &udid);
+		smbus_addr.SmbusDeviceAddress = Address;
+		if (EFI_ERROR(Status)) {
+			_print(SystemTable, (UINT32)0xabcdef00, 0, 0, 0, 0, 1);
+		} else {
+		_print(SystemTable, (UINT32)Address, 0, 0, 0, 0, 1);
+		_print(SystemTable, (UINT32)len2, 0, 0, 0, 0, 1);
+		_print(SystemTable, (UINT32)udid.VendorSpecificId, 0, 0, 0, 0, 1);
+		}
+	}
+	
+	// scan complete info
+	_print(SystemTable, (UINT32)0xFF111bFF, 0, 0, 0, 0, 0);
+	
+	return EFI_SUCCESS;
+}
+```
