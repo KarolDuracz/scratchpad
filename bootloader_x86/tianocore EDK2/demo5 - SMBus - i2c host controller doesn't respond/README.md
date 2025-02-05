@@ -1,6 +1,8 @@
 <h2>SMBus protocol</h2>
 
 Next chunk of uefi code <br /><br />
+Same as previous demo - HelloWorld.c - source code, HelloWorld.inf - dependencies, HelloWorld.efi - compiled code for this demo to examine SMBus.
+<br /><br />
 I tried the I2C protocol EFI_I2C_HOST_PROTOCOL but it doesn't work, it doesn't detect the host controller in line 216. It returns the error that I defined as 0xFFFFFFFF
 https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo5%20-%20SMBus%20-%20i2c%20host%20controller%20doesn't%20respond/HelloWorld.c#L216
 <br /><br />
