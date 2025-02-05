@@ -97,7 +97,7 @@ https://www.intel.com/content/www/us/en/products/sku/75528/intel-hm87-chipset/sp
 <br />
 For now I have a problem with the basic GOP protocol there. Win PE works, so I must be doing something wrong. But it responds to keys, so EFI works to some extent. Only GOP does not display anything. But as you can see it is similar in structure, and these EDK2 TianoCore UEFI protocols work.
 <hr>
-Tried to EFI_SMBUS_UDID to read EfiSmbusReadBlock - <b></B>Not working</b>. "SMBus ARP (Address Resolution Protocol) is used to retrieve a device's UDID" - 
+Tried to EFI_SMBUS_UDID to read EfiSmbusReadBlock - <b>Not working</b>. "SMBus ARP (Address Resolution Protocol) is used to retrieve a device's UDID" - 
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo5%20-%20SMBus%20-%20i2c%20host%20controller%20doesn't%20respond/1738796910017.jpg?raw=true)
 
@@ -155,3 +155,6 @@ EFI_STATUS ScanBus(IN EFI_SYSTEM_TABLE  *SystemTable, EFI_SMBUS_HC_PROTOCOL *Smb
 	return EFI_SUCCESS;
 }
 ```
+
+https://github.com/tianocore/edk2/blob/master/MdePkg/Include/IndustryStandard/SmBus.h <br />
+https://uefi.org/sites/default/files/resources/UEFI_PI_Spec_Final_Draft_1.9.pdf
