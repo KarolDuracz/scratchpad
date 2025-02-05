@@ -84,3 +84,9 @@ One more thing. SMBus in my laptop configuration is on PCI Dev 31, Fun 3.| PAGE 
 6-chipset-c200-chipset-datasheet.pdf - 2011 - 
 https://www.intel.com/content/dam/www/public/us/en/documents/datasheets/6-chipset-c200-chipset-datasheet.pdf
 On page 365 there is a table with a description of PCI devices.
+<br /><br />
+for comparison - 8 series C220 PCH - may 2014
+https://www.intel.la/content/dam/www/public/us/en/documents/datasheets/8-series-chipset-pch-datasheet.pdf
+<br /><br />
+Generally about PCH on the wiki. On my AUSU it has HM65
+ https://en.wikipedia.org/wiki/Platform_Controller_Hub
