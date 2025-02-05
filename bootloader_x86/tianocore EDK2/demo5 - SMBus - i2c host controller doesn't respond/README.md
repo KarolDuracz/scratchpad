@@ -89,4 +89,5 @@ for comparison - 8 series C220 PCH - may 2014
 https://www.intel.la/content/dam/www/public/us/en/documents/datasheets/8-series-chipset-pch-datasheet.pdf
 <br /><br />
 Generally about PCH on the wiki. On my AUSU it has HM65
- https://en.wikipedia.org/wiki/Platform_Controller_Hub
+ https://en.wikipedia.org/wiki/Platform_Controller_Hub <br />
+ https://www.intel.com/content/www/us/en/products/sku/52808/mobile-intel-hm65-express-chipset/specifications.html
