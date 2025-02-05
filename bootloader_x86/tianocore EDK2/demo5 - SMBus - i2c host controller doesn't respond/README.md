@@ -21,6 +21,23 @@ The code execution is on lines 378 - 380
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo5%20-%20SMBus%20-%20i2c%20host%20controller%20doesn't%20respond/1738778791687.jpg?raw=true)
 
+EDID from Windows for integrated laptop display. The first byte doesn't match. I don't know what this protocol read here, I need to study the documentation better
+, but it's probably some address for another protocol, because the EDID in the revision that my displays have uses the beginning 00,ff,ff,ff,ff,ff,ff,00. I think this sequence is the same for all revisions, but the first byte 0x92 at the beginning doesn't match the EDID. It's something else. That's by the way.
+
+```
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\DISPLAY\AUO139E\4&302c6972&0&UID67568640\Device Parameters]
+"EDID"=hex:00,ff,ff,ff,ff,ff,ff,00,06,af,9e,13,00,00,00,00,01,13,01,03,80,26,\
+  15,78,0a,c4,95,9e,57,53,92,26,0f,50,54,00,00,00,01,01,01,01,01,01,01,01,01,\
+  01,01,01,01,01,01,01,f8,2a,40,90,61,84,0c,30,30,20,36,00,7e,d6,10,00,00,18,\
+  00,00,00,0f,00,00,00,00,00,00,00,00,00,00,00,00,00,20,00,00,00,fe,00,41,55,\
+  4f,0a,20,20,20,20,20,20,20,20,20,00,00,00,fe,00,42,31,37,33,52,57,30,31,20,\
+  56,33,20,0a,00,26
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\DISPLAY\AUO139E\4&302c6972&0&UID67568640\Device Parameters\e5b3b5ac-9725-4f78-963f-03dfb1d828c7]
+```
+
 Example code to read EDID data
 
 ```
