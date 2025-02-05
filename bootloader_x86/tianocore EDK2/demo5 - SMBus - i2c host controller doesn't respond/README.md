@@ -91,3 +91,8 @@ https://www.intel.la/content/dam/www/public/us/en/documents/datasheets/8-series-
 Generally about PCH on the wiki. On my AUSU it has HM65
  https://en.wikipedia.org/wiki/Platform_Controller_Hub <br />
  https://www.intel.com/content/www/us/en/products/sku/52808/mobile-intel-hm65-express-chipset/specifications.html
+<br /><br />
+I place here C220 version, because second laptop have this HM87 chip. If INF Windows recognizes and names this DEVICE ID well <br />
+https://www.intel.com/content/www/us/en/products/sku/75528/intel-hm87-chipset/specifications.html
+<br />
+For now I have a problem with the basic GOP protocol there. Win PE works, so I must be doing something wrong. But it responds to keys, so EFI works to some extent. Only GOP does not display anything. But as you can see it is similar in structure, and these EDK2 TianoCore UEFI protocols work.
