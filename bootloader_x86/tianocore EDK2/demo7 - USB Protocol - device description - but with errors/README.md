@@ -24,3 +24,7 @@ I'll stop here for a moment to read more about this.
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo7%20-%20USB%20Protocol%20-%20device%20description%20-%20but%20with%20errors/58%20-%2006-02-2025%20-%20cd.png?raw=true)
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo7%20-%20USB%20Protocol%20-%20device%20description%20-%20but%20with%20errors/1738882436063.jpg?raw=true)
+
+<br /><br />
+References:<br />
+https://www.virtualbox.org/browser/vbox/trunk/src/VBox/Devices/USB
