@@ -1,3 +1,6 @@
+<h1>it doesn't work. For debugging purposes only.</h1>
+Look at picture from real hardware. After iteration first port on first hub, after 00000000 00000403 is error 12FFFFFF. And it should stop here. The rest is... errors. I have now checked the hardware ID again on Virtualbox - 8086 265C - this is HUB. The same here https://www.virtualbox.org/browser/vbox/trunk/src/VBox/Devices/USB/DevEHCI.cpp#L4905
+
 <h2>EFI_USB2_HC_PROTOCOL.ControlTransfer()</h2>
 I tried to get data about the device but it requires more effort to understand the USB operation. And the protocol itself. But I managed to dig something up at the end of the day. I AM UPLOADING THE .EFI FILE FOR DEBUGGING PURPOSES ONLY. I DO NOT RECOMMEND RUN IT ON YOUR OWN MACHINE.
 <br /><br />
