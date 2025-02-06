@@ -2,6 +2,8 @@
 
 Finally, something that has interested me for a years - how USB works. First approach to USB Protocol.
 <br /><br />
+Same as previous demo - HelloWorld.c - source code, HelloWorld.inf - dependencies, HelloWorld.efi - compiled code for this demo6.
+<br /><br />
 https://uefi.org/specs/UEFI/2.10/17_Protocols_USB_Support.html#id9
 <br /><br />
 
