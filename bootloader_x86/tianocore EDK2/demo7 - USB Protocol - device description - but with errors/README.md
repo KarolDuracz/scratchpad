@@ -8,7 +8,7 @@ https://www.usb.org/defined-class-codes is equal to HUB. And 8087 is Intel Vendo
 <br /><br />
 Code in line 413 - https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo7%20-%20USB%20Protocol%20-%20device%20description%20-%20but%20with%20errors/HelloWorld.c#L413 - execution in line 395.
 <br /><br />
-In line 418 there is (.efi 
+In line 418 there is 
 
 ```
 //usb->SetRootHubPortFeature(usb, deviceAddress, EfiUsbPortReset);
