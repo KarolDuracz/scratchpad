@@ -7,6 +7,17 @@ I don't know if it works properly, but as you can see it get something that matc
 https://www.usb.org/defined-class-codes is equal to HUB. And 8087 is Intel Vendor Id. But this is not working properly. 
 <br /><br />
 Code in line 413 - https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo7%20-%20USB%20Protocol%20-%20device%20description%20-%20but%20with%20errors/HelloWorld.c#L413 - execution in line 395.
+<br /><br />
+In line 418 there is (.efi 
+
+```
+//usb->SetRootHubPortFeature(usb, deviceAddress, EfiUsbPortReset);
+//gBS->Stall(500000); // wait 500 ms
+//usb->SetRootHubPortFeature(usb, deviceAddress, EfiUsbPortEnable);
+```
+
+I checked this on real hardware, and on Virtual Box. This works, but i don't know if it's necessary. <b>EFI is compiled without this part, just like the one in the pictures. This is without the sequence that resets and turns the hub back on</b>
+<br /><br />
 I'll stop here for a moment to read more about this.
 <br /><br />
 
