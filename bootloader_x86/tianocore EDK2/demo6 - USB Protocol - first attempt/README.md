@@ -17,3 +17,8 @@ Function used for this demo is in line 332. Execution in line 514.
 https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo6%20-%20USB%20Protocol%20-%20first%20attempt/HelloWorld.c#L332
 <br /><br />
 This is an interesting protocol, so I need to look into it further more. Learn more about it. Many different types of devices, controllers, keyboards, mice, SSDs hard disk, pendrives, etc. There are many classes of devices that use this protocol and USB connectors.
+<br /><br />
+References: <br />
+https://www.virtualbox.org/browser/vbox/trunk/src/VBox/Devices/USB <br />
+https://en.wikipedia.org/wiki/USB <br />
+https://www.usb.org/document-library/usb-20-specification - official USB 2.0 Specification
