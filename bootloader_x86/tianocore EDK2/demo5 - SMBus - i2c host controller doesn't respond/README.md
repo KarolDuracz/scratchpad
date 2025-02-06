@@ -158,3 +158,10 @@ EFI_STATUS ScanBus(IN EFI_SYSTEM_TABLE  *SystemTable, EFI_SMBUS_HC_PROTOCOL *Smb
 
 https://github.com/tianocore/edk2/blob/master/MdePkg/Include/IndustryStandard/SmBus.h <br />
 https://uefi.org/sites/default/files/resources/UEFI_PI_Spec_Final_Draft_1.9.pdf
+<hr>
+since I posted some documents here. This is better list for all chipset with year of production <br />
+https://en.wikipedia.org/wiki/List_of_Intel_chipsets
+<br /><br />
+And at the last on this topic - some history - back to 2000 - Intel 815 Chipset Family: 82815 
+Graphics and Memory Controller 
+Hub (GMCH) https://download.intel.com/design/chipsets/datashts/29068801.pdf
