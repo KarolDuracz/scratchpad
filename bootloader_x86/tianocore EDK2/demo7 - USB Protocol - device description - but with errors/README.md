@@ -30,4 +30,5 @@ I'll stop here for a moment to read more about this.
 
 <br /><br />
 References:<br />
-https://www.virtualbox.org/browser/vbox/trunk/src/VBox/Devices/USB
+https://www.virtualbox.org/browser/vbox/trunk/src/VBox/Devices/USB <br />
+https://github.com/tianocore/edk2/blob/master/MdePkg/Include/IndustryStandard/Usb.h
