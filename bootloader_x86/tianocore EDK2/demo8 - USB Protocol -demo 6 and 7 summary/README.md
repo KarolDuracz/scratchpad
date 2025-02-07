@@ -71,3 +71,5 @@ Virtual Box
 Real HW
 
 ![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/refs/heads/main/bootloader_x86/tianocore%20EDK2/demo8%20-%20USB%20Protocol%20-demo%206%20and%207%20summary/62%20-%2007-02-2025%20-%20few%20hours%20later.png)
+
+This selected device on Device Manager - USB Mass Storage Device - this is USB pendrive. I use this to transfer files between the host (Win 8.1) and VirtualBox. And in the pictures you can see that VirtualBox detects exactly this device, its Vendor and ID. Just like the last position in the picture with real HW.
