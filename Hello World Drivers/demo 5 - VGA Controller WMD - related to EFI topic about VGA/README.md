@@ -7,7 +7,7 @@ Main goal for this demo5. Can Windows Kernel Driver (WMD) read VGA registers? Th
 <br /><br />
 And I got exactly what I have in the EFI demo. Because I misread something there. In general, I don't know much about VGA itself now. I won't write in detail what I've learned in the meantime. But the basic thing is:
 <br /><br />
-
+And after switching resolution in Windows Display configuration, from 1600x900 to 1024x768. I stopped the driver and reloaded it after changing the resolution. Nothing happen on these registers. So... Probably not the way to go. But the VGA topic is definitely interesting, and worth spending more time on, because if GOP is not supported, and the VGA standard is supported, then there is no other option but to choose VGA. But from what I read, new systems, GPU systems no longer have support for VGA. And GOP itself is an extension of VESA. But that's roughly it.
 <h2>This comes from Chat GPT about VGA and question to explain what this configuration means.</h2>
 VGA vs. VESA vs. GOP: Key Differences
 <br />
