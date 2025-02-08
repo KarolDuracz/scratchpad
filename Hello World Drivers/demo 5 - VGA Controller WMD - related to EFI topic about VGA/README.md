@@ -12,14 +12,13 @@ Mode	Resolution Support	How It Works<br />
 VGA Standard (Mode 0x12, etc.)	Up to 640×480	Uses VGA CRTC registers<br />
 VESA BIOS Extensions (VBE 2.0/3.0)	800×600, 1024×768, etc.	Uses VESA graphics modes (INT 10h, AX=4F02h)<br />
 UEFI GOP (Graphics Output Protocol)	800×600+, 1024×768+	Uses EFI framebuffer (direct memory mapping, no VGA registers)<br />
-GOP’s Resolutions Depend on the GPU & Firmware
-Many modern GPUs do not support classic VGA registers at all.
-Instead, GOP initializes the framebuffer at a fixed resolution (often 800×600 or 1024×768).
+GOP’s Resolutions Depend on the GPU & Firmware<br />
+Many modern GPUs do not support classic VGA registers at all.<br />
+Instead, GOP initializes the framebuffer at a fixed resolution (often 800×600 or 1024×768).<br />
 The UEFI firmware loads a driver that sets the resolution, bypassing old VGA modes.
 <br /><br />
 And what I read from documentation and some with some help CHAT GPT, that is <br />
 VGA 720x400 Text Mode (Mode 0x03)<br />
-Setting	Value<br />
 Resolution	720×400<br />
 Character Size	9×16 pixels<br />
 Total Scanlines	447 (from CR06 + CR07 overflow)<br />
@@ -27,34 +26,34 @@ Visible Scanlines	400<br />
 Horizontal Total	768 pixels (from CR00)<br />
 Clock	28.322 MHz (from MSR 0x67)<br />
 <br />
-1. Understanding CR07 (Overflow Register, 0x07) = 0x1F (Binary: 00011111)
-The Overflow Register (CR07, Index 0x07) extends key vertical timing registers by providing their higher bits.
+1. Understanding CR07 (Overflow Register, 0x07) = 0x1F (Binary: 00011111)<br />
+The Overflow Register (CR07, Index 0x07) extends key vertical timing registers by providing their higher bits.<br />
 
-Bit	Meaning	Your Value (Binary: 0001 1111)
-Bit 0	Vertical Total (CR06, bit 8)	1 (Extends 0xBF)
-Bit 1	Vertical Display End (CR12, bit 8)	1
-Bit 2	Vertical Sync Start (CR10, bit 8)	1
-Bit 3	Vertical Blank Start (CR15, bit 8)	1
-Bit 4	Line Compare (CR18, bit 8)	1
-Bits 5-7	Unused in standard VGA	000
-2. Correcting Vertical Total with CR07 Overflow
-The Vertical Total Register (CR06, Index 0x06) = 0xBF (191 decimal) gets bit 8 extended from CR07.
+Bit	Meaning	Your Value (Binary: 0001 1111)<br />
+Bit 0	Vertical Total (CR06, bit 8)	1 (Extends 0xBF)<br />
+Bit 1	Vertical Display End (CR12, bit 8)	1<br />
+Bit 2	Vertical Sync Start (CR10, bit 8)	1<br />
+Bit 3	Vertical Blank Start (CR15, bit 8)	1<br />
+Bit 4	Line Compare (CR18, bit 8)	1<br />
+Bits 5-7	Unused in standard VGA	000<br />
+2. Correcting Vertical Total with CR07 Overflow<br />
+The Vertical Total Register (CR06, Index 0x06) = 0xBF (191 decimal) gets bit 8 extended from CR07.<br />
+<br />
+Formula to Compute Actual Vertical Total:<br />
+Vertical Total=(CR07 bit 0×256)+CR06<br />
+Vertical Total=(1×256)+191=447<br />
+Final Vertical Total = 0x1BF = 447 scanlines.<br />
+<br />
+3. Re-evaluating Your VGA Resolution<br />
+We now have:<br />
 
-Formula to Compute Actual Vertical Total:
-Vertical Total=(CR07 bit 0×256)+CR06
-Vertical Total=(1×256)+191=447
-Final Vertical Total = 0x1BF = 447 scanlines.
+Horizontal Total (0x5F) → 768 pixels total width.<br />
+Vertical Total (0x1BF = 447) → Similar to VGA 720x400 mode.<br />
+Your hardware is running a standard VGA 720×400 text mode.<br />
 
-3. Re-evaluating Your VGA Resolution
-We now have:
-
-Horizontal Total (0x5F) → 768 pixels total width.
-Vertical Total (0x1BF = 447) → Similar to VGA 720x400 mode.
-Your hardware is running a standard VGA 720×400 text mode.
-
-Horizontal Timing (0x5F) → Matches VGA 9-dot font (720 pixels wide).
-Vertical Total (447) → Matches VGA text mode (400 visible lines + blanking).
-MSR (0x67) → 28.322 MHz clock, used in text mode.
+Horizontal Timing (0x5F) → Matches VGA 9-dot font (720 pixels wide).<br />
+Vertical Total (447) → Matches VGA text mode (400 visible lines + blanking).<br />
+MSR (0x67) → 28.322 MHz clock, used in text mode.<br />
 <h2>More detailed in Official Intel Documentation - SNB - Volume 3 Part 1: Display Registers - VGA Registers</h2>
 https://www.intel.com/content/www/us/en/docs/graphics-for-linux/developer-reference/1-0/intel-core-processor-2011.html
 <br /><br />
