@@ -7,6 +7,8 @@ Main goal for this demo5. Can Windows Kernel Driver (WMD) read VGA registers? Th
 <br /><br />
 And I got exactly what I have in the EFI demo. Because I misread something there. In general, I don't know much about VGA itself now. I won't write in detail what I've learned in the meantime. But the basic thing is:
 <br /><br />
+
+<h2>This comes from Chat GPT about VGA and question to explain what this configuration means.</h2>
 VGA vs. VESA vs. GOP: Key Differences
 <br />
 Mode	Resolution Support	How It Works<br />
