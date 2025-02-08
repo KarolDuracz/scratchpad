@@ -69,3 +69,6 @@ References:<br />
 [2] http://www.tinyvga.com/vga-timing <br />
 [3] https://retrocomputing.stackexchange.com/questions/26243/how-do-80x25-characters-each-with-dimension-9x16-pixels-fit-on-a-vga-display-o <br />
 [4] https://community.intel.com/t5/Embedded-Intel-Atom-Processors/Why-does-BayTrail-upscale-720x400-text-mode-to-800x600/td-p/204609?profile.language=en
+<br /><br />
+My comment to this? This is not straight forward what i'm thinking about it some time before :) But it is precisely by doing this kind of little research, even if it is very cursory at the moment, that it allows me to get back on track. To be a better programmer, more competent than just writing "hello world" code. But without these chips, hardwares etc, programmer doesn't exists... looking at it from the other side.
+
