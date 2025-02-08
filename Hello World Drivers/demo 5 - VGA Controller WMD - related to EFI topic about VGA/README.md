@@ -1,5 +1,6 @@
 <h2> VGA Controller WMD - related to EFI topic about VGA</h2>
-
+I'm trying to understand if there is a correlation between the VGA controller and the GOP protocol in UEFI.
+<br /><br />
 related to this -> https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo4%20-%20VGA%20controller
 <br /><br />
 Main goal for this demo5. Can Windows Kernel Driver (WMD) read VGA registers? The answer is : YES.
@@ -35,7 +36,7 @@ Bit 1	Vertical Display End (CR12, bit 8)	1<br />
 Bit 2	Vertical Sync Start (CR10, bit 8)	1<br />
 Bit 3	Vertical Blank Start (CR15, bit 8)	1<br />
 Bit 4	Line Compare (CR18, bit 8)	1<br />
-Bits 5-7	Unused in standard VGA	000<br />
+Bits 5-7	Unused in standard VGA	000<br /><br />
 2. Correcting Vertical Total with CR07 Overflow<br />
 The Vertical Total Register (CR06, Index 0x06) = 0xBF (191 decimal) gets bit 8 extended from CR07.<br />
 <br />
