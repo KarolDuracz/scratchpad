@@ -55,7 +55,7 @@ Your hardware is running a standard VGA 720×400 text mode.
 Horizontal Timing (0x5F) → Matches VGA 9-dot font (720 pixels wide).
 Vertical Total (447) → Matches VGA text mode (400 visible lines + blanking).
 MSR (0x67) → 28.322 MHz clock, used in text mode.
-<h2>More detailed in Official Intel Documentation - SNB - Volume 3 Part 2: Display Registers - CPU Registers</h2>
+<h2>More detailed in Official Intel Documentation - SNB - Volume 3 Part 1: Display Registers - VGA Registers</h2>
 https://www.intel.com/content/www/us/en/docs/graphics-for-linux/developer-reference/1-0/intel-core-processor-2011.html
 <br /><br />
 
