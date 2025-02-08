@@ -1,5 +1,5 @@
 <h2>Access to VGA Controller via WMD - related to EFI topic about VGA</h2>
-I'm trying to understand if there is a correlation between the VGA controller and the GOP protocol in UEFI. But this is device for PCI line, Bus 0, Device 2, Fun 0 typically. And this have own registers for configuration. For my case this is documentation for that : https://www.intel.com/content/dam/www/public/us/en/documents/datasheets/6-chipset-c200-chipset-datasheet.pdf
+I'm trying to understand if there is a correlation between the VGA controller and the GOP protocol in UEFI. But this is device for PCI line, Bus 0, Device 2, Fun 0 typically. And this have own registers for configuration. For my case this is documentation for that : Page 95 https://www.intel.com/content/dam/www/public/us/en/documents/datasheets/xeon-e3-1200v6-vol-2-datasheet.pdf - this is not exactly datasheet for that, but to compare with chip from 2011. I can't find it now, but it has similar offsets. The overall structure is similar.
 <br /><br />
 related to this -> https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo4%20-%20VGA%20controller
 <br /><br />
