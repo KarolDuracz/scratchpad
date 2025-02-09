@@ -19,7 +19,7 @@ https://www.youtube.com/watch?v=FwFduRA_L6Q&ab_channel=YannLeCun (Convolutional 
 LLM for "text completion" tasks is another game changer. This is still under development. A few years ago this type of algorithm was a fantasy, but today each of us can take 
 it and train it for a specific task thanks to Andrej, and others who move forward this field. For a couple of dollars. To work as an assistant in daily tasks.
 <br /><br />
-At current level these visual recognition models + LLM are already really useful when you think how many things of this type similar to AOI can be automated.
+At current level visual recognition models + LLM are already really useful when you think how many things of this type similar to AOI can be automated.
 <br /><br />
 But what Andrej does and his approach to LLM is something more. This is really helpful stuff. 
 <br /><br />
