@@ -23,7 +23,7 @@ At current level visual recognition models + LLM are already really useful when 
 <br /><br />
 But what Andrej does and his approach to LLM is something more. This is really helpful stuff. 
 <br /><br />
-And what I see some people take advantege for this purpose like Xiaomi 
+And what I see some people take advantage for this purpose like Xiaomi 
 https://emag.directindustry.com/2024/07/29/inside-xiaomis-ev-factory-where-the-company-produces-an-electric-car-every-76-seconds/ <br />
 or https://emag.directindustry.com/2020/08/31/industry-4-0-and-the-luxury-industry-lamborghini-vuitton-fashion-automotive/ <br />
 because this is really starting to be helpful in planning, cost management since it can already do the type of tasks that Andrej showed in his video.
