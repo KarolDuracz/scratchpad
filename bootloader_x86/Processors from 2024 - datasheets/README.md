@@ -1,3 +1,5 @@
+![dump](https://www.chiphistory.org/chc_upload/content/jpg/7/1499078871/1499078871.jpeg)
+
 Start 10-02-2025 <br /><br />
 Intel <br />
 AMD <br /><br />
