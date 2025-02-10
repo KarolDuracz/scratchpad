@@ -9,6 +9,6 @@ https://www.intel.com/content/www/us/en/products/sku/236773/intel-core-i9-proces
 <br />
 But this is current chip.
  <br /><br />
-Today we benefit from the invention and decades of development of these technologies. But we must remember the fathers and pioneers.
+Today we benefit from the invention and decades of development of these technologies. But we must remember the fathers and pioneers these inventions.
 ![dump](https://www.chiphistory.org/chc_upload/content/jpg/7/1499078871/1499078871.jpeg)
 <i>Picture from site : https://www.chiphistory.org/integrated-circuit-invention-history-1958 </i>
