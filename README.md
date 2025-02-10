@@ -3,7 +3,7 @@ $${\color{red}}$$
 		${{\color{red}\Huge{\textsf{     for\   educational\   reason \  only\   [CLOSED]}}}}\$
 
 
-Update 10.02.2025 : For all demos and notes from 2025 at the end I will put a more detailed summary. Mostly for myself to sumarize all topics. But maybe someone find here something for on his path of learning programming, like everything on github. For now I'm creating a timeline for myself. So far there are many errors. But for the purposes of a quick reminder of the topic by days, weeks it is fine for me. I DO NOT RECOMMEND RUNNING THESE CODES WITHOUT VERIFICATION. THIS IS JUST A QUICK INTRO TO CHECK IF IT WORKS.
+Update 10.02.2025 : For all demos and notes from 2025 at the end I will put a more detailed summary. Mostly for myself to sumarize all topics. But maybe someone find here something for on his own path of learning programming, like everything on github. For now I'm creating a timeline for myself. So far there are many errors. But for the purposes of a quick reminder of the topic by days, weeks it is fine for me. I DO NOT RECOMMEND RUNNING THESE CODES WITHOUT VERIFICATION. THIS IS JUST A QUICK INTRO TO CHECK IF IT WORKS.
 <hr>
 update : 05.09.2024 : This "scratchpad" repo is theoretically closed. I won't be posting anything more here. These are just a few topics that interest me. Probably end of 2025 I'll be back to posting if there's something interesting finally worth sharing and developing. TIME TO GO TO NEXT LEVEL ...in programming skills also. 
 <br /><br />
