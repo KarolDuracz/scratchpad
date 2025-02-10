@@ -3,7 +3,8 @@ $${\color{red}}$$
 		${{\color{red}\Huge{\textsf{     for\   educational\   reason \  only\   [CLOSED]}}}}\$
 
 
-
+Update 10.02.2025 : For all demos and notes from 2025 at the end I will put a more detailed summary. Mostly for myself to sumarize all topics. But maybe someone find here something for on his path of learning programming, like everything on github. For now I'm creating a timeline for myself. So far there are many errors. But for the purposes of a quick reminder of the topic by days, weeks it is fine for me. I DO NOT RECOMMEND RUNNING THESE CODES WITHOUT VERIFICATION. THIS IS JUST A QUICK INTRO TO CHECK IF IT WORKS.
+<hr>
 update : 05.09.2024 : This "scratchpad" repo is theoretically closed. I won't be posting anything more here. These are just a few topics that interest me. Probably end of 2025 I'll be back to posting if there's something interesting finally worth sharing and developing. TIME TO GO TO NEXT LEVEL ...in programming skills also. 
 <br /><br />
 <b>update : 07.09.2024 : About "fix typo on README.md and inside code comments" - I apologize for my low quality and many of a typo mistakes. After some time I feel like I could have put more effort into it and spell checked it before posting the code, but I won't be correcting every comment anymore because it's unnecessary. It's about the code, and the demos. I think the comment captures the general gist or context of what is going on here. It is sufficiently readable and understandable. Besides, it is a "scratchpad" for me. Not a public repo. But like I said, I feel like I could have put more care and effort into it.</b>
@@ -29,6 +30,7 @@ Update 11-12-2024 - I added WinPE, tianocore EDK2 and ASL/AML Intel quick intro.
 Update 23-12-2024 - OK, last word in '24. Something inside tells me that I would rather focus on it now, as long as there is an opportunity for free learning and development myself. I just prefer to focus on it for a year and in the end I'll find out whether I know something and can do it and it makes sense or not. And when I look at, for example, where I can then train Machine Learning, I chose well to create a "playground" on what I have already done (3d board folder). I will grasp the basics faster knowing what I want from the application. It's just about training and pushing myself, and building a Virtual Machine seems like a good challenge for this because it touches on general issues as a whole when it comes to computers (from the software development side, not from the hardware and chip building side). And in a year we will find out whether it is good or nonsense. It is that simple...
 <br /><br />
 That's it for 2024 !!!
+<br />
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 <br /><br />
 NtQueryInformationProcess_run_example - dump.png
