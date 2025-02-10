@@ -3,7 +3,7 @@ In order to remember the sequence of configuring the environment, installing the
 for reproducing these demos in the future.
 <br /><br />
 [ 1 ] - Instalation and configuration MS Visual Studio 2019 / 2022 <br />
-[ 2 ] - snapshot of directory, what is inside these folders?
+[ 2 ] - snapshot of directory, what is inside these folders? (because I moved some files from Windows Kits 10 to these folders for 8.1)
 
 ```
 set WDK_INC=C:\Program Files (x86)\Windows Kits\8.0\Include\km
