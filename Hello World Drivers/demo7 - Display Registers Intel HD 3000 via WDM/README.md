@@ -39,3 +39,8 @@ I have previously tried to read some values ​​through GOP on EDK2 and among 
 <br /><br />
 some information collected about GOP and Intel HD 3000. But just looking at the configuration description [Display Mode Set Sequence] in SNB - Volume 3 Part 2: Display Registers. It is not trivial.
 <h2>TODO</h2>
+That's why I first needed to manually check some addresses like this to know what to look for in the driver.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Hello%20World%20Drivers/demo7%20-%20Display%20Registers%20Intel%20HD%203000%20via%20WDM/100%20-%2010-02-2025%20-%20for%20driver%20research.png?raw=true)
+
+<h2>TODO</h2>
