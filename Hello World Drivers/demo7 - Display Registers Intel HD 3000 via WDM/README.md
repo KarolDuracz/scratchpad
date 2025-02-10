@@ -32,3 +32,10 @@ In line 201 i 202 I just tried to enter new values ​​for other resolutions r
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Hello%20World%20Drivers/demo7%20-%20Display%20Registers%20Intel%20HD%203000%20via%20WDM/99%20-%2010-02-2025%20-%20ok%20mam%20oba%20pipeline%20do%20monitorow%20ale%20to%20jest%20bardziej%20zlozona%20konfiguracja.png?raw=true)
 
 <h2>TODO</h2>
+I have previously tried to read some values ​​through GOP on EDK2 and among other things GOP gives the buffer address and its size. Line 337 in this file:<br />
+[ 1 ] https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo4%20-%20VGA%20controller <br />
+[ 2 ] https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo4%20-%20VGA%20controller/HelloWorld.c#L337 <br />
+<b>And looking at the screenshot (in demo4 - VGA controller) indeed it is 0xB0000000 as the linear buffer address.</b> 
+<br /><br />
+some information collected about GOP and Intel HD 3000. But just looking at the configuration description [Display Mode Set Sequence] in SNB - Volume 3 Part 2: Display Registers. It is not trivial.
+<h2>TODO</h2>
