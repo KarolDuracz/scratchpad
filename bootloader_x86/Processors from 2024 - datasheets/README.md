@@ -6,4 +6,4 @@ https://www.intel.com/content/www/us/en/docs/graphics-for-linux/developer-refere
 <br />
 https://www.intel.com/content/www/us/en/products/sku/236773/intel-core-i9-processor-14900k-36m-cache-up-to-6-00-ghz/specifications.html
 <br />
-But this is current devices.
+But this is current chip.
