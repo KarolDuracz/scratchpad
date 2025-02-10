@@ -1,5 +1,5 @@
 <h2>TODO</h2>
-
+<h2>quick research to move this topic forward</h2>
 https://www.intel.com/content/www/us/en/docs/graphics-for-linux/developer-reference/1-0/intel-core-processor-2011.html
 <br /><br />
 Two most important datasheet for this demo 7: <br />
