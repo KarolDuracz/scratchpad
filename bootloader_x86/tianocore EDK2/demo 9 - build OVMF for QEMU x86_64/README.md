@@ -58,6 +58,12 @@ The command I used to boot with Secure Boot. The Untitled - explain why secure b
 qemu-system-x86_64 -L . -drive if=pflash,format=raw,unit=0,file=share/ovmf-nvram/OVMF_CODE.fd,readonly=on -drive if=pflash,format=raw,unit=1,file=share/ovmf-nvram/OVMF_VARS.fd -device qemu-xhci,id=xhci -drive if=none,id=usbdisk,file="\\.\PHYSICALDRIVE1",format=raw -cdrom "C:\Users\kdhome\Documents\ImageISO\ubuntu-14.04.6-desktop-amd64.iso" -m 1024 -device usb-storage,drive=usbdisk
 ```
 
+To save logs to file (don't print on terminal)
+
+```
+qemu-system-x86_64 -d int -D debug.log > full.log 2>&1
+```
+
 I uploaded some pictures
 https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo%209%20-%20build%20OVMF%20for%20QEMU%20x86_64/demo9-pics
 <br /><br />
