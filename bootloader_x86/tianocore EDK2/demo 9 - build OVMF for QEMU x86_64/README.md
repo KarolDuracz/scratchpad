@@ -39,7 +39,31 @@ https://github.com/user-attachments/files/17171016/iasl-win-20240927.zip
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo%209%20-%20build%20OVMF%20for%20QEMU%20x86_64/demo9-pics/jesli%20jest%20taki%20blad%20potrzeba%20ASL.png?raw=true)
 
 <hr>
+<h2>2. First launch</h2>
 
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo%209%20-%20build%20OVMF%20for%20QEMU%20x86_64/demo9-pics/pierwsze%20uruchomienie%20po%20zbudowaniu.png?raw=true)
+
+<h2>3. Try demo 2</h2>
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo%209%20-%20build%20OVMF%20for%20QEMU%20x86_64/demo9-pics/220%20-%2027-02-2025%20-%20to%20bylo%20demo%202%20chyba.png?raw=true)
+
+This is base command for run OVMF (I used this here) . I boot with the CDROM parameter and Linux to have access to grub, then I go to UiApp. And with an active USB device which is physically my Win PE pendrive. This is for SHELL. Without it you can only see BLK0 as in the picture above from the first run.
+
+```
+qemu-system-x86_64 -L . -bios /share/OVMF.fd -device qemu-xhci,id=xhci -drive if=none,id=usbdisk,file="\\.\PHYSICALDRIVE1",format=raw -cdrom "C:\Users\kdhome\Documents\ImageISO\ubuntu-14.04.6-desktop-amd64.iso" -m 1024 -device usb-storage,drive=usbdisk
+```
+
+The command I used to boot with Secure Boot. The Untitled - explain why secure boot version not working.ipynb file and the last 2 graphs show what happens with EIP right after boot. So I probably misconfigured NVRAM. But this is a more complex topic.
+```
+qemu-system-x86_64 -L . -drive if=pflash,format=raw,unit=0,file=share/ovmf-nvram/OVMF_CODE.fd,readonly=on -drive if=pflash,format=raw,unit=1,file=share/ovmf-nvram/OVMF_VARS.fd -device qemu-xhci,id=xhci -drive if=none,id=usbdisk,file="\\.\PHYSICALDRIVE1",format=raw -cdrom "C:\Users\kdhome\Documents\ImageISO\ubuntu-14.04.6-desktop-amd64.iso" -m 1024 -device usb-storage,drive=usbdisk
+```
+
+I uploaded some pictures
+https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo%209%20-%20build%20OVMF%20for%20QEMU%20x86_64/demo9-pics
+<br /><br />
+<h2>4. Summary</h2>
+At first I didn't want to write anything, then I made notes, and then I wanted to write much more about it. But at the end I decided that it doesn't work anyway. So it's a shame to produce myself. But I think that what is in the "OVMF default" folder and the command "qemu-system-x86_64 -L . -bios /share/OVMF.fd -device qemu-xhci,id=xhci -drive if=none,id=usbdisk,file="\\.\PHYSICALDRIVE1",format=raw -cdrom "C:\Users\kdhome\Documents\ImageISO\ubuntu-14.04.6-desktop-amd64.iso" -m 1024 -device usb-storage,drive=usbdisk" should work for you on QEMU too. You can try to load this BIOS as I showed here.
+<hr>
 REFERENCES: <br />
 https://www.qemu.org/docs/master/system/i386/pc.html <br />
 https://github.com/tianocore/tianocore.github.io/wiki/How-to-Enable-Security <br />
