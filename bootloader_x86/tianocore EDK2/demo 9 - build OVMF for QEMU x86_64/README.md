@@ -1,4 +1,4 @@
-<h2>Intro</h2>
+<h2>Intro - This is not detailed description - checkpoint for me only </h2>
 I tried to approach building OVMF before delving into how it works in detail. Unfortunately, it is not enough to simply build it with a few commands. What did I find in my case? That it does not work as BIOS for Windows PE. I found some information what could be the cause, but ultimately it did not solve the problem at the moment. But Linux 14.04 loads. But by the way I checked the demos that I uploaded here, i.e. PCI demo, USB demo, the first demos with a green background. And it works on "OVMF default". Unfortunately SECURE BOOT does not work. The file Untitled - explain why secure boot version not working.ipynb which is here has a saved log from QEMU for both versions. I checked the EIP address. In OUT[56] ​​you can see that it oscillates between 1.06 - 1.05. But the last image OUT[61] at the bottom represents running OVMF with SECURE BOOT ENABLE and as you can see from EIP tracing at some point it jumps from
 0x3ea19b35
 0xe0000
