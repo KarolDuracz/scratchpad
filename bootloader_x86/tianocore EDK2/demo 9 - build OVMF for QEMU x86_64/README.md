@@ -87,7 +87,8 @@ https://en.opensuse.org/openSUSE:UEFI_Secure_boot_using_qemu-kvm <br />
 https://tianocore-docs.github.io/edk2-MinimumPlatformSpecification/draft/7_stage_5_security_enable/75_configuration.html <br />
 https://tianocore-docs.github.io/edk2-MinimumPlatformSpecification/draft/6_stage_4_boot_to_os/#6-stage-4-boot-to-os <br />
 https://uefi.org/specs/PI/1.8/V3_Design_Discussion.html <br />
-https://uefi.org/specs/PI/1.8/V3_Code_Definitions.html
+https://uefi.org/specs/PI/1.8/V3_Code_Definitions.html <br />
+https://www.virtualbox.org/browser/vbox/trunk/src/VBox/Devices/EFI/Firmware <--- VirtualBox code source
 
 <hr>
 <h2>5. Simple test if it works</h2>
