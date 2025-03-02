@@ -85,3 +85,19 @@ https://tianocore-docs.github.io/edk2-MinimumPlatformSpecification/draft/7_stage
 https://tianocore-docs.github.io/edk2-MinimumPlatformSpecification/draft/6_stage_4_boot_to_os/#6-stage-4-boot-to-os <br />
 https://uefi.org/specs/PI/1.8/V3_Design_Discussion.html <br />
 https://uefi.org/specs/PI/1.8/V3_Code_Definitions.html
+
+<hr>
+<h2>5. Simple test if it works</h2>
+
+1. QEMU is needed - https://www.qemu.org/download/ <br />
+2. Download OVMF from this repo - https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo%209%20-%20build%20OVMF%20for%20QEMU%20x86_64/OVMF%20default/OVMF.fd<br />
+3. Copy OVMF.fd to some folder, it can be the main folder where qemu is installed.
+4. Run virtual machine via this command ( in this case with 512 MB ram -m parameter )
+
+```
+qemu-system-x86_64 -L . -bios OVMF.fd -m 512
+```
+5. This does jump to shell, just like you see on the screen from "2. first launch".
+6. Type "exit" on the shell and press ENTER. will jump to UiApp
+
+![qemu](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo%209%20-%20build%20OVMF%20for%20QEMU%20x86_64/demo9-pics/5%20-%20how%20to%20use%20this%20demo%20on%20qemu.png?raw=true)
