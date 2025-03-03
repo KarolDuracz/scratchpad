@@ -105,3 +105,13 @@ qemu-system-x86_64 -L . -bios OVMF.fd -m 512
 6. Type "exit" on the shell and press ENTER. will jump to UiApp
 
 ![qemu](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo%209%20-%20build%20OVMF%20for%20QEMU%20x86_64/demo9-pics/5%20-%20how%20to%20use%20this%20demo%20on%20qemu.png?raw=true)
+
+<hr>
+<h2>Chat GPT : Write differences between OVMF EDK2 and real hardware . What is differences between OVMF and real hardware initialization</h2>
+OVMF (Open Virtual Machine Firmware) is a UEFI firmware implementation for virtual machines, based on EDK2 (EFI Development Kit 2). It is mainly used with QEMU/KVM to provide a UEFI environment instead of legacy BIOS. Here’s how OVMF/EDK2 differs from real hardware in terms of initialization and general behavior:
+
+
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo%209%20-%20build%20OVMF%20for%20QEMU%20x86_64/demo9-pics/differences%20between%20OVMF%20EDK2%20and%20real%20hardware.png?raw=true)
+
+I like watching channels on YT like this one, https://www.youtube.com/@DanielRakowiecki - This episode is interesting. Because it may be BIOS / UEFI errors (Najdziwniejsza usterka laptopa jaką kiedykolwiek widziałem!) https://www.youtube.com/watch?v=Tb2TOrq5FFk&ab_channel=DanielRakowiecki
