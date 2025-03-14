@@ -24,4 +24,9 @@ I don't know if this generation of LLM's with "thinking' process" has a speculat
 So theoretically we can PREDICT IMAGES IN A FORWARD SEQUENCE. And then back to fix predictions. For now I'm thinking out loud. I clearly need to go deeper, start learning it from the more difficult side, i.e. mathematics etc. :) because Open AI / Google make tools for the general public. Tools like this [Math problems with GPT-4o] https://www.youtube.com/watch?v=_nSmkyDNulk&ab_channel=OpenAI are amazing and these are goals that are realistic. These are problems that can be solved with an LLM. And I admire the people who build this and it works like this, mixing voice commands and what is drawn on the screen in context. And it works as a teacher. 
 <br /><br />
 I'm mainly interested in 4 things in this idea. 1) Can the model deepen the context in this way and find deeper patterns and correlations 2) The goal would be to build a model that can simulate devices, any devices. Instead of building physically, simulate costs, potential materials needed, etc. etc. SO FIRST YOU SIMULATE THE IDEA before you start building it. Simulating different scenarios and consequences etc.  3) But at the same time there must be a dynamic context that will allow you to dynamically add the necessary documentation, photos, etc. 4) Will this idea build something I haven't seen before?
+<br /><br />
+But first I need to build "Board 3D" and test these ideas on it → https://github.com/KarolDuracz/scratchpad/tree/main/3D%20board%20'11 . This is my playground for now all ideas to "physically" create its and check if it works...
+<br /><br />
 
+$${\color{red}}$$	
+		${{\color{red}\Huge{\textsf{    [CLOSED]}}}}\$
