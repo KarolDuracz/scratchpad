@@ -25,7 +25,7 @@ So theoretically we can PREDICT IMAGES IN A FORWARD SEQUENCE. And then back to f
 <br /><br />
 I'm mainly interested in 4 things in this idea. 1) Can the model deepen the context in this way and find deeper patterns and correlations 2) The goal would be to build a model that can simulate devices, any devices. Instead of building physically, simulate costs, potential materials needed, etc. etc. SO FIRST YOU SIMULATE THE IDEA before you start building it. Simulating different scenarios and consequences etc.  3) But at the same time there must be a dynamic context that will allow you to dynamically add the necessary documentation, photos, etc. 4) Will this idea build something I haven't seen before?
 <br /><br />
-But first I need to build "Board 3D" and test these ideas on it → https://github.com/KarolDuracz/scratchpad/tree/main/3D%20board%20'11 . This is my playground for now all ideas to "physically" create its and check if it works...
+But first I need to build "Board 3D" and test these ideas on it → https://github.com/KarolDuracz/scratchpad/tree/main/3D%20board%20'11 . This is my playground for now all ideas to "physically" create and check if it works...
 <br /><br />
 
 $${\color{red}}$$	
