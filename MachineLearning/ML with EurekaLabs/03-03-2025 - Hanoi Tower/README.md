@@ -29,10 +29,10 @@ But first I need to build "Board 3D" and test these ideas on it → https://gith
 <br /><br />
 -- 15-03-2025 -- 
 <br /><br />
-To be more precise, I'm interested in whether it's possible to improve the architecture, increase the context to lead to understanding how this device works, for example. Start from ~51:56 https://youtu.be/NXrGOd7gdMw?list=PLUl4u3cNGP61FVzAxBP09w2FMQgknTOqu [MIT 22.01 Introduction to Nuclear Engineering and Ionizing Radiation, Fall 2016
+To be more precise, I'm interested in whether it's possible to improve the architecture, increase the context to lead to understanding how this device works, for example. Start from ~51:56 https://youtu.be/NXrGOd7gdMw?list=PLUl4u3cNGP61FVzAxBP09w2FMQgknTOqu&t=3114 [MIT 22.01 Introduction to Nuclear Engineering and Ionizing Radiation, Fall 2016
 Instructor: Michael Short] → playlist MIT 22.01 Introduction to Nuclear Engineering and Ionizing Radiation, Fall 2016 https://www.youtube.com/playlist?list=PLUl4u3cNGP61FVzAxBP09w2FMQgknTOqu
 <br /><br />
-Will the model find fundamental laws that will allow it to simulate this device. This is an interesting goal for me. But for now i'm nowhere, at the planning stage TODO ;/ But no one will stop me from having such ambitions and trying build sth like that...
+Will the model find fundamental laws that will allow it to simulate this device. This is an interesting goal for me. But for now i'm nowhere, at the planning stage TODO ;/ 
 <br /><br />
 
 $${\color{red}}$$	
