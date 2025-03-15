@@ -36,5 +36,7 @@ Will the model find fundamental laws that will allow it to simulate this device.
 <br /><br />
 btw. I was born in '88. But from what I remembered I'm always was courious, interested me what happened in Chernobyl in '86. And story behind RMBK reactor etc. And here we have access to some knowledge about this stuff. Lecture 26 in this playlist. And maybe machine learning and what's happening in this field today will allow me to explore these types of topics that touch on the fundamental rules of physics, chemistry, materials, etc.
 <br /><br />
+Referring to what I wrote above about the "speculative window". if I'm right and this works. then I can speculatively add any tokens anywhere in this "window" and try to predict the rest of the sequence/frames "The cat sat on the mat." → [101, 2073, 2763, 2003, 2173, 102] → [ speculative window for next tokens ]. Take another look at that Hanoi Tower image above from this perspective, is it possible to visually train the model to understand this way?!
+<br /><br />
 $${\color{red}}$$	
 		${{\color{red}\Huge{\textsf{    [CLOSED]}}}}\$
