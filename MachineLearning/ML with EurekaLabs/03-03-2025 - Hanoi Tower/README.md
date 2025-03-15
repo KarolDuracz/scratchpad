@@ -34,6 +34,7 @@ Instructor: Michael Short] → playlist MIT 22.01 Introduction to Nuclear Engine
 <br /><br />
 Will the model find fundamental laws that will allow it to simulate this device. This is an interesting goal for me. But for now i'm nowhere, at the planning stage TODO ;/ 
 <br /><br />
-
+btw. I was born in '88. But from what I remembered I'm always was courious, interested me what happened in Chernobyl in '86. And story behind RMBK reactor etc. And here we are access to some knowledge about this stuff. Lecture 26 in this playlist. And maybe machine learning and what's happening in this field today will allow me to explore these types of topics that touch on the fundamental rules of physics, chemistry, materials, etc.
+<br /><br />
 $${\color{red}}$$	
 		${{\color{red}\Huge{\textsf{    [CLOSED]}}}}\$
