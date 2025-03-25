@@ -24,3 +24,5 @@ Because it may be possible to perform and "tune" the trained network for more co
 <br /><br />
 <i>But this is what needs to be done here, i.e. adding this dynamic change of parameters and predictions for subsequent letters, so that it generates subsequent "tokens" just like the trained model through backpropagation, when you move these circles or create connections. This is started in the serv.py part in the update_weights() function and sent a POST to the model. But the MLP model itself is only minimally here. NOT WORKING.
 </i>
+<br /><br />
+So changin' that's on canvas must change DISTRIBUTION on softmax. This is the goal here.
