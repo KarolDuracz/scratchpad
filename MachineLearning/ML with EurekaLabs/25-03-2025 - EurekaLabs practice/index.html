@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Network Editor</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        canvas { border: 1px solid black; background: #f4f4f4; cursor: crosshair; position: fixed; left: 10px }
+        #status { margin-top: 10px; font-weight: bold; }
+        #weights { margin-top: 20px; font-family: Courier New, monospace; position: fixed; right: 10px}
+        .probability-list { margin-top: 20px; list-style-type: none; }
+    </style>
+</head>
+<body>
+
+    <h2>Manual Neural Network Weight Editor</h2>
+    <p>Hold <b>CTRL</b> and click two circles to create a connection.</p>
+    <canvas id="networkCanvas" width="800" height="600"></canvas>
+    <p id="status">Status: Waiting for interaction...</p>
+
+    <!-- Display weights and probabilities -->
+    <div id="weights">
+        <h3>Model Weights and Probabilities:</h3>
+        <div id="weightsDisplay"></div>
+        <ul id="probabilities" class="probability-list"></ul>
+    </div>
+
+    <script>
+        const canvas = document.getElementById("networkCanvas");
+        const ctx = canvas.getContext("2d");
+
+        let nodes = [];
+        let connections = []; 
+        let selectedNode = null;
+        let startNode = null;
+        let isCtrlPressed = false;
+
+        // Generate nodes for all A-Z letters
+        const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        alphabet.split("").forEach((char, index) => {
+            nodes.push({
+                id: index,
+                char: char,
+                x: 50 + (index % 7) * 100,  // Spread in grid pattern
+                y: 50 + Math.floor(index / 7) * 100
+            });
+        });
+
+        // Draw the network
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw connections (red lines)
+            ctx.strokeStyle = "red";
+            ctx.lineWidth = 2;
+            connections.forEach(conn => {
+                let fromNode = nodes.find(n => n.id === conn.from);
+                let toNode = nodes.find(n => n.id === conn.to);
+                if (fromNode && toNode) {
+                    ctx.beginPath();
+                    ctx.moveTo(fromNode.x, fromNode.y);
+                    ctx.lineTo(toNode.x, toNode.y);
+                    ctx.stroke();
+                }
+            });
+
+            // Draw nodes (circles)
+            nodes.forEach(node => {
+                ctx.fillStyle = "blue";
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, 20, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.stroke();
+                ctx.fillStyle = "white";
+                ctx.font = "16px Arial";
+                ctx.fillText(node.char, node.x - 5, node.y + 5);
+            });
+        }
+
+        // Mouse events
+        canvas.addEventListener("mousedown", (e) => {
+            let { offsetX: mx, offsetY: my } = e;
+            selectedNode = nodes.find(node => 
+                Math.sqrt((node.x - mx) ** 2 + (node.y - my) ** 2) < 20
+            );
+
+            if (selectedNode) {
+                if (isCtrlPressed) {
+                    if (!startNode) {
+                        startNode = selectedNode;
+                    } else if (startNode !== selectedNode) {
+                        // Confirm connection
+                        connections.push({ from: startNode.id, to: selectedNode.id });
+                        sendWeightsToServer();
+                        startNode = null;
+                    }
+                } else {
+                    // Start dragging
+                    isDragging = true;
+                }
+            }
+            draw();
+        });
+
+        canvas.addEventListener("mousemove", (e) => {
+            if (isDragging && selectedNode) {
+                selectedNode.x = e.offsetX;
+                selectedNode.y = e.offsetY;
+                sendWeightsToServer();
+                draw();
+            }
+        });
+
+        canvas.addEventListener("mouseup", () => {
+            isDragging = false;
+            draw();
+        });
+
+        // Detect CTRL key
+        window.addEventListener("keydown", (e) => {
+            if (e.key === "Control") isCtrlPressed = true;
+        });
+
+        window.addEventListener("keyup", (e) => {
+            if (e.key === "Control") isCtrlPressed = false;
+        });
+
+        function sendWeightsToServer() {
+            let connectionCount = {};  
+            nodes.forEach(node => connectionCount[node.id] = 0);
+            
+            connections.forEach(conn => {
+                connectionCount[conn.from]++;
+                connectionCount[conn.to]++;
+            });
+
+            fetch("/update_weights", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ connectionCount })
+            })
+            .then(response => response.json())
+            .then(data => {
+                updateDisplay(data);
+            });
+        }
+
+        // Display weights and probabilities on the page
+        function updateDisplay(data) {
+            const weightsDisplay = document.getElementById("weightsDisplay");
+            const probabilitiesList = document.getElementById("probabilities");
+
+            // Display weights
+            weightsDisplay.innerHTML = JSON.stringify(data.weights, null, 2);
+
+            // Display probabilities as a list
+            probabilitiesList.innerHTML = "";
+            data.probabilities.forEach((prob, index) => {
+                const li = document.createElement("li");
+                li.textContent = `${alphabet[index]}: ${prob.toFixed(4)}`;
+                probabilitiesList.appendChild(li);
+            });
+        }
+
+        draw();
+    </script>
+
+</body>
+</html>
