@@ -4,7 +4,7 @@ about text generation. I'm only just now looking into how it works, day after da
 <br /><br />
 Ok. it's a job Chat GPT in a few prompts. It's pretty damn good. Understands the problem and knows what answer to give. But is it possible 
 to manually arrange these tokens in a row, i.e. create a context like in the picture below to change the combinations? Or "draw" 
-connections instead of training. Yes, it is not "machine learning" in way with BACKPROP and this math way, but I think it can be an interesting task and such a dynamic 
+connections instead of training. Yes, it is not "machine learning" in a way with BACKPROP and math way of backpropagation to find "seet spot" by follow loss function, but I think it can be an interesting task and such a dynamic 
 change of network parameters by drawing a few connections, or typing in a few combinations of letters instead of training the entire 
 data set... hmm...
 <h2>TODO</h2>
