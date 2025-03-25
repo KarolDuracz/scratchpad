@@ -15,6 +15,7 @@ the model gives some predictions, like MLP (https://github.com/EurekaLabsAI/mlp)
 1. python serv.py # run on localhost:5000
 2. Hold CTRL on keyboard and click on two circles to create connections
 3. You can move circles on canvas
+4. Press the left mouse button and move any circle to initialize the script.
 ```
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/25-03-2025%20-%20EurekaLabs%20practice/91%20-%2025-03-2025%20-%20cd.png?raw=true)
