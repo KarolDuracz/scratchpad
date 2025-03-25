@@ -26,3 +26,6 @@ Because it may be possible to perform and "tune" the trained network for more co
 </i>
 <br /><br />
 So changin' that's on canvas must change DISTRIBUTION on softmax. This is the goal here.
+<hr>
+A few more words of explanation for this. In [The spelled-out intro to language modeling: building makemore] https://www.youtube.com/watch?v=PaCmpygFfXo&ab_channel=AndrejKarpathy Andrej started a makemore series. It ended with a backprop ninja. It was supposed to be GRU, LSTM, but eventually a manual backpropagation video was made which also seems like a better idea. But GRU and the basic Transformer are here --> https://github.com/karpathy/makemore/blob/master/makemore.py#L114
+There is no Positional Encoding here from what I see, but https://www.tensorflow.org/text/tutorials/transformer?hl=en I think, after Attention layer this is most important part of the transformer that can imitate "reasoning" to predict next token based on context well. But that's not part of this demo. In this demo, only simple MLP can be tried to imitate instead of training with backpropagation.
