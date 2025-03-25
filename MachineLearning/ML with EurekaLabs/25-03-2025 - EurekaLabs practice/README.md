@@ -10,3 +10,14 @@ data set... hmm...
 <h2>TODO</h2>
 Needs to finish it in general so that it works as described and after setting a few series of letters and entering these combinations into memory, then making a few connections, 
 the model gives some predictions, like MLP (https://github.com/EurekaLabsAI/mlp) which is now trained by the backpropagation algorithm.
+
+```
+1. python serv.py # run on localhost:5000
+2. Hold CTRL on keyboard and click on two circles to create connections
+3. You can move circles on canvas
+```
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/25-03-2025%20-%20EurekaLabs%20practice/91%20-%2025-03-2025%20-%20cd.png?raw=true)
+
+
+
