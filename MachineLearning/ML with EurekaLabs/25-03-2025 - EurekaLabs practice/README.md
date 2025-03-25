@@ -21,3 +21,6 @@ the model gives some predictions, like MLP (https://github.com/EurekaLabsAI/mlp)
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/25-03-2025%20-%20EurekaLabs%20practice/91%20-%2025-03-2025%20-%20cd.png?raw=true)
 
 Because it may be possible to perform and "tune" the trained network for more complex vocalizers, where there are 100k tokens and e.g. it has to predict tokens for this task like here where is the JAVASCRIPT code. Try copying part of the code from index.hml and pasting it here to see the tokens -> https://tiktokenizer.vercel.app/ . And when you move it on canvas, and this dynamically change weights / parameters and predictions then... 
+<br /><br />
+<i>But this is what needs to be done here, i.e. adding this dynamic change of parameters and predictions for subsequent letters, so that it generates subsequent "tokens" just like the trained model through backpropagation, when you move these circles or create connections. This is started in the serv.py part in the update_weights() function and sent a POST to the model. But the MLP model itself is only minimally here. NOT WORKING.
+</i>
