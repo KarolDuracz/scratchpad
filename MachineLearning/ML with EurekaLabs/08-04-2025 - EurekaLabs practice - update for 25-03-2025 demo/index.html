@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neural Network Editor</title>
+  <style>
+    body { text-align: center; font-family: Arial, sans-serif; }
+    canvas { border: 1px solid black; background: #f4f4f4; }
+    #networkCanvas { position: fixed; left: 10px; top: 10px; cursor: crosshair; }
+    #status { margin-top: 10px; font-weight: bold; }
+    #weights { margin-top: 20px; font-family: Courier New, monospace; position: fixed; right: 10px; top: 10px; }
+    .probability-list { margin-top: 20px; list-style-type: none; }
+    #modelParameters, #positionalEncoding { position: fixed; right: 300px; top: 350px; }
+    #waveContainer { position: fixed; right: 10px; top: 700px; }
+    #contextDisplay { position: fixed; left: 10px; top: 620px; font-size: 20px; }
+    #controls { position: fixed; top: 10px; left: 50%; transform: translateX(-50%); }
+    textarea { width: 300px; height: 150px; }
+    .layer-container { margin: 10px auto; text-align: center; }
+    .layer-title { font-weight: bold; margin-bottom: 5px; }
+    #parameterControls { position: fixed; bottom: 0; left: 0; background: #eee; padding: 10px; }
+    #parameterMatrices { position: fixed; bottom: 0; right: 0; background: #eef; padding: 10px; }
+  </style>
+  <!-- Three.js and OrbitControls for 3D visualization -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+  <div id="controls">
+    <button onclick="clearAllConnections()">Clear All Connections</button>
+    &nbsp;&nbsp;
+    <button onclick="makePredictionFromContext()">Start Prediction</button>
+    <br/><br/>
+    <label>Train from Example Combinations:</label><br/>
+    <textarea id="exampleCombinations">
+test 
+
+    </textarea>
+    <br/>
+    <button onclick="trainExamples()">Train Examples</button>
+  </div>
+
+  <h2>Manual Neural Network Weight Editor</h2>
+  <p>Hold <b>CTRL</b> and click two circles to create a connection.<br/>
+     Hold <b>SHIFT</b> and click two circles to remove a connection.</p>
+
+  <canvas id="networkCanvas" width="800" height="600"></canvas>
+  <p id="status">Status: Waiting for interaction...</p>
+
+  <div id="weights">
+    <h3>Model Weights and Probabilities:</h3>
+    <div id="weightsDisplay"></div>
+    <ul id="probabilities" class="probability-list"></ul>
+  </div>
+
+  <div id="modelParameters">
+    <h3>Model Parameters (Heatmap):</h3>
+  </div>
+  
+  <div id="positionalEncoding">
+    <h3>Positional Encoding (Heatmap):</h3>
+  </div>
+  
+  <div id="waveContainer">
+    <h3>Prediction Wave Visualization</h3>
+    <canvas id="waveCanvas" width="800" height="200"></canvas>
+  </div>
+  
+  <div id="contextDisplay">
+    <h3>Prediction Context:</h3>
+    <p id="contextText"></p>
+  </div>
+  
+  <div>
+    <h4>Prediction:</h4>
+    <pre id="predictedText" style="font-size: 18px; background: #eee; padding: 10px; min-height: 100px;"></pre>
+  </div>
+  
+  <div id="parameterControls">
+    <h3>Adjust Network Parameters</h3>
+    <div>
+      <label>fc1 weight scale: <span id="fc1WeightVal">1.0</span></label>
+      <input type="range" id="fc1WeightSlider" min="0.5" max="1.5" step="0.01" value="1.0">
+    </div>
+    <div>
+      <label>fc2 weight scale: <span id="fc2WeightVal">1.0</span></label>
+      <input type="range" id="fc2WeightSlider" min="0.5" max="1.5" step="0.01" value="1.0">
+    </div>
+  </div>
+  
+  <div id="parameterMatrices">
+    <h3>Parameter Matrices Heatmap</h3>
+    <div id="fc1Matrix"></div>
+    <div id="fc2Matrix"></div>
+  </div>
+  
+  <script>
+    // Global variables.
+    const fullAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ\n";
+    const canvas = document.getElementById("networkCanvas");
+    const ctx = canvas.getContext("2d");
+    let nodes = [];
+    let connections = [];    // Flat connections from interactive clicks.
+    let contextualConnections = [];  // New: list of objects { context: [...], target: "x", weight: w }.
+    let selectedNode = null;
+    let startNode = null;
+    let removalStart = null;
+    let isCtrlPressed = false;
+    let isDragging = false;
+    let context = ["A"];  // Prediction context.
+    
+    // Generate nodes for every character.
+    fullAlphabet.split("").forEach((char, index) => {
+      nodes.push({
+        id: index,
+        char: char,
+        x: 50 + (index % 7) * 100,
+        y: 50 + Math.floor(index / 7) * 100
+      });
+    });
+	
+function drawActivationChart(canvasId, label, dataArray) {
+  const ctx = document.getElementById(canvasId).getContext("2d");
+  // Remove any existing chart instance.
+  if (Chart.getChart(canvasId)) {
+    Chart.getChart(canvasId).destroy();
+  }
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: dataArray.map((_, i) => i.toString()),
+      datasets: [{
+        label: label,
+        data: dataArray,
+        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: false,
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+}
+
+
+    
+    // STEP 1: Get raw training examples.
+    function getTrainingExamples() {
+      const textarea = document.getElementById("exampleCombinations");
+      // Do not trim completely – leave as-is.
+      const lines = textarea.value.split("\n").filter(s => s.trim().length > 0);
+	  console.log("lines => ");
+	  console.log(lines);
+      // Do not append "\n" automatically since each line from textarea already represents a training sample.
+      return lines.map(line => line.toUpperCase() + '\n');
+    }
+    
+    // STEP 2: Build contextual graph using a sliding window.
+    // For a context length of 3, produce objects like { context: ["T","H","E"], target: " " }.
+    // When the target is a newline, use a weight factor (e.g., 0.3) to reduce its influence.
+    function buildContextualGraph(contextLength = 3) {
+      const examples = getTrainingExamples();
+	  console.log(examples);
+      const graph = {};
+      contextualConnections = [];
+      examples.forEach(example => {
+        // Only process if example length is greater than contextLength.
+        if (example.length <= contextLength) return;
+		
+        for (let i = 0; i <= example.length - contextLength - 1; i++) {
+          const contextArray = example.slice(i, i + contextLength).split('');
+          let target = example[i + contextLength];
+		  if (target == ' ') {
+			console.log("target is space char");
+			target = '\n';
+		  }
+          // Apply a weight factor for newline targets.
+          const weightFactor = (target === "\n") ? 0.3 : 1.0;
+          contextualConnections.push({ context: contextArray, target: target, weight: weightFactor });
+          const key = contextArray.join(',');
+		  console.log(" key " + key);
+          if (!(key in graph)) { graph[key] = {}; }
+          if (!(target in graph[key])) { graph[key][target] = 0; }
+          graph[key][target] += weightFactor;
+		  console.log(contextualConnections);
+        }
+      });
+	  console.log("return \n");
+	  console.log(graph);
+      return graph;
+    }
+    
+    // STEP 3: Send contextual graph to the backend.
+    function sendContextualGraph() {
+      const graph = buildContextualGraph(3);
+      fetch("/update_weights", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ contextualGraph: graph })
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Contextual graph updated:", data);
+      });
+    }
+    
+    // When Train Examples is clicked.
+    function trainExamples() {
+      sendContextualGraph();
+      draw();
+    }
+    
+    // Parameter slider events.
+    document.getElementById("fc1WeightSlider").addEventListener("input", function() {
+      const scale = parseFloat(this.value);
+      document.getElementById("fc1WeightVal").textContent = scale.toFixed(2);
+      fetch("/update_parameters", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ layer: "mlp.0", param: "weight", scale: scale })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status !== "ok") {
+          alert("Parameter update failed: " + data.error);
+        } else {
+          updateParameterMatrices();
+        }
+      });
+    });
+    
+    document.getElementById("fc2WeightSlider").addEventListener("input", function() {
+      const scale = parseFloat(this.value);
+      document.getElementById("fc2WeightVal").textContent = scale.toFixed(2);
+      fetch("/update_parameters_fc2", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ layer: "mlp.2", param: "weight", scale: scale })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status !== "ok") {
+          alert("Parameter update failed: " + data.error);
+        } else {
+          updateParameterMatrices();
+        }
+      });
+    });
+    
+    // Update parameter matrices heatmap.
+    function updateParameterMatrices() {
+      fetch("/get_parameters")
+        .then(response => response.json())
+        .then(data => {
+          const fc1Container = document.getElementById("fc1Matrix");
+          fc1Container.innerHTML = "<h4>FC1 Weights</h4>";
+          const canvasFc1 = document.createElement("canvas");
+          canvasFc1.width = 100;
+          canvasFc1.height = 300;
+          fc1Container.appendChild(canvasFc1);
+          drawLayerHeatmap(canvasFc1, data.fc1);
+          
+          const fc2Container = document.getElementById("fc2Matrix");
+          fc2Container.innerHTML = "<h4>FC2 Weights</h4>";
+          const canvasFc2 = document.createElement("canvas");
+          canvasFc2.width = 100;
+          canvasFc2.height = 300;
+          fc2Container.appendChild(canvasFc2);
+          drawLayerHeatmap(canvasFc2, data.fc2);
+        });
+    }
+    
+    // Draw a heatmap given 2D data.
+    function drawLayerHeatmap(canvas, data) {
+      const ctx = canvas.getContext("2d");
+      const width = canvas.width;
+      const height = canvas.height;
+      const rows = data.length;
+      const cols = data[0].length;
+      const cellWidth = width / cols;
+      const cellHeight = height / rows;
+      for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+          const value = data[i][j];
+          const color = getColorForValue(value);
+          ctx.fillStyle = color;
+          ctx.fillRect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
+        }
+      }
+    }
+    
+    // Enhanced diverging color: negative values are blue, positive values are red.
+    function getColorForValue(value) {
+      value = Math.max(-1, Math.min(1, value));
+      let r, g, b;
+      if (value < 0) {
+        r = 255 + Math.floor(value * 255);
+        g = 255 + Math.floor(value * 255);
+        b = 255;
+      } else {
+        r = 255;
+        g = 255 - Math.floor(value * 255);
+        b = 255 - Math.floor(value * 255);
+      }
+      return `rgb(${r},${g},${b})`;
+    }
+    
+    // Draw the canvas: first draw contextual connections (green), then flat connections (red), then nodes.
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw contextual connections (green lines).
+      ctx.strokeStyle = "green";
+      ctx.lineWidth = 2;
+	  /*
+      contextualConnections.forEach(conn => {
+        const lastToken = conn.context[conn.context.length - 1];
+		console.log( conn.context[conn.context.length - 3] + " " +  conn.context[conn.context.length]);
+		console.log(conn);
+        const targetToken = conn.target;
+        const fromNode = nodes.find(n => n.char === lastToken);
+		console.log(nodes);
+		console.log(fromNode);
+        const toNode = nodes.find(n => n.char === targetToken);
+		console.log(toNode);
+        if (fromNode && toNode) {
+          ctx.beginPath();
+          ctx.moveTo(fromNode.x, fromNode.y);
+          ctx.lineTo(toNode.x, toNode.y);
+          ctx.stroke();
+        }
+		
+      });*/
+	  
+	  contextualConnections.forEach(conn => {
+  // Build the full chain: context array concatenated with the target.
+  const chain = conn.context.slice();
+  chain.push(conn.target);
+  // Iterate over consecutive pairs.
+  for (let i = 0; i < chain.length - 1; i++) {
+    const fromNode = nodes.find(n => n.char === chain[i]);
+    const toNode = nodes.find(n => n.char === chain[i + 1]);
+    if (fromNode && toNode) {
+      ctx.beginPath();
+      ctx.moveTo(fromNode.x, fromNode.y);
+      ctx.lineTo(toNode.x, toNode.y);
+      ctx.stroke();
+    }
+  }
+});
+      
+	  // Draw backward chain in blue (dashed).
+ctx.strokeStyle = "blue";
+ctx.setLineDash([5, 3]);
+contextualConnections.forEach(conn => {
+  const chain = conn.context.slice();
+  console.log("conn");
+  console.log(conn);
+  chain.push(conn.target);
+  // Create the reversed chain.
+  const reversedChain = chain.slice().reverse();
+  for (let i = 0; i < reversedChain.length - 1; i++) {
+    const fromNode = nodes.find(n => n.char === reversedChain[i]);
+    const toNode = nodes.find(n => n.char === reversedChain[i + 1]);
+    if (fromNode && toNode) {
+      ctx.beginPath();
+      ctx.moveTo(fromNode.x, fromNode.y);
+      ctx.lineTo(toNode.x, toNode.y);
+      ctx.stroke();
+    }
+  }
+});
+ctx.setLineDash([]); // Reset dash settings
+
+// Optionally, still draw flat connections (red) from interactive clicks.
+ctx.strokeStyle = "red";
+connections.forEach(conn => {
+  const fromNode = nodes.find(n => n.id === conn.from);
+  const toNode = nodes.find(n => n.id === conn.to);
+  if (fromNode && toNode) {
+    ctx.beginPath();
+    ctx.moveTo(fromNode.x, fromNode.y);
+    ctx.lineTo(toNode.x, toNode.y);
+    ctx.stroke();
+  }
+});
+	  
+	   // Draw nodes.
+      nodes.forEach(node => {
+        ctx.fillStyle = "blue";
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, 20, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = "white";
+        ctx.font = "16px Arial";
+        const displayChar = (node.char === "\n") ? "⏎" : node.char;
+        ctx.fillText(displayChar, node.x - 5, node.y + 5);
+      });
+	  
+	  /*
+      // Draw flat connections (red lines) from interactive clicks.
+      ctx.strokeStyle = "red";
+      connections.forEach(conn => {
+        const fromNode = nodes.find(n => n.id === conn.from);
+        const toNode = nodes.find(n => n.id === conn.to);
+        if (fromNode && toNode) {
+          ctx.beginPath();
+          ctx.moveTo(fromNode.x, fromNode.y);
+          ctx.lineTo(toNode.x, toNode.y);
+          ctx.stroke();
+        }
+      });
+      
+      // Draw nodes.
+      nodes.forEach(node => {
+        ctx.fillStyle = "blue";
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, 20, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = "white";
+        ctx.font = "16px Arial";
+        const displayChar = (node.char === "\n") ? "⏎" : node.char;
+        ctx.fillText(displayChar, node.x - 5, node.y + 5);
+      });*/
+    }
+    
+    // Mouse events.
+    canvas.addEventListener("mousedown", (e) => {
+      const { offsetX: mx, offsetY: my } = e;
+      selectedNode = nodes.find(node => Math.sqrt((node.x - mx)**2 + (node.y - my)**2) < 20);
+      if (e.shiftKey && selectedNode) {
+        if (!removalStart) {
+          removalStart = selectedNode;
+        } else if (removalStart && selectedNode) {
+          connections = connections.filter(conn =>
+            !((conn.from === removalStart.id && conn.to === selectedNode.id) ||
+              (conn.from === selectedNode.id && conn.to === removalStart.id))
+          );
+          removalStart = null;
+          sendWeightsToServer();
+          draw();
+        }
+        return;
+      }
+      if (isCtrlPressed && selectedNode) {
+        if (!startNode) {
+          startNode = selectedNode;
+        } else if (startNode !== selectedNode) {
+          let exists = connections.find(conn =>
+            (conn.from === startNode.id && conn.to === selectedNode.id) ||
+            (conn.from === selectedNode.id && conn.to === startNode.id)
+          );
+          if (!exists) {
+            connections.push({ from: startNode.id, to: selectedNode.id });
+            sendWeightsToServer();
+          }
+          startNode = null;
+          draw();
+        }
+        return;
+      }
+      if (selectedNode) {
+        isDragging = true;
+      }
+      draw();
+    });
+    
+    canvas.addEventListener("mousemove", (e) => {
+      if (isDragging && selectedNode) {
+        selectedNode.x = e.offsetX;
+        selectedNode.y = e.offsetY;
+        sendWeightsToServer();
+        draw();
+      }
+    });
+    
+    canvas.addEventListener("mouseup", () => {
+      isDragging = false;
+      draw();
+      fetchModelParameters();
+    });
+    
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Control") isCtrlPressed = true;
+    });
+    window.addEventListener("keyup", (e) => {
+      if (e.key === "Control") isCtrlPressed = false;
+    });
+    
+    function clearAllConnections() {
+      connections = [];
+      sendWeightsToServer();
+      draw();
+    }
+    
+    function sendWeightsToServer() {
+      let connectionCount = {};
+      nodes.forEach(node => connectionCount[node.id] = 0);
+      connections.forEach(conn => {
+        connectionCount[conn.from]++;
+        connectionCount[conn.to]++;
+      });
+      fetch("/update_weights", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ connectionCount: connectionCount })
+      })
+      .then(response => response.json())
+      .then(data => updateDisplay(data));
+    }
+    
+    function updateDisplay(data) {
+      const probabilitiesList = document.getElementById("probabilities");
+      probabilitiesList.innerHTML = "";
+      data.probabilities.forEach((prob, index) => {
+        const char = (index === 26) ? "<eot>" : fullAlphabet[index];
+        const li = document.createElement("li");
+        li.textContent = `${char}: ${prob.toFixed(4)}`;
+        probabilitiesList.appendChild(li);
+      });
+    }
+    
+	/*
+    function makePredictionFromContext() {
+      fetch("/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ context: context })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.predicted) {
+          context.push(data.predicted);
+          const detailedDisplay = context.map(ch => (ch === "\n" ? "<br/>" : ch)).join("");
+          document.getElementById("predictedText").innerHTML = detailedDisplay;
+          updateContextDisplay();
+          drawWaveGraph();
+          setTimeout(makePredictionFromContext, 1000);
+        }
+      });
+    }
+	*/
+	
+	function handlePredictionResponse(responseData) {
+  // Process prediction and probabilities as usual.
+  // ...
+  
+  // Now, display activation charts.
+  const activations = responseData.activations;
+  
+  // Create or update canvas elements for each layer.
+  // For example, for the embedding output:
+  // Example for the embedding layer:
+  let embedContainer = document.getElementById("embeddingChartContainer");
+  if (!embedContainer) {
+    embedContainer = document.createElement("div");
+    embedContainer.id = "embeddingChartContainer";
+    embedContainer.innerHTML = "<h4>Embedding Activations</h4>";
+    document.body.appendChild(embedContainer);
+    const canvasElem = document.createElement("canvas");
+    canvasElem.id = "embeddingChart";
+    canvasElem.width = 400;
+    canvasElem.height = 200;
+    embedContainer.appendChild(canvasElem);
+  }
+  drawActivationChart("embeddingChart", "Embedding Layer", activations.embedding_output[0]);
+  
+  // For fc1 linear output:
+  let fc1Container = document.getElementById("fc1ChartContainer");
+  if (!fc1Container) {
+    fc1Container = document.createElement("div");
+    fc1Container.id = "fc1ChartContainer";
+    fc1Container.innerHTML = "<h4>FC1 Activations</h4>";
+    document.body.appendChild(fc1Container);
+    const canvasElem = document.createElement("canvas");
+    canvasElem.id = "fc1Chart";
+    canvasElem.width = 400;
+    canvasElem.height = 200;
+    fc1Container.appendChild(canvasElem);
+  }
+  drawActivationChart("fc1Chart", "FC1 Layer", activations.fc1_linear_output[0]);
+  
+  // For logits output:
+  let logitsContainer = document.getElementById("logitsChartContainer");
+  if (!logitsContainer) {
+    logitsContainer = document.createElement("div");
+    logitsContainer.id = "logitsChartContainer";
+    logitsContainer.innerHTML = "<h4>Logits Activations</h4>";
+    document.body.appendChild(logitsContainer);
+    const canvasElem = document.createElement("canvas");
+    canvasElem.id = "logitsChart";
+    canvasElem.width = 400;
+    canvasElem.height = 200;
+    logitsContainer.appendChild(canvasElem);
+  }
+  drawActivationChart("logitsChart", "Logits Layer", activations.logits_output[0]);
+}
+
+	
+	
+// Global arrays.
+let fullContext = ["A"];       // holds full history (for display)
+let windowContext = ["A"];     // always exactly 3 tokens (for prediction)
+
+function makePredictionFromContext() {
+  // Always update windowContext based on fullContext.
+  windowContext = fullContext.slice(-3);
+  
+  console.log(" original context ");
+  console.log(context);
+  
+  fetch("/predict", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ context: windowContext })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.predicted) {
+      // Add the new prediction to full history.
+      fullContext.push(data.predicted);
+      // Update windowContext for next call.
+      windowContext = fullContext.slice(-3);
+      
+      // Update the detailed prediction text using fullContext.
+      const detailedDisplay = fullContext.map(ch => (ch === "\n" ? "<br/>" : ch)).join("");
+      document.getElementById("predictedText").innerHTML = detailedDisplay;
+
+      // Also update the separate "Prediction Context" display if desired:
+      updateContextDisplay();
+
+      // (Optionally, also update wave visualization.)
+      drawWaveGraph();
+	  
+	    // Now handle the activations using Chart.js.
+		  //updateActivationCharts(data);
+		  
+      // Update activation plots using the activations returned from /predict.
+
+      handlePredictionResponse(data);
+      
+
+      setTimeout(makePredictionFromContext, 1000);
+    }
+  });
+}
+
+function updateContextDisplay() {
+  // For display purposes, show the full history.
+  document.getElementById("contextText").innerHTML = fullContext.map(ch => (ch === "\n" ? "<br/>" : ch)).join("");
+}
+
+
+    /*
+    function updateContextDisplay() {
+      document.getElementById("contextText").innerHTML = context.map(ch => (ch === "\n" ? "<br/>" : ch)).join("");
+    }
+    */
+	
+	
+    function drawWaveGraph() {
+      const waveCanvas = document.getElementById("waveCanvas");
+      const wCtx = waveCanvas.getContext("2d");
+      wCtx.clearRect(0, 0, waveCanvas.width, waveCanvas.height);
+      const width = waveCanvas.width;
+      const amplitude = 40;
+      const freqSine = 0.02;
+      const freqCosine = 0.03;
+      const centerSine = 50;
+      const centerCosine = 150;
+      wCtx.beginPath();
+      wCtx.strokeStyle = "red";
+      for (let x = 0; x < width; x++) {
+        const y = centerSine + amplitude * Math.sin(freqSine * x * 2 * Math.PI);
+        if (x === 0) { wCtx.moveTo(x, y); }
+        else { wCtx.lineTo(x, y); }
+      }
+      wCtx.stroke();
+      wCtx.beginPath();
+      wCtx.strokeStyle = "blue";
+      for (let x = 0; x < width; x++) {
+        const y = centerCosine + amplitude * Math.cos(freqCosine * x * 2 * Math.PI);
+        if (x === 0) { wCtx.moveTo(x, y); }
+        else { wCtx.lineTo(x, y); }
+      }
+      wCtx.stroke();
+      const n = context.length;
+      const spacing = width / (n + 1);
+      for (let i = 0; i < n; i++) {
+        const x = spacing * (i + 1);
+        const token = context[i];
+        const yS = centerSine + amplitude * Math.sin(freqSine * x * 2 * Math.PI);
+        wCtx.fillStyle = "red";
+        wCtx.beginPath();
+        wCtx.arc(x, yS, 5, 0, Math.PI * 2);
+        wCtx.fill();
+        wCtx.fillStyle = "black";
+        wCtx.font = "12px Arial";
+        wCtx.fillText(token, x - 4, yS - 10);
+        const yC = centerCosine + amplitude * Math.cos(freqCosine * x * 2 * Math.PI);
+        wCtx.fillStyle = "blue";
+        wCtx.beginPath();
+        wCtx.arc(x, yC, 5, 0, Math.PI * 2);
+        wCtx.fill();
+        wCtx.fillStyle = "black";
+        wCtx.fillText(token, x - 4, yC + 15);
+      }
+    }
+    
+    // Refresh parameter matrices every 3 seconds.
+    setInterval(updateParameterMatrices, 3000);
+    
+    // Start prediction.
+    updateContextDisplay();
+    makePredictionFromContext();
+    fetchModelParameters();
+    draw();
+  </script>
+</body>
+</html>
