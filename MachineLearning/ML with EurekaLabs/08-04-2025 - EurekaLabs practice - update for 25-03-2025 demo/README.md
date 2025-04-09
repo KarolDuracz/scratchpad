@@ -52,43 +52,62 @@ http://localhost:5000/
 <hr>
 Update 09-04-2025 - One thing.
 <br /><br />
-Update function in serv.py update_weights(), lines ~52-85
+Update function in serv.py predict(), lines ~212-262. We call to calculate_prediction_loss_for_context
+
 
 ```
-# Update weights now accepts a contextualGraph from the frontend.
-@app.route("/update_weights", methods=["POST"])
-def update_weights():
-    global base_logits
+@app.route("/predict", methods=["POST"])
+def predict():
+    model.eval()
     data = request.json
     print(data)
-    if "contextualGraph" in data:
-        contextual_graph = data.get("contextualGraph", {})
-        # Build a flat count by summing the (possibly weighted) counts for each target across all contexts.
-        new_counts = {str(i): 0 for i in range(len(alphabet))}
-        print(new_counts)
-        print(contextual_graph.items())
-        for ctx_key, targets in contextual_graph.items():
-            for target, count in targets.items():
-                idx = char_to_idx.get(target)
-                if idx is not None:
-                    new_counts[str(idx)] += count
-        for idx in range(len(alphabet)):
-            base_logits[idx] = new_counts.get(str(idx), 0)
-            
-        print("after : ", new_counts)
-    else:
-        connection_count = data.get("connectionCount", {})
-        for idx in range(len(alphabet)):
-            base_logits[idx] = connection_count.get(str(idx), 0)
-        
-        print(" connection_count ", connection_count)
-        
-    probabilities = F.softmax(base_logits, dim=0).tolist()
     
-    print(" probabilities => ", probabilities)
-    print( " ARG MAX = ", torch.tensor(probabilities).argmax())
+    input_sequence = data.get("context", [])
     
-    return jsonify({"weights": base_logits.tolist(), "probabilities": probabilities})
+    # Ensure context is exactly model.context_length tokens.
+    idxs = [char_to_idx.get(ch, 0) for ch in input_sequence][-model.context_length:]
+    while len(idxs) < model.context_length:
+        idxs.insert(0, 0)
+    input_tensor = torch.tensor([idxs])
+    
+    # Prepare a dictionary to hold activations.
+    activations = {}
+    
+    # Define a hook generator.
+    def get_hook(name):
+        def hook(module, input, output):
+            activations[name] = output.detach().cpu().tolist()
+        return hook
+    
+    # Register hooks on layers of interest.
+    hook_handles = []
+    hook_handles.append(model.wte.register_forward_hook(get_hook("embedding_output")))
+    hook_handles.append(model.mlp[0].register_forward_hook(get_hook("fc1_linear_output")))
+    hook_handles.append(model.mlp[2].register_forward_hook(get_hook("logits_output")))
+    
+    # Run the forward pass.
+    logits = model(input_tensor)
+    alpha = 0.05
+    logits = logits + alpha * base_logits
+    probabilities = F.softmax(logits, dim=-1).tolist()[0]
+    predicted_idx = torch.argmax(logits, dim=-1).item()
+    predicted_letter = idx_to_char[predicted_idx]
+    
+    print( " predicted letter : ", predicted_letter)
+    
+    loss_val, _xa, _xb = calculate_prediction_loss_for_context(input_tensor, predicted_letter)
+    print( " LOSS : ", loss_val, " | ", _xa, " | ", _xb)
+    
+    # Remove hooks
+    for handle in hook_handles:
+        handle.remove()
+    
+    return jsonify({
+        "input": input_sequence,
+        "predicted": predicted_letter,
+        "probabilities": probabilities,
+        "activations": activations
+    })
 ```
 
 Then fix calculate_prediction_loss_for_context in serv.py, line ~307
