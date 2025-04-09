@@ -143,7 +143,7 @@ def calculate_prediction_loss_for_context(context_seq, target_char):
     return loss.item(), logits, target_idx
 ```
 
-And then we get "correct" calculation for loss. I write "correct" because for now it's just a skeleton of the application and it doesn't count at all according to the example that Andrej gave in the MLP code. Which is derived from forward and backward pass based on backward propagation. Then we get this:
+And then we get "correct" calculation for loss. I write "correct" because for now it's just a skeleton of the application and it doesn't count at all according to the example that Andrej gave in the MLP code. Which is derived from forward and backward pass based on backward propagation. Then we get this IN CONSOLE:
 
 ```
 ********************************************************************************
