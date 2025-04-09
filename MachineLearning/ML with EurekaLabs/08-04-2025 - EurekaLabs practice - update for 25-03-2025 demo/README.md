@@ -49,3 +49,124 @@ http://localhost:5000/
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/08-04-2025%20-%20EurekaLabs%20practice%20-%20update%20for%2025-03-2025%20demo/153%20-%2008-04-2025%20-%20cd.png?raw=true)
 
+<hr>
+Update 09-04-2025 - One thing.
+<br /><br />
+Update function in serv.py update_weights(), lines ~52-85
+
+```
+# Update weights now accepts a contextualGraph from the frontend.
+@app.route("/update_weights", methods=["POST"])
+def update_weights():
+    global base_logits
+    data = request.json
+    print(data)
+    if "contextualGraph" in data:
+        contextual_graph = data.get("contextualGraph", {})
+        # Build a flat count by summing the (possibly weighted) counts for each target across all contexts.
+        new_counts = {str(i): 0 for i in range(len(alphabet))}
+        print(new_counts)
+        print(contextual_graph.items())
+        for ctx_key, targets in contextual_graph.items():
+            for target, count in targets.items():
+                idx = char_to_idx.get(target)
+                if idx is not None:
+                    new_counts[str(idx)] += count
+        for idx in range(len(alphabet)):
+            base_logits[idx] = new_counts.get(str(idx), 0)
+            
+        print("after : ", new_counts)
+    else:
+        connection_count = data.get("connectionCount", {})
+        for idx in range(len(alphabet)):
+            base_logits[idx] = connection_count.get(str(idx), 0)
+        
+        print(" connection_count ", connection_count)
+        
+    probabilities = F.softmax(base_logits, dim=0).tolist()
+    
+    print(" probabilities => ", probabilities)
+    print( " ARG MAX = ", torch.tensor(probabilities).argmax())
+    
+    return jsonify({"weights": base_logits.tolist(), "probabilities": probabilities})
+```
+
+Then fix calculate_prediction_loss_for_context in serv.py, line ~307
+
+```
+def calculate_prediction_loss_for_context(context_seq, target_char):
+    """
+    Calculate cross-entropy loss for a single prediction given a context and a target.
+    
+    context_seq: list of characters (should be 3 tokens for a 3-token context)
+    target_char: a single character string (the target token)
+    """
+    print("*"*80)
+    model.eval()
+    loss_fn = nn.CrossEntropyLoss()
+    
+    print(context_seq, " ===> ", target_char)
+    
+    print("Type of context_seq[0]:", type(context_seq[0]))
+
+    
+    # Ensure the context is exactly model.context_length tokens.
+    #idxs = [char_to_idx.get(ch, 0) for ch in context_seq]
+    #idxs = context_seq[0][-1:] #[char_to_idx.get(ch, 0) for ch in context_seq]
+    # Ensure we are working with a list of characters
+    if isinstance(context_seq, torch.Tensor):
+        context_seq = context_seq.squeeze().tolist()
+        # Optional: convert idxs back to chars if needed
+        context_seq = [idx_to_char.get(i, 'A') for i in context_seq]
+        print("Converted tensor context_seq to characters:", context_seq)
+
+    # Convert characters to indices
+    idxs = [char_to_idx.get(ch, 0) for ch in context_seq]
+    
+    print(" IDXS ", idxs)
+    while len(idxs) < model.context_length:
+        idxs.insert(0, 0)  # pad with the index for 'A' (or zero) if needed
+        
+    input_tensor = torch.tensor([idxs])  # shape [1, context_length]
+    target_idx = char_to_idx.get(target_char, 0)
+    target_tensor = torch.tensor([target_idx])  # shape [1]
+    
+    print( " INPUT TENSOR : ", input_tensor)
+    # Forward pass
+    logits = model(input_tensor) + base_logits  # add interactive influence if desired
+    # Compute loss
+    #print("*"*80)
+    print(logits)
+    print(target_tensor)
+    
+    loss = loss_fn(logits, target_tensor)
+    return loss.item(), logits, target_idx
+```
+
+And then we get "correct" calculation for loss. I write "correct" because for now it's just a skeleton of the application and it doesn't count at all according to the example that Andrej gave in the MLP code. Which is derived from forward and backward pass based on backward propagation. Then we get this:
+
+```
+********************************************************************************
+tensor([[ 1, 13,  9]])  ===>  S
+Type of context_seq[0]: <class 'torch.Tensor'>
+Converted tensor context_seq to characters: ['B', 'N', 'J']
+ IDXS  [1, 13, 9]
+ INPUT TENSOR :  tensor([[ 1, 13,  9]])
+tensor([[-1.9619e+00, -3.3757e-01, -2.3423e+00,  1.0635e+00,  5.8104e-01,
+          1.5556e+00,  5.7750e-01,  3.6473e-01,  2.9283e-01,  3.1846e+00,
+          6.0870e-01, -7.9169e-01,  9.5719e-01,  1.9237e+00, -6.4809e-01,
+         -1.8184e+00, -1.0064e+00,  1.1055e-01,  4.0090e+00, -2.6134e+00,
+          1.2316e+00,  2.9173e-01, -1.0378e+00, -8.5156e-01, -4.5651e+00,
+         -3.8136e+00, -2.6055e-03]], grad_fn=<AddBackward0>)
+tensor([18])
+ LOSS :  0.733713686466217  |  tensor([[-1.9619e+00, -3.3757e-01, -2.3423e+00,  1.0635e+00,  5.8104e
+-01,
+          1.5556e+00,  5.7750e-01,  3.6473e-01,  2.9283e-01,  3.1846e+00,
+          6.0870e-01, -7.9169e-01,  9.5719e-01,  1.9237e+00, -6.4809e-01,
+         -1.8184e+00, -1.0064e+00,  1.1055e-01,  4.0090e+00, -2.6134e+00,
+          1.2316e+00,  2.9173e-01, -1.0378e+00, -8.5156e-01, -4.5651e+00,
+         -3.8136e+00, -2.6055e-03]], grad_fn=<AddBackward0>)  |  18
+127.0.0.1 - - [09/Apr/2025 20:17:43] "POST /predict HTTP/1.1" 200 -
+```
+
+For now I need to fix and "fine-tune" it to generate names.
