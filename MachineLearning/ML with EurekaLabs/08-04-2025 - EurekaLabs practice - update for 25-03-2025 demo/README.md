@@ -1,3 +1,5 @@
+10.04.2025 - f***, learning is ok, but such trips are shooting myself in the foot. Next time I have to verify my "brilliant ideas" before I publish something here...
+<hr>
 <h2>Still TODO</h2>
 Today's post is just to give an idea of ​​what I wrote in my post here
 https://github.com/KarolDuracz/scratchpad/tree/main/MachineLearning/ML%20with%20EurekaLabs/25-03-2025%20-%20EurekaLabs%20practice
