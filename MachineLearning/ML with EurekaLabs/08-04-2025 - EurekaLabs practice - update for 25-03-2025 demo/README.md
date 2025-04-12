@@ -1,13 +1,13 @@
 10.04.2025 - f***, learning is ok, but such trips are shooting myself in the foot. Next time I have to verify my "brilliant ideas" before I publish something here... on github.
 <hr >
 12.04-2025 - I need to clarify something so as not to lose my "observation point on the roadmap". <b>This exercise will mainly focus on </b>:<br />
-A bit about floating-point numbers and their precision, and wwhat is the impact of decimal precision on deep networks<br />
+A bit about floating-point numbers and their precision, and what is the impact of decimal precision on deep networks<br />
 A bit about the distribution of numbers, about STD, VAR, MEAN, or the fundamental rules of statistics. Normal distribution https://en.wikipedia.org/wiki/Normal_distribution <br />
 A bit about why it works, or for example why lenet recognizes numbers. etc <br />
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/08-04-2025%20-%20EurekaLabs%20practice%20-%20update%20for%2025-03-2025%20demo/lenet%20with%20pixels.png?raw=true)
 
-So in short, when I started this topic I meant to better understand the mathematical principles behind networks. The idea is to build a small demo with graphs of all this on each layer, insert different architectures (MLP <> mini Transformer), give different data and build an initial intuition of how it works. THIS IS ONLY FOR MY EDUCATIONAL PURPOSES. In general, in the long run, this is the basic idea behind what I'm writing about here. SO I JUST WANT TO SOMEHOW UNDERSTAND THE BASICS.
+So in short, when I started this topic I meant to better understand the mathematical principles behind networks. The idea is to build a small demo with graphs of all this on each layer, insert different architectures (MLP <> mini Transformer), give different data and build an initial intuition of how it works. THIS IS ONLY FOR MY EDUCATIONAL PURPOSES. In general, in the long run, this is the basic idea behind what I'm writing about here. SO I JUST WANT TO SOMEHOW UNDERSTAND THE BASICS. <b>Because the mathematical approach is something that I am missing in my "work methodology" now</b>
 
 <hr>
 <h2>Still TODO</h2>
