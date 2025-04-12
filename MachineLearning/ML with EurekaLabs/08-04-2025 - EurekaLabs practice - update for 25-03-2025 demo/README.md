@@ -2,7 +2,7 @@
 <hr >
 12.04-2025 - I need to clarify something so as not to lose my "observation point on the roadmap". <b>This exercise will mainly focus on </b>:<br />
 A bit about floating-point numbers and their precision, and wwhat is the impact of decimal precision on deep networks<br />
-A bit about the distribution of numbers, about STD, VAR, MEAN, or the fundamental rules of statistics. Natural distribution https://en.wikipedia.org/wiki/Normal_distribution <br />
+A bit about the distribution of numbers, about STD, VAR, MEAN, or the fundamental rules of statistics. Normal distribution https://en.wikipedia.org/wiki/Normal_distribution <br />
 A bit about why it works, or for example why lenet recognizes numbers. etc <br />
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/08-04-2025%20-%20EurekaLabs%20practice%20-%20update%20for%2025-03-2025%20demo/lenet%20with%20pixels.png?raw=true)
