@@ -1,3 +1,5 @@
+Update 16-04-2025 : https://youtu.be/M-8KpveWi5M?t=1583 [Digital Design & Comp Arch - Lecture 3: Combinational Logic II (Spring 2023) - Onur Mutlu Lectures] <b>I posted his SIMD lecture here, but this is a good introduction to the whole topic, where it all started. Nice transistor comparison.</b> As I wrote in the SIMD topic, the entire channel https://www.youtube.com/@OnurMutluLectures is a mine of knowledge and the theory is presented very comprehensively. A wealth of information.
+<hr>
 As I review this topic I realize more and more that this is a long list of topics that make up the entire system. I'm talking about the bootloader and what happens at the beginning.
 Even before the bootloader itself, there is the topic of the BIOS and UEFI itself. And the MBR and GPT partitions. This requires at least a sketch. Then there is the bootloader phase. And then the x86 system, which starts with ACPI, Timers, Interrupts, Watchdog, I/O ports etc.
 For each topic I need a separate folder here. There is no detailed list of topics yet. But today I know that I need to systematize my knowledge on this subject in some way.
