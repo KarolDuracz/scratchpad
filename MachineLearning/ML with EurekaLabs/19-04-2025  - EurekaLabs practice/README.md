@@ -6,6 +6,9 @@ Goal: Build an agent that executes unknown x86 (or ARM, etc.) binaries under emu
 Right now without any description. I'm trying to find some way to speculatively execute a PE/ELF file, generally an .exe file, and based on how the code executes, the Agent would learn to understand how the code works. And instead of analyzing it through IDA, Ghird, create an agent for it. It's more complex. But first some outline TO START SOMEWHERE.
 <br /><br />
 
+Unicorn -> https://pypi.org/project/unicorn/ - I've only just come across this, but it's so light and easy to use that it seems like the best to train an agent.
+<br /><br />
+
 ```
 pip install unicorn capstone gymnasium numpy stable-baselines3 torch
 ```
