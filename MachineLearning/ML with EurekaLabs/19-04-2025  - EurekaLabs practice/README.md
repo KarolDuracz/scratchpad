@@ -1,4 +1,8 @@
 <h2>Another TODO...</h2>
+
+> OK, what can I say about RL today? Not much. Only that it's next on the list to learn. And I don't know if this is the right path to solve this task, but it's worth spending more hours on it to get it to a usable state and for this Agent to finally learn something useful. It is certainly an interesting ML task and a large field for learning RL.
+
+
 it's only idea right now, but it might be part of VM if I manage to put it together.
 <br /><br />
 Goal: Build an agent that executes unknown x86 (or ARM, etc.) binaries under emulation (e.g., Unicorn Engine), and uses machine learning (especially reinforcement learning) to understand the behavior of code, even when information is missing (e.g., values in registers, unknown targets of jumps, external API behavior).
@@ -6,7 +10,7 @@ Goal: Build an agent that executes unknown x86 (or ARM, etc.) binaries under emu
 Right now without any description. I'm trying to find some way to speculatively execute a PE/ELF file, generally an .exe file, and based on how the code executes, the Agent would learn to understand how the code works. And instead of analyzing it through IDA, Ghirda, create an agent for it. It's more complex. But first some outline TO START SOMEWHERE.
 <br /><br />
 
-Unicorn -> https://pypi.org/project/unicorn/ - I've only just come across this, but it's so light and easy to use that it seems like the best to train an agent.
+Unicorn -> https://pypi.org/project/unicorn/ - I've only just come across this, but it's so lightweight and easy to use that it seems like the best to train an agent.
 <br /><br />
 
 needed libraries to run this
