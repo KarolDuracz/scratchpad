@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Week Tracker 2025</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>📅 Week Tracker for 2025</h2>
+    <div class="timeline" id="weekTimeline"></div>
+    <div id="dayTimeline"></div>
+	
+	<!-- Modal for Task Entry -->
+<div id="taskModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h3>Add Task</h3>
+    <form id="taskForm">
+		<p><strong>Selected Date:</strong> <span id="task-date-display"></span></p>
+
+      <input type="hidden" id="task-date" name="date">
+      <label>Topic:<br><input type="text" id="task-topic" required></label><br>
+      <label>Description:<br><textarea id="task-text"></textarea></label><br>
+      <label>Time:<br><input type="time" id="task-time"></label><br>
+      <label>Status:<br>
+       <select id="task-status">
+  <option value="planned">Planned</option>
+  <option value="done">Done</option>
+  <option value="note">Note</option>
+</select>
+
+      </label><br><br>
+      <button type="submit">Add Task</button>
+    </form>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div id="editTaskModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeEditModal()">&times;</span>
+    <h3>Edit Task</h3>
+    <form id="editTaskForm">
+	<p><strong>Selected Date:</strong> <span id="task-date-display"></span></p>
+
+      <input type="hidden" id="edit-task-id">
+      <input type="hidden" id="edit-task-date">
+      <label>Topic:<br><input type="text" id="edit-task-topic" required></label><br>
+      <label>Description:<br><textarea id="edit-task-text"></textarea></label><br>
+      <label>Time:<br><input type="time" id="edit-task-time"></label><br>
+      <label>Status:<br>
+        <select id="edit-task-status">
+          <option value="planned">Planned</option>
+          <option value="done">Done</option>
+        </select>
+      </label><br><br>
+      <button type="submit">Update Task</button>
+    </form>
+  </div>
+</div>
+
+<h3>🚀 Top 10 Upcoming Tasks</h3>
+<table id="topTasksTable" class="top-tasks">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Topic</th>
+      <th>Status</th>
+	      <th>⏱ Time to Run</th> <!-- new column -->
+
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+
+
+    <script>
+        const weekTimeline = document.getElementById('weekTimeline');
+        const dayTimeline = document.getElementById('dayTimeline');
+        const totalWeeks = 52;
+        const today = new Date();
+        const currentYear = 2025;
+
+        function getWeekNumber(date) {
+            const firstDay = new Date(date.getFullYear(), 0, 1);
+            const dayOfYear = ((date - firstDay + 86400000) / 86400000);
+            return Math.ceil((dayOfYear + firstDay.getDay()) / 7);
+        }
+
+        let currentWeek = 0;
+
+        if (today.getFullYear() === currentYear) {
+            currentWeek = getWeekNumber(today);
+        } else if (today.getFullYear() > currentYear) {
+            currentWeek = totalWeeks;
+        }
+
+        for (let i = 1; i <= totalWeeks; i++) {
+            const weekDiv = document.createElement('div');
+            weekDiv.classList.add('week');
+            weekDiv.textContent = i;
+
+            if (i < currentWeek) {
+                weekDiv.classList.add('past');
+            } else if (i === currentWeek) {
+                weekDiv.classList.add('past', 'current');
+            }
+
+            weekDiv.addEventListener('click', () => {
+                displayWeekDays(i);
+            });
+
+            weekTimeline.appendChild(weekDiv);
+        }
+
+       function displayWeekDays(weekNumber) {
+    dayTimeline.innerHTML = '';
+
+    const startDate = new Date(currentYear, 0, 1);
+    const jan1Day = startDate.getDay();
+    const offset = (jan1Day === 0 ? -6 : 1 - jan1Day); // Shift so Monday is start
+    const mondayOfWeek = new Date(currentYear, 0, 1 + (weekNumber - 1) * 7 + offset);
+
+    const daysContainer = document.createElement('div');
+    daysContainer.classList.add('days-grid');
+    dayTimeline.appendChild(daysContainer);
+
+    for (let i = 0; i < 7; i++) {
+        const dayDate = new Date(mondayOfWeek);
+        dayDate.setDate(mondayOfWeek.getDate() + i);
+
+        const dayDiv = document.createElement('div');
+        dayDiv.classList.add('day');
+        //dayDiv.innerHTML = `
+        //  <strong>${dayDate.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })}</strong>
+        //  <div class="tasks" id="tasks-${dayDate.toISOString().split('T')[0]}"></div>
+        //`;
+		//const dateISO = dayDate.toISOString().split('T')[0];
+		const dateISO = `${dayDate.getFullYear()}-${String(dayDate.getMonth() + 1).padStart(2, '0')}-${String(dayDate.getDate()).padStart(2, '0')}`;
+
+dayDiv.innerHTML = `
+  <strong>${dayDate.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })}</strong>
+  <button class="add-task-btn" data-date="${dateISO}">➕</button>
+  <div class="tasks" id="tasks-${dateISO}"></div>
+`;
+
+
+        daysContainer.appendChild(dayDiv);
+    }
+
+    fetchTasks();
+}
+
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeModal();
+    closeEditModal();
+  }
+});
+
+
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('add-task-btn')) {
+    const selectedDate = e.target.getAttribute('data-date');
+    document.getElementById('task-date').value = selectedDate;
+    openModal();
+  }
+});
+
+
+        function fetchTasks() {
+    // Clear all current task containers before re-rendering
+    document.querySelectorAll('.tasks').forEach(el => el.innerHTML = '');
+
+    fetch('/api/tasks')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(task => {
+                const taskDate = task[1];
+                const taskDiv = document.createElement('div');
+                taskDiv.classList.add('task');
+
+                if (task[5] === 'done') {
+                    taskDiv.classList.add('done');
+                } else if (task[5] === 'note') {
+                    taskDiv.classList.add('note');
+                } else {
+                    taskDiv.classList.add('planned');
+                }
+
+                // Add time and topic
+                taskDiv.innerHTML = `<strong>${task[2] || ''}</strong> ${task[3]}`;
+                taskDiv.setAttribute('data-hour', task[2]);
+
+				// ✅ Tooltip with task description
+                taskDiv.title = task[4];
+
+                const tasksContainer = document.getElementById(`tasks-${taskDate}`);
+                if (tasksContainer) {
+                    tasksContainer.appendChild(taskDiv);
+
+                    // Sort by time after adding
+                    [...tasksContainer.children]
+                        .sort((a, b) => (a.dataset.hour || '') > (b.dataset.hour || '') ? 1 : -1)
+                        .forEach(node => tasksContainer.appendChild(node));
+                }
+
+                taskDiv.addEventListener('click', () => {
+                    openEditModal(task);
+                });
+            });
+        });
+}
+
+		
+		// Handle clicking a day to add a task
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('day')) {
+    const dateText = e.target.querySelector('strong').textContent;
+    const dateISO = new Date(dateText).toISOString().split('T')[0];
+    document.getElementById('task-date').value = dateISO;
+    openModal();
+  }
+});
+
+// Modal controls
+//function openModal() {
+//  document.getElementById('taskModal').style.display = 'block';
+//}
+
+function openModal() {
+  const dateValue = document.getElementById('task-date').value;
+  document.getElementById('task-date-display').textContent = dateValue;
+  document.getElementById('taskModal').style.display = 'block';
+}
+
+function closeModal() {
+  document.getElementById('taskModal').style.display = 'none';
+}
+
+// Submit Task Form
+document.getElementById('taskForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const task = {
+    date: document.getElementById('task-date').value,
+    hour: document.getElementById('task-time').value,
+    topic: document.getElementById('task-topic').value,
+    text: document.getElementById('task-text').value,
+    status: document.getElementById('task-status').value
+  };
+  fetch('/api/tasks', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(task)
+  })
+  .then(res => res.json())
+  .then(() => {
+    closeModal();
+    fetchTasks();
+	loadTopTasks(); // 👈 this line
+  });
+});
+
+
+//
+
+function openEditModal(task) {
+  document.getElementById('edit-task-id').value = task[0];
+  document.getElementById('edit-task-date').value = task[1];
+  document.getElementById('edit-task-time').value = task[2];
+  document.getElementById('edit-task-topic').value = task[3];
+  document.getElementById('edit-task-text').value = task[4];
+  document.getElementById('edit-task-status').value = task[5];
+  document.getElementById('editTaskModal').style.display = 'block';
+}
+
+function closeEditModal() {
+  document.getElementById('editTaskModal').style.display = 'none';
+}
+
+document.getElementById('editTaskForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const taskId = document.getElementById('edit-task-id').value;
+  const updatedTask = {
+    date: document.getElementById('edit-task-date').value,
+    hour: document.getElementById('edit-task-time').value,
+    topic: document.getElementById('edit-task-topic').value,
+    text: document.getElementById('edit-task-text').value,
+    status: document.getElementById('edit-task-status').value
+  };
+  fetch(`/api/tasks/${taskId}`, {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(updatedTask)
+  })
+  .then(res => res.json())
+  .then(() => {
+    closeEditModal();
+    fetchTasks();
+  });
+});
+
+function formatTimeRemaining(taskDate, taskTime) {
+  const now = new Date();
+  const taskDateTime = new Date(`${taskDate}T${taskTime || "00:00"}`);
+
+  const diffMs = taskDateTime - now;
+  const past = diffMs < 0;
+
+  const absMs = Math.abs(diffMs);
+  const minutes = Math.floor(absMs / 60000);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+
+  const display =
+    days > 0
+      ? `${days}d ${hours % 24}h`
+      : hours > 0
+      ? `${hours}h ${minutes % 60}m`
+      : `${minutes}m`;
+
+  return past ? `🕒 ${display} ago` : `in ${display}`;
+}
+
+
+function loadTopTasks() {
+  fetch('/api/top-tasks')
+    .then(res => res.json())
+    .then(data => {
+      const tbody = document.querySelector('#topTasksTable tbody');
+      tbody.innerHTML = '';
+
+      data.forEach(task => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${task[1]}</td>
+          <td>${task[2] || ''}</td>
+          <td>${task[3]}</td>
+          <td>${task[5]}</td>
+		  <td>${formatTimeRemaining(task[1], task[2])}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    });
+}
+
+loadTopTasks();
+setInterval(loadTopTasks, 30000);
+
+// for update insted of AJAX nad IO communication
+setInterval(fetchTasks, 10000); // 10,000 ms = 10 seconds
+
+		
+    </script>
+</body>
+</html>
