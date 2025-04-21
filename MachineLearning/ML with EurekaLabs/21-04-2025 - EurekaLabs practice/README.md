@@ -24,3 +24,4 @@ setInterval(fetchTasks, 10000); // 10,000 ms = 10 seconds
 ```
 
 <h2>I wonder what the models will be able to do in the next generations/years . Amazing tool, amazing job. :)</h2>
+It's amazing that with my "weak english", AND ONLY ON THE BASIS OF TEXT, without seeing how it should look like, it generated a correct and efficient application. And this application is really useful in general after a few modifications. Planner + communicator is a tool used almost everywhere today, in every company. And at this level it's quite ok. And that's just based on the tokens that my poor English processed because these tokens are similar to others in the vocabulary... 
