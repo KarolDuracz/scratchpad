@@ -1,4 +1,5 @@
-
+Update 24-04-2025 - Please read first acapit here -> https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/08-04-2025%20-%20EurekaLabs%20practice%20-%20update%20for%2025-03-2025%20demo/README.md
+<br />
   
   $${\color{red}}$$	
 		${{\color{red}\Huge{\textsf{     Update\   18-12-2024\  \   }}}}\$ 
