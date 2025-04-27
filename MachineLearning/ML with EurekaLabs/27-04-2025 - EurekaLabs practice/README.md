@@ -13,7 +13,7 @@ At one of the interviews I heard that OPEN AI has visions of the levels of this 
 <hr>
 Next. I've been looking for this video for some time. https://youtu.be/8AnV7xAvpLQ?t=469 [GTC 2015: Teaching Deep Neural Networks, Introducing DIGITS DevBox (part 6)] . This is Andrej's example of RNN from 10 years ago.
 And that's maybe a way to approach building probably as an exercise in 2026 of this -> https://github.com/KarolDuracz/scratchpad/tree/main/3D%20board%20'11 based on this guide ->
-https://www.tensorflow.org/text/tutorials/image_captioning?hl=en
+https://www.tensorflow.org/text/tutorials/image_captioning?hl=en . And in this recording, as Andrej says at 8:24 "we see image, and this imge goes through to the neural network and neural network starts to sample words one a t the time to describe this image". I think I'm making this too complicated. btw. This is generally a good exercise and task for neural networks. Some time ago I did not appreciate this task of "signing images" but today I can see that LLM is based on this ability, only probably developers have developed it and there is no RNN anymore, only a transformer.
 
 <hr>
 Maybe I was thinking wrong about ML and network training -> https://github.com/KarolDuracz/scratchpad/tree/main/MachineLearning/ML%20with%20EurekaLabs/08-04-2025%20-%20EurekaLabs%20practice%20-%20update%20for%2025-03-2025%20demo - maybe "machine learning" is the ability to deeply analyze data as in this short question here https://chatgpt.com/share/680dedaa-bbe8-8000-83da-efdd20adc5ff
