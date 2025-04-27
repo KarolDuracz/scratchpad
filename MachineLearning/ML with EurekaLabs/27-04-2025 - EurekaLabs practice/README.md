@@ -20,3 +20,6 @@ Maybe I was thinking wrong about ML and network training -> https://github.com/K
 
 <br /><br />
 But this will be a topic for consideration in the coming months. Because I still need to master data processing in order to train the model like that. But it's interesting :) ML is interesting.
+<br /><br />
+<b>Ok, I had to realize some things to know what to do. Understand it from a psychological perspective. Time to start delving into the details of implementation and code...</b>
+
