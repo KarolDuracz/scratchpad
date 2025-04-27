@@ -2,6 +2,8 @@ Update 16-04-2025 : Fragment about "What is a computer" https://youtu.be/pRLFHaG
 <br /><br />
 Update 27-04-2025 : I found something very interesting about the history of computers. Ok, what I wrote here is mostly about x86 Von Neumann architecture and era of that. 
 But there was something before https://en.wikipedia.org/wiki/Olivetti_computers . These guys build company to produce "olivetti typewriter" (There is a historical context behind this, when Benito Mussolini ruled. This Olivetti family were Jews. So they had to convince that their typewriters were useful etc. Then they had to flee to Switzerland because Mussolini supported Hitler's ideas), but the founder saw the potential in computers and then move to this https://en.wikipedia.org/wiki/Programma_101 . And then sold -> Programma 101 were sold to NASA and used to plan the Apollo 11 landing on the Moon. The rest of the story is not so rosy. But it's interesting to know that there was something before...
+<br /><br />
+...before '71 and Intel 4004 https://pl.wikipedia.org/wiki/Intel_4004
 <hr>
 As I review this topic I realize more and more that this is a long list of topics that make up the entire system. I'm talking about the bootloader and what happens at the beginning.
 Even before the bootloader itself, there is the topic of the BIOS and UEFI itself. And the MBR and GPT partitions. This requires at least a sketch. Then there is the bootloader phase. And then the x86 system, which starts with ACPI, Timers, Interrupts, Watchdog, I/O ports etc.
