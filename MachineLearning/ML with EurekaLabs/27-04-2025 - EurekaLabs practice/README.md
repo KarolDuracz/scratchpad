@@ -4,7 +4,7 @@ A few more things before I take a break from this topic...
 
 https://chatgpt.com/share/680dedaa-bbe8-8000-83da-efdd20adc5ff
 <br /><br />
-This is probably the ABILITY that OPEN AI was trying to achieve in LLM, I think. And today I see it in 4o. That ability and level of reasoning. And in my learning path you have to get to that point where you start thinking about this problem - how can a model analyze and understand in this way.
+This is probably the ABILITY that OPEN AI was trying to achieve in LLM, I think. And today I see it in 4o. That ability and level of reasoning. And in my learning path I have to get to that point where I start thinking about this problem - how can a model analyze and understand in this way.
 <br /><br />
 <hr>
 Next. I've been looking for this video for some time. https://youtu.be/8AnV7xAvpLQ?t=469 [GTC 2015: Teaching Deep Neural Networks, Introducing DIGITS DevBox (part 6)] . This is Andrej's example of RNN from 10 years ago.
