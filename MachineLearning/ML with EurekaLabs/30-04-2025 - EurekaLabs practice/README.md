@@ -13,4 +13,4 @@ Overall how a transformer, PE, Attention works is more complex than I thought...
 <br /><br />
 That's all for now.
 <hr>
-I think this is already correct thinking and I is on the right path. But this is a damn deep topic to analyze. How they changed RNN to transformer and why they gave PE and Attention. I know why, but not much.
+I think this is already correct thinking and I'm on the right path. But this is a damn deep topic to analyze. How they changed RNN to transformer and why they gave PE and Attention. I know why, but not much.
