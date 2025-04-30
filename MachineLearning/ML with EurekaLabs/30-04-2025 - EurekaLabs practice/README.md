@@ -18,3 +18,5 @@ I think this is already correct thinking and I'm on the right path. But this is 
 After all this nonsense WHAT I WROTE HERE I ended up here, on <b>"Learning Internal Representations by Error Propagation"</b> and what these people improved in the Perceptrons: An Introduction to Computational Geometry by Marvin Minsky and Seymour Papert in 1969. And this XOR problem. I think I'm finally on the right path. (...) Plans, plans, but this is the CORE of it all, that these networks find a solution based on measuring the prediction error and improving the parameters so that the loss function is as small as possible. I tried to jump over everything but now I know why I got lost, since I did not understand what Rumelhart, Hinton and Williams were really doing
 <br /><br />
 OK, I think it's ok now and I think correctly. Now I need to educate myself.
+<br /><br />
+<i>plans plans plans, still plans... TODO.... but really it was enough to read those 45 pages from that PDF. I didn't plan that heh ;/ OK, now I know that I seriously need some time to delve into this because I really knew nothing.</i>
