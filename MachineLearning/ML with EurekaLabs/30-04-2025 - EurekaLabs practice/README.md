@@ -19,4 +19,4 @@ After all this nonsense WHAT I WROTE HERE I ended up here, on <b>"Learning Inter
 <br /><br />
 OK, I think it's ok now and I think correctly. Now I need to educate myself.
 <br /><br />
-<i>plans plans plans, still plans... TODO.... but really it was enough to read those 45 pages from that PDF. I didn't plan that heh ;/ OK, now I know that I seriously need some time to delve into this because I really knew nothing.</i>
+<i>plans plans plans, still plans... TODO.... but really it was enough to read those 45 pages from that PDF. I didn't plan that heh ;/ OK, now I know that I seriously need some time to delve into this because I really knew nothing.(...) With my current level of knowledge, it's better if I don't write anything more here, just educate myself better. Because it's irrelevant what I write now, since I don't know what the point of all this is. Some time ago I remembered some basic statistics, but I forgot. But this neural networks are something else...</i>
