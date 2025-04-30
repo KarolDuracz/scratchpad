@@ -14,3 +14,5 @@ Overall how a transformer, PE, Attention works is more complex than I thought...
 That's all for now.
 <hr>
 I think this is already correct thinking and I'm on the right path. But this is a damn deep topic to analyze. How they changed RNN to transformer and why they gave PE and Attention. I know why, but not much.
+<br /><br />
+After all this nonsense I ended up here, on <b>"Learning Internal Representations by Error Propagation"</b> and what these people improved in the Perceptrons: An Introduction to Computational Geometry is a book written by Marvin Minsky and Seymour Papert in 1969. And this XOR problem. I think I'm finally on the right path.
