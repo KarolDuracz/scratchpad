@@ -13,7 +13,9 @@ Overall how a transformer, PE, Attention works is more complex than I thought...
 <br /><br />
 That's all for now.
 <br /><br />
-Update 03-05-2025 - a few slides https://kcir.pwr.edu.pl/~witold/ai/mle_nndeep_s.pdf
+<hr>
+Update 03-05-2025 - a few slides https://kcir.pwr.edu.pl/~witold/ai/mle_nndeep_s.pdf and https://en.wikipedia.org/wiki/History_of_artificial_neural_networks This is a summary of this stage of learning the ML, i.e. trying to understand what it is, what it does in general and verifying my beliefs and convictions about it.
+
 <hr>
 I think this is already correct thinking and I'm on the right path. But this is a damn deep topic to analyze. How they changed RNN to transformer and why they gave PE and Attention. I know why, but not much.
 <br /><br />
