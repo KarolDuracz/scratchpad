@@ -25,7 +25,7 @@ We can change the context size at the very top in the CONTEXT LENGTH = 3 variabl
 Some time ago I checked what the plots look like for gradients for context 2-6 - https://github.com/EurekaLabsAI/mlp/issues/22
 <br /><br />
 And if we run the last block of code from the .ipynb file
-then for context = 6 we see something like this. This is the probable behavior of the network in context = 6. But this is in theory. But if it works like that then some behaviors should scale and work the same on a larger model.
+then for context = 6 we see something like this. This is the probable behavior of the network in context = 6. But this is in theory. But if it works like that then some behaviors should scale and work the same on a larger model. The first one is leigh\n ! But we don't see here \n char but new line is execute. So this is next token for sequence leigh\n -> [a] . The letter 'a' has the most hits, 18. So "a, k, m, j, l" etc should appear most often.
 ```
 Total unique 6-grams: 142019
 
