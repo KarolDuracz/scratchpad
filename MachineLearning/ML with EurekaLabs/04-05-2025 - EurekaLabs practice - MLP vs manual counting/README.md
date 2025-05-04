@@ -9,3 +9,5 @@
 
 <h2>TODO</h2>
 That is, checking whether MLP actually learns these combinations and what appears, for example, after 3 tokens? In other words. If a neural network sees several such examples WHAT EXACTLY DOES IT DO? That is, how exactly does it behave (learn) when it sees similar "batches". etc.
+<br /><br />
+<i>btw. After changing my beliefs, and probably thinking correctly about NN, it's time to go deeper into these topics. The next plan will be topics like SGD vs AdamW. Why it can be trained on multi gpu systems, why SGD is not effective when distributing NN on several gpus. These are more complex issues of network training. But that's probably in the next months, when I get through the basics of what happens on small models like this one.</i>
