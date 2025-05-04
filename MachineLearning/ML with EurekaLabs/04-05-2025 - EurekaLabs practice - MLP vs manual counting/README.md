@@ -332,6 +332,312 @@ Context: 'liyah
    '\n' : 0
 ```
 
+CONTEXT = 4 (counting by hand) 
+
+```
+Total unique 4-grams: 31305
+
+Showing full 27-token distributions for the top 10 contexts:
+
+Context: 'yah
+'  (count: 461)
+    'a' : 76
+    'k' : 44
+    'm' : 39
+    'j' : 37
+    'b' : 24
+    'e' : 24
+    'r' : 23
+    'l' : 22
+    's' : 21
+    'd' : 17
+    'z' : 17
+    'n' : 16
+    'c' : 15
+    't' : 13
+    'g' : 10
+    'h' : 10
+    'p' : 10
+    'y' : 10
+    'f' : 9
+    'v' : 9
+    'i' : 5
+    'o' : 4
+    'w' : 3
+    'u' : 2
+    'q' : 1
+    'x' : 0
+   '\n' : 0
+
+Context: 'lyn
+'  (count: 445)
+    'a' : 65
+    'k' : 47
+    'm' : 35
+    'c' : 30
+    'e' : 26
+    'd' : 24
+    's' : 23
+    'l' : 22
+    'r' : 21
+    'j' : 19
+    't' : 19
+    'b' : 16
+    'z' : 14
+    'g' : 12
+    'n' : 12
+    'h' : 11
+    'p' : 10
+    'v' : 10
+    'i' : 9
+    'o' : 5
+    'f' : 4
+    'y' : 4
+    'q' : 3
+    'x' : 2
+    'u' : 1
+    'w' : 1
+   '\n' : 0
+
+Context: 'ana
+'  (count: 444)
+    'a' : 59
+    'j' : 42
+    'm' : 36
+    'k' : 35
+    's' : 33
+    'c' : 26
+    'r' : 26
+    'd' : 23
+    'l' : 23
+    't' : 19
+    'z' : 19
+    'e' : 17
+    'b' : 14
+    'n' : 14
+    'g' : 10
+    'h' : 10
+    'i' : 6
+    'p' : 6
+    'y' : 6
+    'f' : 5
+    'w' : 5
+    'o' : 4
+    'x' : 4
+    'v' : 2
+    'q' : 0
+    'u' : 0
+   '\n' : 0
+
+Context: 'nna
+'  (count: 443)
+    'a' : 54
+    'k' : 46
+    'm' : 40
+    'b' : 26
+    's' : 26
+    'd' : 23
+    'j' : 23
+    'l' : 23
+    'r' : 21
+    't' : 21
+    'e' : 20
+    'c' : 19
+    'h' : 16
+    'n' : 16
+    'z' : 14
+    'f' : 9
+    'p' : 9
+    'g' : 8
+    'w' : 6
+    'y' : 6
+    'o' : 5
+    'v' : 5
+    'i' : 3
+    'q' : 2
+    'x' : 2
+    'u' : 0
+   '\n' : 0
+
+Context: 'iah
+'  (count: 423)
+    'a' : 59
+    'j' : 35
+    'e' : 32
+    'k' : 31
+    'm' : 28
+    'r' : 25
+    'c' : 24
+    's' : 24
+    'd' : 23
+    't' : 22
+    'l' : 18
+    'z' : 16
+    'b' : 15
+    'n' : 15
+    'g' : 11
+    'h' : 9
+    'y' : 6
+    'f' : 5
+    'p' : 4
+    'q' : 4
+    'v' : 4
+    'w' : 4
+    'i' : 3
+    'o' : 3
+    'u' : 2
+    'x' : 1
+   '\n' : 0
+
+Context: 'ynn
+'  (count: 406)
+    'a' : 56
+    'k' : 37
+    'm' : 31
+    'j' : 25
+    'r' : 24
+    'c' : 23
+    'l' : 22
+    't' : 21
+    'e' : 20
+    's' : 20
+    'h' : 14
+    'b' : 13
+    'd' : 13
+    'n' : 12
+    'g' : 11
+    'p' : 11
+    'i' : 8
+    'z' : 8
+    'f' : 7
+    'o' : 7
+    'y' : 7
+    'x' : 5
+    'v' : 4
+    'w' : 4
+    'u' : 2
+    'q' : 1
+   '\n' : 0
+
+Context: 'anna'  (count: 401)
+   '\n' : 283
+    'h' : 46
+    'l' : 35
+    'b' : 5
+    'n' : 5
+    's' : 5
+    'm' : 4
+    't' : 3
+    'y' : 3
+    'e' : 2
+    'k' : 2
+    'r' : 2
+    'c' : 1
+    'd' : 1
+    'g' : 1
+    'i' : 1
+    'j' : 1
+    'v' : 1
+    'a' : 0
+    'f' : 0
+    'o' : 0
+    'p' : 0
+    'q' : 0
+    'u' : 0
+    'w' : 0
+    'x' : 0
+    'z' : 0
+
+Context: 'lynn'  (count: 378)
+   '\n' : 330
+    'e' : 37
+    'a' : 3
+    'l' : 3
+    'o' : 3
+    'i' : 1
+    's' : 1
+    'b' : 0
+    'c' : 0
+    'd' : 0
+    'f' : 0
+    'g' : 0
+    'h' : 0
+    'j' : 0
+    'k' : 0
+    'm' : 0
+    'n' : 0
+    'p' : 0
+    'q' : 0
+    'r' : 0
+    't' : 0
+    'u' : 0
+    'v' : 0
+    'w' : 0
+    'x' : 0
+    'y' : 0
+    'z' : 0
+
+Context: '
+mar'  (count: 374)
+    'i' : 104
+    'y' : 46
+    'l' : 44
+    'c' : 34
+    'k' : 27
+    't' : 18
+    'g' : 15
+    'q' : 14
+    'a' : 13
+    's' : 13
+    'e' : 12
+    'v' : 11
+    'j' : 5
+    'r' : 4
+    'w' : 4
+    'n' : 2
+    'u' : 2
+    'z' : 2
+    'b' : 1
+    'd' : 1
+    'x' : 1
+   '\n' : 1
+    'f' : 0
+    'h' : 0
+    'm' : 0
+    'o' : 0
+    'p' : 0
+
+Context: 'ani
+'  (count: 348)
+    'a' : 45
+    'm' : 32
+    's' : 27
+    'k' : 24
+    'd' : 23
+    'j' : 23
+    'c' : 18
+    'e' : 16
+    't' : 16
+    'b' : 15
+    'r' : 15
+    'l' : 14
+    'n' : 12
+    'g' : 10
+    'h' : 10
+    'z' : 9
+    'i' : 8
+    'p' : 8
+    'y' : 6
+    'o' : 5
+    'f' : 3
+    'v' : 3
+    'u' : 2
+    'w' : 2
+    'q' : 1
+    'x' : 1
+   '\n' : 0
+```
+
 <hr>
 <h2>TODO</h2>
 That is, checking whether MLP actually learns these combinations and what appears, for example, after 3 tokens? In other words. If a neural network sees several such examples WHAT EXACTLY DOES IT DO? That is, how exactly does it behave (learn) when it sees similar "batches". etc.
