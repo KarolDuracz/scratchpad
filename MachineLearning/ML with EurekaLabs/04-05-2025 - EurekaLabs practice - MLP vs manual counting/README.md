@@ -11,7 +11,7 @@
 
 Back to https://pytorch.org/docs/stable/generated/torch.multinomial.html reason why etc
 <hr>
-We can change the context size at the very top in the CONTEXT LENGTH = 3 variable in .ipynb file. And then wee see bellow first block sth like this when we start checking the range of 2-6 context sizes and what token appears after such a long sequence (But it still needs to be checked if it counts correctly): <br /><br />
+We can change the context size at the every top in the CONTEXT LENGTH = 3 variable in .ipynb file. And then we see bellow first block sth like this when we start checking the range of 2-6 context sizes and what token appears after such a long sequence (But it still needs to be checked if it counts correctly): <br /><br />
 
 ```
 // print(ngram_counter)
