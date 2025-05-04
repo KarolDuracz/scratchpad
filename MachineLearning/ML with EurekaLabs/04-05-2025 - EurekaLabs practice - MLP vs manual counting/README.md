@@ -7,6 +7,8 @@
 3. Dataset - https://github.com/EurekaLabsAI/mlp/blob/master/data/train.txt
 4. MLP -> https://github.com/EurekaLabsAI/mlp/tree/master (python mlp.py)
 
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/04-05-2025%20-%20test%201.png?raw=true)
+
 <h2>TODO</h2>
 That is, checking whether MLP actually learns these combinations and what appears, for example, after 3 tokens? In other words. If a neural network sees several such examples WHAT EXACTLY DOES IT DO? That is, how exactly does it behave (learn) when it sees similar "batches". etc.
 <br /><br />
