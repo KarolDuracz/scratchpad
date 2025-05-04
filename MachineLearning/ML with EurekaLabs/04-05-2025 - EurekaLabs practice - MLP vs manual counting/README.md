@@ -22,7 +22,7 @@ We can change the context size at the every top in the CONTEXT LENGTH = 3 variab
 #6 - Total unique 6-grams: 142019 - Counter({'leigh\n': 187, 'ianna\n': 108, 'yanna\n': 74, 'elynn\n': 74, 'alynn\n': 65, 'liana\n': 60, '\nchris': 60, 'bella\n': 56, 'marie\n': 52, ...
 ```
 
- Total unique n-grams, means, that there are actually so many unique combinations. So for 2-grams there are 623 combinations? For 3-gram already 6475? So most of it is repeated for a small context, and for larger the context for this database ... what?
+ Total unique n-grams, means, that there are actually so many unique combinations. So for 2-grams there are 623 combinations? For 3-gram already 6475? So most of it is repeated for a small context, and for larger the context for this database ... what? (In https://github.com/EurekaLabsAI/ngram we see : "Our dataset is that of 32,032 names from ssa.gov for the year 2018, which were split into 1,000 names in the test split, 1,000 in val split, and the rest in the training split, all of them inside the data/ folder." - Maybe that's why context #4 has the least loss in the link below 2.00298 for AdamW + Tanh. Because if there are 31k names, that's the number of combinations.... But I don't know if it matters)
 <br /><br />
 Some time ago I checked what the plots look like for gradients for context 2-6 - https://github.com/EurekaLabsAI/mlp/issues/22
 <br /><br />
