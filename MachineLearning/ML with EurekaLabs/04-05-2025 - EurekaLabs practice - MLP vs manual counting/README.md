@@ -664,6 +664,25 @@ CONTEXT LENGTH 8 -> https://raw.githubusercontent.com/KarolDuracz/scratchpad/ref
 <br /><br />
 We can quickly check what I wrote above, e.g. "mar" etc.
 <hr>
+<h2>Summary for this demo</h2>
+People behind the first models (https://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf - 2003) didn't have the tools that we have today. And the computers we have today. I didn't go into details about the hardware, but my laptop from 2011 probably has several times greater performance than those from over 20 years ago. Besides, training Lenet on MNIST takes a few moments. And CHATGPT. But since it's here ->
+https://chatgpt.com/share/6818bfa1-aae8-8000-9250-3a9496071230
+<br /><br />
+First I asked questions about the model itself and the number of parameters. And as gpt writes. Total = 1296 + 73728 + 512 + 13824 + 27 = 89387 parameters. 
+
+```
+ == total parameters ==
+wte ==> (27, 48) | Parameters: 1296
+fc1_weights ==> (144, 512) | Parameters: 73728
+fc1_bias ==> (512,) | Parameters: 512
+fc2_weights ==> (512, 27) | Parameters: 13824
+fc2_bias ==> (27,) | Parameters: 27
+```
+
+Then I gave him these observations about the number of combinations for context 2-6 on this data. And he gave answers to these questions. Interestingly, according to him for 27 ** 6 = 387,000,000 combinations where in this data I have an upper limit of ~22,000 looking at this image above where after 10 tokens in the context you can already see a "flat line". But it will be time to better understand what is behind it and finally read "A Neural Probabilistic Language Model" from 2003. Because understanding this is a step to bigger models and what happened next, where we are today.
+<br /><br />
+There are probably some more mathematical and data-related nuances, so I'll try to "torture" this MLP further. But + for me, that from theory and nonsense finally "a bit more technical" post. So overall there is a little progress.
+<hr>
 <h2>TODO</h2>
 That is, checking whether MLP actually learns these combinations and what appears, for example, after 3 tokens? In other words. If a neural network sees several such examples WHAT EXACTLY DOES IT DO? That is, how exactly does it behave (learn) when it sees similar "batches". etc.
 <br /><br />
