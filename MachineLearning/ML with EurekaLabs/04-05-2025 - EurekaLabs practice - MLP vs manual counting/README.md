@@ -684,6 +684,11 @@ Then I gave him these observations about the number of combinations for context 
 <br /><br />
 There are probably some more mathematical and data-related nuances, so I'll try to "torture" this MLP further. But + for me, that from theory and nonsense finally "a bit more technical" post. So overall there is a little progress.
 <hr>
+Ok, so I'm counting manually vs. MLP. The image above shows that it doesn't pay off above 10 combinations, i.e. context 10 max. But what does the prediction look like for context_length = 50 and what does it actually predict after training MLP? Since I did here this iterration for 50, so why not as summary check also this.
+<br /><br />
+But unfortunately ERROR. I guess there is "hard coding" for no more than 8 context size [ ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 2400 is different from 384) ] - that means for 384/48 = 8 but for 2400/48 = 50. That means, it tries to count for context 8 but I give it 50. Here is OUTPUT log -> https://raw.githubusercontent.com/KarolDuracz/scratchpad/refs/heads/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/predictions/context_length%2050%20-%20error.txt
+
+<hr>
 <h2>TODO</h2>
 That is, checking whether MLP actually learns these combinations and what appears, for example, after 3 tokens? In other words. If a neural network sees several such examples WHAT EXACTLY DOES IT DO? That is, how exactly does it behave (learn) when it sees similar "batches". etc.
 <br /><br />
