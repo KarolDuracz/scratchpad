@@ -648,6 +648,21 @@ Context: 'ani
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/9%20-%2005-05-2025%20-%20another%20pics.png?raw=true)
 
 <hr>
+To have a quick comparison and not do the same thing twice again and again. 
+
+Default model from repo, I didn't change anything in network settings, 50000 iterations of learning loop, only line 193 - context_length = 4 and 6 and 8 - 3https://github.com/EurekaLabsAI/mlp/blob/master/mlp_pytorch.py#L193C1-L193C19
+
+Because that's what I checked here, i.e. 4 and 6. Context 8 additionally by the way.
+
+and 10000 characters are generated instead of 200, in this loop, line 244 - https://github.com/EurekaLabsAI/mlp/blob/master/mlp_pytorch.py#L244
+
+I am most interested in the prediction for context 4 and 6 and the occurrence of TOP 10 sequences from the examples above, e.g. "leigh\n" for context_length=6 and "yah\n" for context_length=4
+
+CONTEXT LENGTH 4 -> https://raw.githubusercontent.com/KarolDuracz/scratchpad/refs/heads/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/predictions/context_length-4.txt <br />
+CONTEXT LENGTH 6 -> https://raw.githubusercontent.com/KarolDuracz/scratchpad/refs/heads/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/predictions/context_length-6.txt <br />
+CONTEXT LENGTH 8 -> https://raw.githubusercontent.com/KarolDuracz/scratchpad/refs/heads/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/predictions/context_length-8.txt 
+
+<hr>
 <h2>TODO</h2>
 That is, checking whether MLP actually learns these combinations and what appears, for example, after 3 tokens? In other words. If a neural network sees several such examples WHAT EXACTLY DOES IT DO? That is, how exactly does it behave (learn) when it sees similar "batches". etc.
 <br /><br />
