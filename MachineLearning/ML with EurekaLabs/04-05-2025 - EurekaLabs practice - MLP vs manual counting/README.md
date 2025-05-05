@@ -683,6 +683,9 @@ Total Parameters: 89387
 Then I gave him these observations about the number of combinations for context 2-6 on this data. And he gave answers to these questions. Interestingly, according to him for 27 ** 6 = 387,000,000 combinations where in this data I have an upper limit of ~22,000 looking at this image above where after 10 tokens in the context you can already see a "flat line". But it will be time to better understand what is behind it and finally read "A Neural Probabilistic Language Model" from 2003. Because understanding this is a step to bigger models and what happened next, where we are today.
 <br /><br />
 There are probably some more mathematical and data-related nuances, so I'll try to "torture" this MLP further. But + for me, that from theory and nonsense finally "a bit more technical" post. So overall there is a little progress.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/summary%20picture.png?raw=true)
+
 <hr>
 Ok, so I'm counting manually vs. MLP. The image above shows that it doesn't pay off above 10 combinations, i.e. context 10 max. But what does the prediction look like for context_length = 50 and what does it actually predict after training MLP? Since I did here this iterration for 50, so why not as summary check also this.
 <br /><br />
