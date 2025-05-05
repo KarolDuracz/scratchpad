@@ -1,0 +1,641 @@
+##############################################  manual counting ############################################## 
+Total unique 50-grams: 213746
+
+Showing full 27-token distributions for the top 10 contexts:
+
+Context: 'rayvon
+tawhid
+ridhi
+solomone
+deen
+luismiguel
+bryar'  (count: 1)
+   '\n' : 1
+    'a' : 0
+    'b' : 0
+    'c' : 0
+    'd' : 0
+    'e' : 0
+    'f' : 0
+    'g' : 0
+    'h' : 0
+    'i' : 0
+    'j' : 0
+    'k' : 0
+    'l' : 0
+    'm' : 0
+    'n' : 0
+    'o' : 0
+    'p' : 0
+    'q' : 0
+    'r' : 0
+    's' : 0
+    't' : 0
+    'u' : 0
+    'v' : 0
+    'w' : 0
+    'x' : 0
+    'y' : 0
+    'z' : 0
+
+Context: 'ayvon
+tawhid
+ridhi
+solomone
+deen
+luismiguel
+bryar
+'  (count: 1)
+    'w' : 1
+    'a' : 0
+    'b' : 0
+    'c' : 0
+    'd' : 0
+    'e' : 0
+    'f' : 0
+    'g' : 0
+    'h' : 0
+    'i' : 0
+    'j' : 0
+    'k' : 0
+    'l' : 0
+    'm' : 0
+    'n' : 0
+    'o' : 0
+    'p' : 0
+    'q' : 0
+    'r' : 0
+    's' : 0
+    't' : 0
+    'u' : 0
+    'v' : 0
+    'x' : 0
+    'y' : 0
+    'z' : 0
+   '\n' : 0
+
+Context: 'yvon
+tawhid
+ridhi
+solomone
+deen
+luismiguel
+bryar
+w'  (count: 1)
+    'o' : 1
+    'a' : 0
+    'b' : 0
+    'c' : 0
+    'd' : 0
+    'e' : 0
+    'f' : 0
+    'g' : 0
+    'h' : 0
+    'i' : 0
+    'j' : 0
+    'k' : 0
+    'l' : 0
+    'm' : 0
+    'n' : 0
+    'p' : 0
+    'q' : 0
+    'r' : 0
+    's' : 0
+    't' : 0
+    'u' : 0
+    'v' : 0
+    'w' : 0
+    'x' : 0
+    'y' : 0
+    'z' : 0
+   '\n' : 0
+
+Context: 'von
+tawhid
+ridhi
+solomone
+deen
+luismiguel
+bryar
+wo'  (count: 1)
+    'o' : 1
+    'a' : 0
+    'b' : 0
+    'c' : 0
+    'd' : 0
+    'e' : 0
+    'f' : 0
+    'g' : 0
+    'h' : 0
+    'i' : 0
+    'j' : 0
+    'k' : 0
+    'l' : 0
+    'm' : 0
+    'n' : 0
+    'p' : 0
+    'q' : 0
+    'r' : 0
+    's' : 0
+    't' : 0
+    'u' : 0
+    'v' : 0
+    'w' : 0
+    'x' : 0
+    'y' : 0
+    'z' : 0
+   '\n' : 0
+
+Context: 'on
+tawhid
+ridhi
+solomone
+deen
+luismiguel
+bryar
+woo'  (count: 1)
+    'd' : 1
+    'a' : 0
+    'b' : 0
+    'c' : 0
+    'e' : 0
+    'f' : 0
+    'g' : 0
+    'h' : 0
+    'i' : 0
+    'j' : 0
+    'k' : 0
+    'l' : 0
+    'm' : 0
+    'n' : 0
+    'o' : 0
+    'p' : 0
+    'q' : 0
+    'r' : 0
+    's' : 0
+    't' : 0
+    'u' : 0
+    'v' : 0
+    'w' : 0
+    'x' : 0
+    'y' : 0
+    'z' : 0
+   '\n' : 0
+
+Context: 'n
+tawhid
+ridhi
+solomone
+deen
+luismiguel
+bryar
+wood'  (count: 1)
+    'r' : 1
+    'a' : 0
+    'b' : 0
+    'c' : 0
+    'd' : 0
+    'e' : 0
+    'f' : 0
+    'g' : 0
+    'h' : 0
+    'i' : 0
+    'j' : 0
+    'k' : 0
+    'l' : 0
+    'm' : 0
+    'n' : 0
+    'o' : 0
+    'p' : 0
+    'q' : 0
+    's' : 0
+    't' : 0
+    'u' : 0
+    'v' : 0
+    'w' : 0
+    'x' : 0
+    'y' : 0
+    'z' : 0
+   '\n' : 0
+
+Context: '
+tawhid
+ridhi
+solomone
+deen
+luismiguel
+bryar
+woodr'  (count: 1)
+    'o' : 1
+    'a' : 0
+    'b' : 0
+    'c' : 0
+    'd' : 0
+    'e' : 0
+    'f' : 0
+    'g' : 0
+    'h' : 0
+    'i' : 0
+    'j' : 0
+    'k' : 0
+    'l' : 0
+    'm' : 0
+    'n' : 0
+    'p' : 0
+    'q' : 0
+    'r' : 0
+    's' : 0
+    't' : 0
+    'u' : 0
+    'v' : 0
+    'w' : 0
+    'x' : 0
+    'y' : 0
+    'z' : 0
+   '\n' : 0
+
+Context: 'tawhid
+ridhi
+solomone
+deen
+luismiguel
+bryar
+woodro'  (count: 1)
+    'w' : 1
+    'a' : 0
+    'b' : 0
+    'c' : 0
+    'd' : 0
+    'e' : 0
+    'f' : 0
+    'g' : 0
+    'h' : 0
+    'i' : 0
+    'j' : 0
+    'k' : 0
+    'l' : 0
+    'm' : 0
+    'n' : 0
+    'o' : 0
+    'p' : 0
+    'q' : 0
+    'r' : 0
+    's' : 0
+    't' : 0
+    'u' : 0
+    'v' : 0
+    'x' : 0
+    'y' : 0
+    'z' : 0
+   '\n' : 0
+
+Context: 'awhid
+ridhi
+solomone
+deen
+luismiguel
+bryar
+woodrow'  (count: 1)
+   '\n' : 1
+    'a' : 0
+    'b' : 0
+    'c' : 0
+    'd' : 0
+    'e' : 0
+    'f' : 0
+    'g' : 0
+    'h' : 0
+    'i' : 0
+    'j' : 0
+    'k' : 0
+    'l' : 0
+    'm' : 0
+    'n' : 0
+    'o' : 0
+    'p' : 0
+    'q' : 0
+    'r' : 0
+    's' : 0
+    't' : 0
+    'u' : 0
+    'v' : 0
+    'w' : 0
+    'x' : 0
+    'y' : 0
+    'z' : 0
+
+Context: 'whid
+ridhi
+solomone
+deen
+luismiguel
+bryar
+woodrow
+'  (count: 1)
+    'j' : 1
+    'a' : 0
+    'b' : 0
+    'c' : 0
+    'd' : 0
+    'e' : 0
+    'f' : 0
+    'g' : 0
+    'h' : 0
+    'i' : 0
+    'k' : 0
+    'l' : 0
+    'm' : 0
+    'n' : 0
+    'o' : 0
+    'p' : 0
+    'q' : 0
+    'r' : 0
+    's' : 0
+    't' : 0
+    'u' : 0
+    'v' : 0
+    'w' : 0
+    'x' : 0
+    'y' : 0
+    'z' : 0
+   '\n' : 0
+
+
+
+############################################## mlp training on CONTEXT_LENGTH = 50 ############################################## 
+num_steps 50000, num_epochs 29.94
+step      0 | train_loss 3.347958 | val_loss 3.348864 | lr 7.000000e-04 | time/step 0.0000ms
+step    200 | train_loss 2.212866 | val_loss 2.461983 | lr 6.999724e-04 | time/step 171.6643ms
+step    400 | train_loss 2.249290 | val_loss 2.392460 | lr 6.998895e-04 | time/step 155.6723ms
+step    600 | train_loss 2.255516 | val_loss 2.363912 | lr 6.997513e-04 | time/step 156.1953ms
+step    800 | train_loss 2.258554 | val_loss 2.338234 | lr 6.995579e-04 | time/step 154.1420ms
+step   1000 | train_loss 2.276001 | val_loss 2.331337 | lr 6.993094e-04 | time/step 156.1300ms
+step   1200 | train_loss 2.260654 | val_loss 2.307247 | lr 6.990056e-04 | time/step 157.2690ms
+step   1400 | train_loss 2.244193 | val_loss 2.301169 | lr 6.986468e-04 | time/step 155.0217ms
+step   1600 | train_loss 2.250853 | val_loss 2.289077 | lr 6.982329e-04 | time/step 155.4707ms
+step   1800 | train_loss 1.936520 | val_loss 2.279117 | lr 6.977640e-04 | time/step 154.4391ms
+step   2000 | train_loss 2.040482 | val_loss 2.276670 | lr 6.972401e-04 | time/step 162.0811ms
+step   2200 | train_loss 2.089416 | val_loss 2.278820 | lr 6.966615e-04 | time/step 160.5747ms
+step   2400 | train_loss 2.095361 | val_loss 2.267688 | lr 6.960281e-04 | time/step 154.2938ms
+step   2600 | train_loss 2.116004 | val_loss 2.266740 | lr 6.953401e-04 | time/step 155.1941ms
+step   2800 | train_loss 2.131863 | val_loss 2.273642 | lr 6.945975e-04 | time/step 159.2810ms
+step   3000 | train_loss 2.147384 | val_loss 2.277103 | lr 6.938005e-04 | time/step 155.6339ms
+step   3200 | train_loss 2.139419 | val_loss 2.256379 | lr 6.929493e-04 | time/step 156.3097ms
+step   3400 | train_loss 1.638201 | val_loss 2.269531 | lr 6.920438e-04 | time/step 154.8359ms
+step   3600 | train_loss 1.838037 | val_loss 2.276172 | lr 6.910844e-04 | time/step 159.4109ms
+step   3800 | train_loss 1.909790 | val_loss 2.264483 | lr 6.900711e-04 | time/step 155.4756ms
+step   4000 | train_loss 1.949297 | val_loss 2.264189 | lr 6.890041e-04 | time/step 155.0751ms
+step   4200 | train_loss 1.981100 | val_loss 2.273721 | lr 6.878836e-04 | time/step 157.3882ms
+step   4400 | train_loss 2.016521 | val_loss 2.280117 | lr 6.867097e-04 | time/step 161.5303ms
+step   4600 | train_loss 2.032802 | val_loss 2.283531 | lr 6.854826e-04 | time/step 155.9909ms
+step   4800 | train_loss 2.045423 | val_loss 2.310794 | lr 6.842026e-04 | time/step 154.1151ms
+step   5000 | train_loss 1.983116 | val_loss 2.302360 | lr 6.828698e-04 | time/step 153.6958ms
+step   5200 | train_loss 1.591008 | val_loss 2.311406 | lr 6.814844e-04 | time/step 164.4552ms
+step   5400 | train_loss 1.704459 | val_loss 2.314855 | lr 6.800467e-04 | time/step 159.2876ms
+step   5600 | train_loss 1.794953 | val_loss 2.320848 | lr 6.785569e-04 | time/step 155.3718ms
+step   5800 | train_loss 1.849253 | val_loss 2.315210 | lr 6.770151e-04 | time/step 155.9974ms
+step   6000 | train_loss 1.894826 | val_loss 2.343856 | lr 6.754218e-04 | time/step 159.7866ms
+step   6200 | train_loss 1.914604 | val_loss 2.340091 | lr 6.737770e-04 | time/step 159.3979ms
+step   6400 | train_loss 1.936081 | val_loss 2.361478 | lr 6.720811e-04 | time/step 155.5696ms
+step   6600 | train_loss 1.854111 | val_loss 2.352698 | lr 6.703344e-04 | time/step 154.5199ms
+step   6800 | train_loss 1.266531 | val_loss 2.373127 | lr 6.685371e-04 | time/step 154.8333ms
+step   7000 | train_loss 1.513766 | val_loss 2.397994 | lr 6.666895e-04 | time/step 155.5556ms
+step   7200 | train_loss 1.619254 | val_loss 2.395956 | lr 6.647918e-04 | time/step 154.8595ms
+step   7400 | train_loss 1.677085 | val_loss 2.389221 | lr 6.628445e-04 | time/step 158.1346ms
+step   7600 | train_loss 1.733871 | val_loss 2.409340 | lr 6.608478e-04 | time/step 155.4293ms
+step   7800 | train_loss 1.771905 | val_loss 2.427889 | lr 6.588019e-04 | time/step 150.5116ms
+step   8000 | train_loss 1.790105 | val_loss 2.446013 | lr 6.567073e-04 | time/step 148.9837ms
+step   8200 | train_loss 1.754861 | val_loss 2.454271 | lr 6.545643e-04 | time/step 148.5475ms
+step   8400 | train_loss 0.923906 | val_loss 2.473384 | lr 6.523732e-04 | time/step 148.0821ms
+step   8600 | train_loss 1.276686 | val_loss 2.504353 | lr 6.501343e-04 | time/step 148.2488ms
+step   8800 | train_loss 1.445973 | val_loss 2.520223 | lr 6.478481e-04 | time/step 148.6707ms
+step   9000 | train_loss 1.560058 | val_loss 2.534123 | lr 6.455148e-04 | time/step 148.0626ms
+step   9200 | train_loss 1.587856 | val_loss 2.531550 | lr 6.431348e-04 | time/step 148.2130ms
+step   9400 | train_loss 1.659749 | val_loss 2.546062 | lr 6.407086e-04 | time/step 147.9897ms
+step   9600 | train_loss 1.690056 | val_loss 2.560693 | lr 6.382364e-04 | time/step 154.6753ms
+step   9800 | train_loss 1.679560 | val_loss 2.582308 | lr 6.357187e-04 | time/step 155.2462ms
+step  10000 | train_loss 1.505920 | val_loss 2.582923 | lr 6.331559e-04 | time/step 159.6686ms
+step  10200 | train_loss 1.012531 | val_loss 2.643659 | lr 6.305484e-04 | time/step 155.1909ms
+step  10400 | train_loss 1.265642 | val_loss 2.661962 | lr 6.278966e-04 | time/step 162.3710ms
+step  10600 | train_loss 1.397292 | val_loss 2.651765 | lr 6.252010e-04 | time/step 155.6656ms
+step  10800 | train_loss 1.490977 | val_loss 2.664421 | lr 6.224618e-04 | time/step 157.3473ms
+step  11000 | train_loss 1.549360 | val_loss 2.690769 | lr 6.196796e-04 | time/step 154.6032ms
+step  11200 | train_loss 1.591787 | val_loss 2.697350 | lr 6.168549e-04 | time/step 158.4537ms
+step  11400 | train_loss 1.577698 | val_loss 2.717070 | lr 6.139880e-04 | time/step 155.3848ms
+step  11600 | train_loss 1.457618 | val_loss 2.725041 | lr 6.110794e-04 | time/step 154.4517ms
+step  11800 | train_loss 0.732538 | val_loss 2.771556 | lr 6.081296e-04 | time/step 153.7619ms
+step  12000 | train_loss 1.100769 | val_loss 2.819315 | lr 6.051390e-04 | time/step 154.0630ms
+step  12200 | train_loss 1.282370 | val_loss 2.808044 | lr 6.021082e-04 | time/step 157.2176ms
+step  12400 | train_loss 1.391444 | val_loss 2.817764 | lr 5.990375e-04 | time/step 154.5047ms
+step  12600 | train_loss 1.443527 | val_loss 2.839753 | lr 5.959275e-04 | time/step 155.3437ms
+step  12800 | train_loss 1.502369 | val_loss 2.854938 | lr 5.927787e-04 | time/step 153.7880ms
+step  13000 | train_loss 1.497734 | val_loss 2.889196 | lr 5.895915e-04 | time/step 157.3337ms
+step  13200 | train_loss 1.407695 | val_loss 2.885283 | lr 5.863665e-04 | time/step 157.2049ms
+step  13400 | train_loss 0.471190 | val_loss 2.895728 | lr 5.831042e-04 | time/step 156.3420ms
+step  13600 | train_loss 0.880924 | val_loss 2.989460 | lr 5.798050e-04 | time/step 154.4503ms
+step  13800 | train_loss 1.141329 | val_loss 2.999656 | lr 5.764696e-04 | time/step 157.6681ms
+step  14000 | train_loss 1.286771 | val_loss 2.991999 | lr 5.730984e-04 | time/step 156.3755ms
+step  14200 | train_loss 1.351542 | val_loss 3.012492 | lr 5.696920e-04 | time/step 160.5523ms
+step  14400 | train_loss 1.422459 | val_loss 3.008046 | lr 5.662509e-04 | time/step 155.9366ms
+step  14600 | train_loss 1.432374 | val_loss 3.024472 | lr 5.627756e-04 | time/step 159.3625ms
+step  14800 | train_loss 1.396876 | val_loss 3.065886 | lr 5.592667e-04 | time/step 154.4225ms
+step  15000 | train_loss 1.078750 | val_loss 3.064381 | lr 5.557248e-04 | time/step 153.6689ms
+step  15200 | train_loss 0.648989 | val_loss 3.139519 | lr 5.521504e-04 | time/step 155.4077ms
+step  15400 | train_loss 0.997794 | val_loss 3.158485 | lr 5.485441e-04 | time/step 160.6612ms
+step  15600 | train_loss 1.167680 | val_loss 3.141385 | lr 5.449065e-04 | time/step 154.9180ms
+step  15800 | train_loss 1.313015 | val_loss 3.167804 | lr 5.412380e-04 | time/step 153.8458ms
+step  16000 | train_loss 1.342143 | val_loss 3.205251 | lr 5.375394e-04 | time/step 154.8928ms
+step  16200 | train_loss 1.381400 | val_loss 3.187727 | lr 5.338111e-04 | time/step 160.4060ms
+step  16400 | train_loss 1.346044 | val_loss 3.218719 | lr 5.300538e-04 | time/step 158.8757ms
+step  16600 | train_loss 1.140464 | val_loss 3.216625 | lr 5.262681e-04 | time/step 154.3509ms
+step  16800 | train_loss 0.403169 | val_loss 3.262188 | lr 5.224546e-04 | time/step 155.8644ms
+step  17000 | train_loss 0.837757 | val_loss 3.345400 | lr 5.186138e-04 | time/step 154.1158ms
+step  17200 | train_loss 1.065103 | val_loss 3.325298 | lr 5.147464e-04 | time/step 157.0412ms
+step  17400 | train_loss 1.247877 | val_loss 3.360252 | lr 5.108530e-04 | time/step 151.2928ms
+step  17600 | train_loss 1.266797 | val_loss 3.376298 | lr 5.069341e-04 | time/step 147.9226ms
+step  17800 | train_loss 1.330857 | val_loss 3.363529 | lr 5.029905e-04 | time/step 147.7754ms
+step  18000 | train_loss 1.320466 | val_loss 3.401745 | lr 4.990228e-04 | time/step 176.5000ms
+step  18200 | train_loss 1.165614 | val_loss 3.406898 | lr 4.950315e-04 | time/step 176.4130ms
+step  18400 | train_loss 0.264713 | val_loss 3.413513 | lr 4.910173e-04 | time/step 214.2216ms
+step  18600 | train_loss 0.628967 | val_loss 3.516087 | lr 4.869808e-04 | time/step 163.7583ms
+step  18800 | train_loss 0.975780 | val_loss 3.540669 | lr 4.829227e-04 | time/step 205.3163ms
+step  19000 | train_loss 1.142034 | val_loss 3.543558 | lr 4.788436e-04 | time/step 166.6212ms
+step  19200 | train_loss 1.275444 | val_loss 3.559371 | lr 4.747442e-04 | time/step 157.7298ms
+step  19400 | train_loss 1.301188 | val_loss 3.550122 | lr 4.706250e-04 | time/step 175.7045ms
+step  19600 | train_loss 1.277289 | val_loss 3.559467 | lr 4.664868e-04 | time/step 186.2028ms
+step  19800 | train_loss 1.206969 | val_loss 3.589098 | lr 4.623303e-04 | time/step 158.0912ms
+step  20000 | train_loss 0.770677 | val_loss 3.573384 | lr 4.581559e-04 | time/step 153.4835ms
+step  20200 | train_loss 0.405449 | val_loss 3.649035 | lr 4.539646e-04 | time/step 173.6966ms
+step  20400 | train_loss 0.827222 | val_loss 3.705566 | lr 4.497567e-04 | time/step 155.5835ms
+step  20600 | train_loss 1.010151 | val_loss 3.668671 | lr 4.455332e-04 | time/step 162.4104ms
+step  20800 | train_loss 1.239160 | val_loss 3.717867 | lr 4.412945e-04 | time/step 175.6750ms
+step  21000 | train_loss 1.199534 | val_loss 3.722911 | lr 4.370415e-04 | time/step 196.6885ms
+step  21200 | train_loss 1.248265 | val_loss 3.727659 | lr 4.327746e-04 | time/step 177.7165ms
+step  21400 | train_loss 1.198256 | val_loss 3.756474 | lr 4.284948e-04 | time/step 173.6005ms
+step  21600 | train_loss 0.909393 | val_loss 3.768567 | lr 4.242025e-04 | time/step 164.0839ms
+step  21800 | train_loss 0.225471 | val_loss 3.792634 | lr 4.198985e-04 | time/step 225.5234ms
+step  22000 | train_loss 0.658637 | val_loss 3.892429 | lr 4.155835e-04 | time/step 205.9426ms
+step  22200 | train_loss 0.919585 | val_loss 3.858112 | lr 4.112581e-04 | time/step 156.4294ms
+step  22400 | train_loss 1.137397 | val_loss 3.891160 | lr 4.069230e-04 | time/step 197.0281ms
+step  22600 | train_loss 1.189882 | val_loss 3.890023 | lr 4.025790e-04 | time/step 173.9551ms
+step  22800 | train_loss 1.224132 | val_loss 3.894902 | lr 3.982266e-04 | time/step 168.8009ms
+step  23000 | train_loss 1.186172 | val_loss 3.914908 | lr 3.938666e-04 | time/step 158.8393ms
+step  23200 | train_loss 1.000116 | val_loss 3.949230 | lr 3.894997e-04 | time/step 151.0725ms
+step  23400 | train_loss 0.192229 | val_loss 3.932119 | lr 3.851266e-04 | time/step 151.2933ms
+step  23600 | train_loss 0.464674 | val_loss 4.040848 | lr 3.807479e-04 | time/step 156.0880ms
+step  23800 | train_loss 0.837529 | val_loss 4.061772 | lr 3.763644e-04 | time/step 163.4640ms
+step  24000 | train_loss 1.025106 | val_loss 4.045523 | lr 3.719767e-04 | time/step 152.6494ms
+step  24200 | train_loss 1.221478 | val_loss 4.064241 | lr 3.675855e-04 | time/step 152.6682ms
+step  24400 | train_loss 1.174228 | val_loss 4.059794 | lr 3.631916e-04 | time/step 169.8206ms
+step  24600 | train_loss 1.173368 | val_loss 4.072388 | lr 3.587955e-04 | time/step 155.2784ms
+step  24800 | train_loss 1.070278 | val_loss 4.089876 | lr 3.543981e-04 | time/step 155.2233ms
+step  25000 | train_loss 0.568622 | val_loss 4.118849 | lr 3.500000e-04 | time/step 192.0412ms
+step  25200 | train_loss 0.267985 | val_loss 4.173824 | lr 3.456019e-04 | time/step 159.7537ms
+step  25400 | train_loss 0.690955 | val_loss 4.243653 | lr 3.412045e-04 | time/step 178.6666ms
+step  25600 | train_loss 0.912964 | val_loss 4.178713 | lr 3.368084e-04 | time/step 177.9128ms
+step  25800 | train_loss 1.159504 | val_loss 4.244991 | lr 3.324145e-04 | time/step 171.4533ms
+step  26000 | train_loss 1.130258 | val_loss 4.218060 | lr 3.280233e-04 | time/step 152.4919ms
+step  26200 | train_loss 1.153544 | val_loss 4.223087 | lr 3.236356e-04 | time/step 162.3806ms
+step  26400 | train_loss 1.081312 | val_loss 4.261063 | lr 3.192521e-04 | time/step 160.7869ms
+step  26600 | train_loss 0.740365 | val_loss 4.288607 | lr 3.148734e-04 | time/step 168.1105ms
+step  26800 | train_loss 0.126025 | val_loss 4.278317 | lr 3.105003e-04 | time/step 152.1889ms
+step  27000 | train_loss 0.515002 | val_loss 4.400661 | lr 3.061334e-04 | time/step 166.8193ms
+step  27200 | train_loss 0.848014 | val_loss 4.380242 | lr 3.017734e-04 | time/step 155.4861ms
+step  27400 | train_loss 1.051825 | val_loss 4.378336 | lr 2.974210e-04 | time/step 186.5505ms
+step  27600 | train_loss 1.173291 | val_loss 4.379112 | lr 2.930770e-04 | time/step 153.3673ms
+step  27800 | train_loss 1.131854 | val_loss 4.373530 | lr 2.887419e-04 | time/step 160.6803ms
+step  28000 | train_loss 1.084607 | val_loss 4.383768 | lr 2.844165e-04 | time/step 196.5084ms
+step  28200 | train_loss 0.861589 | val_loss 4.411818 | lr 2.801015e-04 | time/step 192.6112ms
+step  28400 | train_loss 0.212077 | val_loss 4.405198 | lr 2.757975e-04 | time/step 154.2932ms
+step  28600 | train_loss 0.332255 | val_loss 4.519451 | lr 2.715052e-04 | time/step 155.7670ms
+step  28800 | train_loss 0.711793 | val_loss 4.558523 | lr 2.672254e-04 | time/step 182.6351ms
+step  29000 | train_loss 0.949679 | val_loss 4.507064 | lr 2.629585e-04 | time/step 159.0038ms
+step  29200 | train_loss 1.140697 | val_loss 4.514490 | lr 2.587055e-04 | time/step 150.8066ms
+step  29400 | train_loss 1.087488 | val_loss 4.518077 | lr 2.544668e-04 | time/step 153.8191ms
+step  29600 | train_loss 1.084025 | val_loss 4.512997 | lr 2.502433e-04 | time/step 157.3990ms
+step  29800 | train_loss 0.941596 | val_loss 4.532824 | lr 2.460354e-04 | time/step 153.6528ms
+step  30000 | train_loss 0.433824 | val_loss 4.561007 | lr 2.418441e-04 | time/step 151.5364ms
+step  30200 | train_loss 0.153150 | val_loss 4.590974 | lr 2.376697e-04 | time/step 155.0353ms
+step  30400 | train_loss 0.548272 | val_loss 4.690694 | lr 2.335132e-04 | time/step 198.8054ms
+step  30600 | train_loss 0.833533 | val_loss 4.642533 | lr 2.293750e-04 | time/step 152.9552ms
+step  30800 | train_loss 1.047943 | val_loss 4.659763 | lr 2.252558e-04 | time/step 152.1603ms
+step  31000 | train_loss 1.104529 | val_loss 4.648078 | lr 2.211564e-04 | time/step 151.6129ms
+step  31200 | train_loss 1.028645 | val_loss 4.614447 | lr 2.170773e-04 | time/step 190.6769ms
+step  31400 | train_loss 0.971430 | val_loss 4.664577 | lr 2.130192e-04 | time/step 331.4178ms
+step  31600 | train_loss 0.622712 | val_loss 4.690224 | lr 2.089827e-04 | time/step 182.9370ms
+step  31800 | train_loss 0.080676 | val_loss 4.665588 | lr 2.049685e-04 | time/step 184.0911ms
+step  32000 | train_loss 0.379319 | val_loss 4.804169 | lr 2.009772e-04 | time/step 187.6414ms
+step  32200 | train_loss 0.706016 | val_loss 4.804288 | lr 1.970095e-04 | time/step 192.7150ms
+step  32400 | train_loss 0.941994 | val_loss 4.791003 | lr 1.930659e-04 | time/step 195.2933ms
+step  32600 | train_loss 1.093190 | val_loss 4.768802 | lr 1.891470e-04 | time/step 187.4796ms
+step  32800 | train_loss 1.016969 | val_loss 4.748016 | lr 1.852536e-04 | time/step 182.0248ms
+step  33000 | train_loss 0.977559 | val_loss 4.740416 | lr 1.813862e-04 | time/step 191.1762ms
+step  33200 | train_loss 0.758220 | val_loss 4.768624 | lr 1.775454e-04 | time/step 191.1131ms
+step  33400 | train_loss 0.206258 | val_loss 4.775844 | lr 1.737319e-04 | time/step 181.3614ms
+step  33600 | train_loss 0.197873 | val_loss 4.864677 | lr 1.699462e-04 | time/step 197.6371ms
+step  33800 | train_loss 0.540330 | val_loss 4.913229 | lr 1.661889e-04 | time/step 182.5394ms
+step  34000 | train_loss 0.797535 | val_loss 4.877591 | lr 1.624606e-04 | time/step 208.0392ms
+step  34200 | train_loss 1.002386 | val_loss 4.879020 | lr 1.587620e-04 | time/step 186.2318ms
+step  34400 | train_loss 1.016263 | val_loss 4.877909 | lr 1.550935e-04 | time/step 186.0184ms
+step  34600 | train_loss 0.948946 | val_loss 4.833152 | lr 1.514559e-04 | time/step 184.9610ms
+step  34800 | train_loss 0.833289 | val_loss 4.868230 | lr 1.478496e-04 | time/step 213.0122ms
+step  35000 | train_loss 0.386252 | val_loss 4.894268 | lr 1.442752e-04 | time/step 266.2019ms
+step  35200 | train_loss 0.095097 | val_loss 4.890204 | lr 1.407333e-04 | time/step 329.4450ms
+step  35400 | train_loss 0.394200 | val_loss 5.003757 | lr 1.372244e-04 | time/step 218.8161ms
+step  35600 | train_loss 0.641536 | val_loss 4.991344 | lr 1.337491e-04 | time/step 304.9843ms
+step  35800 | train_loss 0.867109 | val_loss 4.988435 | lr 1.303080e-04 | time/step 225.4181ms
+step  36000 | train_loss 0.983896 | val_loss 4.969571 | lr 1.269016e-04 | time/step 300.9157ms
+step  36200 | train_loss 0.914985 | val_loss 4.932436 | lr 1.235304e-04 | time/step 283.1866ms
+step  36400 | train_loss 0.829625 | val_loss 4.917649 | lr 1.201950e-04 | time/step 330.8339ms
+step  36600 | train_loss 0.546451 | val_loss 4.960786 | lr 1.168958e-04 | time/step 391.1015ms
+step  36800 | train_loss 0.074090 | val_loss 4.951291 | lr 1.136335e-04 | time/step 301.8307ms
+step  37000 | train_loss 0.222681 | val_loss 5.047346 | lr 1.104085e-04 | time/step 459.1807ms
+step  37200 | train_loss 0.489628 | val_loss 5.074400 | lr 1.072213e-04 | time/step 355.7146ms
+step  37400 | train_loss 0.701483 | val_loss 5.055825 | lr 1.040725e-04 | time/step 346.1973ms
+step  37600 | train_loss 0.883650 | val_loss 5.031152 | lr 1.009625e-04 | time/step 197.9804ms
+step  37800 | train_loss 0.897929 | val_loss 5.020304 | lr 9.789184e-05 | time/step 224.2962ms
+step  38000 | train_loss 0.807488 | val_loss 4.977440 | lr 9.486098e-05 | time/step 301.9673ms
+step  38200 | train_loss 0.627860 | val_loss 4.992617 | lr 9.187041e-05 | time/step 222.6661ms
+step  38400 | train_loss 0.217264 | val_loss 5.009760 | lr 8.892060e-05 | time/step 177.6080ms
+step  38600 | train_loss 0.113849 | val_loss 5.050570 | lr 8.601202e-05 | time/step 197.3455ms
+step  38800 | train_loss 0.326069 | val_loss 5.114397 | lr 8.314512e-05 | time/step 297.0211ms
+step  39000 | train_loss 0.509711 | val_loss 5.097621 | lr 8.032037e-05 | time/step 275.7223ms
+step  39200 | train_loss 0.709913 | val_loss 5.096875 | lr 7.753819e-05 | time/step 192.0720ms
+step  39400 | train_loss 0.811540 | val_loss 5.090918 | lr 7.479905e-05 | time/step 180.6710ms
+step  39600 | train_loss 0.773194 | val_loss 5.040025 | lr 7.210336e-05 | time/step 171.4942ms
+step  39800 | train_loss 0.634525 | val_loss 5.028790 | lr 6.945156e-05 | time/step 172.2271ms
+step  40000 | train_loss 0.352993 | val_loss 5.047128 | lr 6.684405e-05 | time/step 185.3128ms
+step  40200 | train_loss 0.091781 | val_loss 5.053133 | lr 6.428126e-05 | time/step 195.5704ms
+step  40400 | train_loss 0.199722 | val_loss 5.142123 | lr 6.176359e-05 | time/step 189.0414ms
+step  40600 | train_loss 0.352285 | val_loss 5.147926 | lr 5.929144e-05 | time/step 216.0365ms
+step  40800 | train_loss 0.500165 | val_loss 5.131661 | lr 5.686519e-05 | time/step 231.2850ms
+step  41000 | train_loss 0.638054 | val_loss 5.110828 | lr 5.448523e-05 | time/step 223.8997ms
+step  41200 | train_loss 0.674785 | val_loss 5.094710 | lr 5.215193e-05 | time/step 224.6677ms
+step  41400 | train_loss 0.608013 | val_loss 5.062768 | lr 4.986567e-05 | time/step 207.3128ms
+step  41600 | train_loss 0.424707 | val_loss 5.064092 | lr 4.762680e-05 | time/step 222.9262ms
+step  41800 | train_loss 0.136186 | val_loss 5.061611 | lr 4.543569e-05 | time/step 195.3339ms
+step  42000 | train_loss 0.126979 | val_loss 5.117270 | lr 4.329266e-05 | time/step 231.9766ms
+step  42200 | train_loss 0.230854 | val_loss 5.166108 | lr 4.119807e-05 | time/step 212.7135ms
+step  42400 | train_loss 0.316742 | val_loss 5.154489 | lr 3.915224e-05 | time/step 215.1689ms
+step  42600 | train_loss 0.419971 | val_loss 5.142455 | lr 3.715550e-05 | time/step 203.1309ms
+step  42800 | train_loss 0.492769 | val_loss 5.129104 | lr 3.520816e-05 | time/step 207.1194ms
+step  43000 | train_loss 0.492444 | val_loss 5.095977 | lr 3.331053e-05 | time/step 207.0286ms
+step  43200 | train_loss 0.414177 | val_loss 5.080614 | lr 3.146291e-05 | time/step 216.7597ms
+step  43400 | train_loss 0.268549 | val_loss 5.081185 | lr 2.966559e-05 | time/step 215.3213ms
+step  43600 | train_loss 0.144030 | val_loss 5.090622 | lr 2.791885e-05 | time/step 215.7047ms
+step  43800 | train_loss 0.172418 | val_loss 5.151859 | lr 2.622298e-05 | time/step 202.3142ms
+step  44000 | train_loss 0.226459 | val_loss 5.167771 | lr 2.457823e-05 | time/step 215.2723ms
+step  44200 | train_loss 0.277349 | val_loss 5.159745 | lr 2.298487e-05 | time/step 358.2307ms
+step  44400 | train_loss 0.325636 | val_loss 5.144781 | lr 2.144315e-05 | time/step 282.7789ms
+step  44600 | train_loss 0.347823 | val_loss 5.126680 | lr 1.995331e-05 | time/step 178.6966ms
+step  44800 | train_loss 0.331594 | val_loss 5.105587 | lr 1.851559e-05 | time/step 157.6246ms
+step  45000 | train_loss 0.276009 | val_loss 5.096305 | lr 1.713022e-05 | time/step 158.2169ms
+step  45200 | train_loss 0.185300 | val_loss 5.091170 | lr 1.579741e-05 | time/step 169.4244ms
+step  45400 | train_loss 0.174590 | val_loss 5.118801 | lr 1.451737e-05 | time/step 193.9112ms
+step  45600 | train_loss 0.196877 | val_loss 5.146826 | lr 1.329031e-05 | time/step 164.7616ms
+step  45800 | train_loss 0.222792 | val_loss 5.153726 | lr 1.211643e-05 | time/step 220.5740ms
+step  46000 | train_loss 0.247339 | val_loss 5.148650 | lr 1.099589e-05 | time/step 196.8580ms
+step  46200 | train_loss 0.266291 | val_loss 5.141697 | lr 9.928893e-06 | time/step 273.2400ms
+step  46400 | train_loss 0.267274 | val_loss 5.130589 | lr 8.915595e-06 | time/step 259.3925ms
+step  46600 | train_loss 0.251554 | val_loss 5.121317 | lr 7.956157e-06 | time/step 266.6922ms
+step  46800 | train_loss 0.211577 | val_loss 5.113315 | lr 7.050732e-06 | time/step 259.9100ms
+step  47000 | train_loss 0.197404 | val_loss 5.115587 | lr 6.199462e-06 | time/step 272.7973ms
+step  47200 | train_loss 0.200466 | val_loss 5.129116 | lr 5.402483e-06 | time/step 290.3598ms
+step  47400 | train_loss 0.209228 | val_loss 5.136125 | lr 4.659920e-06 | time/step 518.1591ms
+step  47600 | train_loss 0.219331 | val_loss 5.138580 | lr 3.971889e-06 | time/step 332.0434ms
+step  47800 | train_loss 0.227038 | val_loss 5.137410 | lr 3.338501e-06 | time/step 279.2933ms
+step  48000 | train_loss 0.230545 | val_loss 5.134293 | lr 2.759855e-06 | time/step 404.4044ms
+step  48200 | train_loss 0.228888 | val_loss 5.131346 | lr 2.236041e-06 | time/step 277.4245ms
+step  48400 | train_loss 0.223284 | val_loss 5.129061 | lr 1.767144e-06 | time/step 275.6697ms
+step  48600 | train_loss 0.214814 | val_loss 5.127513 | lr 1.353237e-06 | time/step 277.8533ms
+step  48800 | train_loss 0.214255 | val_loss 5.129464 | lr 9.943849e-07 | time/step 250.3299ms
+step  49000 | train_loss 0.215362 | val_loss 5.131097 | lr 6.906451e-07 | time/step 237.6600ms
+step  49200 | train_loss 0.216582 | val_loss 5.131739 | lr 4.420652e-07 | time/step 260.2029ms
+step  49400 | train_loss 0.217373 | val_loss 5.131776 | lr 2.486846e-07 | time/step 307.9534ms
+step  49600 | train_loss 0.217693 | val_loss 5.131700 | lr 1.105338e-07 | time/step 242.8352ms
+step  49800 | train_loss 0.217724 | val_loss 5.131638 | lr 2.763453e-08 | time/step 263.0578ms
+step  49999 | train_loss 0.217716 | val_loss 5.131632 | lr 6.908723e-13 | time/step 204.3484ms
+
+richard
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+Cell In[4], line 272
+    269 for _ in range(10000):
+    270     # take the last context_length tokens and predict the next one
+    271     context_array = np.array(context).reshape(1, -1) # (1, T)
+--> 272     logits, _ = model(context_array) # (1, V)
+    273     probs = softmax(logits[0]) # (V, )
+    274     #print(probs)
+
+Cell In[4], line 46, in MLP.__call__(self, idx, targets)
+     45 def __call__(self, idx, targets=None):
+---> 46     return self.forward(idx, targets)
+
+Cell In[4], line 57, in MLP.forward(self, idx, targets)
+     55 emb = emb.reshape(B, -1) # (B, T * embedding_size)
+     56 # forward through the MLP
+---> 57 hidden = np.tanh(emb @ self.fc1_weights + self.fc1_bias)
+     58 logits = hidden @ self.fc2_weights + self.fc2_bias
+     60 # cache some of the activations for the backward pass later
+
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 2400 is different from 384)
