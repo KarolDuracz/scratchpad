@@ -677,6 +677,7 @@ fc1_weights ==> (144, 512) | Parameters: 73728
 fc1_bias ==> (512,) | Parameters: 512
 fc2_weights ==> (512, 27) | Parameters: 13824
 fc2_bias ==> (27,) | Parameters: 27
+Total Parameters: 89387
 ```
 
 Then I gave him these observations about the number of combinations for context 2-6 on this data. And he gave answers to these questions. Interestingly, according to him for 27 ** 6 = 387,000,000 combinations where in this data I have an upper limit of ~22,000 looking at this image above where after 10 tokens in the context you can already see a "flat line". But it will be time to better understand what is behind it and finally read "A Neural Probabilistic Language Model" from 2003. Because understanding this is a step to bigger models and what happened next, where we are today.
