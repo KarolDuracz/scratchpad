@@ -23,9 +23,9 @@ We can change the context size at the every top in the CONTEXT LENGTH = 3 variab
 ```
 
  Total unique n-grams, means, that there are actually so many unique combinations. So for 2-grams there are 623 combinations? For 3-gram already 6475? So most of it is repeated for a small context, and for larger the context for this database ... what? (In https://github.com/EurekaLabsAI/ngram we see : "Our dataset is that of 32,032 names from ssa.gov for the year 2018, which were split into 1,000 names in the test split, 1,000 in val split, and the rest in the training split, all of them inside the data/ folder." - Maybe that's why context #4 has the least loss in the link below 2.00298 for AdamW + Tanh. Because if there are 31k names, that's the number of combinations.... But I don't know if it matters)
-
-![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/9%20-%2005-05-2025%20-%20another%20pics.png?raw=true)
- 
+<br /><br />
+<i>I moved the image from this place to the bottom of the page because it is disruptive [9 - 05-05-2025 - another pics.png]</i>
+<br /><br />
 Some time ago I checked what the plots look like for gradients for context 2-6 - https://github.com/EurekaLabsAI/mlp/issues/22
 <br /><br />
 [ <i>From this point on I am writing about what is below, from this point on, don't look up, only down the page</i> ] And if we run the last block of code from the .ipynb file
@@ -644,6 +644,8 @@ Context: 'ani
     'x' : 1
    '\n' : 0
 ```
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/9%20-%2005-05-2025%20-%20another%20pics.png?raw=true)
 
 <hr>
 <h2>TODO</h2>
