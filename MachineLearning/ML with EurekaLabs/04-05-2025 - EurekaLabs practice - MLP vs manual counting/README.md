@@ -709,3 +709,5 @@ $${\color{red}}$$
 
  <br /><br />
 Update 06-05-2025 - btw. This is another thing that I saw somewhere along the way in Andrej's work "surfing the internet" -  http://karpathy.github.io/2015/05/21/rnn-effectiveness/ - Now it will be interesting to read from the perspective of current knowledge how small MLP "behaves" vs what Andrej presents in this post and especially those colorful pictures at the bottom e.g. showing the Linux code.
+<br /><br />
+And one more thing. Andrej demonstrated exactly this in the video https://youtu.be/PaCmpygFfXo?t=6517 [The spelled-out intro to language modeling: building makemore] around 1:48:39 - but he showed it on "bigram model" vs MLP. This is the same analogy. But here you can also "manually" use other combinations, not only for 2 characters https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/Untitled8.ipynb
