@@ -699,3 +699,8 @@ That is, checking whether MLP actually learns these combinations and what appear
 <br /><br />
 Since "ясность есть" and it is more or less known why there is SGD <> AdamW for the network, if we look at it from the perspective of what should be when calculating manually, e.g. for context = 3 vs what such a small MLP learns. And how it does it. The next step is a MORE COMPLEX DATA SET (text). Andrej gave "tiny shakespeare" https://github.com/karpathy/nanoGPT/tree/master/data/shakespeare as a training set https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt. Just like before I did not understand how important it is to sign images by the network, e.g. "bird" <> "a bird sitting on a branch". That is what I wrote in the previous post about the NVIDIA presentation from 10 years ago. Similarly 2 years ago when the nanoGPT repo first appeared I did not understand why "Shakespeare" ?! And now I know... that it is a more complex text, because there are characters (persons) in it, there is some context for each character, different plots, AND SIMPLY PREDICTING A SEQUENCE from ngrams as above, it will not learn TEXT UNDERSTANDING. It will only predict subsequent characters (char by char) of the text without INSIGHTING INTO THE MEANING of what is happening in it.
 <br /><br />
+to be continued...
+ <br /><br />
+
+$${\color{red}}$$	
+		${{\color{red}\Huge{\textsf{    [CLOSED]}}}}\$
