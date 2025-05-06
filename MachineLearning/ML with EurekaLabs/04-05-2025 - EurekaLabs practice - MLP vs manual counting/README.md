@@ -706,3 +706,6 @@ to be continued...
 
 $${\color{red}}$$	
 		${{\color{red}\Huge{\textsf{    [CLOSED]}}}}\$
+
+ <br /><br />
+Update 06-05-2025 - btw. This is another thing that I saw somewhere along the way in Andrej's work "surfing the internet" -  http://karpathy.github.io/2015/05/21/rnn-effectiveness/ - Now it will be interesting to read from the perspective of current knowledge how small MLP "behaves" vs what Andrej presents in this post and especially those colorful pictures at the bottom e.g. showing the Linux code.
