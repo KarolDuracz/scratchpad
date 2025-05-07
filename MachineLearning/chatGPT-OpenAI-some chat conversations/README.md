@@ -1,2 +1,4 @@
 :) 
 https://chatgpt.com/share/671c7778-d7c4-8000-96a9-73c51cf46531 [pl] - GPT 4o
+<br /><br />
+https://chatgpt.com/share/681b9edf-edfc-8000-bf3f-739cd284bc9c - 07-05-2025 - write the 10 greatest achievements of human civilization. Starting with early history. Next, write what could be the next achievement, on 11th and subsequent places to 20. [ PL ] 4o
