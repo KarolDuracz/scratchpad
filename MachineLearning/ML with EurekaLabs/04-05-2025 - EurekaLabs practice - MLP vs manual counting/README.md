@@ -755,3 +755,11 @@ rev;\r\n\tstruct percpu_struct * percpu;\r\n\tstruct pcb_struct * pcb_pa;'
 ```
 
 For comparison with the name database. (...) But it is important to know here that FIXED WINDOW is used, so it just loops through the character sequences in this demo, with a window size of e.g. 4 [ x, x, x, x ] -> [ x ] to predict the next 1 . And that these batches are "randomly" taken from the text. If there is such an approach. And the database is "shuffled". But I didn't do that here. Keep it mind. This is just to have a comparison.
+<br /><br />
+So for context legth 15 it looks like this
+```
+       15              1
+[address & 0x1ff] --> [f]
+```
+
+So it's not as "smart" as the transformer with BPE tiktoken . But before this architecture was created...
