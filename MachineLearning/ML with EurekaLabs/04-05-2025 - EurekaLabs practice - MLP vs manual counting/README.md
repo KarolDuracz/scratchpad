@@ -764,6 +764,11 @@ So for context length 15 it looks like this
 
 So it's not as "smart" as the transformer with BPE tiktoken . But before this architecture was created...
 <br /><br />
-Summary for linux repo - https://github.com/KarolDuracz/scratchpad/tree/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/linux%20repo - to get TOP 10 combinations for context 3,4,5 to see what is e.g. Context: 'truct' (count: 107070) 'i' : 5061 'u' : 1319 '\n' : 125 etc. in this naive approach.
-<br /><br />
+Summary for linux repo - https://github.com/KarolDuracz/scratchpad/tree/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/linux%20repo - to get TOP 10 combinations for context 3,4,5 to see what is e.g. Context: 'truct' (count: 107070) 'i' : 5061 'u' : 1319 '\n' : 125 etc. in this naive approach. (...) For ngram=5 this looks interesting : 
+
+```
+Context: 'struc'  (count: 107039) -> (what letter do you expect?)
+Context: 'retur'  (count: 86937)  -> (what letter do you expect?)
+```
+
 OK, that's it for this exercise.
