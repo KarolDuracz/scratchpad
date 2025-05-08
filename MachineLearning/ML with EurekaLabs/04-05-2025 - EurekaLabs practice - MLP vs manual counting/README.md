@@ -723,3 +723,35 @@ Total unique 15-grams: 24777100 | 5.5 GB RAM
 ```
 
 So compared to the name database, there are no longer only 27 combinations for CONTEXT = 1, only 128 because there are more characters in the text than just a-z. And when I started trying other numbers of combinations, at 15 my computer is already at the RAM limit. But that was the straightforward attempt (naive). Looking at this post above, trying to set better parameters for the name database probably won't tell me much. I think I need to experiment with a different type of data (text) to learn more. But this is still the ngram approach, without learning to understand text. 
+<br /><br />
+This is what the first 2000 characters from file 1/14 look like
+
+```
+>>> f = open("part_0.txt", "rb").read()
+>>> f[:2000]
+b'/* ===== File 1: C:\\Users\\kdhome\\Documents\\progs\\EurekaLabs\\08-05-2025 - analyze linux repo\
+\linux-master\\linux-master\\arch\\alpha\\boot\\bootp.c ===== */\r\n// SPDX-License-Identifier: GPL-
+2.0\r\n/*\r\n * arch/alpha/boot/bootp.c\r\n *\r\n * Copyright (C) 1997 Jay Estabrook\r\n *\r\n * Thi
+s file is used for creating a bootp file for the Linux/AXP kernel\r\n *\r\n * based significantly on
+ the arch/alpha/boot/main.c of Linus Torvalds\r\n */\r\n#include <linux/kernel.h>\r\n#include <linux
+/slab.h>\r\n#include <linux/string.h>\r\n#include <generated/utsrelease.h>\r\n#include <linux/mm.h>\
+r\n\r\n#include <asm/console.h>\r\n#include <asm/hwrpb.h>\r\n#include <asm/io.h>\r\n\r\n#include <li
+nux/stdarg.h>\r\n\r\n#include "ksize.h"\r\n\r\nextern unsigned long switch_to_osf_pal(unsigned long
+nr,\r\n\tstruct pcb_struct *pcb_va, struct pcb_struct *pcb_pa,\r\n\tunsigned long *vptb);\r\n\r\next
+ern void move_stack(unsigned long new_stack);\r\n\r\nstruct hwrpb_struct *hwrpb = INIT_HWRPB;\r\nsta
+tic struct pcb_struct pcb_va[1];\r\n\r\n/*\r\n * Find a physical address of a virtual object..\r\n *
+\r\n * This is easy using the virtual page table address.\r\n */\r\n\r\nstatic inline void *\r\nfind
+_pa(unsigned long *vptb, void *ptr)\r\n{\r\n\tunsigned long address = (unsigned long) ptr;\r\n\tunsi
+gned long result;\r\n\r\n\tresult = vptb[address >> 13];\r\n\tresult >>= 32;\r\n\tresult <<= 13;\r\n
+\tresult |= address & 0x1fff;\r\n\treturn (void *) result;\r\n}\t\r\n\r\n/*\r\n * This function move
+s into OSF/1 pal-code, and has a temporary\r\n * PCB for that. The kernel proper should replace this
+ PCB with\r\n * the real one as soon as possible.\r\n *\r\n * The page table muckery in here depends
+ on the fact that the boot\r\n * code has the L1 page table identity-map itself in the second PTE\r\
+n * in the L1 page table. Thus the L1-page is virtually addressable\r\n * itself (through three leve
+ls) at virtual address 0x200802000.\r\n */\r\n\r\n#define VPTB\t((unsigned long *) 0x200000000)\r\n#
+define L1\t((unsigned long *) 0x200802000)\r\n\r\nvoid\r\npal_init(void)\r\n{\r\n\tunsigned long i,
+rev;\r\n\tstruct percpu_struct * percpu;\r\n\tstruct pcb_struct * pcb_pa;'
+>>>
+```
+
+For comparison with the name database.
