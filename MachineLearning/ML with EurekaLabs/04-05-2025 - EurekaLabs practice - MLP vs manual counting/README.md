@@ -771,4 +771,4 @@ Context: 'struc'  (count: 107039) -> (what letter do you expect?)
 Context: 'retur'  (count: 86937)  -> (what letter do you expect?)
 ```
 
-OK, that's it for this exercise.
+OK, that's it for this exercise. (...) But that's my way of learning to understand it. After all, now I need to delve into the mathematical aspects. Without that, I can't further understand how it works. But 1 step forward.
