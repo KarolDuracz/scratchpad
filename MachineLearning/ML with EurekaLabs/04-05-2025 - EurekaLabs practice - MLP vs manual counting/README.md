@@ -711,3 +711,15 @@ $${\color{red}}$$
 Update 06-05-2025 - btw. This is another thing that I saw somewhere along the way in Andrej's work "surfing the internet" -  http://karpathy.github.io/2015/05/21/rnn-effectiveness/ - Now it will be interesting to read from the perspective of current knowledge how small MLP "behaves" vs what Andrej presents in this post and especially those colorful pictures at the bottom e.g. showing the Linux code.
 <br /><br />
 And one more thing. Andrej demonstrated exactly this in the video https://youtu.be/PaCmpygFfXo?t=6517 [The spelled-out intro to language modeling: building makemore] around 1:48:39 - but he showed it on "bigram model" vs MLP. This is the same analogy. But here you can also "manually" use other combinations, not only for 2 characters https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/Untitled8.ipynb
+<br /><br />
+Update 08-05-2025 - Andrej in the MLP repo on eurekalabs gave 3 exercises, making a graphs, implementing it in C and finding better parameters. I wanted to approach making CUDA code on Google Colab but first I decided to try it on my own hardware with code, e.g. Linux. Initially I made a script to "walk through" all folders, find "*.c" files, open them, copy everything to one file and so on through the entire Linux repo. And I stopped at ~700 MB txt file. Then another script which cut it into pieces of 50 MB and when I opened the first one, after running this file which counts "manually" the number of Untitled8.ipynb combinations I got these results : 
+
+```
+Total unique 1-grams: 128 | 700 MB RAM
+Total unique 3-grams: 145131 | 3.5 GB RAM 
+Total unique 4-grams: 802295 | x
+Total unique 10-grams: 13888880 | 4.8 GB RAM 
+Total unique 15-grams: 24777100 | 5.5 GB RAM
+```
+
+So compared to the name database, there are no longer only 27 combinations for COTEXT = 1, only 128 because there are more characters in the text than just a-z. And when I started trying other numbers of combinations, at 15 my computer is already at the RAM limit. But that was the straightforward attempt (naive). Looking at this post above, trying to set better parameters for the name database probably won't tell me much. I think I need to experiment with a different type of data (text) to learn more. But this is still the ngram approach, without learning to understand text. 
