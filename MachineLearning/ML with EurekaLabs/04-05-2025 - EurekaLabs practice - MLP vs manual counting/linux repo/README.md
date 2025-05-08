@@ -1,3 +1,16 @@
+<h2>Results of combinations from Untitled8.ipynb (last block) for CONTEXT 3, 4, 5</h2>
+
+NGRAM 3
+https://raw.githubusercontent.com/KarolDuracz/scratchpad/refs/heads/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/linux%20repo/ngram%203.txt
+<br /><br />
+
+NGRAM 4
+https://raw.githubusercontent.com/KarolDuracz/scratchpad/refs/heads/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/linux%20repo/ngram%204.txt
+<br /><br />
+
+NGRAM 5
+https://raw.githubusercontent.com/KarolDuracz/scratchpad/refs/heads/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/linux%20repo/ngram%205.txt
+
 <h2>linux repo analyze</h2>
 
 Script to "walk through" folders to find .c files
@@ -140,3 +153,8 @@ def split_file(input_file='combined.txt', max_chunk_size=50 * 1024 * 1024):
 if __name__ == "__main__":
     split_file()
 ```
+
+This naive algorithm at 6 was no longer able to print the results. Here I tried for context 10. The maximum context 5 was able to run.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/linux%20repo/context%20length%2010%20even%206%20it%20too%20much.png?raw=true)
+
