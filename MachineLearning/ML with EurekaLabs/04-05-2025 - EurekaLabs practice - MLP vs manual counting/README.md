@@ -818,3 +818,5 @@ So with BATCH_SIZE = 128 the model sees this batch even several times in 1 step,
 That's why I woke up about this PIPELINE in the previous post. Because I just realized that this algorithm has been improved by adding these MINI BATCH etc.
 That's one of the reasons I wrote in previous posts that I thought in wrong way.
 OK, that's it. Because too much information at once is also not good.
+<br /><br />
+I think that this is enough information to deal with the network training algorithm and the network itself in the next exercise. And the mathematics behind it.
