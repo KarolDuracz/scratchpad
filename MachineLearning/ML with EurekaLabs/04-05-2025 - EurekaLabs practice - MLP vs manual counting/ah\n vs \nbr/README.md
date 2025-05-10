@@ -1,8 +1,13 @@
 <h2> combinations from TOP 30 "ah\n" -> 1 8 0 VS. "\nbr" -> 0 2 18</h2>
+This chart comes from - https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/Untitled8.ipynb
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/ah%5Cn%20vs%20%5Cnbr/wykres%20test%20a%20vs%20test%20b.png?raw=true)
 
+<h2>ah\n</h2>
+
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/ah%5Cn%20vs%20%5Cnbr/test%20a.png?raw=true)
+
+<h2>\nbr</h2>
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/ah%5Cn%20vs%20%5Cnbr/test%20b.png?raw=true)
 
