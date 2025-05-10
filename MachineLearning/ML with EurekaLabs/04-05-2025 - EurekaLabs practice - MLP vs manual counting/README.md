@@ -808,6 +808,11 @@ we see exactly these combinations and results FOR MANUAL COUNTING:
 'ah\n': 1622
 
 So, 1622/605 = 2.68 <--- THIS IS EXACTLY THE SAME NUMBER which comes out after 50,000 iterations with batchsize 128
+----------------------------------------
+I don't know where these values ​​come from yet, but after 50,000 steps vs. manual counting it turns out that there
+are ~29 times more "events" in the training loop for this 2 examples
+48554 / 1622 = 29.934
+18114 / 605 = 29.940 
 ```
 So with BATCH_SIZE = 128 the model sees this batch even several times in 1 step, as is the case with 'ah\n'. 
 That's why I woke up about this PIPELINE in the previous post. Because I just realized that this algorithm has been improved by adding these MINI BATCH etc.
