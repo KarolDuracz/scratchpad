@@ -772,3 +772,12 @@ Context: 'retur'  (count: 86937)  -> (what letter do you expect?)
 ```
 
 OK, that's it for this exercise. (...) But that's my way of learning to understand it. After all, now I need to delve into the mathematical aspects. Without that, I can't further understand how it works. But 1 step forward.
+<br /><br />
+Update 10-05-2025 - I need to be sure that I'm thinking correctly and that what I'm writing actually works as I described. I'm not 100% sure about this yet, so I checked HOW MANY TIMES IN THE TRAINING LOOP the model sees (learns) these [ x, x, x ] with a window for context, let's say 3. Because that was the first thing I measured in the images at the very top. I first measured CONTEXT=3. And how does it look for combinations from the TOP 30, from first place vs. place 30. So the combination 'ah\n' vs. '\nbr.
+<br /><br />
+I only measured the first 400 steps on the left window and at what indexes and on which step it sees. For 'ah\n' after 400 steps it comes out 379 times that it sees the sequence [ 1, 8, 0 ] i.e. [ 'a', 'h', '\n' ]. So on the right window I did a second test, a bit longer to see how much it comes out after, say, 3400 steps, it turned out that the model sees this combination 3310 times.
+<br /><br />
+The same for the combination '\nbr', i.e. [ 0, 2, 18 ]. The left window shows how it looked at this combination in the BATCH_SIZE loop, which has (128, 3), size. That is, after 400 steps it saw this combination 134 times. After 3400 steps it saw this combination 1233 times.
+<br /><br />
+This means that it actually has an effect. But to be 100% sure about this combination, you still need to check after 50,000 steps what the difference is. Images and code are here : 
+https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/ah%5Cn%20vs%20%5Cnbr/README.md
