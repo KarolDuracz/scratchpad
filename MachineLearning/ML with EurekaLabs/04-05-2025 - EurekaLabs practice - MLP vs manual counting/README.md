@@ -794,6 +794,20 @@ AFTER 50.000 steps with BATCHSIZE = 128 and CONTEXT_LENGTH = 3
 // (18114 / (18114 + 6381758)) = 0.00283 - less tha 1% ( 0.002 * 100 = 0.2)
 
 48554 / 18114 = 2.68 - 2.68 times more "events" in the training loop for 'ah\n' than '\nbr'
+----------------------------------------
+Looking at what is below the graph in the Untitled8.ipynb file for TOP 30 and CONTEXT_LENGTH = 3
+
+Counter({'ah\n': 1622, 'na\n': 1568, 'on\n': 1401, 'an\n': 1394, '\nma': 1365, 
+'\nja': 1186, '\nka': 1177, 'en\n': 1149, 'lyn': 910, 'yn\n': 904, 'ari': 895, 
+'a\na': 870, 'n\na': 860, 'ia\n': 859, 'ie\n': 796, 'ell': 767, 'ann': 765, 'ana': 754, 
+'ian': 740, 'mar': 735, 'in\n': 717, 'el\n': 688, 'ya\n': 675, 'ani': 666, 'la\n': 649, 
+'\nda': 648, 'iya': 636, 'er\n': 634, 'n\nk': 609, '\nbr': 605,
+
+we see exactly these combinations and results FOR MANUAL COUNTING:
+'\nbr': 605
+'ah\n': 1622
+
+So, 1622/605 = 2.68 <--- THIS IS EXACTLY THE SAME NUMBER which comes out after 50,000 iterations with batchsize 128
 ```
 So with BATCH_SIZE = 128 the model sees this batch even several times in 1 step, as is the case with 'ah\n'. 
 That's why I woke up about this PIPELINE in the previous post. Because I just realized that this algorithm has been improved by adding these MINI BATCH etc.
