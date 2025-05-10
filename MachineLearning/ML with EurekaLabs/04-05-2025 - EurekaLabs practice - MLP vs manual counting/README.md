@@ -781,3 +781,21 @@ Update 10-05-2025 - I need to be sure that I'm thinking correctly and that what 
 <br /><br />
 This means that it actually has an effect. But to be 100% sure about this combination, you still need to check after 50,000 steps what the difference is. Images and code are here : 
 https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting/ah%5Cn%20vs%20%5Cnbr/README.md
+
+```
+AFTER 50.000 steps with BATCHSIZE = 128 and CONTEXT_LENGTH = 3
+'ah\n' - [ 1, 8, 0 ] - p: 48554   n: 6351318
+// (48554 + 6351318) / 128 = 49999.0 - ok
+// (positive + negative) / batch_size == 50000 steps
+// (48554 / ((48554 + 6351318)) = 0.00758 - less than 1% ( 0.0075 * 100 = 0.75 )
+
+'\nbr' - [ 0, 2, 18 ] - p: 18114   n: 6381758
+// (18114 + 6381758) / 128 = 49999.0 - ok
+// (18114 / (18114 + 6381758)) = 0.00283 - less tha 1% ( 0.002 * 100 = 0.2)
+
+48554 / 18114 = 2.68 - 2.68 times more "events" in the training loop for 'ah\n' than '\nbr'
+```
+So with BATCH_SIZE = 128 the model sees this batch even several times in 1 step, as is the case with 'ah\n'. 
+That's why I woke up about this PIPELINE in the previous post. Because I just realized that this algorithm has been improved by adding these MINI BATCH etc.
+That's one of the reasons I wrote in previous posts that I thought in wrong way.
+OK, that's it. Because too much information at once is also not good.
