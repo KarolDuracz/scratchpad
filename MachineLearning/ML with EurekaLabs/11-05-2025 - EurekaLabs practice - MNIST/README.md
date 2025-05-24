@@ -1,3 +1,5 @@
+Update 24-05-2025 - I need to change my direction of study a bit. I've seen topics like this before, but... as I wrote, approaching it from the mathematical perspective was something I always missed. I was planning more demos, but I actually HAVE TO LEARN IT MYSELF because I have gaps in my education. Nice explanation, what I wanted to do in the next demos, i.e. how the network itself works. And this is a related topic [The EM Algorithm Clearly Explained (Expectation-Maximization Algorithm)
+] https://youtu.be/3zbAsgCf1Sw - So I think it would be better to educate myself a bit in silence instead of making another demo from this point on. I will go back to learning ML and networks but I have to go better understand math behind it.
 <h2>TODO</h2>
 
 It will be only after I get through MLP. I think first I should train these small MLPs well. Then nanoGPT. And so on until I get to running the 124 M model https://github.com/karpathy/llm.c/discussions/481 - There is still a lot of practice to be done on MLP vs nanoGPT. Before I get to this 124 M.
