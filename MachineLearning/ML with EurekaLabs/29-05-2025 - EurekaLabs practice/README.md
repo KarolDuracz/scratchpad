@@ -36,4 +36,4 @@ python xref5.py C:\Users\kdhome\Documents\progs\edk2_win81\edk2\BaseTools\Source
 
 ![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/refs/heads/main/MachineLearning/ML%20with%20EurekaLabs/29-05-2025%20-%20EurekaLabs%20practice/screen%2029-05-2025%20-%202.png)
 
-THIS IS NOT A GRAPHIC APPROACH. But something in between to experiment further with this. I think it might make sense.
+THIS IS NOT A GRAPH APPROACH. But something in between to experiment further with this. I think it might make sense.
