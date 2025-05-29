@@ -25,3 +25,15 @@ For nanGPT, in my case. This is root folder. ( https://github.com/karpathy/nanoG
 ```
 python xref5.py C:\Windows\Temp\nanoGPT-master\nanoGPT-master nanoGPT_html
 ```
+
+<h2>Another example from EDK2 repo</h2>
+
+From here > https://github.com/tianocore/edk2/tree/master/BaseTools/Source/Python/GenFds . But in my case, in Windows. This create folder rec3.html and inside there are parsed files to html. As you can see in the pictures, that you can click on red tokens which are recursively links to the same tokens. So it creates connections. But it's not a graph.
+
+```
+python xref5.py C:\Users\kdhome\Documents\progs\edk2_win81\edk2\BaseTools\Source\Python\GenFds ret3.html 
+```
+
+![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/refs/heads/main/MachineLearning/ML%20with%20EurekaLabs/29-05-2025%20-%20EurekaLabs%20practice/screen%2029-05-2025%20-%202.png)
+
+THIS IS NOT A GRAPHIC APPROACH. But something in between to experiment further with this. I think it might make sense.
