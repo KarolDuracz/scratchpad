@@ -1,3 +1,10 @@
+<h2>Update 02-06-2025 - I do not recommend reading everything. Most of it is my personal notes, thoughts. FOR THE VISITOR THIS HAS NO POSITIVE VALUE. IT IS ONLY WORTH START WITH THIS POST.</h2>
+1. My notes and a short analysis of Andrej's first MLP videos https://github.com/KarolDuracz/scratchpad/tree/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting <br />
+2. The first 2 paragraphs are a continuation of the 04-05-2025 demo, the rest is a continuation of my notes and plans. Nothing important beyond the first 2 paragraphs on "The EM Algorithm Clearly Explained (Expectation-Maximization Algorithm" https://github.com/KarolDuracz/scratchpad/tree/main/MachineLearning/ML%20with%20EurekaLabs/11-05-2025%20-%20EurekaLabs%20practice%20-%20MNIST
+<br /><br />
+THE REST ARE MY NOTES ON LEARNING ML. I do not recommend reading this thoroughly.
+<hr>
+<br /><br />
 05-09-2024 - The moment we stopped understanding AI [AlexNet] ((Welch Labs) - https://www.youtube.com/watch?v=UZDiGooFs54&ab_channel=WelchLabs <br />
 Interesing wideo. And this is just the beginning, like the first computers. Year after year... but here we are, and we have the opportunity to learn from the best people on this field, like Andrej Karpathy. What will happen in next 10, 20, 30 years? I wonder what we will say then... ML, this is not my filed, but I like statistics and plots. Tesla autopilot, GPT 4 and other stuff from Open AI, Deep Mind / Google Brain etc show us, this is serious game! So.... ?
 <br /><br />
