@@ -10,7 +10,9 @@ Interesing wideo. And this is just the beginning, like the first computers. Year
 <br /><br />
 Another great example video is in this channel on YT, and series videos about ML and LLM, <b>but this is important fact!</b> from ~13:14 - https://youtu.be/9-Jl0dxWQs8?t=794 -- "but if that neuron was inactive, if that number was zero, then this would have NO EFFECT".
 <br /><br />
+
 ![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/MachineLearning/ML%20with%20EurekaLabs/how%20might%20llms%20store%20facts%20chapter%207%203blue1brown%20--%20first.png)
+
 ![dump](https://raw.githubusercontent.com/KarolDuracz/scratchpad/main/MachineLearning/ML%20with%20EurekaLabs/how%20might%20llms%20store%20facts%20chapter%207%203blue1brown.png)
 <br /><br />
 <hr>
