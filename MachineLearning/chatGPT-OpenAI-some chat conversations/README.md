@@ -44,6 +44,9 @@ for enc in enc_names:
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/chatGPT-OpenAI-some%20chat%20conversations/12-08-2025%20-%20big%20picture.png?raw=true)
 
+Ok, I do have a fragment of this conversation. But I'm still a little confused whether this is ok answer... when I checked the code and it shows something different. Anyway.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/chatGPT-OpenAI-some%20chat%20conversations/278%20-%2012-08-2025%20-%20GPT-5%20jest%20dobry%20ale%20halucynuje.png?raw=true)
 
 <hr>
 <br />
