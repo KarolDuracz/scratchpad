@@ -2,7 +2,7 @@ The pictures may not be the prettiest, sorry for that, but they explain the gene
 
 <H2>Interactive graph creation with sequence replay and decisions about which branch to play</H2>
 
-<i>The entire demo consists of only 4 files: app.py, graph.db and files in templates/index.html and admin.html. if you want to download it, download only these files.</i>
+<i>The entire demo consists of only 4 files: app.py, graph.db and files in templates/index.html and admin.html. if you want to download it, download only these files. But the .db file isn't necessary, because if there's no database yet, it creates it on disk for the first time when the server initializes. But you can download what's here, and you'll see the graphs from the images after launching.</i>
 
 sqlite3 is part of Python's standard library. But you need to install Flask to run it.
 
