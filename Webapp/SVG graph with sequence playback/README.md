@@ -1,3 +1,5 @@
+The pictures may not be the prettiest, sorry for that, but they explain the general meaning of the action and focus on that, not on the quality.
+
 <H2>Interactive graph creation with sequence replay and decisions about which branch to play</H2>
 
 <i>The entire demo consists of only 4 files: app.py, graph.db and files in templates/index.html and admin.html. if you want to download it, download only these files.</i>
