@@ -65,3 +65,8 @@ And of course, ZOOM IN/OUT with your mouse wheel. Or click "FIT" in the upper ri
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Webapp/SVG%20graph%20with%20sequence%20playback/images/pic5a.png?raw=true)
 
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Webapp/SVG%20graph%20with%20sequence%20playback/images/pic6.png?raw=true)
+
+If you want to delete a connection, e.g. like here between #96 and #86, just go to the admin panel and delete this connection as you can see here in the red frame.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Webapp/SVG%20graph%20with%20sequence%20playback/images/pic7.png?raw=true)
