@@ -52,6 +52,8 @@ function chooseNextConnectionForNode(node) {
 ```
 
 I didn't describe this in the image, but you can certainly drag and drop nodes to change their position. Simply hover over a node and see the cursor change. Left-click and hold the mouse button, move it where you want, and then release the left button. The node is now in its new location, and it's saved in the database.
+<br /><br/>
+And of course, ZOOM IN/OUT with your mouse wheel. Or click "FIT" in the upper right corner.
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Webapp/SVG%20graph%20with%20sequence%20playback/images/pic1.png?raw=true)
 
