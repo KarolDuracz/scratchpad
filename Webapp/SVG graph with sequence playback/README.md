@@ -72,3 +72,23 @@ And of course, ZOOM IN/OUT with your mouse wheel. Or click "FIT" in the upper ri
 If you want to delete a connection, e.g. like here between #96 and #86, just go to the admin panel and delete this connection as you can see here in the red frame.
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Webapp/SVG%20graph%20with%20sequence%20playback/images/pic7.png?raw=true)
+
+<hr>
+For Windows, instead of clicking everything, you can simply create a batch script to run it by clicking an icon. Create a file, for example, on the desktop called "run app.bat" and open it in Notepad.exe. Paste it in, but change the path to the folder containing app.py.
+<br /><br />
+
+```
+@echo off
+color 7f
+
+rem RUN
+cd C:\Users\path_to_app_py_folder\SVG-Mind-Tree-main\SVG-Mind-Tree-main
+
+rem https://stackoverflow.com/questions/26223936/open-a-web-page-in-a-windows-batch-file
+start http://localhost:5000
+
+python app.py
+
+cmd /k
+```
+This changes the CMD color, navigates to the path where app.py is, and starts the system's default browser. See the StackOverflow link I posted here for more information. This starts the server.
