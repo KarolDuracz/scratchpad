@@ -63,5 +63,5 @@ And of course, ZOOM IN/OUT with your mouse wheel. Or click "FIT" in the upper ri
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Webapp/SVG%20graph%20with%20sequence%20playback/images/pic4.png?raw=true)
 
-![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Webapp/SVG%20graph%20with%20sequence%20playback/images/pic5.png?raw=true)
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/Webapp/SVG%20graph%20with%20sequence%20playback/images/pic5a.png?raw=true)
 
