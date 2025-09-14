@@ -169,4 +169,6 @@ std::cerr << "cuDeviceGetAttribute failed with code " << rc << "\n";
 1. https://www.cs.cmu.edu/afs/cs/academic/class/15668-s11/www/cuda-doc/html/group__CUDA__DEVICE_g9c3e1414f0ad901d3278a4d6645fc266.html#g9c3e1414f0ad901d3278a4d6645fc266 <br />
 2. https://www.techpowerup.com/gpu-specs/nvidia-gf108.g82#gallery-5 <br />
 3. https://docs.nvidia.com/cuda/cuda-driver-api/group__CUDA__TYPES.html << official documentation with parameters e.g. CU_DEVICE_ATTRIBUTE_MULTIPROCESSOR_COUNT
+<br /><br />
+4. https://www.techpowerup.com/gpu-specs/geforce-gt-540m.c702 << specs for NVIDIA GeForce GT 540M
 
