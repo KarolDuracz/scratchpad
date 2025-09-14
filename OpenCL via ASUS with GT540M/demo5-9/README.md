@@ -165,3 +165,6 @@ std::cerr << "cuDeviceGetAttribute failed with code " << rc << "\n";
 
 <hr>
 
+<h3>References</h3>
+1. https://www.cs.cmu.edu/afs/cs/academic/class/15668-s11/www/cuda-doc/html/group__CUDA__DEVICE_g9c3e1414f0ad901d3278a4d6645fc266.html#g9c3e1414f0ad901d3278a4d6645fc266 <br />
+2. https://www.techpowerup.com/gpu-specs/nvidia-gf108.g82#gallery-5
