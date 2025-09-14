@@ -5,9 +5,12 @@ Demo 1 - https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS
 
 Demo 2 - https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/demo10/Project25%20-%20back%20to%20cuda%20-%203d%20application/Project25%20-%20back%20to%20cuda%20-%203d%20application/main.cpp#L575<br /><br />
 
-Demo3 - https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/demo10/Project25%20-%20back%20to%20cuda%20-%203d%20application/Project25%20-%20back%20to%20cuda%20-%203d%20application/main.cpp#L1110<br /><br />
+Demo 3 - https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/demo10/Project25%20-%20back%20to%20cuda%20-%203d%20application/Project25%20-%20back%20to%20cuda%20-%203d%20application/main.cpp#L1110<br /><br />
 
 This is an example from the code at the very top in main.cpp. It uses very little GPU and memory. <b>In the upper right corner is the "Objects" menu. </b> Add individual items there, or enable automatic addition of 100 every second.
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/demo10/demo10.png?raw=true)
 
+Demo 3 - Here's an attempt to implement Host <> GPU data transfer rate measurements. Needs some testing. TODO.
+
+![dumpp](https://github.com/KarolDuracz/scratchpad/blob/main/OpenCL%20via%20ASUS%20with%20GT540M/demo10/demo10%20-%20example%203.png?raw=true)
