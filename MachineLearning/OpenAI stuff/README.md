@@ -1,5 +1,7 @@
 <h2>1. GPT-5 Coding Examples</h2>
-https://github.com/openai/gpt-5-coding-examples/tree/main - There's an interesting repo. It's meant to show how to create a prompt to achieve this effect, or perhaps provide inspiration. There are many interesting applications here. Each of them has an image. Here's a Python script that automatically creates a list of file names, searches the "screenshot_url" tag, and downloads the images to disk. As you can see in the screenshot.
+https://github.com/openai/gpt-5-coding-examples/tree/main - There's an interesting repo. It's meant to show how to create a prompt to achieve this effect, or perhaps provide inspiration. There are many interesting applications here. Each of them has an image. Here's a Python script that automatically creates a list of file names, searches the "screenshot_url" tag, and downloads the images to disk. As you can see in the screenshot.<br/><br />
+- demo description: https://github.com/openai/gpt-5-coding-examples/tree/main/examples - Each .yaml file contains an explanation, and this Python script retrieves information based on those files, a list of those files. Specifically, it retrieves links from the screenshot_url tag. It creates a list and downloads them to local disk. <br />
+- working web app: https://github.com/openai/gpt-5-coding-examples/tree/main/apps - contains html files mainly with a running application.
 <br /><br />
 To avoid doing it manually, just download the information automatically, in this case screenshots.
 <br /><br />
