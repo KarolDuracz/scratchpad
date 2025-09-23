@@ -85,4 +85,4 @@ Training the model for the larger "WORDS" array in the HTML demo takes a bit lon
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/23-09-2025%20-%20MLP%20vs%20INDEX%20for%20words%20approach/extended%20WORDS%20table.png?raw=true)
 
-
+But what interests me most about this approach is the elimination of other possibilities. That is, the more letters there are, the smaller the range of possibilities. It may not have given the correct prediction for "float", but the most accurate words are those with the first 3 letters "flo", the rest are eliminated because their "probs" value is too low. After [05:18:39] Epoch 53/60 — avg batch loss 1.3713 floor is higher than the filter for "float".
