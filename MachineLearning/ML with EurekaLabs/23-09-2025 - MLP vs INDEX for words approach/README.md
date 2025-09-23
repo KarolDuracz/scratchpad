@@ -1,4 +1,10 @@
-In theory, one neuron has inputs and outputs. And that's all it takes to make a decision. To calculate the next letter, word, token, etc. It's just math. Just for comparison with MLP. 
+In theory, one neuron has inputs and outputs. And that's all it takes to make a decision. To calculate the next letter, word, token, etc. It's just math. This is a big simplification of how really it is and how its compute probabilities to make a decisions, maybe too big, but to have some point of reference. 
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/23-09-2025%20-%20MLP%20vs%20INDEX%20for%20words%20approach/_perceptron.png?raw=true)
+
+<br />
+Just for comparison with MLP. 
+
 <br /><br />
 What if we built an index of words and only calculated the prediction error for letters? For example, if the index under the letter "l" (lowercase l) contains possible combinations of "log","loss","let","length," then knowing the subsequent letters, we could calculate the error for the remainder and eliminate other possibilities (thus selecting the correct word) by writing subsequent letters. How do you build such a word index? The typical approach is to take the first letter of the word. And based on subsequent letters, we reduce the number of possible combinations, which is clearly visible in the HTML demo.
 <br /><br />
