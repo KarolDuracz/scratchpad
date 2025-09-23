@@ -86,3 +86,52 @@ Training the model for the larger "WORDS" array in the HTML demo takes a bit lon
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/23-09-2025%20-%20MLP%20vs%20INDEX%20for%20words%20approach/extended%20WORDS%20table.png?raw=true)
 
 But what interests me most about this approach is the elimination of other possibilities. That is, the more letters there are, the smaller the range of possibilities. It may not have given the correct prediction for "float", but the most accurate words are those with the first 3 letters "flo", the rest are eliminated because their "probs" value is too low. After [05:18:39] Epoch 53/60 — avg batch loss 1.3713 floor is higher than the filter for "float".
+
+```
+It may not work optimally, but it works to some extent. The letter "c" in the second larger WORDS
+array provides a good example of how the system works ( there are more starting with the letter s ).
+Checking the word count in word_index.html, for the letter "c" there are 19 words: c (19)
+callback
+case
+catch
+ceil
+class
+classlist
+classname
+clearinterval
+cleartimeout
+closest
+concat
+confirm
+console
+const
+constructor
+contains
+continue
+create
+createelement
+
+And for just one letter, "c," this HTML demo shows 60 steps:
+word prob
+concat 0.1399
+constructor 0.1324
+catch 0.1271
+ceil 0.0916
+create 0.0560
+continue 0.0546
+case 0.0545
+class 0.0542
+
+For two letters, for example, "cl," there are 6 possibilities, then "ca" only 3, and for "co" as many as 7.
+How should the system work? Example for "co"
+
+word prob
+constructor 0.5815
+concat 0.1381
+const 0.0807
+console 0.0740
+continue 0.0662
+contains 0.0345
+confirm 0.0225
+closest 0.0025
+```
