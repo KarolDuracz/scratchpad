@@ -8,7 +8,7 @@ notebook with python code built on the pytorch Library - The first block, after 
 
 https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/23-09-2025%20-%20MLP%20vs%20INDEX%20for%20words%20approach/MLP%20vs%20INDEX%20for%20words%20approach.ipynb
 
-HTML interactive app ( no needs any serwer, it's just  runs on web browser ) - THE MODEL DOESN'T TRAIN WELL, BUT ON THIS WORD INDEX IT IS ENOUGH FOR IT TO PREDICT WORDS RATHER CORRECTLY. This is not a 100% working implementation like the one shown by Andrej in his Ngram or MLP training approach.
+HTML interactive app ( no needs any serwer, it's just  runs on web browser ) - THE MODEL DOESN'T TRAIN WELL, BUT ON THIS WORD INDEX IT IS ENOUGH FOR IT TO PREDICT WORDS RATHER CORRECTLY. This is not a 100% working implementation like the one shown by Andrej in his Ngram or MLP training approach -> https://github.com/EurekaLabsAI 
 
 https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/23-09-2025%20-%20MLP%20vs%20INDEX%20for%20words%20approach/demo_app.html
 
