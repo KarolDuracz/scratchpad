@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>WORDS → INDEX demo</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<style>
+  body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; margin: 18px; color:#111; }
+  h1 { margin:0 0 10px 0; font-size:18px; }
+  .wrap { display:flex; gap:16px; align-items:flex-start; }
+  .box { flex:1; padding:12px; border:1px solid #ddd; border-radius:8px; background:#fafafa; }
+  textarea { width:100%; height:260px; padding:8px; font-family:monospace; font-size:13px; box-sizing:border-box; }
+  .controls { margin:8px 0; display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+  button { padding:8px 10px; border-radius:6px; border:1px solid #bbb; background:#fff; cursor:pointer; }
+  button.primary { background:#0b79f7; color:white; border-color:#0666d6; }
+  label.small { font-size:13px; color:#444; }
+  .muted { color:#666; font-size:13px; }
+  .index-list { margin-top:6px; max-height:420px; overflow:auto; }
+  .letter { font-weight:700; margin-top:8px; }
+  ul { margin:6px 0 12px 18px; }
+  .meta { font-size:13px; color:#333; margin-bottom:6px; }
+  .row { display:flex; gap:8px; align-items:center; }
+  .copyOk { color:green; font-size:13px; margin-left:8px; }
+  pre { background:#fff; padding:8px; border-radius:6px; border:1px solid #eee; overflow:auto; max-height:200px; }
+</style>
+</head>
+<body>
+  <h1>WORDS → INDEX demo (paste JS WORDS array)</h1>
+  <div class="wrap">
+    <div class="box">
+      <div style="font-weight:600">Paste WORDS array or plain list</div>
+      <div class="muted" style="margin-bottom:8px">You can paste a JS array (e.g. <code>const WORDS = ["log","loss",...]</code>), or a newline/comma-separated list. Click <strong>Parse</strong>.</div>
+      <textarea id="inputArea">// example default list (you can replace)
+const WORDS = [
+  "log","loss","let","length","const","class",
+  "return","function","console","float","for","if","else"
+];</textarea>
+
+      <div class="controls">
+        <button id="parseBtn" class="primary">Parse</button>
+        <button id="clearBtn">Clear</button>
+        <button id="copyJson">Copy JSON</button>
+        <label class="small"><input type="checkbox" id="lowercase" checked/> lowercase</label>
+        <div id="copyNote" class="copyOk" style="display:none">Copied ✓</div>
+      </div>
+
+      <div class="meta" id="metaInfo">Words: 0 &nbsp; | &nbsp; Letters: 0</div>
+      <div><strong>Parsed words (raw)</strong></div>
+      <pre id="parsedRaw">[ ]</pre>
+    </div>
+
+    <div class="box">
+      <div style="font-weight:600">INDEX (grouped by first letter)</div>
+      <div class="muted" style="margin-bottom:8px">Click a letter to toggle the word list for that letter.</div>
+      <div id="indexArea" class="index-list"></div>
+      <div style="margin-top:10px"><strong>Full sorted word list</strong></div>
+      <div id="fullList" style="margin-top:6px"></div>
+    </div>
+  </div>
+
+<script>
+(function(){
+  const inputArea = document.getElementById('inputArea');
+  const parseBtn = document.getElementById('parseBtn');
+  const clearBtn = document.getElementById('clearBtn');
+  const indexArea = document.getElementById('indexArea');
+  const parsedRaw = document.getElementById('parsedRaw');
+  const metaInfo = document.getElementById('metaInfo');
+  const lowercaseCB = document.getElementById('lowercase');
+  const copyJsonBtn = document.getElementById('copyJson');
+  const copyNote = document.getElementById('copyNote');
+  const fullListDiv = document.getElementById('fullList');
+
+  // Safe extraction of words from pasted text:
+  // 1) Try to extract quoted strings (single/double/backtick).
+  // 2) If none found, split on commas/newlines and trim.
+  function extractWords(text){
+    // Remove comments (single-line // and multi-line /* */) to avoid junk inside
+    const noComments = text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/mg, '');
+    // regex for quoted strings
+    const regex = /["'`]\s*([^"'`]+?)\s*["'`]/g;
+    let m;
+    const found = [];
+    while ((m = regex.exec(noComments)) !== null) {
+      const s = m[1].trim();
+      if (s.length) found.push(s);
+    }
+    if (found.length > 0) return found;
+    // fallback: split by commas or newlines and clean
+    const parts = noComments.split(/[\n,]+/).map(p=>p.trim()).filter(Boolean);
+    // filter out JS 'const WORDS =' or brackets tokens
+    const cleaned = parts.map(p=>{
+      // remove leading var/const/let and equals or brackets
+      return p.replace(/^(const|let|var)\s+\w+\s*=\s*/i, '')
+              .replace(/^\[+/, '')
+              .replace(/\]+$/, '')
+              .replace(/;$/, '')
+              .trim();
+    }).filter(Boolean);
+    // further strip quotes
+    return cleaned.map(p => p.replace(/^['"`](.*)['"`]$/, '$1')).filter(Boolean);
+  }
+
+  function buildIndex(words, lowercase=true){
+    const idx = {};
+    for (let w of words){
+      if (!w) continue;
+      let display = w;
+      if (lowercase) display = display.toLowerCase();
+      const first = display[0] || '';
+      if (!idx[first]) idx[first] = [];
+      idx[first].push(display);
+    }
+    // sort words per letter
+    for (const k of Object.keys(idx)){
+      idx[k].sort((a,b)=>a.localeCompare(b));
+    }
+    return idx;
+  }
+
+  function renderIndex(idx){
+    indexArea.innerHTML = '';
+    const letters = Object.keys(idx).sort();
+    if (letters.length === 0) {
+      indexArea.innerHTML = '<div class="muted">No words parsed yet.</div>';
+      fullListDiv.textContent = '';
+      return;
+    }
+    letters.forEach(letter=>{
+      const container = document.createElement('div');
+      const header = document.createElement('div');
+      header.className = 'letter';
+      header.textContent = `${letter} (${idx[letter].length})`;
+      header.style.cursor = 'pointer';
+      container.appendChild(header);
+      const list = document.createElement('ul');
+      list.style.display = 'none';
+      idx[letter].forEach(w=>{
+        const li = document.createElement('li');
+        li.textContent = w;
+        list.appendChild(li);
+      });
+      header.addEventListener('click', ()=> {
+        list.style.display = list.style.display === 'none' ? 'block' : 'none';
+      });
+      container.appendChild(list);
+      indexArea.appendChild(container);
+    });
+
+    // full list
+    const allWords = letters.flatMap(l => idx[l]);
+    fullListDiv.textContent = allWords.join(', ');
+  }
+
+  function updateFromInput(){
+    const txt = inputArea.value;
+    const words = extractWords(txt);
+    const lc = lowercaseCB.checked;
+    const norm = words.map(w => lc ? w.toLowerCase() : w);
+    // unique & preserve order
+    const seen = new Set();
+    const unique = [];
+    for (const w of norm) {
+      if (!seen.has(w)) { seen.add(w); unique.push(w); }
+    }
+    parsedRaw.textContent = JSON.stringify(unique, null, 2);
+    metaInfo.textContent = `Words: ${unique.length}  |  Letters: ${[...new Set(unique.map(w=> (w[0]||'').toLowerCase()))].length}`;
+    const idx = buildIndex(unique, false); // words already lowercased if checkbox
+    renderIndex(idx);
+  }
+
+  parseBtn.addEventListener('click', () => {
+    try {
+      updateFromInput();
+    } catch (err) {
+      parsedRaw.textContent = 'Parse error: ' + String(err);
+    }
+  });
+
+  clearBtn.addEventListener('click', () => {
+    inputArea.value = '';
+    parsedRaw.textContent = '[ ]';
+    indexArea.innerHTML = '<div class="muted">No words parsed yet.</div>';
+    metaInfo.textContent = 'Words: 0  |  Letters: 0';
+    fullListDiv.textContent = '';
+    copyNote.style.display = 'none';
+  });
+
+  copyJsonBtn.addEventListener('click', async () => {
+    try {
+      const text = parsedRaw.textContent;
+      await navigator.clipboard.writeText(text);
+      copyNote.style.display = 'inline';
+      setTimeout(()=>{ copyNote.style.display = 'none'; }, 1500);
+    } catch (e) {
+      alert('Copy failed: ' + e);
+    }
+  });
+
+  // also live-parse while typing (debounced)
+  let tmr = null;
+  inputArea.addEventListener('input', ()=> {
+    clearTimeout(tmr);
+    tmr = setTimeout(updateFromInput, 300);
+  });
+
+  // initial parse
+  updateFromInput();
+})();
+</script>
+</body>
+</html>
