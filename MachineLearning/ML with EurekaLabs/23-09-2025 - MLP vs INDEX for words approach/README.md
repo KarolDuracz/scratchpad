@@ -468,3 +468,5 @@ The server runs on localhost:5000 by default. After starting, simply start typin
 A short description is in the image.
 <br /><br />
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/23-09-2025%20-%20MLP%20vs%20INDEX%20for%20words%20approach/250%20-%2023-09-2025%20-%20app%20screenshot.png?raw=true)
+
+** <i>I wrote in the picture on AVG CLICK that it measures the time between subsequent words, NOT A WORD, BUT A CHARACTER, between clicking the next key on the keyboard / typing a character.</i>
