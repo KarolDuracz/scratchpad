@@ -135,3 +135,6 @@ contains 0.0345
 confirm 0.0225
 closest 0.0025
 ```
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/23-09-2025%20-%20MLP%20vs%20INDEX%20for%20words%20approach/co%20example.png?raw=true)
+
