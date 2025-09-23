@@ -442,3 +442,29 @@ Top candidates for prefix 'con':
   const         p = 0.036
 Allowed-bucket (first-letter='c') total mass: 1.000
 ```
+
+<h2>Demo app</h2>
+
+https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/23-09-2025%20-%20MLP%20vs%20INDEX%20for%20words%20approach/app.py
+<br /><br />
+A demo using FLASK and sqlite3. Very simple. This is purely for testing purposes, to see if it makes sense or if it's a waste of time to develop it further. Just the base demo code, which might be useful with some tweaks. <b>Perhaps it would make sense to add a better prediction system and then measure the delta between what the user is typing and what system are predict and put in text to increase encoding speed. But this requires more complex structures, not just single words. To improve reaction time and visibility of available combinations ?!</b> For now, I'm leaving it to think about in free time.
+<br /><br />
+You need the FLASK library https://pypi.org/project/Flask/ (as in the previous demos I've added here. I personally like it for small demos).
+<br /><br />
+Everything is in one file: app.py: HTML, JS, and Python code.
+<br /><br />
+There are other tabs with /debug_error and time_counter_stats. But they only work superficially.
+<br /><br />
+RUN
+
+```
+python app.py
+```
+
+The server runs on localhost:5000 by default. After starting, simply start typing, for example, the letter "f" in the text field to see how the system works.
+<br /><br />
+<b>System does not use neural networks to calculate probabilities, this is purely for demonstration purposes for a simple INITIAL_WORDS array around line 13 in app.py</b>
+<br /><br />
+A short description is in the image.
+<br /><br />
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/23-09-2025%20-%20MLP%20vs%20INDEX%20for%20words%20approach/250%20-%2023-09-2025%20-%20app%20screenshot.png?raw=true)
