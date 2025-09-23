@@ -81,5 +81,8 @@ demo to show how many words there are under a given letter - https://github.com/
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/23-09-2025%20-%20MLP%20vs%20INDEX%20for%20words%20approach/word%20index.png?raw=true)
 
+Training the model for the larger "WORDS" array in the HTML demo takes a bit longer. For example, if the word "float" isn't present, the model tries to predict anything anyway.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/23-09-2025%20-%20MLP%20vs%20INDEX%20for%20words%20approach/extended%20WORDS%20table.png?raw=true)
 
 
