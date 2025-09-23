@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Index-first Word Predictor — Fixed v4 (TFJS)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.11.0/dist/tf.min.js"></script>
+<style>
+  body { font-family: Inter, Roboto, Arial, sans-serif; margin: 18px; color: #111; }
+  h1 { margin: 0 0 8px 0; font-size: 20px;}
+  .row { display: flex; gap: 18px; align-items: flex-start; }
+  .panel { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; }
+  textarea { width: 100%; height: 240px; font-size: 16px; padding: 8px; box-sizing: border-box; }
+  .controls { display:flex; gap:10px; margin-bottom:10px; align-items:center; }
+  button { padding:8px 12px; border-radius:6px; border:1px solid #bbb; background:#fff; cursor:pointer; }
+  button.primary { background:#0b79f7; color:white; border-color:#0666d6; }
+  .small { font-size:13px; color:#444; }
+  table { width:100%; border-collapse: collapse; }
+  th, td { padding:6px 8px; text-align:left; border-bottom:1px dashed #eee; }
+  .metric { font-weight:600; }
+  .muted { color:#666; font-size:13px; }
+  .status { margin-top:8px; color:#333; font-size:13px; }
+  .footer { margin-top:14px; font-size:13px; color:#555; }
+  #logArea { margin-top:12px; padding:8px; border:1px solid #eee; height:160px; overflow:auto; background:#fff; font-family:monospace; font-size:13px; white-space:pre-wrap; }
+  .stepBox { margin-top:8px; padding:8px; border:1px dashed #e0e0e0; border-radius:6px; background:#fff; }
+  .stepTitle { font-weight:600; margin-bottom:6px; }
+</style>
+</head>
+<body>
+  <h1>Index-first Word Predictor — Fixed v4 (TFJS)</h1>
+
+  <div class="controls">
+    <button id="trainBtn" class="primary">Train model (quick)</button>
+    <button id="resetBtn">Reset weights</button>
+    <label class="small">Target (optional):
+      <select id="targetSelect">
+        <option value="">-- none --</option>
+      </select>
+    </label>
+    <div id="trainProgress" class="muted"></div>
+  </div>
+
+  <div class="row">
+    <div class="panel">
+      <div style="font-weight:600; margin-bottom:8px">Type here (prefix typed char-by-char):</div>
+      <textarea id="inputArea" placeholder="Type letters here... (app reads prefix as you type)"></textarea>
+      <div class="muted" style="margin-top:8px">
+        Type single or multiple letters. The model restricts predictions to the INDEX of words that share the same first letter.
+      </div>
+    </div>
+
+    <div class="panel">
+      <div style="font-weight:600; margin-bottom:8px">Predictions & metrics</div>
+      <div id="predictionsArea" class="muted">No input yet — type in the left box.</div>
+      <div id="perCharArea" class="stepBox"></div>
+      <div class="status" id="status"></div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:12px;">
+    <div style="font-weight:600; margin-bottom:6px">Training / System log</div>
+    <div id="logArea"></div>
+  </div>
+
+  <div class="footer">
+    Built with TFJS. Word list and model are tiny for demonstration; expand the WORDS array to suit your use-case.
+  </div>
+
+<script>
+(async () => {
+  // -------------------------
+  // 1) Words & index
+  // -------------------------
+  const WORDS = [
+    "log","loss","let","length","const","class",
+    "return","function","console","float","for","if","else"
+  ].map(s => s.toLowerCase());
+  const WORD2IDX = Object.fromEntries(WORDS.map((w,i)=>[w,i]));
+  const IDX2WORD = Object.fromEntries(WORDS.map((w,i)=>[i,w]));
+  const INDEX = {};
+  for (let i=0;i<WORDS.length;i++){
+    const w = WORDS[i]; const f = w[0];
+    if (!INDEX[f]) INDEX[f]=[];
+    INDEX[f].push(i);
+  }
+  // populate dropdown
+  const targetSelect = document.getElementById('targetSelect');
+  WORDS.forEach(w => { const opt = document.createElement('option'); opt.value = w; opt.textContent = w; targetSelect.appendChild(opt); });
+
+  // -------------------------
+  // 2) char vocab & helpers
+  // -------------------------
+  const PAD = "<PAD>";
+  const charSet = new Set();
+  WORDS.forEach(w => { for (const c of w) charSet.add(c); });
+  const CHARS = [PAD, ...Array.from(charSet).sort()];
+  const CHAR2IDX = Object.fromEntries(CHARS.map((c,i)=>[c,i]));
+  const IDX2CHAR = Object.fromEntries(CHARS.map((c,i)=>[i,c]));
+  const NUM_CHARS = CHARS.length, NUM_WORDS = WORDS.length;
+  const MAX_PREFIX = Math.max(1, ...WORDS.map(w => Math.max(0, w.length - 1)));
+
+  function encodePrefix(prefix){
+    const arr = [];
+    for (let i=0;i<prefix.length && i<MAX_PREFIX;i++){
+      arr.push(CHAR2IDX[prefix[i]] ?? 0);
+    }
+    while (arr.length < MAX_PREFIX) arr.push(CHAR2IDX[PAD]);
+    return arr;
+  }
+
+  // dataset prefixes
+  const examples = [];
+  for (const w of WORDS){
+    const wi = WORD2IDX[w];
+    for (let L=1; L<w.length; L++){
+      const prefix = w.slice(0,L);
+      examples.push({prefix, xi: encodePrefix(prefix), len: L, y: wi});
+    }
+  }
+  // shuffle
+  for (let i=examples.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [examples[i], examples[j]] = [examples[j], examples[i]];
+  }
+
+  // -------------------------
+  // 3) model variables
+  // -------------------------
+  const embDim = 16, hiddenDim = 32;
+  let E = tf.variable(tf.randomNormal([NUM_CHARS, embDim], 0, 0.1));
+  let W1 = tf.variable(tf.randomNormal([embDim, hiddenDim], 0, 0.1));
+  let b1 = tf.variable(tf.zeros([hiddenDim]));
+  let W2 = tf.variable(tf.randomNormal([hiddenDim, NUM_WORDS], 0, 0.1));
+  let b2 = tf.variable(tf.zeros([NUM_WORDS]));
+  const optimizer = tf.train.adam(0.02);
+
+  // -------------------------
+  // 4) forward pass (gather)
+  // -------------------------
+  function forwardLogits(X_tensor, prefixLensTensor, allowedMaskTensor){
+    return tf.tidy(() => {
+      const Xint = X_tensor.cast('int32');
+      const emb = tf.gather(E, Xint); // [B,L,embDim]
+      const valid = Xint.notEqual(0).toFloat().expandDims(-1); // [B,L,1]
+      const summed = emb.mul(valid).sum(1); // [B,embDim]
+      const lengths = valid.sum(1).maximum(1.0); // [B,1]
+      const pooled = summed.div(lengths); // [B,embDim]
+      const h = pooled.matMul(W1).add(b1).relu(); // [B,hiddenDim]
+      let logits = h.matMul(W2).add(b2); // [B,NUM_WORDS]
+      if (allowedMaskTensor != null) {
+        const allowedFloat = allowedMaskTensor.toFloat();
+        const veryNeg = tf.fill(logits.shape, -1e9);
+        logits = logits.mul(allowedFloat).add(veryNeg.mul(allowedFloat.neg().add(1)));
+      }
+      return logits;
+    });
+  }
+
+  // -------------------------
+  // 5) robust mask builder (uses tf.buffer)
+  // -------------------------
+  function makeAllowedMaskForPrefixes(prefixArray){
+    const B = prefixArray.length;
+    if (B === 0) {
+      // return empty [0,NUM_WORDS] bool tensor (safe fallback)
+      // tf.tensor2d([]...) sometimes fails on some TFJS builds; use typed empty array with shape
+      return tf.tensor(new Uint8Array(0), [0, NUM_WORDS], 'bool');
+    }
+    // create a tf.buffer for boolean mask
+    const buf = tf.buffer([B, NUM_WORDS], 'bool');
+    for (let i = 0; i < B; i++){
+      const pre = prefixArray[i] || "";
+      if (!pre || pre.length === 0) {
+        for (let j=0;j<NUM_WORDS;j++) buf.set(true, i, j);
+      } else {
+        const allowed = INDEX[pre[0]] || [];
+        for (const j of allowed) buf.set(true, i, j);
+      }
+    }
+    return buf.toTensor();
+  }
+
+  function argsortDescending(arr, topk=6){
+    const idx = arr.map((v,i)=>i);
+    idx.sort((a,b)=>arr[b]-arr[a]);
+    return idx.slice(0, topk);
+  }
+
+  function logMessage(msg){
+    const logArea = document.getElementById('logArea');
+    const ts = new Date().toLocaleTimeString();
+    logArea.textContent += `[${ts}] ${msg}\n`;
+    logArea.scrollTop = logArea.scrollHeight;
+  }
+
+  // -------------------------
+  // 6) training routine (skip empty batches)
+  // -------------------------
+  async function trainQuick({epochs=60, batchSize=8, onEpoch=null} = {}) {
+    const Xs = tf.tensor2d(examples.map(e=>e.xi), [examples.length, MAX_PREFIX], 'int32');
+    const Ys = tf.tensor1d(examples.map(e=>e.y), 'int32');
+    const prefixLens = tf.tensor1d(examples.map(e=>e.len), 'int32');
+
+    const numBatches = Math.ceil(examples.length / batchSize);
+    for (let epoch=0; epoch<epochs; epoch++){
+      const perm = tf.util.createShuffledIndices(examples.length);
+      let totalLoss = 0;
+      let seenBatches = 0;
+      for (let b=0; b<numBatches; b++){
+        const ids = perm.slice(b*batchSize, (b+1)*batchSize);
+        if (ids.length === 0) continue; // defensive
+        const idTyped = new Int32Array(ids);
+        const idTensor = tf.tensor1d(idTyped, 'int32');
+        const xb = tf.gather(Xs, idTensor);
+        const yb = tf.gather(Ys, idTensor);
+        const plens = tf.gather(prefixLens, idTensor);
+
+        const prefixStrings = ids.map(i => examples[i].prefix);
+        const allowedMask = makeAllowedMaskForPrefixes(prefixStrings);
+
+        const lossVal = optimizer.minimize(() => {
+          const logits = forwardLogits(xb, plens, allowedMask);
+          const labelsOneHot = tf.oneHot(yb, NUM_WORDS);
+          const perExample = tf.losses.softmaxCrossEntropy(labelsOneHot, logits, null);
+          return perExample.mean();
+        }, true);
+
+        const lossScalar = (await lossVal.data())[0];
+        totalLoss += lossScalar;
+        seenBatches++;
+
+        tf.dispose([idTensor, xb, yb, plens, allowedMask, lossVal]);
+        await tf.nextFrame(); // yield to keep UI responsive
+      }
+      const avgLoss = seenBatches > 0 ? (totalLoss / seenBatches) : 0;
+      if (onEpoch) onEpoch(epoch+1, epochs, avgLoss);
+      logMessage(`Epoch ${epoch+1}/${epochs} — avg batch loss ${avgLoss.toFixed(4)}`);
+    }
+
+    tf.dispose([Xs, Ys, prefixLens]);
+    logMessage('Training completed.');
+  }
+
+  // -------------------------
+  // 7) UI wiring & prediction update
+  // -------------------------
+  const inputArea = document.getElementById('inputArea');
+  const trainBtn = document.getElementById('trainBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const trainProgress = document.getElementById('trainProgress');
+  const predictionsArea = document.getElementById('predictionsArea');
+  const perCharArea = document.getElementById('perCharArea');
+  const status = document.getElementById('status');
+
+  let modelTrained = false;
+
+  trainBtn.addEventListener('click', async () => {
+    trainBtn.disabled = true;
+    trainProgress.textContent = 'Training...';
+    logMessage('Training started.');
+    try {
+      await trainQuick({
+        epochs: 60,
+        batchSize: 8,
+        onEpoch: (n, total, loss) => {
+          trainProgress.textContent = `Epoch ${n}/${total} — avg loss ≈ ${loss.toFixed(4)}`;
+        }
+      });
+      modelTrained = true;
+      trainProgress.textContent = 'Training finished.';
+      logMessage('Training finished.');
+    } catch (err) {
+      logMessage('Training error: ' + String(err));
+      console.error(err);
+    } finally {
+      trainBtn.disabled = false;
+      updatePredictions();
+    }
+  });
+
+  resetBtn.addEventListener('click', () => {
+    tf.tidy(()=>{
+      E.assign(tf.randomNormal([NUM_CHARS, embDim], 0, 0.1));
+      W1.assign(tf.randomNormal([embDim, hiddenDim], 0, 0.1));
+      b1.assign(tf.zeros([hiddenDim]));
+      W2.assign(tf.randomNormal([hiddenDim, NUM_WORDS], 0, 0.1));
+      b2.assign(tf.zeros([NUM_WORDS]));
+    });
+    modelTrained = false;
+    trainProgress.textContent = 'Weights reset.';
+    logMessage('Weights reset.');
+    updatePredictions();
+  });
+
+  inputArea.addEventListener('input', () => {
+    updatePredictions();
+    updatePerCharSequence();
+  });
+
+  function formatNumber(x){
+    if (x < 0.0001) return x.toExponential(2);
+    return x.toFixed(4);
+  }
+
+  async function updatePredictions(){
+    const prefix = (inputArea.value || "").trim().toLowerCase();
+    if (!prefix || prefix.length === 0) {
+      predictionsArea.innerHTML = "<div class='muted'>No input yet — type at least the first letter.</div>";
+      status.textContent = "";
+      return;
+    }
+    if (!INDEX[prefix[0]]) {
+      predictionsArea.innerHTML = `<div class='muted'>No known words starting with '${prefix[0]}'.</div>`;
+      status.textContent = "";
+      return;
+    }
+
+    const enc = encodePrefix(prefix);
+    const X = tf.tensor2d([enc], [1, MAX_PREFIX], 'int32');
+    const plens = tf.tensor1d([Math.min(prefix.length, MAX_PREFIX)], 'int32');
+    const allowedMask = makeAllowedMaskForPrefixes([prefix]);
+
+    const logits = forwardLogits(X, plens, allowedMask);
+    const probsTensor = tf.softmax(logits);
+    const probsArray = Array.from(await probsTensor.data());
+
+    // allowed mass
+    const allowedIndices = INDEX[prefix[0]];
+    let allowedMass = 0;
+    for (const idx of allowedIndices) allowedMass += probsArray[idx];
+
+    // topk
+    const topk = Math.min(8, NUM_WORDS);
+    const topIdxs = argsortDescending(probsArray, topk);
+    let html = "<table><thead><tr><th>word</th><th>prob</th></tr></thead><tbody>";
+    for (const idx of topIdxs) {
+      html += `<tr><td>${IDX2WORD[idx]}</td><td>${formatNumber(probsArray[idx])}</td></tr>`;
+    }
+    html += "</tbody></table>";
+
+    const target = targetSelect.value;
+    const metrics = [];
+    metrics.push(`<div><span class="metric">Allowed-bucket mass</span> (first-letter='${prefix[0]}'): ${formatNumber(allowedMass)}</div>`);
+    if (target) {
+      const ti = WORD2IDX[target];
+      const ptrue = probsArray[ti] ?? 0;
+      const nll = -Math.log(Math.max(ptrue, 1e-9));
+      const indexError = allowedMass > 0 ? 1 - (ptrue / allowedMass) : 1.0;
+      let rank = 1;
+      for (let i=0;i<probsArray.length;i++) if (probsArray[i] > ptrue) rank++;
+      metrics.push(`<div><span class="metric">p(true='${target}')</span>: ${formatNumber(ptrue)} — NLL: ${formatNumber(nll)}</div>`);
+      metrics.push(`<div><span class="metric">index_error</span>: ${formatNumber(indexError)} (1 - p_true / allowed_mass)</div>`);
+      metrics.push(`<div><span class="metric">rank</span>: ${rank} / ${NUM_WORDS}</div>`);
+    } else {
+      metrics.push(`<div class="muted">Select a target to compute NLL / index_error.</div>`);
+    }
+
+    predictionsArea.innerHTML = html + "<div style='margin-top:8px'>" + metrics.join("") + "</div>";
+    status.textContent = modelTrained ? "Model trained (ready)." : "Model untrained (predictions from random init).";
+
+    tf.dispose([X, plens, allowedMask, logits, probsTensor]);
+  }
+
+  // per-character predictions
+  async function updatePerCharSequence(){
+    const s = (inputArea.value || "").trim().toLowerCase();
+    perCharArea.innerHTML = "";
+    if (!s || s.length === 0) return;
+    let stepHtml = `<div class='stepTitle'>Per-character predictions (typed so far: "${s}")</div>`;
+    for (let L=1; L<=s.length; L++){
+      const pref = s.slice(0,L);
+      if (!INDEX[pref[0]]) {
+        stepHtml += `<div>Step ${L} ('${pref}'): no words start with '${pref[0]}'</div>`;
+        continue;
+      }
+      const enc = encodePrefix(pref);
+      const X = tf.tensor2d([enc], [1, MAX_PREFIX], 'int32');
+      const plens = tf.tensor1d([Math.min(pref.length, MAX_PREFIX)], 'int32');
+      const allowedMask = makeAllowedMaskForPrefixes([pref]);
+      const logits = forwardLogits(X, plens, allowedMask);
+      const probsTensor = tf.softmax(logits);
+      const probsArray = Array.from(await probsTensor.data());
+      const allowedIndices = INDEX[pref[0]];
+      let allowedMass = 0;
+      for (const idx of allowedIndices) allowedMass += probsArray[idx];
+      const topIdxs = argsortDescending(probsArray, 4);
+      let row = `Step ${L} ('${pref}') — allowed_mass=${formatNumber(allowedMass)} — top: `;
+      row += topIdxs.map(i=>`${IDX2WORD[i]}(${formatNumber(probsArray[i])})`).join(', ');
+      stepHtml += `<div>${row}</div>`;
+      tf.dispose([X, plens, allowedMask, logits, probsTensor]);
+    }
+    perCharArea.innerHTML = stepHtml;
+  }
+
+  // initial state
+  updatePredictions();
+
+})();
+</script>
+</body>
+</html>
