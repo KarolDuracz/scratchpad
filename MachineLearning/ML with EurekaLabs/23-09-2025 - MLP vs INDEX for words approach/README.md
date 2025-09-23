@@ -144,3 +144,301 @@ closest 0.0025
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/23-09-2025%20-%20MLP%20vs%20INDEX%20for%20words%20approach/co%20example.png?raw=true)
 
+In python + torch version it's slightly better and faster
+<br /><br />
+code
+
+```
+# interactive_index_predictor.py
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import random
+from collections import defaultdict
+
+# ---------------------------
+# 1) Small word list + index
+# ---------------------------
+#WORDS = ["log", "loss", "let", "length", "const", "class",
+#         "return", "function", "console", "float", "for", "if", "else"]
+
+WORDS = [
+  # ECMAScript keywords & control
+  "break","case","catch","class","const","continue","debugger","default","delete","do",
+  "else","export","extends","finally","for","function","if","import","in","instanceof",
+  "let","new","return","super","switch","this","throw","try","typeof","var","void",
+  "while","with","yield","await","async","static","get","set","of",
+
+  # common globals / constructors / types
+  "console","math","number","string","boolean","array","object","json","date","promise",
+  "map","set","weakmap","weakset","symbol","regexp","error","eval",
+
+  # Promise / async helpers
+  "then","catch","resolve","reject","async","await","finally",
+
+  # Node / module-ish
+  "module","exports","require","__dirname","__filename",
+
+  # Common runtime & util functions
+  "parseint","parsefloat","isnan","isfinite","encodeuri","decodeduri","encodeuricomponent",
+  "decodeuricomponent","jsonstringify","jsonparse",
+
+  # Math
+  "floor","ceil","round","random","abs","min","max","pow","sqrt","log","exp",
+
+  # common console helpers
+  "log","warn","error","info","debug","table","time","timeend",
+
+  # browser globals / DOM
+  "window","document","location","history","navigator","localstorage","sessionstorage",
+  "alert","confirm","prompt","fetch","addeventlistener","removeeventlistener",
+  "queryselector","queryselectorall","getelementbyid","getelementsbyclassname","getelementsbytagname",
+  "createelement","appendchild","removechild","replacechild","classlist","classname","dataset",
+  "innerhtml","textcontent","value","style",
+
+   # timers
+  "settimeout","cleartimeout","setinterval","clearinterval",
+
+  # Array methods
+  "push","pop","shift","unshift","splice","slice","map","filter","reduce","foreach",
+  "find","findindex","includes","indexof","join","split","concat","sort","reverse",
+
+  # String methods
+  "replace","tolowercase","touppercase","trim","substr","substring","startswith","endswith",
+  "indexof","includes","split","concat",
+
+  # common object / prototype helpers
+  "prototype","constructor","hasownproperty","keys","values","entries","assign","create","defineproperty",
+
+  # common DOM / UI helpers & patterns
+  "addclass","removeclass","toggleclass","append","prepend","closest","matches","contains",
+
+  # common libs / patterns (generic)
+  "jquery","react","vue","angular","redux","rxjs",
+
+  # misc identifiers often seen in JS code
+  "id","name","type","length","size","index","key","value","payload","props","state","setstate",
+  "dispatch","subscribe","unsubscribe","handler","callback","errorhandler","response","request"
+]
+
+WORDS = [w.lower() for w in WORDS]
+WORD2IDX = {w: i for i, w in enumerate(WORDS)}
+IDX2WORD = {i: w for w, i in WORD2IDX.items()}
+
+INDEX = defaultdict(list)
+for w, idx in WORD2IDX.items():
+    INDEX[w[0]].append(idx)
+
+# ---------------------------
+# 2) char vocabulary + padding
+# ---------------------------
+PAD = "<PAD>"
+CHARS = sorted({c for w in WORDS for c in w})
+CHARS = [PAD] + CHARS
+CHAR2IDX = {c: i for i, c in enumerate(CHARS)}
+IDX2CHAR = {i: c for c, i in CHAR2IDX.items()}
+NUM_CHARS = len(CHARS)
+NUM_WORDS = len(WORDS)
+MAX_PREFIX = max(1, max(len(w) - 1 for w in WORDS))
+
+# ---------------------------
+# 3) dataset: prefixes -> word
+# ---------------------------
+examples = []
+for w in WORDS:
+    wi = WORD2IDX[w]
+    # prefixes length 1..len(w)-1
+    for L in range(1, len(w)):
+        prefix = w[:L]
+        idxs = [CHAR2IDX[ch] for ch in prefix]
+        pad = [CHAR2IDX[PAD]] * (MAX_PREFIX - len(idxs))
+        examples.append((idxs + pad, len(prefix), wi))
+random.shuffle(examples)
+
+Xs = torch.tensor([ex[0] for ex in examples], dtype=torch.long)
+prefix_lens = torch.tensor([ex[1] for ex in examples], dtype=torch.long)
+Ys = torch.tensor([ex[2] for ex in examples], dtype=torch.long)
+
+# ---------------------------
+# 4) tiny model
+# ---------------------------
+class PrefixWordPredictor(nn.Module):
+    def __init__(self, num_chars, emb_dim, hidden_dim, num_words):
+        super().__init__()
+        self.emb = nn.Embedding(num_chars, emb_dim, padding_idx=0)
+        self.fc1 = nn.Linear(emb_dim, hidden_dim)
+        self.fc2 = nn.Linear(hidden_dim, num_words)
+
+    def forward(self, prefix_idxs, prefix_lens, allowed_mask):
+        emb = self.emb(prefix_idxs)                   # (B, L, E)
+        valid = (prefix_idxs != 0).float().unsqueeze(-1)
+        summed = (emb * valid).sum(dim=1)
+        lengths = valid.sum(dim=1).clamp(min=1)
+        pooled = summed / lengths
+        h = F.relu(self.fc1(pooled))
+        logits = self.fc2(h)
+        very_neg = -1e9
+        logits = logits + (~allowed_mask).float() * very_neg
+        return logits
+
+device = torch.device("cpu")
+model = PrefixWordPredictor(NUM_CHARS, emb_dim=16, hidden_dim=32, num_words=NUM_WORDS).to(device)
+opt = torch.optim.Adam(model.parameters(), lr=0.02)
+loss_fn = nn.CrossEntropyLoss()
+
+# quick training (tiny)
+BATCH = 8
+EPOCHS = 120
+for epoch in range(EPOCHS):
+    perm = torch.randperm(len(Xs))
+    total = 0.0
+    for i in range(0, len(Xs), BATCH):
+        batch_idx = perm[i:i+BATCH]
+        xb = Xs[batch_idx].to(device)
+        yb = Ys[batch_idx].to(device)
+        # build allowed_mask using first letter of each prefix (we know prefix length >=1)
+        prefix_strings = []
+        for bi in batch_idx:
+            raw = Xs[bi].tolist()
+            s = ''.join([IDX2CHAR[c] for c in raw if IDX2CHAR[c] != PAD])
+            prefix_strings.append(s)
+        masks = []
+        for s in prefix_strings:
+            m = torch.zeros(NUM_WORDS, dtype=torch.bool)
+            m[INDEX[s[0]]] = True
+            masks.append(m)
+        allowed_mask = torch.stack(masks).to(device)
+        logits = model(xb, prefix_lens[batch_idx].to(device), allowed_mask)
+        loss = loss_fn(logits, yb)
+        opt.zero_grad(); loss.backward(); opt.step()
+        total += loss.item() * xb.size(0)
+    if (epoch+1) % 40 == 0 or epoch == 0:
+        print(f"[train] epoch {epoch+1}/{EPOCHS} avg loss {total/len(Xs):.4f}")
+
+print("Training done.\n")
+
+# ---------------------------
+# 5) helper functions
+# ---------------------------
+def encode_prefix(prefix: str):
+    idxs = [CHAR2IDX.get(c, 0) for c in prefix]
+    pad = [CHAR2IDX[PAD]] * (MAX_PREFIX - len(idxs))
+    return idxs + pad
+
+def make_allowed_mask(prefix_list):
+    masks = []
+    for pre in prefix_list:
+        m = torch.zeros(NUM_WORDS, dtype=torch.bool)
+        if len(pre) == 0:
+            m[:] = True  # allow all if empty (but our app requires >=1)
+        else:
+            m[INDEX[pre[0]]] = True
+        masks.append(m)
+    return torch.stack(masks, dim=0)
+
+def pretty_print_preds(logits, topk=6):
+    probs = F.softmax(logits, dim=-1).squeeze(0).detach().cpu()
+    topv, topi = probs.topk(min(topk, probs.size(0)))
+    out = [(IDX2WORD[i.item()], v.item()) for v,i in zip(topv, topi)]
+    return out, probs
+
+# ---------------------------
+# 6) interactive loop
+# ---------------------------
+def interactive_loop():
+    print("Interactive index-first predictor.")
+    print("Words in index:", WORDS)
+    print("Type single or multiple letters (prefix). Type 'quit' to exit.")
+    print("Optionally enter a ground-truth target word (must be in the word list) to compute errors.")
+    target = input("Enter ground-truth target word (or press Enter to skip): ").strip().lower()
+    if target == "":
+        target = None
+    elif target not in WORD2IDX:
+        print("Target not in word list. Ignoring.")
+        target = None
+    print("---- start typing prefixes ----")
+    while True:
+        pre = input("prefix> ").strip().lower()
+        if pre == "quit":
+            break
+        if len(pre) == 0:
+            print("Please type at least the first letter.")
+            continue
+        if pre[0] not in INDEX:
+            print(f"No words starting with '{pre[0]}'.")
+            continue
+        enc = torch.tensor([encode_prefix(pre)], dtype=torch.long).to(device)
+        allowed = make_allowed_mask([pre]).to(device)
+        logits = model(enc, torch.tensor([len(pre)]), allowed)
+        preds, probs = pretty_print_preds(logits, topk=6)
+        allowed_indices = INDEX[pre[0]]
+        allowed_mass = probs[allowed_indices].sum().item()
+        print(f"\nTop candidates for prefix '{pre}':")
+        for w, p in preds:
+            print(f"  {w:12s}  p = {p:.3f}")
+        print(f"Allowed-bucket (first-letter='{pre[0]}') total mass: {allowed_mass:.3f}")
+        if target:
+            true_i = WORD2IDX[target]
+            p_true = probs[true_i].item()
+            nll = -torch.log(torch.clamp(probs[true_i], 1e-9)).item()
+            index_error = 1.0 - (p_true / allowed_mass) if allowed_mass > 0 else 1.0
+            rank = (probs > probs[true_i]).sum().item() + 1
+            print(f"Metrics (true = '{target}'):")
+            print(f"  p(true) = {p_true:.4f}, NLL = {nll:.3f}, rank = {rank}, index_error = {index_error:.3f}")
+        print("\n---")
+
+if __name__ == "__main__":
+    interactive_loop()
+```
+
+output log for, c > co > con
+
+```
+[train] epoch 1/120 avg loss 2.3601
+[train] epoch 40/120 avg loss 1.2068
+[train] epoch 80/120 avg loss 1.0907
+[train] epoch 120/120 avg loss 1.0769
+Training done.
+
+Interactive index-first predictor.
+Words in index: ['break', 'case', 'catch', 'class', 'const', 'continue', 'debugger', 'default', 'delete', 'do', 'else', 'export', 'extends', 'finally', 'for', 'function', 'if', 'import', 'in', 'instanceof', 'let', 'new', 'return', 'super', 'switch', 'this', 'throw', 'try', 'typeof', 'var', 'void', 'while', 'with', 'yield', 'await', 'async', 'static', 'get', 'set', 'of', 'console', 'math', 'number', 'string', 'boolean', 'array', 'object', 'json', 'date', 'promise', 'map', 'set', 'weakmap', 'weakset', 'symbol', 'regexp', 'error', 'eval', 'then', 'catch', 'resolve', 'reject', 'async', 'await', 'finally', 'module', 'exports', 'require', '__dirname', '__filename', 'parseint', 'parsefloat', 'isnan', 'isfinite', 'encodeuri', 'decodeduri', 'encodeuricomponent', 'decodeuricomponent', 'jsonstringify', 'jsonparse', 'floor', 'ceil', 'round', 'random', 'abs', 'min', 'max', 'pow', 'sqrt', 'log', 'exp', 'log', 'warn', 'error', 'info', 'debug', 'table', 'time', 'timeend', 'window', 'document', 'location', 'history', 'navigator', 'localstorage', 'sessionstorage', 'alert', 'confirm', 'prompt', 'fetch', 'addeventlistener', 'removeeventlistener', 'queryselector', 'queryselectorall', 'getelementbyid', 'getelementsbyclassname', 'getelementsbytagname', 'createelement', 'appendchild', 'removechild', 'replacechild', 'classlist', 'classname', 'dataset', 'innerhtml', 'textcontent', 'value', 'style', 'settimeout', 'cleartimeout', 'setinterval', 'clearinterval', 'push', 'pop', 'shift', 'unshift', 'splice', 'slice', 'map', 'filter', 'reduce', 'foreach', 'find', 'findindex', 'includes', 'indexof', 'join', 'split', 'concat', 'sort', 'reverse', 'replace', 'tolowercase', 'touppercase', 'trim', 'substr', 'substring', 'startswith', 'endswith', 'indexof', 'includes', 'split', 'concat', 'prototype', 'constructor', 'hasownproperty', 'keys', 'values', 'entries', 'assign', 'create', 'defineproperty', 'addclass', 'removeclass', 'toggleclass', 'append', 'prepend', 'closest', 'matches', 'contains', 'jquery', 'react', 'vue', 'angular', 'redux', 'rxjs', 'id', 'name', 'type', 'length', 'size', 'index', 'key', 'value', 'payload', 'props', 'state', 'setstate', 'dispatch', 'subscribe', 'unsubscribe', 'handler', 'callback', 'errorhandler', 'response', 'request']
+Type single or multiple letters (prefix). Type 'quit' to exit.
+Optionally enter a ground-truth target word (must be in the word list) to compute errors.
+Enter ground-truth target word (or press Enter to skip):  co
+Target not in word list. Ignoring.
+---- start typing prefixes ----
+prefix>  c
+
+Top candidates for prefix 'c':
+  concat        p = 0.105
+  catch         p = 0.082
+  confirm       p = 0.064
+  clearinterval  p = 0.059
+  cleartimeout  p = 0.059
+  classname     p = 0.058
+Allowed-bucket (first-letter='c') total mass: 1.000
+
+---
+prefix>  co
+
+Top candidates for prefix 'co':
+  console       p = 0.539
+  concat        p = 0.201
+  constructor   p = 0.094
+  const         p = 0.065
+  contains      p = 0.061
+  confirm       p = 0.024
+Allowed-bucket (first-letter='c') total mass: 1.000
+
+---
+prefix>  con
+
+Top candidates for prefix 'con':
+  console       p = 0.522
+  concat        p = 0.133
+  continue      p = 0.121
+  contains      p = 0.112
+  confirm       p = 0.069
+  const         p = 0.036
+Allowed-bucket (first-letter='c') total mass: 1.000
+```
