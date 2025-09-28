@@ -44,3 +44,18 @@ qemu-system-x86_64 -L . -bios /share/OVMF.fd -device qemu-xhci,id=xhci -drive if
 ```
 
 Maybe it's because TimerLib is used here. But I don't want to speculate. Maybe need to add some timer support in QEMU to get it working in the command line. But I have no experience with qemu to use it. This is one of many possibilities why it might not work (?)
+
+<h3>Demo 3 - without TimerLib</h3>
+
+HelloWorld.c - https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo13%20-%20try%20write%20simple%20UiApp/demo3/HelloWorld.c#L17 - without TimerLib functions
+<br />
+HelloWorld.INF - https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo13%20-%20try%20write%20simple%20UiApp/demo3/HelloWorld.inf#L56 - without TimerLib
+<br />
+Compiled EFI code for demo 3 - https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo13%20-%20try%20write%20simple%20UiApp/demo3/HelloWorld.efi
+<br />
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo13%20-%20try%20write%20simple%20UiApp/demo3_without_TimerLib.png?raw=true)
+
+Yup, It's "works" on QEMU. But only show graphic interface like on picture. It doesn't respond to keyboard input! The image flickers, meaning it can't render the UI properly. So, it's probably partly TimerLib's fault.
+<br /><br />
+That's it for demo 13.
