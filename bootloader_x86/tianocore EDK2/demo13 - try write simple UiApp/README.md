@@ -37,7 +37,7 @@ Here is a demo from Menu item 2, which is CREATURE, shows a simple animation.
 
 <h3>How I tested on QEMU?</h3>
 
-Same as in demo 11 using the command - https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo11%20-%20Install%20ACPI%20table%20protocol%20in%20EmulatorPkg
+Same as in demo 11 using the command - https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo11%20-%20Install%20ACPI%20table%20protocol%20in%20EmulatorPkg - then I copied demo1.efi and gui_demo2.efi to a USB flash pendrive and entered FS1:\ one by one. Then, as I wrote there in demo11.
 
 ```
 qemu-system-x86_64 -L . -bios /share/OVMF.fd -device qemu-xhci,id=xhci -drive if=none,id=usbdisk,file="\\.\PHYSICALDRIVE1",format=raw -cdrom "C:\Users\kdhome\Documents\ImageISO\ubuntu-14.04.6-desktop-amd64.iso" -m 1024 -device usb-storage,drive=usbdisk
