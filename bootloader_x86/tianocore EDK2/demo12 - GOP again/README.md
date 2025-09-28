@@ -7,7 +7,7 @@ Detection sequence in Intel manuals, it already shows that this is not a trivial
 3. https://uefi.org/sites/default/files/resources/UEFI%20Spec%202_6.pdf<br />
 
 <h3>DEMO</h3>
-The folders contain a compiled demo that can be started on QME but it is tested on my laptop on the Intel HD 3000 (which can be seen in 2 pictures below). I have already written what I do in the previous demos in this repo but I will write again. I just compile hellowrold.efi and change the file name from helloworld.efi > bootx64.efi. That's all. Then I copy to the USB flash drive to the "\efi\boot\bootx64.efi" folder. I start a computer, enter the BIOS (F2), and as you can see on screenshot, then I choose booting from USB
+The folders contain a compiled demo that can be started on QEMU but it is tested on my laptop on the Intel HD 3000 (which can be seen in 2 pictures below). I have already written what I do in the previous demos in this repo but I will write again. I just compile hellowrold.efi and change the file name from helloworld.efi > bootx64.efi. That's all. Then I copy to the USB flash drive to the "\efi\boot\bootx64.efi" folder. I start a computer, enter the BIOS (F2), and as you can see on screenshot, then I choose booting from USB
 <br /><br />
 1. EDID demo - https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo12%20-%20GOP%20again/GOP_demo1_edid
 <br /><br />
@@ -29,7 +29,7 @@ Demo from https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tia
 <h3>More tests on QEMU - The same as in the GOP_DEMO2_COLOR folder bootx64.efi</h3>
 
 1. HelloWorld.c - https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo12%20-%20GOP%20again/HelloWorld.c - color test
-2. HelloWorld.INF - https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo12%20-%20GOP%20again/HelloWorld.inf - It was necessary to add gefiedddiscoveredprotocolguid
+2. HelloWorld.INF - https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo12%20-%20GOP%20again/HelloWorld.inf - It was necessary to add gEfiEdidDiscoveredProtocolGuid
 3. helloworld.efi - https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo12%20-%20GOP%20again/HelloWorld.efi - compiled color test that can be started QEMU
 
 The test begins with displaying some information about GOP, but skipped EDID. EDID is only in the first demo. Here is only a color test.
