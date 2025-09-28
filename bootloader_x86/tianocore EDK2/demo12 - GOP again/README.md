@@ -52,4 +52,6 @@ And at the end it is waiting to press the key to go to Shell or fall into Deadlo
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo12%20-%20GOP%20again/test5.png?raw=true)
 
+<h3>Summary for this particular demo</h3>
 
+Now I don't remember exactly how I built the pendrive with WinPE, but these were the topics https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/winpe-create-usb-bootable-drive?view=windows-11 . I'm also testing these demos on another laptop: HP ProBook 650 G1, Intel i5, 16 GB RAM, etc. Many things are open, like the serial port, etc., by default. It's been made since ~2014. But I tested this demo and the GOP isn't working. I wrote that it responds to keys, but the GOP doesn't detect it, but it does respond to keys. Unfortunately, this demo, before it reaches the point where it waits for a key, has to test the GOP and returns an error, because then Windows PE starts booting. This means it selects the next item on the boot list. (Kostr) showed what it's all about here https://github.com/Kostr/UEFI-Lessons/tree/master/Lessons/Lesson_19 . This selects the next item automatically. This HP laptop already has the new UEFI. My 2011 ASUS still has BIOS (American Megatrends).
