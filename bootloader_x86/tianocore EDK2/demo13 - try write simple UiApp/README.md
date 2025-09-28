@@ -6,6 +6,9 @@ scale it further. Current UEFIs already look great. it's not clunky anymore, it'
 > [!IMPORTANT]  
 > It's supposed to closer to how UiApp works, but as I wrote above, there's a skeleton outline that allows for expansion by adding the same API elements one by one ( in UiApp ). This is just to give an idea of ​​how we can start creating something like this, where the user navigates through the menu. Exit doesn't work either. Item #1, RunHelloBootServiceTest, doesn't work either. There's only a menu that provides an idea for the next steps to learn, to add something, to expand the menu, and to create new applications within it. For example, by adding the GOP test from the previous demo 12, or the protocol test from demo 10. THIS DEMO 13 IS MAINLY FOR THIS PURPOSE ONLY.
 
+> [!IMPORTANT]  
+> And unfortunately THIS ONLY WORKS ON EMULATOR PKG (winhost.exe). It doesn't work on QEMU for me.
+
 <h3>Demo 1</h3>
 
 This is a much better implementation, but also very simple. It's a menu with three options. It's a simple animation of random pixels in different colors in the corner of the screen. But it works compared to Demo 2.
