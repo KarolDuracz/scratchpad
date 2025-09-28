@@ -36,7 +36,7 @@ The test begins with displaying some information about GOP, but skipped EDID. ED
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo12%20-%20GOP%20again/test1%20-%20qemu.png?raw=true)
 
-Then he launches the swiction of several tests in the loop for about 10 seconds - Animation of moving to the right of a rectangle with changing colors.
+Then launches the swiction of several tests in the loop for about 10 seconds - Animation of moving to the right of a rectangle with changing colors.
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo12%20-%20GOP%20again/test2.png?raw=true)
 
