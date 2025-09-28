@@ -85,6 +85,8 @@ I put these files on a USB pendrive to the __bin/a28-09-2025/ folder
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo11%20-%20Install%20ACPI%20table%20protocol%20in%20EmulatorPkg/qemu-test/qemu_demo%203.png?raw=true)
 
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo11%20-%20Install%20ACPI%20table%20protocol%20in%20EmulatorPkg/qemu-test/qemu_demo%205%20-%20dir.png?raw=true)
+
 First I run acpiviewapp.efi
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo11%20-%20Install%20ACPI%20table%20protocol%20in%20EmulatorPkg/qemu-test/qemu_demo%201%20-%20dmem.png?raw=true)
