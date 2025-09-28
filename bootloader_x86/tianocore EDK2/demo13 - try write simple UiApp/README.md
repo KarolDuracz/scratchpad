@@ -35,3 +35,12 @@ Here is a demo from Menu item 2, which is CREATURE, shows a simple animation.
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo13%20-%20try%20write%20simple%20UiApp/demo2_s1.png?raw=true)
 
+<h3>How I tested on QEMU?</h3>
+
+Same as in demo 11 using the command - https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo11%20-%20Install%20ACPI%20table%20protocol%20in%20EmulatorPkg
+
+```
+qemu-system-x86_64 -L . -bios /share/OVMF.fd -device qemu-xhci,id=xhci -drive if=none,id=usbdisk,file="\\.\PHYSICALDRIVE1",format=raw -cdrom "C:\Users\kdhome\Documents\ImageISO\ubuntu-14.04.6-desktop-amd64.iso" -m 1024 -device usb-storage,drive=usbdisk
+```
+
+Maybe it's because TimerLib is used here. But I don't want to speculate. Maybe need to add some timer support in QEMU to get it working in the command line. But I have no experience with qemu to use it. This is one of many possibilities why it might not work (?)
