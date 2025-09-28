@@ -4,8 +4,17 @@ scale it further. Current UEFIs already look great. it's not clunky anymore, it'
 
 <h3>Demo 1</h3>
 
+This is a much better implementation, but also very simple. It's a menu with three options. It's a simple animation of random pixels in different colors in the corner of the screen. But it works compared to Demo 2.
+<br /><br />
+Source code - https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo13%20-%20try%20write%20simple%20UiApp/demo1/HelloWorld.c <br />
+Compiled demo1.efi - https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo13%20-%20try%20write%20simple%20UiApp/demo1/demo1.efi
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo13%20-%20try%20write%20simple%20UiApp/demo1_s1.png?raw=true)
+
 <h3>Demo 2</h3>
 Very poor quality code, many errors. Types mismatch. BUT IT WORKS. But probably only on EmulatorPkg and possibly QEMU. Obviously there is something wrong with the menu drawing.
+<br /><br />
+Compiled demo2.efi - https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo13%20-%20try%20write%20simple%20UiApp/demo2/gui_demo2.efi
 <br /><br />
 This is a continuation of the 10-12 demo. TimerLib is added to INF - https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo13%20-%20try%20write%20simple%20UiApp/demo2/HelloWorld.inf#L56 - This is needed for GetPerformanceCounter etc.
 <br /><br />
