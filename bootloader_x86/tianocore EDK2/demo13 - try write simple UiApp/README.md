@@ -1,6 +1,10 @@
 <h2>UiApp equivalent - simple demo</h2>
 Default UiApp is here https://github.com/tianocore/edk2/tree/master/MdeModulePkg/Application/UiApp - But it has a structure, some API that can be used to 
-scale it further. Current UEFIs already look great. it's not clunky anymore, it's just a cool design. But above all, it has to work. But there is another demo that tries to build something like this, just like UiApp does.
+scale it further. Current UEFIs already look great. it's not clunky anymore, it's just a cool design. But above all, it has to work. But there is another demo that tries to build something like this, just like UiApp does. <br /><br />
+
+
+> [!IMPORTANT]  
+> It's supposed to closer to how UiApp works, but as I wrote above, there's a skeleton outline that allows for expansion by adding the same API elements one by one ( in UiApp ). This is just to give an idea of ​​how we can start creating something like this, where the user navigates through the menu. Exit doesn't work either. Item #1, RunHelloBootServiceTest, doesn't work either. There's only a menu that provides an idea for the next steps to learn, to add something, to expand the menu, and to create new applications within it. For example, by adding the GOP test from the previous demo 12, or the protocol test from demo 10. THIS DEMO 13 IS MAINLY FOR THIS PURPOSE ONLY.
 
 <h3>Demo 1</h3>
 
