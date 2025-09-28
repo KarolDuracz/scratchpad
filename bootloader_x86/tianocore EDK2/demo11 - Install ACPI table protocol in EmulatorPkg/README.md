@@ -67,3 +67,34 @@ I run ACPIVIEWAPP again and as you can see it reads something
 3. The compiled version from this demo is what I used here in the HelloWorld.efi image.- https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo11%20-%20Install%20ACPI%20table%20protocol%20in%20EmulatorPkg/HelloWorld.efi
 4. Compiled acpiviewapp.efi (debug X64)- https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo11%20-%20Install%20ACPI%20table%20protocol%20in%20EmulatorPkg/AcpiViewApp.efi
 
+<h2>Part for QEMU Test</h2>
+
+I've included the current OVMF.fd that I built earlier in this repo, which I'm currently using in qemu. And again, HelloWorld.efi and AcpiTableApp.efi. They're built for X64 DEBUG, but run flawlessly in qemu.
+
+```
+bootloader_x86/tianocore EDK2/demo11 - Install ACPI table protocol in EmulatorPkg/qemu-test
+```
+
+Ok, back to this demo https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo%209%20-%20build%20OVMF%20for%20QEMU%20x86_64 At the top is a short video showing how to enter the shell via GRUB. I just entered the shell the same way and ran it with the same command (administrator CMD).
+
+```
+qemu-system-x86_64 -L . -bios /share/OVMF.fd -device qemu-xhci,id=xhci -drive if=none,id=usbdisk,file="\\.\PHYSICALDRIVE1",format=raw -cdrom "C:\Users\kdhome\Documents\ImageISO\ubuntu-14.04.6-desktop-amd64.iso" -m 1024 -device usb-storage,drive=usbdisk
+```
+
+I put these files on a USB pendrive to the __bin/a28-09-2025/ folder
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo11%20-%20Install%20ACPI%20table%20protocol%20in%20EmulatorPkg/qemu-test/qemu_demo%203.png?raw=true)
+
+First I run acpiviewapp.efi
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo11%20-%20Install%20ACPI%20table%20protocol%20in%20EmulatorPkg/qemu-test/qemu_demo%201%20-%20dmem.png?raw=true)
+
+Then helloworld.efi 
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo11%20-%20Install%20ACPI%20table%20protocol%20in%20EmulatorPkg/qemu-test/qemu_demo%202%20-%20hellworld.png?raw=true)
+
+And at the end I see the ACPI Table overwritten just like it was done on EmulatorPkg
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo11%20-%20Install%20ACPI%20table%20protocol%20in%20EmulatorPkg/qemu-test/qemu_demo%204%20-result%20after%20running%20helloworld%20on%20qemu.png?raw=true)
+
+Only here, in the case of the first acpiviewapp test, we have addresses for the ACPI table in DMEM command. EmulatorPkg doesn't have this initially. So, when acpiviewapp is first launched, we see the ACPI table, which is the default in qemu.
