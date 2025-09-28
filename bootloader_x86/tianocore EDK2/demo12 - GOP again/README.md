@@ -20,7 +20,9 @@ The folders contain a compiled demo that can be started on QME but it is tested 
 
 <h3>More tests on QEMU - The same as in the GOP_DEMO1_EDID folder bootx64.efi</h3>
 
-Demo from https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo12%20-%20GOP%20again/HelloWorld%20-%20GOP_HDMI_28-09-2025.c - This does not test colors, but is to detect the number of GOP, settings, and show a list of all possible modes and an EDID fragment. Unfortunately, I can't take a good photo from a laptop now, it also works on real hardware and detects these edid in these lines. This is not compiled. It's only as source code.
+Demo from https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo12%20-%20GOP%20again/HelloWorld%20-%20GOP_HDMI_28-09-2025.c - This does not test colors, but is to detect the number of GOP, settings, and show a list of all possible modes and an EDID fragment. Unfortunately, I can't take a good photo from a laptop now, it also works on real hardware and detects these edid in these lines. This is not compiled. It's only as source code. ( In my case, it detects AUO what is correct )
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo12%20-%20GOP%20again/EDID%20real%20hw%20display%20laptop.png?raw=true)
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo12%20-%20GOP%20again/379%20-%2028-09-2025%20-%20probuje%20zrobic%20HDMI%20driver.png?raw=true)
 
@@ -46,7 +48,7 @@ Grid test
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo12%20-%20GOP%20again/test4.png?raw=true)
 
-And at the end he is waiting to press the key to go to Shell or fall into Deadloopcpu, i.e. a loop infinite for safety
+And at the end it is waiting to press the key to go to Shell or fall into DeadloopCpu, i.e. a loop infinite for safety
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo12%20-%20GOP%20again/test5.png?raw=true)
 
