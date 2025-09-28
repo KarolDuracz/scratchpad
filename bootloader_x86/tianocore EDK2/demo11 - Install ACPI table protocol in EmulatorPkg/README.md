@@ -100,3 +100,7 @@ And at the end I see the ACPI Table overwritten just like it was done on Emulato
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo11%20-%20Install%20ACPI%20table%20protocol%20in%20EmulatorPkg/qemu-test/qemu_demo%204%20-result%20after%20running%20helloworld%20on%20qemu.png?raw=true)
 
 Only here, in the case of the first acpiviewapp test, we have addresses for the ACPI table in DMEM command. EmulatorPkg doesn't have this initially. So, when acpiviewapp is first launched, we see the ACPI table, which is the default in qemu.
+<br /><br />
+Last test - I restarted QEMU using the command above and just ran ACPIVIEWAPP again to check if anything in qemu had been damaged. But as you can see, restarting Qemu restores the default ACPI.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo11%20-%20Install%20ACPI%20table%20protocol%20in%20EmulatorPkg/qemu-test/qemu_demo%206%20-%20final.png?raw=true)
