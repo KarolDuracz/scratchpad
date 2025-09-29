@@ -1,0 +1,957 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Index-first Predictor — Context column + multi-scenario contexts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.11.0/dist/tf.min.js"></script>
+<style>
+  body { font-family: Inter, Roboto, Arial, sans-serif; margin: 18px; color: #111; }
+  h1 { margin: 0 0 8px 0; font-size: 20px;}
+  .row { display: flex; gap: 18px; align-items: flex-start; }
+  .panel { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; }
+  textarea { width: 100%; height: 140px; font-size: 16px; padding: 8px; box-sizing: border-box; }
+  .controls { display:flex; gap:10px; margin-bottom:10px; align-items:center; flex-wrap:wrap; }
+  button { padding:8px 12px; border-radius:6px; border:1px solid #bbb; background:#fff; cursor:pointer; }
+  button.primary { background:#0b79f7; color:white; border-color:#0666d6; }
+  .small { font-size:13px; color:#444; }
+  table { width:100%; border-collapse: collapse; }
+  th, td { padding:6px 8px; text-align:left; border-bottom:1px dashed #eee; vertical-align:middle; }
+  .metric { font-weight:600; }
+  .muted { color:#666; font-size:13px; }
+  .status { margin-top:8px; color:#333; font-size:13px; }
+  .footer { margin-top:14px; font-size:13px; color:#555; }
+  #logArea { margin-top:12px; padding:8px; border:1px solid #eee; height:160px; overflow:auto; background:#fff; font-family:monospace; font-size:13px; white-space:pre-wrap; }
+  .stepBox { margin-top:8px; padding:8px; border:1px dashed #e0e0e0; border-radius:6px; background:#fff; }
+  .stepTitle { font-weight:600; margin-bottom:6px; }
+  .varRow { display:flex; gap:8px; align-items:center; margin-bottom:6px; }
+  .filters { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+  .smallInput { width:100px; }
+  .targetTable { width:100%; border-collapse:collapse; }
+  .targetTable th, .targetTable td { border:1px solid #eee; padding:6px; }
+  .contextHeader { background:#fff0c8; } /* header tint for context column */
+  .contextCell { background:#fff7e6; }   /* row cell tint for context column */
+  .smallPreview { color:#333; font-size:12px; }
+</style>
+</head>
+<body>
+  <h1>Index-first Predictor — Context column + multi-scenario contexts</h1>
+
+  <div class="controls">
+    <button id="trainBtn" class="primary">Train model (quick)</button>
+    <button id="resetBtn">Reset weights</button>
+    <label class="small">Epochs:
+      <input id="epochsInput" type="number" min="1" max="500" value="60" style="width:80px" />
+    </label>
+
+    <!-- trainProgress element (prevents null .textContent error) -->
+    <div id="trainProgress" class="muted" style="margin-left:8px"></div>
+
+    <div style="border-left:1px solid #eee; padding-left:12px">
+      <strong class="small">Add variable</strong>
+      <div class="varRow">
+        <input id="varName" placeholder="name (e.g. type)" />
+        <select id="varType">
+          <option value="categorical">categorical</option>
+          <option value="continuous">continuous</option>
+        </select>
+        <input id="varOptions" placeholder="options (comma) for categorical" style="width:220px" />
+        <button id="addVarBtn">Add</button>
+      </div>
+      <div class="muted small">Add a per-word variable: categorical (choose options) or continuous (numeric). Edit per-word truths below.</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="panel">
+      <div style="font-weight:600; margin-bottom:8px">Type here (prefix typed char-by-char):</div>
+      <textarea id="inputArea" placeholder="Type letters here... (app reads prefix as you type)"></textarea>
+      <div style="margin-top:8px">
+        <button id="editTargetsBtn">Edit per-word targets</button>
+        <button id="toggleFiltersBtn">Show/hide filters</button>
+      </div>
+      <div id="filtersPanel" class="stepBox" style="display:none"></div>
+      <div class="muted" style="margin-top:8px">
+        Predictions are restricted by first-letter index. The <strong>Context</strong> column is colored. Each word has 10 possible context snippets (synthetic).
+      </div>
+    </div>
+
+    <div class="panel">
+      <div style="font-weight:600; margin-bottom:8px">Predictions & metrics</div>
+      <div id="predictionsArea" class="muted">No input yet — type in the left box.</div>
+      <div id="perCharArea" class="stepBox"></div>
+      <div class="status" id="status"></div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:12px;">
+    <div style="font-weight:600; margin-bottom:6px">Training / System log</div>
+    <div id="logArea"></div>
+  </div>
+
+  <!-- Hidden modal-ish area for editing targets -->
+  <div id="editTargetsModal" class="panel" style="display:none; margin-top:12px;">
+    <div style="font-weight:600; margin-bottom:6px">Edit per-word ground-truth targets</div>
+    <div id="targetsEditor"></div>
+    <div style="margin-top:8px">
+      <button id="saveTargetsBtn" class="primary">Save targets</button>
+      <button id="closeTargetsBtn">Close</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    Built with TFJS. This demo illustrates how adding a multi-scenario context variable expands the prediction space and error measurements.
+  </div>
+
+<script>
+(async()=>{
+
+// -----------------------------
+// Expanded word list and index
+// -----------------------------
+const WORDS = [
+  "log","loss","let","length","const","class","return","function","console","float","for","if","else",
+  "switch","case","break","continue","true","false","null","undefined","var","printf","scanf","std","vector",
+  "int","double","new","delete","try","catch","throw","import","export","module","require","map","filter",
+  "reduce","push","pop","alert","document","window","Promise","async","await","malloc","free","sizeof","struct"
+].map(s => s.toLowerCase());
+
+const WORD2IDX = Object.fromEntries(WORDS.map((w,i)=>[w,i]));
+const IDX2WORD = Object.fromEntries(WORDS.map((w,i)=>[i,w]));
+const INDEX = {};
+for (let i=0;i<WORDS.length;i++){
+  const w = WORDS[i], f = w[0];
+  if (!INDEX[f]) INDEX[f]=[];
+  INDEX[f].push(i);
+}
+
+// -----------------------------
+// char vocab & helpers
+// -----------------------------
+const PAD = "<PAD>";
+const charSet = new Set();
+WORDS.forEach(w => { for (const c of w) charSet.add(c); });
+const CHARS = [PAD, ...Array.from(charSet).sort()];
+const CHAR2IDX = Object.fromEntries(CHARS.map((c,i)=>[c,i]));
+const IDX2CHAR = Object.fromEntries(CHARS.map((c,i)=>[i,c]));
+const NUM_CHARS = CHARS.length, NUM_WORDS = WORDS.length;
+const MAX_PREFIX = Math.max(1, ...WORDS.map(w => Math.max(0, w.length - 1)));
+function encodePrefix(prefix){
+  const arr=[];
+  for (let i=0;i<prefix.length && i<MAX_PREFIX;i++) arr.push(CHAR2IDX[prefix[i]] ?? 0);
+  while (arr.length < MAX_PREFIX) arr.push(CHAR2IDX[PAD]);
+  return arr;
+}
+
+// -----------------------------
+// Context snippets (10)
+const CONTEXT_SNIPPETS = [
+  "for (int i = 0; i < n; ++i) { ... }",
+  "for (let j = 0; j < arr.length; ++j) { ... }",
+  "for (;;) { /* infinite */ }",
+  "if (x > 0) { ... }",
+  "while (i-- > 0) { ... }",
+  "try { ... } catch (e) { ... }",
+  "switch (v) { case 0: ... }",
+  "console.log('value', val);",
+  "return value;",
+  "/* sample snippet */"
+];
+// -----------------------------
+
+// -----------------------------
+// dynamic variables state (pre-populated including new Context var)
+// -----------------------------
+let extraVars = [];
+
+// helper constructors
+function makeCategorical(name, options, targets){
+  return {name, type:'categorical', options: options.slice(), weight:1.0, targets: targets.slice()};
+}
+function makeContinuous(name, targets){
+  return {name, type:'continuous', options: [], weight:1.0, targets: targets.slice()};
+}
+
+// Build default extra variables including Context (multi-scenario)
+// - category: categorical (single target per word)
+// - language: categorical
+// - popularity: continuous
+// - context: categorical with 10 possible scenarios PER WORD (multi-target per-word)
+function buildDefaultVarsWithContexts(){
+  const catOptions = ["keyword","function","type","identifier","literal"];
+  const langOptions = ["js","cpp","c","py","other"];
+
+  const catTargets = new Array(NUM_WORDS).fill(4);
+  const langTargets = new Array(NUM_WORDS).fill(4);
+  const keywords = new Set(["let","const","class","return","function","for","if","else","switch","case","break","continue","true","false","null","undefined","var","try","catch","throw","import","export","async","await"]);
+  const funcs = new Set(["console","log","printf","scanf","alert","map","filter","reduce","push","pop","document","window","require"]);
+  const types = new Set(["int","float","double","std","vector","struct","sizeof"]);
+  const identifiers = new Set(["length","module","Promise","malloc","free","new","delete"]);
+  const c_like = new Set(["printf","scanf","malloc","free","sizeof","struct"]);
+  const cpp_like = new Set(["std","vector","new","delete"]);
+  const js_like = new Set(["console","document","window","Promise","async","await","alert","map","filter","reduce","push","pop","require","module","import","export","let","const","var","function"]);
+  const py_like = new Set([]);
+
+  for (let i=0;i<NUM_WORDS;i++){
+    const w = WORDS[i];
+    if (keywords.has(w)) catTargets[i] = 0;
+    else if (funcs.has(w)) catTargets[i] = 1;
+    else if (types.has(w)) catTargets[i] = 2;
+    else if (identifiers.has(w)) catTargets[i] = 3;
+    else catTargets[i] = 4;
+
+    if (js_like.has(w)) langTargets[i] = 0;
+    else if (cpp_like.has(w)) langTargets[i] = 1;
+    else if (c_like.has(w)) langTargets[i] = 2;
+    else if (py_like.has(w)) langTargets[i] = 3;
+    else langTargets[i] = 4;
+  }
+
+  // popularity continuous 0..1
+  const popTargets = new Array(NUM_WORDS).fill(0);
+  for (let i=0;i<NUM_WORDS;i++){
+    let base = 0.2;
+    if (keywords.has(WORDS[i])) base += 0.45;
+    if (funcs.has(WORDS[i])) base += 0.25;
+    if (types.has(WORDS[i])) base += 0.15;
+    base += (i % 7) * 0.01;
+    popTargets[i] = Math.max(0, Math.min(1, +base.toFixed(3)));
+  }
+
+  // Contexts per word: each word gets an array of 10 context indices (0..9)
+  // We'll bias common loop/for/if words to have relevant contexts
+  const ctxPerWord = new Array(NUM_WORDS);
+  for (let i=0;i<NUM_WORDS;i++){
+    ctxPerWord[i] = [];
+    const w = WORDS[i];
+    // heuristics for bias
+    if (w === 'for'){
+      // many loop-oriented contexts: 0,1,2 repeated
+      for (let k=0;k<10;k++) ctxPerWord[i].push(k % 3); // 0,1,2,0,1,2...
+    } else if (w === 'if' || w === 'switch' || w === 'case'){
+      for (let k=0;k<10;k++) ctxPerWord[i].push(3 + (k % 2)); // if/switch contexts
+    } else if (w === 'console' || w === 'log' || w === 'alert'){
+      for (let k=0;k<10;k++) ctxPerWord[i].push(7); // console.log
+    } else if (w === 'return'){
+      for (let k=0;k<10;k++) ctxPerWord[i].push(8);
+    } else if (w === 'try' || w === 'catch' || w === 'throw'){
+      for (let k=0;k<10;k++) ctxPerWord[i].push(5);
+    } else {
+      // general: spread across contexts
+      for (let k=0;k<10;k++) ctxPerWord[i].push((i + k) % CONTEXT_SNIPPETS.length);
+    }
+  }
+
+  // add variables
+  extraVars = [
+    makeCategorical("category", catOptions, catTargets),
+    makeCategorical("language", langOptions, langTargets),
+    makeContinuous("popularity", popTargets),
+    // context is special: multi-target per word; we store the per-word array on a separate structure
+    {name:'context', type:'categorical', options: CONTEXT_SNIPPETS.slice(), weight:1.0, // Note: targets used differently below
+      // targets placeholder kept for compatibility but we'll use ctxPerWordMult for actual per-example targets
+      targets: new Array(NUM_WORDS).fill(0)}
+  ];
+
+  // store contexts per word in a separate structure used when building examples
+  window.__contextsPerWord = ctxPerWord;
+}
+
+// call to create defaults
+buildDefaultVarsWithContexts();
+
+// -----------------------------
+// dataset examples (prefixes) — include targets per example derived from word's truths
+// We'll duplicate each prefix example for each of the 10 contexts for that word
+let examples = []; // {prefix, xi, len, y_class, y_extras: []}
+function rebuildExamples(){
+  examples = [];
+  for (const w of WORDS){
+    const wi = WORD2IDX[w];
+    for (let L=1; L<w.length; L++){
+      const prefix = w.slice(0,L);
+      // for each context scenario for this word, create a separate example
+      const ctxArr = (window.__contextsPerWord && window.__contextsPerWord[wi]) ? window.__contextsPerWord[wi] : new Array(10).fill(0);
+      for (const ctxIdx of ctxArr){
+        // build y_extras array: other extras first, then context at the end (we'll keep consistent ordering)
+        const y_extras = [];
+        for (let vi=0; vi<extraVars.length; vi++){
+          const v = extraVars[vi];
+          if (v.name === 'context'){
+            y_extras.push(ctxIdx);
+          } else {
+            y_extras.push(v.targets[wi]);
+          }
+        }
+        examples.push({prefix, xi: encodePrefix(prefix), len:L, y_class: wi, y_extras});
+      }
+    }
+  }
+  // shuffle
+  for (let i=examples.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [examples[i], examples[j]]=[examples[j], examples[i]];
+  }
+}
+
+// -----------------------------
+// Model parameters and dynamic heads
+// -----------------------------
+const embDim = 48, hiddenDim = 96;
+let E = tf.variable(tf.randomNormal([NUM_CHARS, embDim], 0, 0.1));
+let W1 = tf.variable(tf.randomNormal([embDim, hiddenDim], 0, 0.1));
+let b1 = tf.variable(tf.zeros([hiddenDim]));
+let W2 = tf.variable(tf.randomNormal([hiddenDim, NUM_WORDS], 0, 0.1)); // classification
+let b2 = tf.variable(tf.zeros([NUM_WORDS]));
+
+// dynamic heads arrays: for each extraVar, if categorical -> {W, b, K}, if continuous -> {W, b}
+let extraHeads = [];
+const optimizer = tf.train.adam(0.02);
+
+function allocateHeadsForExtras(){
+  // dispose previous weight tensors cleanly
+  for (let h of extraHeads){
+    if (!h) continue;
+    if (h.W) h.W.dispose();
+    if (h.b) h.b.dispose();
+  }
+  extraHeads = [];
+  for (let v of extraVars){
+    if (v.type === 'categorical'){
+      const K = Math.max(2, v.options.length || 2);
+      const W = tf.variable(tf.randomNormal([hiddenDim, K], 0, 0.1));
+      const b = tf.variable(tf.zeros([K]));
+      extraHeads.push({type:'categorical', W, b, K});
+    } else {
+      const W = tf.variable(tf.randomNormal([hiddenDim, 1], 0, 0.1));
+      const b = tf.variable(tf.zeros([1]));
+      extraHeads.push({type:'continuous', W, b});
+    }
+  }
+}
+
+// dispose head tensors for a single var index (before removing)
+function disposeHeadForVar(idx){
+  const h = extraHeads[idx];
+  if (!h) return;
+  if (h.W) h.W.dispose();
+  if (h.b) h.b.dispose();
+}
+
+// -----------------------------
+// forward pass: returns main logits + predictions for extras
+// -----------------------------
+function forwardAll(X_tensor, prefixLensTensor, allowedMaskTensor){
+  return tf.tidy(()=> {
+    const Xint = X_tensor.cast('int32');
+    const emb = tf.gather(E, Xint); // [B,L,emb]
+    const valid = Xint.notEqual(0).toFloat().expandDims(-1);
+    const summed = emb.mul(valid).sum(1);
+    const lengths = valid.sum(1).maximum(1.0);
+    const pooled = summed.div(lengths); // [B,embDim]
+    const h = pooled.matMul(W1).add(b1).relu(); // [B,hiddenDim]
+
+    let logits = h.matMul(W2).add(b2);
+    if (allowedMaskTensor != null){
+      const allowedFloat = allowedMaskTensor.toFloat();
+      const veryNeg = tf.fill(logits.shape, -1e9);
+      logits = logits.mul(allowedFloat).add(veryNeg.mul(allowedFloat.neg().add(1)));
+    }
+
+    // extra preds
+    const preds = [];
+    for (let i=0;i<extraHeads.length;i++){
+      const hh = extraHeads[i];
+      if (hh.type === 'categorical'){
+        const lg = h.matMul(hh.W).add(hh.b); // logits per option
+        preds.push({type:'categorical', logits: lg});
+      } else {
+        const pr = h.matMul(hh.W).add(hh.b).squeeze([-1]); // scalar
+        preds.push({type:'continuous', pred: pr});
+      }
+    }
+    return {logits, preds};
+  });
+}
+
+// -----------------------------
+// Mask builder uses tf.buffer for safety
+// -----------------------------
+function makeAllowedMaskForPrefixes(prefixArray){
+  const B = prefixArray.length;
+  if (B===0) return tf.tensor(new Uint8Array(0), [0, NUM_WORDS], 'bool');
+  const buf = tf.buffer([B, NUM_WORDS], 'bool');
+  for (let i=0;i<B;i++){
+    const pre = prefixArray[i] || "";
+    if (!pre || pre.length === 0) {
+      for (let j=0;j<NUM_WORDS;j++) buf.set(true, i, j);
+    } else {
+      const allowed = INDEX[pre[0]] || [];
+      for (const j of allowed) buf.set(true, i, j);
+    }
+  }
+  return buf.toTensor();
+}
+
+// -----------------------------
+// TRAINING: combined loss across heads
+// -----------------------------
+async function trainCombined({epochs=60, batchSize=8, onEpoch=null} = {}) {
+  if (examples.length===0) {
+    log("No examples — add examples / variables first.");
+    return;
+  }
+  const Xs = tf.tensor2d(examples.map(e=>e.xi), [examples.length, MAX_PREFIX], 'int32');
+  const Ys_class = tf.tensor1d(examples.map(e=>e.y_class), 'int32');
+  const Ys_extra = extraVars.map((v,vi) => {
+    if (v.type === 'categorical') return tf.tensor1d(examples.map(e => e.y_extras[vi]), 'int32');
+    return tf.tensor1d(examples.map(e => e.y_extras[vi]), 'float32');
+  });
+  const prefixLens = tf.tensor1d(examples.map(e=>e.len), 'int32');
+
+  const numBatches = Math.ceil(examples.length / batchSize);
+  for (let epoch=0; epoch<epochs; epoch++){
+    const perm = tf.util.createShuffledIndices(examples.length);
+    let totCombined=0, totCls=0;
+    let totExtras = new Array(extraVars.length).fill(0);
+    let seen=0;
+    for (let b=0;b<numBatches;b++){
+      const ids = perm.slice(b*batchSize, (b+1)*batchSize);
+      if (ids.length===0) continue;
+      const idTyped = new Int32Array(ids);
+      const idTensor = tf.tensor1d(idTyped,'int32');
+      const xb = tf.gather(Xs, idTensor);
+      const yb_class = tf.gather(Ys_class, idTensor);
+      const yb_extras = Ys_extra.map(t => tf.gather(t, idTensor));
+      const plens = tf.gather(prefixLens, idTensor);
+      // prefix strings for allowedMask
+      const prefixStrings = ids.map(i => examples[i].prefix);
+      const allowedMask = makeAllowedMaskForPrefixes(prefixStrings);
+
+      const lossVal = optimizer.minimize(()=>{
+        const {logits, preds} = forwardAll(xb, plens, allowedMask);
+        const lblOneHot = tf.oneHot(yb_class, NUM_WORDS);
+        const clsPer = tf.losses.softmaxCrossEntropy(lblOneHot, logits, null);
+        const clsMean = clsPer.mean();
+        // extras loss
+        let extrasSum = tf.scalar(0);
+        for (let vi=0; vi<extraVars.length; vi++){
+          const v = extraVars[vi], head = extraHeads[vi];
+          if (v.type === 'categorical'){
+            const yhot = tf.oneHot(yb_extras[vi].toInt(), head.K);
+            const per = tf.losses.softmaxCrossEntropy(yhot, preds[vi].logits, null).mean();
+            extrasSum = extrasSum.add(per.mul(tf.scalar(v.weight)));
+          } else {
+            const per = tf.losses.meanSquaredError(yb_extras[vi], preds[vi].pred).mean();
+            extrasSum = extrasSum.add(per.mul(tf.scalar(v.weight)));
+          }
+        }
+        return clsMean.add(extrasSum);
+      }, true);
+
+      // compute scalars for logging
+      const {logits:log2, preds:preds2} = forwardAll(xb, plens, allowedMask);
+      const lblOneHot2 = tf.oneHot(yb_class, NUM_WORDS);
+      const clsMean2 = (await tf.losses.softmaxCrossEntropy(lblOneHot2, log2, null).mean().data())[0];
+      totCls += clsMean2;
+      for (let vi=0; vi<extraVars.length; vi++){
+        const v = extraVars[vi];
+        if (v.type === 'categorical'){
+          const per = (await tf.losses.softmaxCrossEntropy(tf.oneHot(yb_extras[vi].toInt(), extraHeads[vi].K), preds2[vi].logits, null).mean().data())[0];
+          totExtras[vi] += per;
+        } else {
+          const per = (await tf.losses.meanSquaredError(yb_extras[vi], preds2[vi].pred).mean().data())[0];
+          totExtras[vi] += per;
+        }
+      }
+      totCombined += (await lossVal.data())[0];
+      seen++;
+      tf.dispose([idTensor, xb, yb_class, ...yb_extras, plens, allowedMask, lossVal, log2, preds2, lblOneHot2]);
+      await tf.nextFrame();
+    }
+    if (onEpoch) onEpoch(epoch+1, epochs, totCombined/Math.max(1,seen), totCls/Math.max(1,seen), totExtras.map(x=>x/Math.max(1,seen)));
+    log(`Epoch ${epoch+1}/${epochs} — combined ${ (totCombined/Math.max(1,seen)).toFixed(4)} — cls ${(totCls/Math.max(1,seen)).toFixed(4)} — extras ${totExtras.map(x=>x/Math.max(1,seen)).map(y=>y.toFixed(4)).join(', ')}`);
+    if (document.getElementById('trainProgress')) document.getElementById('trainProgress').textContent = `Epoch ${epoch+1}/${epochs} — combined ${(totCombined/Math.max(1,seen)).toFixed(4)}`;
+  }
+
+  tf.dispose([Xs, Ys_class, prefixLens, ...Ys_extra]);
+  log("Training completed.");
+}
+
+// -----------------------------
+// small logging & UI wiring
+// -----------------------------
+const inputArea = document.getElementById('inputArea');
+const trainBtn = document.getElementById('trainBtn');
+const resetBtn = document.getElementById('resetBtn');
+const trainProgress = document.getElementById('trainProgress');
+const predictionsArea = document.getElementById('predictionsArea');
+const perCharArea = document.getElementById('perCharArea');
+const status = document.getElementById('status');
+const addVarBtn = document.getElementById('addVarBtn');
+const varName = document.getElementById('varName');
+const varType = document.getElementById('varType');
+const varOptions = document.getElementById('varOptions');
+const editTargetsBtn = document.getElementById('editTargetsBtn');
+const editTargetsModal = document.getElementById('editTargetsModal');
+const targetsEditor = document.getElementById('targetsEditor');
+const saveTargetsBtn = document.getElementById('saveTargetsBtn');
+const closeTargetsBtn = document.getElementById('closeTargetsBtn');
+const toggleFiltersBtn = document.getElementById('toggleFiltersBtn');
+const filtersPanel = document.getElementById('filtersPanel');
+const epochsInput = document.getElementById('epochsInput');
+
+function log(msg){
+  const logArea = document.getElementById('logArea');
+  const ts = new Date().toLocaleTimeString();
+  logArea.textContent += `[${ts}] ${msg}\n`;
+  logArea.scrollTop = logArea.scrollHeight;
+}
+
+trainBtn.addEventListener('click', async ()=>{
+  trainBtn.disabled = true;
+  if (trainProgress) trainProgress.textContent = 'Training...';
+  log("Training started.");
+  try {
+    const epochs = Math.max(1, parseInt(epochsInput.value || "60"));
+    await trainCombined({
+      epochs,
+      batchSize: 16,
+      onEpoch: (n,t,combined,cls,extras) => {
+        if (trainProgress) trainProgress.textContent = `Epoch ${n}/${t} — combined ≈ ${combined.toFixed(4)}`;
+      }
+    });
+    if (trainProgress) trainProgress.textContent = 'Training finished.';
+  } catch(e){
+    log("Training error: " + String(e));
+    console.error(e);
+  } finally {
+    trainBtn.disabled=false;
+    updatePredictions();
+  }
+});
+
+resetBtn.addEventListener('click', ()=>{
+  tf.tidy(()=>{
+    E.assign(tf.randomNormal([NUM_CHARS, embDim], 0, 0.1));
+    W1.assign(tf.randomNormal([embDim, hiddenDim], 0, 0.1));
+    b1.assign(tf.zeros([hiddenDim]));
+    W2.assign(tf.randomNormal([hiddenDim, NUM_WORDS], 0, 0.1));
+    b2.assign(tf.zeros([NUM_WORDS]));
+    for (let h of extraHeads){
+      if (h.type==='categorical'){
+        h.W.assign(tf.randomNormal([hiddenDim, h.K], 0, 0.1));
+        h.b.assign(tf.zeros([h.K]));
+      } else {
+        h.W.assign(tf.randomNormal([hiddenDim, 1], 0, 0.1));
+        h.b.assign(tf.zeros([1]));
+      }
+    }
+  });
+  log("Weights reset.");
+  updatePredictions();
+});
+
+// -----------------------------
+// UI: add var (same as before)
+addVarBtn.addEventListener('click', ()=>{
+  const name = (varName.value || "").trim();
+  if (!name) { alert("Provide a name"); return; }
+  const type = varType.value;
+  let options = [];
+  if (type === 'categorical'){
+    options = varOptions.value.split(',').map(s=>s.trim()).filter(s=>s);
+    if (options.length === 0) {
+      options = ["A","B"];
+    }
+  }
+  // build default targets: naive (index % K) or small continuous mapping
+  if (type === 'categorical'){
+    const K = options.length;
+    const targets = new Array(NUM_WORDS).fill(0).map((_,i)=> i % K);
+    extraVars.push({name, type, options, weight:1.0, targets});
+  } else {
+    const targets = new Array(NUM_WORDS).fill(0).map((_,i)=> +(((i - (NUM_WORDS-1)/2) / (NUM_WORDS/2)) * 0.6).toFixed(4));
+    extraVars.push({name, type, options:[], weight:1.0, targets});
+  }
+  rebuildExamples();
+  allocateHeadsForExtras();
+  renderFiltersUI();
+  renderTargetsEditor();
+  updatePredictions();
+  varName.value=""; varOptions.value="";
+  log(`Added variable '${name}' (${type})`);
+});
+
+// -----------------------------
+// Targets editor (context var shows list-of-contexts per-word)
+function renderTargetsEditor(){
+  const container = targetsEditor;
+  container.innerHTML = "";
+  if (extraVars.length === 0){
+    container.innerHTML = "<div class='muted'>No extra variables defined.</div>";
+    return;
+  }
+  let html = "<table class='targetTable'><thead><tr><th>word</th>";
+  for (let vi=0;vi<extraVars.length;vi++){
+    html += `<th>${extraVars[vi].name}</th>`;
+  }
+  html += "</tr></thead><tbody>";
+  for (let wi=0; wi<NUM_WORDS; wi++){
+    html += `<tr><td style="font-weight:600">${WORDS[wi]}</td>`;
+    for (let vi=0; vi<extraVars.length; vi++){
+      const v = extraVars[vi];
+      if (v.name === 'context'){
+        // show the list of contexts for this word (non-editable summary)
+        const arr = window.__contextsPerWord && window.__contextsPerWord[wi] ? window.__contextsPerWord[wi] : [];
+        const preview = arr.slice(0,5).map(idx => CONTEXT_SNIPPETS[idx].slice(0,40)).join(' ; ');
+        html += `<td title="${arr.map(i=>CONTEXT_SNIPPETS[i]).join(' || ')}" class="smallPreview">${preview}${arr.length>5? ' ...':''}</td>`;
+      } else if (v.type === 'categorical'){
+        const val = v.targets[wi];
+        html += `<td><select data-wi="${wi}" data-vi="${vi}">` + v.options.map((opt,oi)=>`<option value="${oi}" ${oi===val?'selected':''}>${opt}</option>`).join('') + `</select></td>`;
+      } else {
+        const val = v.targets[wi];
+        html += `<td><input data-wi="${wi}" data-vi="${vi}" class="smallInput" value="${val}" /></td>`;
+      }
+    }
+    html += `</tr>`;
+  }
+  html += "</tbody></table>";
+  container.innerHTML = html;
+}
+
+editTargetsBtn.addEventListener('click', ()=>{
+  renderTargetsEditor();
+  editTargetsModal.style.display = 'block';
+});
+
+closeTargetsBtn.addEventListener('click', ()=>{
+  editTargetsModal.style.display = 'none';
+});
+
+saveTargetsBtn.addEventListener('click', ()=>{
+  const selects = targetsEditor.querySelectorAll('select[data-wi]');
+  selects.forEach(s => {
+    const wi = +s.dataset.wi, vi = +s.dataset.vi;
+    extraVars[vi].targets[wi] = +s.value;
+  });
+  const inputs = targetsEditor.querySelectorAll('input[data-wi]');
+  inputs.forEach(inp => {
+    const wi = +inp.dataset.wi, vi = +inp.dataset.vi;
+    extraVars[vi].targets[wi] = parseFloat(inp.value || '0');
+  });
+  rebuildExamples();
+  editTargetsModal.style.display = 'none';
+  log("Saved per-word targets.");
+  updatePredictions();
+});
+
+// -----------------------------
+// Filters UI (same behavior)
+let activeFilters = {}; // varIndex -> filter
+function renderFiltersUI(){
+  const panel = filtersPanel;
+  panel.innerHTML = "";
+  if (extraVars.length === 0) {
+    panel.innerHTML = "<div class='muted'>No filters (no variables).</div>";
+    return;
+  }
+  let html = "<div class='stepTitle'>Filters (restrict candidate words)</div><div class='filters'>";
+  for (let vi=0; vi<extraVars.length; vi++){
+    const v = extraVars[vi];
+    if (v.type === 'categorical'){
+      html += `<div><label>${v.name}: <select data-vi="${vi}" class="filterCat"><option value="">-- any --</option>` + v.options.map((opt,oi)=>`<option value="${oi}">${opt}</option>`).join('') + `</select></label></div>`;
+    } else {
+      const arr = v.targets.slice().sort((a,b)=>a-b);
+      const lo = arr[0].toFixed(3), hi = arr[arr.length-1].toFixed(3);
+      html += `<div><label>${v.name}: min <input class="filterContMin smallInput" data-vi="${vi}" placeholder="${lo}" /> max <input class="filterContMax smallInput" data-vi="${vi}" placeholder="${hi}" /></label></div>`;
+    }
+  }
+  html += "</div>";
+  panel.innerHTML = html;
+
+  panel.querySelectorAll('.filterCat').forEach(sel=>{
+    sel.addEventListener('change', e=>{
+      const vi = +e.target.dataset.vi;
+      const val = e.target.value === "" ? null : +e.target.value;
+      if (val === null) delete activeFilters[vi]; else activeFilters[vi] = val;
+      updatePredictions();
+    });
+  });
+  panel.querySelectorAll('.filterContMin').forEach(inp=>{
+    inp.addEventListener('input', e=>{
+      const vi = +e.target.dataset.vi;
+      const min = parseFloat(e.target.value);
+      const maxEl = panel.querySelector(`.filterContMax[data-vi="${vi}"]`);
+      const max = parseFloat(maxEl.value);
+      if (isNaN(min) && isNaN(max)) delete activeFilters[vi]; else {
+        activeFilters[vi] = {min: isNaN(min) ? -Infinity : min, max: isNaN(max) ? Infinity : max};
+      }
+      updatePredictions();
+    });
+  });
+  panel.querySelectorAll('.filterContMax').forEach(inp=>{
+    inp.addEventListener('input', e=>{
+      const vi = +e.target.dataset.vi;
+      const max = parseFloat(e.target.value);
+      const minEl = panel.querySelector(`.filterContMin[data-vi="${vi}"]`);
+      const min = parseFloat(minEl.value);
+      if (isNaN(min) && isNaN(max)) delete activeFilters[vi]; else {
+        activeFilters[vi] = {min: isNaN(min) ? -Infinity : min, max: isNaN(max) ? Infinity : max};
+      }
+      updatePredictions();
+    });
+  });
+}
+
+toggleFiltersBtn.addEventListener('click', ()=>{
+  filtersPanel.style.display = filtersPanel.style.display === 'none' ? 'block' : 'none';
+  if (filtersPanel.style.display === 'block') renderFiltersUI();
+});
+
+// -----------------------------
+// prediction & rendering
+// -----------------------------
+function argsortDescending(arr, topk=6){
+  const idx = arr.map((v,i)=>i);
+  idx.sort((a,b)=>arr[b]-arr[a]);
+  return idx.slice(0, topk);
+}
+function formatNumber(x){ if (Math.abs(x) < 0.0001) return x.toExponential(2); return Number(x).toFixed(4); }
+
+async function updatePredictions(){
+  const prefix = (inputArea.value||"").trim().toLowerCase();
+  if (!prefix || prefix.length===0){
+    predictionsArea.innerHTML = "<div class='muted'>No input yet — type at least the first letter.</div>";
+    status.textContent="";
+    return;
+  }
+  if (!INDEX[prefix[0]]){
+    predictionsArea.innerHTML = `<div class='muted'>No known words starting with '${prefix[0]}'.</div>`;
+    status.textContent="";
+    return;
+  }
+
+  // encode
+  const enc = encodePrefix(prefix);
+  const X = tf.tensor2d([enc], [1, MAX_PREFIX], 'int32');
+  const plens = tf.tensor1d([Math.min(prefix.length, MAX_PREFIX)], 'int32');
+  const allowedMask = makeAllowedMaskForPrefixes([prefix]);
+
+  // forward
+  const {logits, preds} = forwardAll(X, plens, allowedMask);
+  const probsTensor = tf.softmax(logits);
+  const probsArray = Array.from(await probsTensor.data());
+  // predicted extra outputs (per example)
+  let predsInfo = [];
+  for (let vi=0; vi<preds.length; vi++){
+    const p = preds[vi];
+    if (p.type === 'categorical'){
+      const lg = p.logits;
+      const vals = Array.from(await lg.softmax().data());
+      const best = vals.reduce((acc,val,idx)=> val>acc.p?{p:val,idx}:acc, {p:-1,idx:-1});
+      predsInfo.push({type:'categorical', probs:vals, predClass:best.idx, predConf:best.p});
+    } else {
+      const pr = (await p.pred.data())[0];
+      predsInfo.push({type:'continuous', predValue: pr});
+    }
+  }
+
+  // allowed mass
+  const allowedIndices = INDEX[prefix[0]];
+  let allowedMass=0;
+  for (const idx of allowedIndices) allowedMass += probsArray[idx];
+
+  // apply active filters to candidate list (reduce PROBS rows)
+  let candidateIdxs = [...Array(NUM_WORDS).keys()].filter(i => allowedIndices.includes(i));
+  candidateIdxs = candidateIdxs.filter(i => {
+    for (const [vi,val] of Object.entries(activeFilters)){
+      const vindex = +vi;
+      const v = extraVars[vindex];
+      if (v.name === 'context') continue; // context filtering not supported here (it would require per-word per-context UI)
+      const wordVal = v.targets[i];
+      if (v.type === 'categorical') {
+        if (val === null || val === undefined) continue;
+        if (wordVal !== val) return false;
+      } else {
+        if (wordVal < val.min || wordVal > val.max) return false;
+      }
+    }
+    return true;
+  });
+
+  // sort by probs
+  candidateIdxs.sort((a,b)=>probsArray[b]-probsArray[a]);
+  const topk = Math.min(candidateIdxs.length, 12);
+
+  // build table header (we'll mark context header specially)
+  let html = `<table><thead><tr><th>word</th><th>prob</th>`;
+  for (let vi=0; vi<extraVars.length; vi++){
+    const v = extraVars[vi];
+    if (v.name === 'context'){
+      html += `<th class="contextHeader">${v.name} (truths)</th><th class="contextHeader">${v.name} (pred)</th><th class="contextHeader">${v.name} (err)</th>`;
+    } else {
+      html += `<th>${v.name} (truth)</th><th>${v.name} (pred)</th><th>${v.name} (err)</th>`;
+    }
+  }
+  html += `</tr></thead><tbody>`;
+
+  // fill rows
+  for (let t=0; t<topk; t++){
+    const idx = candidateIdxs[t];
+    html += `<tr><td style="font-weight:600">${IDX2WORD[idx]}</td><td>${formatNumber(probsArray[idx])}</td>`;
+    for (let vi=0; vi<extraVars.length; vi++){
+      const v = extraVars[vi];
+      // context special handling
+      if (v.name === 'context'){
+        const ctxArr = (window.__contextsPerWord && window.__contextsPerWord[idx]) ? window.__contextsPerWord[idx] : [];
+        // show short preview of the first 3 contexts
+        const preview = ctxArr.slice(0,3).map(i=>CONTEXT_SNIPPETS[i].slice(0,40)).join(' ; ');
+        // predicted context probs vector:
+        const pred = predsInfo[vi]; // categorical probs length 10
+        // compute per-word average predicted prob for the word's contexts:
+        const probsVec = pred.probs;
+        let avgProbForTruths = 0;
+        if (ctxArr.length > 0){
+          for (const cidx of ctxArr) avgProbForTruths += (probsVec[cidx] || 0);
+          avgProbForTruths = avgProbForTruths / ctxArr.length;
+        }
+        const err = 1 - avgProbForTruths; // average mismatch prob for this word
+        // Predicted top context and confidence
+        const predClass = pred.predClass;
+        const predConf = pred.predConf;
+        html += `<td class="contextCell" title="${ctxArr.map(i=>CONTEXT_SNIPPETS[i]).join(' || ')}">${preview}${ctxArr.length>3? ' ...':''}</td>`;
+        html += `<td class="contextCell">${(CONTEXT_SNIPPETS[predClass]||predClass).slice(0,50)} (${formatNumber(predConf)})</td>`;
+        html += `<td class="contextCell">avg_misprob=${formatNumber(err)}</td>`;
+      } else {
+        const truth = v.targets[idx];
+        const pred = predsInfo[vi];
+        if (v.type === 'categorical'){
+          const predClass = pred.predClass;
+          const predConf = pred.predConf;
+          const err = predClass === truth ? 0 : 1;
+          html += `<td>${v.options[truth] ?? truth}</td><td>${v.options[predClass] ?? predClass} (${formatNumber(predConf)})</td><td>${err}</td>`;
+        } else {
+          const predVal = pred.predValue;
+          const ae = Math.abs(predVal - truth);
+          html += `<td>${formatNumber(truth)}</td><td>${formatNumber(predVal)}</td><td>AE=${formatNumber(ae)}</td>`;
+        }
+      }
+    }
+    html += `</tr>`;
+  }
+  html += `</tbody></table>`;
+
+  // high level metrics
+  let metrics = [];
+  metrics.push(`<div><span class="metric">Allowed-bucket mass</span> (first-letter='${prefix[0]}'): ${formatNumber(allowedMass)}</div>`);
+  const entropy = -probsArray.reduce((s,p)=> s + (p>1e-12 ? p * Math.log(p) : 0), 0);
+  metrics.push(`<div><span class="metric">Predictive entropy</span>: ${formatNumber(entropy)}</div>`);
+
+  // expected errors for extras (context handled as multi-target)
+  for (let vi=0; vi<extraVars.length; vi++){
+    const v = extraVars[vi];
+    if (v.name === 'context'){
+      // expected misclass probability considering multiple truth contexts per word
+      let expErr = 0;
+      const predProbs = predsInfo[vi].probs; // length 10
+      for (const i of candidateIdxs){
+        const pword = probsArray[i];
+        const ctxArr = (window.__contextsPerWord && window.__contextsPerWord[i]) ? window.__contextsPerWord[i] : [];
+        if (ctxArr.length === 0){
+          expErr += pword * 1; // no truth -> full error
+          continue;
+        }
+        let avgProbForTruths = 0;
+        for (const c of ctxArr) avgProbForTruths += (predProbs[c] || 0);
+        avgProbForTruths = avgProbForTruths / ctxArr.length;
+        expErr += pword * (1 - avgProbForTruths);
+      }
+      metrics.push(`<div><span class="metric">${v.name} expected misclass prob</span>: ${formatNumber(expErr)}</div>`);
+    } else if (v.type === 'categorical'){
+      let expErr = 0;
+      for (const i of candidateIdxs){
+        const pword = probsArray[i];
+        const predProbForTruth = predsInfo[vi].probs ? (predsInfo[vi].probs[v.targets[i]] || 0) : 0;
+        expErr += pword * (1 - predProbForTruth);
+      }
+      metrics.push(`<div><span class="metric">${v.name} expected misclass prob</span>: ${formatNumber(expErr)}</div>`);
+    } else {
+      const predVal = predsInfo[vi].predValue;
+      let expMSE = 0;
+      for (const i of candidateIdxs){
+        const pword = probsArray[i];
+        const tru = v.targets[i];
+        expMSE += pword * ((predVal - tru) ** 2);
+      }
+      metrics.push(`<div><span class="metric">${v.name} expected MSE</span>: ${formatNumber(expMSE)}</div>`);
+    }
+  }
+
+  predictionsArea.innerHTML = html + "<div style='margin-top:8px'>" + metrics.join("") + "</div>";
+  status.textContent = "Predictions updated.";
+
+  tf.dispose([X, plens, allowedMask, logits, probsTensor, ...preds.map(p=>p.logits||p.pred)]);
+}
+
+// per-character diagnostics
+async function updatePerCharSequence(){
+  const s = (inputArea.value||"").trim().toLowerCase();
+  perCharArea.innerHTML = "";
+  if (!s || s.length===0) return;
+  let stepHtml = `<div class='stepTitle'>Per-character predictions (typed so far: "${s}")</div>`;
+  for (let L=1; L<=s.length; L++){
+    const pref = s.slice(0,L);
+    if (!INDEX[pref[0]]){
+      stepHtml += `<div>Step ${L} ('${pref}'): no words start with '${pref[0]}'</div>`;
+      continue;
+    }
+    const enc = encodePrefix(pref);
+    const X = tf.tensor2d([enc],[1,MAX_PREFIX],'int32');
+    const plens = tf.tensor1d([Math.min(pref.length, MAX_PREFIX)], 'int32');
+    const allowedMask = makeAllowedMaskForPrefixes([pref]);
+    const {logits, preds} = forwardAll(X, plens, allowedMask);
+    const probsArray = Array.from(await tf.softmax(logits).data());
+    const allowedIndices = INDEX[pref[0]];
+    let allowedMass=0;
+    for (const idx of allowedIndices) allowedMass += probsArray[idx];
+    let infos=[];
+    for (let vi=0; vi<preds.length; vi++){
+      const p = preds[vi];
+      if (p.type === 'categorical'){
+        const ps = Array.from(await p.logits.softmax().data());
+        const best = ps.reduce((acc,val,idx)=> val>acc.p?{p:val,idx}:acc, {p:-1,idx:-1});
+        const label = extraVars[vi].name === 'context' ? (CONTEXT_SNIPPETS[best.idx]||best.idx).slice(0,30) : (extraVars[vi].options[best.idx]||best.idx);
+        infos.push(`${extraVars[vi].name}: ${label}(${formatNumber(best.p)})`);
+      } else {
+        const v = (await p.pred.data())[0];
+        infos.push(`${extraVars[vi].name}: ${formatNumber(v)}`);
+      }
+    }
+    const topIdxs = argsortDescending(probsArray, 4);
+    let row = `Step ${L} ('${pref}') — allowed_mass=${formatNumber(allowedMass)} — top: `;
+    row += topIdxs.map(i=>`${IDX2WORD[i]}(${formatNumber(probsArray[i])})`).join(', ');
+    if (infos.length) row += " — extras: " + infos.join(", ");
+    stepHtml += `<div>${row}</div>`;
+    tf.dispose([X, plens, allowedMask, logits, ...preds.map(p=>p.logits||p.pred)]);
+  }
+  perCharArea.innerHTML = stepHtml;
+}
+
+// wire input update
+inputArea.addEventListener('input', ()=>{
+  updatePredictions();
+  updatePerCharSequence();
+});
+
+// initial setup
+rebuildExamples();
+allocateHeadsForExtras();
+renderFiltersUI();
+renderTargetsEditor();
+updatePredictions();
+
+})();
+</script>
+</body>
+</html>
