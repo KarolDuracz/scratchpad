@@ -26,7 +26,7 @@ Original text : <br />
 
 <H3>Sample after ~iter 2500: loss 0.7487, time 74715.03ms, mfu 0.63%</H3>
 
-Why did I take the same approach with letters instead of words? Because Andrej was right to give such an exercise, a demo. And initially, I want to first see how it performs and reach the point where I can say there's a strong resemblance to Pan Tadeusz, but it's not a copy <> passe, it's actually a model imitating it. But as I wrote above, I need to setup a better GPU. 
+Why did I take the same approach with letters instead of words? Because Andrej was right to give such an exercise, a demo. And initially, I want to first see how it performs and reach the point where I can say there's a strong resemblance to Pan Tadeusz, but it's not a copy <> paste, it's actually a model imitating it. But as I wrote above, I need to setup a better GPU. And speed up whole process.
 
 ```
 Overriding: out_dir = out-mickiewicz-char
