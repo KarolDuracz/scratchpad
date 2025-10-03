@@ -2,7 +2,7 @@
 > TODO. Why? Read the first lines below. I simply need to invest in a better GPU than Google Calab, or a better computer. For now, I'll try to run it next time (next week?) on https://lambda.ai/ GPU cluster. To do a full training and check from the inside how it works. TODO.
 
 
-<h3>Tiny Shakespeare vs Adam Mickiewicz "Pan Tadebusz" running on nanoGPT</h3>
+<h3>Tiny Shakespeare vs Adam Mickiewicz "Pan Tadeusz" running on nanoGPT</h3>
 I wanted to practice on Google Colab, but it's not a good idea at the basic settings. With 10M parameters, training even 3200 steps takes about an hour. For me it doesn't make sense anymore. I need to move to a better GPU, for example from https://lambda.ai/. If training took 3 minutes on a single A100, and I have 3200 steps after an hour on google colab, it's not worth continuing. Or invest in a new computer. Google colab is ok, and free, but... (...) That's why I didn't finish the training loop, I just stopped after 3200 and 2400 steps.
 <br /><br />
 Why Adam Mickiewicz, Pan Tadeusz? Andrej can understand what Shakespeare writes. Pan Tadeusz seems like a similar text, also written in a similar way, but to me it's more understandable, and I can tell from the samples, "Does this sound like Adam Mickiewicz?". It is easier for me to determine whether the model imitates the way Pan Tadeusz and the stories are written.
