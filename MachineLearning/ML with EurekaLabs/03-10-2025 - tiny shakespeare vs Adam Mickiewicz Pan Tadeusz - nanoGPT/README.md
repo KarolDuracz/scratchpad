@@ -172,3 +172,7 @@ Ale by już o nim umiał przyjacielu zamku wyprawić.
 Niech , cóż był nie był do tym so
 ---------------
 ```
+
+<h3>links</h3>
+1. Deep Learning Decade and GPT-4 | Lukasz Kaiser, OpenAI | AI for Ukraine: Season 2
+ - https://www.youtube.com/watch?v=Vrvc2rPuXTE - This may not be strictly technical as Andrej does in the makemore series, but once again a short overview of the history of ML and LLM. Lukasz Kaiser, looks like a guy who knows what he's talking about. History brief from 2023.
