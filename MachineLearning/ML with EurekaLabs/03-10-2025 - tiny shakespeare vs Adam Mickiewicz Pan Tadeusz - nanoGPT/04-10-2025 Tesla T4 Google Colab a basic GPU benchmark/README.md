@@ -508,5 +508,16 @@ Po czarnymi się wzniósł pierwszy śród si
 ---------------
 ```
 
+<h3>Summary</h3>
+
+1. Before starting sampling, download these files to local machine. Recreated folders for these paths from google colab.
+2. /content/nanoGPT/out-shakespeare-char/ckpt.pt # ~74MB file for 6M model
+3. /content/nanoGPT/data/mickiewicz/meta.pkl
+4. Start sample on CPU
+
 ```
+python sample.py --out_dir=out-mickiewicz-char --device=cpu
+```
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/03-10-2025%20-%20tiny%20shakespeare%20vs%20Adam%20Mickiewicz%20Pan%20Tadeusz%20-%20nanoGPT/04-10-2025%20Tesla%20T4%20Google%20Colab%20a%20basic%20GPU%20benchmark/sample%20on%20CPU%20localmachine%20after%20training%206M.png?raw=true)
 
