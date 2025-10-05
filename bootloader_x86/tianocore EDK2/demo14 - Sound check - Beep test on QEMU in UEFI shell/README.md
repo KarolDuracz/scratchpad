@@ -207,6 +207,8 @@ It looks like this is an audio device. I've added a few more screenshots here to
 2. SigmaTel Intel r AC'97 Audio Controller datasheed - https://sunsite.icm.edu.pl/pub/linux/alsa/manuals/sigmatel/9721spec.PDF<br />
 3. High Definition Audio Specification Revision 1.0a June 17, 2010 - https://www.intel.com/content/dam/www/public/us/en/documents/product-specifications/high-definition-audio-specification.pdf - I see a lot of changes from '04 on the first pages describing this revision. But documentation will probably match registers in Virtual Box, I think.<br />
 4. https://www.virtualbox.org/browser/vbox/trunk/src/VBox/Devices/Graphics/ - source code. This is VGA. But here is a implementation and source code for Audio Card also I think.
+<br /><br />
+5. qemu/hw/audio/ac97.c --> https://github.com/qemu/qemu/blob/master/hw/audio/ac97.c
 
 <h3>Real HW test?</h3>
 
