@@ -1,6 +1,7 @@
 > [!WARNING]
 > [1] Update 05-10-2025 - There's a bug, but I don't know exactly where. Sometimes this BEEP code doesn't work. It just freezes at a certain point. For example, helloworld_beep.efi. For example, in a scenario where you first run the diagnostic 00 05 00 test, then run helloworld.efi and the program freezes. YOU NEED TO RESET THE QEMU SYSTEM. And enter the SHELL again. You might need to do this 2-3 times without the diagnostic test, just run one of the three available .efi files that generates the BEEP. There's helloworld.efi, helloworld_beep.efi, and helloworld_first.efi. Keep it in mind. This doesn't mean the code I posted isn't working. It's just that something isn't quite right. But I don't know what yet. <br />
-> [2] The second error is that after executing 1x BEEP you need to reset the system because running this code again does not work.
+> [2] The second error is that after executing 1x BEEP you need to reset the system because running this code again does not work. <br />
+> Just keep it in mind. That doesn't mean it doesn't work at all.
 
 <h2>Sound check - Beep test on QEMU in UEFI shell</h2>
 What was my goal for this demo? First and foremost, find code that would work. Not only would it compile, but it would actually trigger the BEEP sound in the shell. There are a few steps I took before finding the right code with GPT-5 help, but I'll just focus on what I have, and what I managed to get working, AND IT LOOKS LIKE IT WORKS.
