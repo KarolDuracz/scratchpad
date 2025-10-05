@@ -234,3 +234,23 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\HDAUDIO\FUNC_01&VEN_8086&DEV_28
 These are important two values 10EC&DEV_0269 and 8086&DEV_2805. One of them shows that it is Realtek Semiconductor Corp. https://catalog.update.microsoft.com/Search.aspx?q=VEN_10EC%26DEV_0269 - Correct. <br />
 So I don't even run it to avoid damaging something in the system.
 
+> [!NOTE]
+> correct test on VirtualBox <br />
+> source code on github -> https://github.com/VirtualBox/virtualbox/blob/main/src/VBox/Devices/Audio/DevHda.cpp#L81
+
+<h3>Virtual Box demo </h3>
+Now I don't delve into these topics every day. I've realized that VirtualBox definitely emulates AC97. And indeed, such a device exists. <br />
+https://github.com/VirtualBox/virtualbox/blob/main/src/VBox/Devices/Audio/DevHda.cpp#L81 - Here you can see the VENDOR and ID ( on github repo that works )
+<br /><br />
+change from default HDA to AC97<br /><br />
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/images/entry%20point%20to%20shell.png?raw=true)
+
+Above you can see that it passed the pci 00 05 00 diagnostic test. Then I managed to SUCCESSFULLY run helloworld.efi and heard a BEEP, so it works.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/images/vbox_update_it_works.png?raw=true)
+
+but it keeps crashing
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/images/test%202%20-%20still%20freeze.png?raw=true)
+
