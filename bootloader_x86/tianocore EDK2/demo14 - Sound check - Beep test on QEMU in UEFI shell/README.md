@@ -210,7 +210,7 @@ It looks like this is an audio device. I've added a few more screenshots here to
 
 <h3>Real HW test?</h3>
 
-On my ASUS laptop? This is dump from registry > SYSTEM > CurrentControlSex > Enum > HDAUDO ( tree showing 2 devices, 2 items )
+On my ASUS laptop? This is dump from registry > SYSTEM > CurrentControlSet > Enum > HDAUDIO ( tree showing 2 devices, 2 items )
 
 ```
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\HDAUDIO\FUNC_01&VEN_10EC&DEV_0269&SUBSYS_10431AA3&REV_1001
