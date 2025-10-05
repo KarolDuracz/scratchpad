@@ -8,6 +8,8 @@
 > try to reset system by clicking CTRL + ALT + G to release the mouse and on "Machine > Reset" menu in the main QEMU window <br />
 > sometimes it freezes at the end of the code when waiting for a key, after the beep.
 
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/images/errors.png?raw=true)
+
 <h2>Sound check - Beep test on QEMU in UEFI shell</h2>
 What was my goal for this demo? First and foremost, find code that would work. Not only would it compile, but it would actually trigger the BEEP sound in the shell. There are a few steps I took before finding the right code with GPT-5 help, but I'll just focus on what I have, and what I managed to get working, AND IT LOOKS LIKE IT WORKS.
 <br /><br />
