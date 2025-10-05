@@ -202,3 +202,8 @@ In the previous demo, I also tried running the test on VirtualBox 7. But this ti
 
 It looks like this is an audio device. I've added a few more screenshots here to give you a preview of what it looks like in VirtualBox. https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/virtualbox%207%20test%20and%20pins%20datasheet  - There are also a few images with pins, but that's just a preliminary view. Don't pay attention to that for now. That needs to be checked carefully next time. But the PCI 00 05 00 diagnostic test works, because it's also on this line in VirtualBox. So, as you can see in screenshot there, something is printed. File "virtualbox_diagnostic pci 00 05 00.png".
 
+<h3>LINKS</h3>
+1. QEMU sound cards list - https://computernewb.com/wiki/QEMU/Devices/Sound_cards - AC97 shows Intel(r) 82801AA AC'97 (SigmaTel STAC9750 codec) <br />
+2. SigmaTel Intel r AC'97 Audio Controller datasheed - https://sunsite.icm.edu.pl/pub/linux/alsa/manuals/sigmatel/9721spec.PDF<br />
+3. High Definition Audio Specification Revision 1.0a June 17, 2010 - https://www.intel.com/content/dam/www/public/us/en/documents/product-specifications/high-definition-audio-specification.pdf - I see a lot of changes from '04 on the first pages describing this revision. But documentation will probably match registers in Virtual Box, I think.<br />
+4. https://www.virtualbox.org/browser/vbox/trunk/src/VBox/Devices/Graphics/ - source code. This is VGA. But here is a implementation and souce code for Audio Card also I think.
