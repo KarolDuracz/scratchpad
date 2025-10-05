@@ -217,6 +217,6 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\HDAUDIO\FUNC_01&VEN_10EC&DEV_02
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\HDAUDIO\FUNC_01&VEN_8086&DEV_2805&SUBSYS_80860101&REV_1000
 ```
 
-Important is these two values 10EC&DEV_0269 and 01&VEN_8086. One of them shows that it is Realtek Semiconductor Corp. https://catalog.update.microsoft.com/Search.aspx?q=VEN_10EC%26DEV_0269 - Correct. <br />
+These are important two values 10EC&DEV_0269 and 01&VEN_8086. One of them shows that it is Realtek Semiconductor Corp. https://catalog.update.microsoft.com/Search.aspx?q=VEN_10EC%26DEV_0269 - Correct. <br />
 So I don't even run it to avoid damaging something in the system.
 
