@@ -143,3 +143,49 @@ Done. Press any key to exit.
 
 <h3>Ok, some pictures</h3>
 
+The first thing you should know is how I set up recording in Windows 8.1 to record from the system <br />
+1. I locked microphone <br />
+2. I set stereo mix as default <br />
+3. I recorded using the "Sound Recorder" app <br />
+4. I saved it to the "beep_test.wma" file <br />
+5. Around 8-9 am, a beep sound appears in the .wma file <br />
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/images/windows%208%20sound%20settings.png?raw=true)
+
+here is a comparison of what the PCI command sees on qemu with and without an audio device in the command.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/images/13%20-%2005-10-2025%20-%20qemu%20vs%20qemu%20z%20audio%20device%20na%20PCI.png?raw=true)
+
+PUTTY setup to have a listing on port 4444
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/images/putty%20launch.png?raw=true)
+
+thanks to this, I can copy text content to the clipboard using putty menu
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/images/step%206%20-%20diganostic%20test%20on%20pci%20device%2000%2005%2000.png?raw=true)
+
+Ok, time for a test. The first thing I check is "PCI"
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/images/step%204%20-%20pci%20devices%20list.png?raw=true)
+
+header for 00 05 00 device. And this is exactly what you can see in the image above from helloworld_pci00-05-00_diagnostic.efi which checks access to these IO registers.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/images/step%205%20-%20read%20pci%20header%20for%2000%2005%2000.png?raw=true)
+
+confirmation that everything compiles for me with this piece of code
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/images/1%20-%20original%20hello%20world%20-%20first%20test%20-%20passed.png?raw=true)
+
+After the diagnostic test (to check if it works according to my demo) I run the first test
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/images/step%202.png?raw=true)
+
+As a result, you can see what is in the terminal and in the meantime a BEEP sound appears
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/images/step%203%20-%20run%20basic%20beep%20test.png?raw=true)
+
+Another test 
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/images/step%207%20-%20hello%20world%20beep%20second%20test.png?raw=true)
+
+But it also uses DMA. Sometimes it locks up. You have to reset QEMU.
