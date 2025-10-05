@@ -189,3 +189,7 @@ Another test
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/images/step%207%20-%20hello%20world%20beep%20second%20test.png?raw=true)
 
 But it also uses DMA. Sometimes it locks up. You have to reset QEMU.
+
+<h3>Summary</h3>
+
+This is a deep topic. After generating the BEEP, next comes the attempt to play the melody. This works in mono. I won't go into details for now. Maybe next time I manage to play the "Jingle Bells" melody ;p
