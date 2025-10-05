@@ -52,7 +52,7 @@ But for these demos I run QEMU from the command line because I also wanted to ha
 qemu-system-x86_64 -L . -bios /share/OVMF.fd -device qemu-xhci,id=xhci -drive if=none,id=usbdisk,file="\\.\PHYSICALDRIVE1",format=raw -cdrom "C:\Users\kdhome\Documents\ImageISO\ubuntu-14.04.6-desktop-amd64.iso" -m 1024 -device usb-storage,drive=usbdisk -audiodev dsound,id=snd0,latency=20000 -device AC97,audiodev=snd0 -machine pcspk-audiodev=snd0 -serial tcp:127.0.0.1:4444,server,nowait
 ```
 
-VENDOR and device ID from shell indicated for this sound card that this device is emulated - SigmaTel Intel r AC'97 Audio Controller - https://sunsite.icm.edu.pl/pub/linux/alsa/manuals/sigmatel/9721spec.PDF
+VENDOR and device ID from shell indicated for this sound card that this device is emulated - SigmaTel Intel r AC'97 Audio Controller - https://sunsite.icm.edu.pl/pub/linux/alsa/manuals/sigmatel/9721spec.PDF  - it still needs to be checked. But to have some preliminary insight.
 
 ```
 FS1:\__bin\a28-09-2025\beep\> pci
