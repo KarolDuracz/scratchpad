@@ -254,3 +254,4 @@ but it keeps crashing
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/images/test%202%20-%20still%20freeze.png?raw=true)
 
+So it looks like something is working, to some extent. What's more, we have access to two virtual machines and their source code, which shows the device implementation. So this is great, and I can continue to have fun and go deeper into the topic.
