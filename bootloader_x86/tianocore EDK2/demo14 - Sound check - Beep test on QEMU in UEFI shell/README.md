@@ -5,7 +5,8 @@
 > When its freeze on lines <br />
 >         Preparing tiny AC'97 PCM OUT DMA test (single BDL entry) <br />
 >         Allocating audio buffer: 22050 samples (44100 bytes), 11 pages <<<<<<<<<<<< here <br />
-> try to reset system by clicking CTRL + ALT + G to release the mouse and on "Machine > Reset" menu in the main QEMU window
+> try to reset system by clicking CTRL + ALT + G to release the mouse and on "Machine > Reset" menu in the main QEMU window <br />
+> sometimes it freezes at the end of the code when waiting for a key, after the beep.
 
 <h2>Sound check - Beep test on QEMU in UEFI shell</h2>
 What was my goal for this demo? First and foremost, find code that would work. Not only would it compile, but it would actually trigger the BEEP sound in the shell. There are a few steps I took before finding the right code with GPT-5 help, but I'll just focus on what I have, and what I managed to get working, AND IT LOOKS LIKE IT WORKS.
