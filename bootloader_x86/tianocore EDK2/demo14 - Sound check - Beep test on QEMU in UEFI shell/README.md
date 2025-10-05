@@ -206,4 +206,17 @@ It looks like this is an audio device. I've added a few more screenshots here to
 1. QEMU sound cards list - https://computernewb.com/wiki/QEMU/Devices/Sound_cards - AC97 shows Intel(r) 82801AA AC'97 (SigmaTel STAC9750 codec) <br />
 2. SigmaTel Intel r AC'97 Audio Controller datasheed - https://sunsite.icm.edu.pl/pub/linux/alsa/manuals/sigmatel/9721spec.PDF<br />
 3. High Definition Audio Specification Revision 1.0a June 17, 2010 - https://www.intel.com/content/dam/www/public/us/en/documents/product-specifications/high-definition-audio-specification.pdf - I see a lot of changes from '04 on the first pages describing this revision. But documentation will probably match registers in Virtual Box, I think.<br />
-4. https://www.virtualbox.org/browser/vbox/trunk/src/VBox/Devices/Graphics/ - source code. This is VGA. But here is a implementation and souce code for Audio Card also I think.
+4. https://www.virtualbox.org/browser/vbox/trunk/src/VBox/Devices/Graphics/ - source code. This is VGA. But here is a implementation and source code for Audio Card also I think.
+
+<h3>Real HW test?</h3>
+
+On my ASUS laptop? This is dump from registry > SYSTEM > CurrentControlSex > Enum > HDAUDO ( tree showing 2 devices, 2 items )
+
+```
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\HDAUDIO\FUNC_01&VEN_10EC&DEV_0269&SUBSYS_10431AA3&REV_1001
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\HDAUDIO\FUNC_01&VEN_8086&DEV_2805&SUBSYS_80860101&REV_1000
+```
+
+Important is these two values 10EC&DEV_0269 and 01&VEN_8086. One of them shows that it is Realtek Semiconductor Corp. https://catalog.update.microsoft.com/Search.aspx?q=VEN_10EC%26DEV_0269 - Correct. <br />
+So I don't even run it to avoid damaging something in the system.
+
