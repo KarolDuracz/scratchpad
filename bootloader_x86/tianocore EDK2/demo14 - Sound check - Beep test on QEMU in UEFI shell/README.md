@@ -193,3 +193,11 @@ But it also uses DMA. Sometimes it locks up. You have to reset QEMU.
 <h3>Summary</h3>
 
 This is a deep topic. After generating the BEEP, next comes the attempt to play the melody. This works in mono. I won't go into details for now. Maybe next time I manage to play the "Jingle Bells" melody ;p
+
+<h3>Virtual Box test</h3>
+
+In the previous demo, I also tried running the test on VirtualBox 7. But this time it's not a straight-forward test, because it looks like a different device. I haven't checked it thoroughly yet, but the "pci" listing shows a different ID. So the registers are probably different too, I think.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/virtualbox%207%20test%20and%20pins%20datasheet/virtualbox_pci_find_audio_device.png?raw=true)
+
+It looks like this is an audio device. I've added a few more screenshots here to give you a preview of what it looks like in VirtualBox. https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/virtualbox%207%20test%20and%20pins%20datasheet  - There are also a few images with pins, but that's just a preliminary view. Don't pay attention to that for now. That needs to be checked carefully next time.
