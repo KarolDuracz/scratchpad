@@ -13,7 +13,7 @@ screenshot from the last test with samples for Mickiewicz
 
 Cost - 0.67$ ( USAGE 0.5 hr | RATE $1.29 / hr | SPEND $0.63)
 
-![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/03-10-2025%20-%20tiny%20shakespeare%20vs%20Adam%20Mickiewicz%20Pan%20Tadeusz%20-%20nanoGPT/06-10-2025%20-%20lambda.ai%201x%20A100%20first%20full%20test/test%2022.png?raw=true)
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/03-10-2025%20-%20tiny%20shakespeare%20vs%20Adam%20Mickiewicz%20Pan%20Tadeusz%20-%20nanoGPT/06-10-2025%20-%20lambda.ai%201x%20A100%20first%20full%20test/test%20232.png?raw=true)
 
 Just like before, I copied the file to my local drive and ran it on the CPU. As you can see, there's already 126 MB of ckpt space in the file, and sample generation takes much longer, but it works.
 
