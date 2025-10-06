@@ -240,7 +240,7 @@ So I don't even run it to avoid damaging something in the system.
 
 <h3>Virtual Box demo </h3>
 Now I don't delve into these topics every day. I've realized that VirtualBox definitely emulates AC97. And indeed, such a device exists. <br />
-https://github.com/VirtualBox/virtualbox/blob/main/src/VBox/Devices/Audio/DevHda.cpp#L81 - Here you can see the VENDOR and ID ( on github repo that works )
+https://github.com/VirtualBox/virtualbox/blob/main/src/VBox/Devices/Audio/DevIchAc97.cpp#L4529  - Here you can see the VENDOR and ID ( on github repo that works )
 <br /><br />
 change from default HDA to AC97<br /><br />
 
@@ -253,5 +253,9 @@ Above you can see that it passed the pci 00 05 00 diagnostic test. Then I manage
 but it keeps crashing
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/images/test%202%20-%20still%20freeze.png?raw=true)
+
+pci command 
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo14%20-%20Sound%20check%20-%20Beep%20test%20on%20QEMU%20in%20UEFI%20shell/images/virtual%20box%20pci%20command%20for%20AC97.png?raw=true)
 
 So it looks like something is working, to some extent. What's more, we have access to two virtual machines and their source code, which shows the device implementation. So this is great, and I can continue to have fun and go deeper into the topic.
