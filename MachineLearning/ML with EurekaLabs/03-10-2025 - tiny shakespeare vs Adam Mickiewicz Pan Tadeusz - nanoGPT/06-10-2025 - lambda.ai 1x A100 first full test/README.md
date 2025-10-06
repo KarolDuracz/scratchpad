@@ -4,6 +4,9 @@ There's no comparison with google colab (free version) vs. lambda (1x A100). It'
 
 https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/03-10-2025%20-%20tiny%20shakespeare%20vs%20Adam%20Mickiewicz%20Pan%20Tadeusz%20-%20nanoGPT/06-10-2025%20-%20lambda.ai%201x%20A100%20first%20full%20test/Untitled-mickiewicz-A100.ipynb <br /><br />
 
+> [!IMPORTANT]
+> In .ipynb file I see now that it cut off. But the image below shows that it finished training after 5000 steps and generated samples. It's nothing. I have something anyway.
+
 screenshot from the last test with samples for Mickiewicz
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/03-10-2025%20-%20tiny%20shakespeare%20vs%20Adam%20Mickiewicz%20Pan%20Tadeusz%20-%20nanoGPT/06-10-2025%20-%20lambda.ai%201x%20A100%20first%20full%20test/test%201.png?raw=true)
