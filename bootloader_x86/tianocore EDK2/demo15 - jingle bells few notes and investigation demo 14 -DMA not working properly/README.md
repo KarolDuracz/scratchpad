@@ -56,7 +56,7 @@ to load a WAV file, will be a good starting point for trying to break it down in
   }
 ```
 
-
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo15%20-%20jingle%20bells%20few%20notes%20and%20investigation%20demo%2014%20-DMA%20not%20working%20properly/screenshot%20_%20demo%20with%20WAV%20file.png?raw=true)
 
 <h3>5. For this case why demo 14 can only play 1x BEEP GPT-5 gave me this solution.</h3>
 
