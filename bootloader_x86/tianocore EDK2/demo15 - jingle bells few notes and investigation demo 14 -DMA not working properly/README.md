@@ -1,5 +1,5 @@
 > [!WARNING]
-> !! WARNING!!! !! If you download the .wma file, turn your headphones/speaker volume down to minimum. The audio is much louder than the narrator, especially the first few seconds, for demo1 and demo2.
+> !! WARNING!!! !! If you download .wma file, turn your headphones/speaker volume down to minimum. The audio is much louder than narrator, especially the first few seconds, for demo1 and demo2.
 
 <h3>1. Maybe I'll start with what works and what has been improved.</h3>
 GPT-5 gave me some reasons why it can only do 1x BEEP and then freeze. It's at the bottom of the page. He created a 
@@ -41,7 +41,7 @@ And the equivalent .efi files. HelloWorld.efi - This is the file that loads the 
 
 <h3>4. Demo that tries to load a WAV file - NOT WORKING - and there is a lot of fragmented code, a lot of debugging but I haven't been able to figure it out right now
 </h3>
-In demo 14, I wrote that I'd do a more in-depth analysis when I do jingle bells demo, but I'll leave that for another day. The last listing, which attempts 
+In demo 14, I wrote that I'd do a more in-depth analysis when I do jingle bells demo, but I'll leave that for another day ( another AUDIO demo ). The last listing, which attempts 
 to load a WAV file, will be a good starting point for trying to break it down into smaller pieces and try to understand what's going on.  Screenshot shows, that it doesn't detect path to file. This is a flawed implementation. I DIDN'T UPLOAD "jet.wav" FILE HERE. It's 4MB, 
  but if demo doesn't work, it is not necessary for now. <br /><br />
  Next time, I'll need
