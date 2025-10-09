@@ -29,7 +29,7 @@ And in the same way I put code into the HelloWorld file.
 ```
 Test 1 channel, 1 repeat -> playing from ~4-5 sec
 Test 1 channel, 10 sec -> playing from ~35 sec of recording
-Test 3 channel, 10 sec -> playing from ~ 1 min 9 sec of recording
+Test 3 channels, 10 sec -> playing from ~ 1 min 9 sec of recording
 HelloWrold.c -> demo WAV -> playing from  ~ 1 min 37 sec of recording
 End -> 1 min 57 sec
 ```
