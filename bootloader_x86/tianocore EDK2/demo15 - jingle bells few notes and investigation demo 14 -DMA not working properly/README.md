@@ -23,7 +23,7 @@ And in the same way I put code into the HelloWorld file.
 1. HelloWorld - jingle bells demo 1 working 09-10-2025.c --->> demo 1 channel, 1 playing a few notes of jingle bells
 2. HelloWorld - jingle bells demo 2 - 10 sec 09-10-2025.c --->> demo 1 channel, 10 sec playing a few notes of jingle bells
 3. HelloWorld - 3 channels demo3 - 09-10-2025.c --->> 3 channels demo, 10 sec playing a few notes of jingle bells
-4. \a demo that loads WAV\HelloWorld.c --->> demo of loading a WAV file that requires analysis and error fixes
+4. \a demo that loads WAV\HelloWorld.c --->> demo of loading a WAV file that requires analysis and error fixes - Jingle Bells plays on 3 channels, after trying to load the WAV it failed but does not interrupt the program. That's why you can hear these notes on that moment of recording.
 5. demo09102025.wma --->> I recorded the test as in Demo14. It takes 2 minutes.
 
 ```
