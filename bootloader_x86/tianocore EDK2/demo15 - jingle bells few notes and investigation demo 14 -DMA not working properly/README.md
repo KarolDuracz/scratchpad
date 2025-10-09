@@ -1,3 +1,6 @@
+> [!WARNING]
+> !! WARNING!!! !! If you download the .wma file, turn your headphones/speaker volume down to minimum. The audio is much louder than the narrator, especially the first few seconds, for demo1 and demo2.
+
 <h3>1. Maybe I'll start with what works and what has been improved.</h3>
 GPT-5 gave me some reasons why it can only do 1x BEEP and then freeze. It's at the bottom of the page. He created a 
 helper function called Ac97StopAndResetPcmOut. See the bottom of the page for information on what GPT-5 wrote about this problem and its solution 
