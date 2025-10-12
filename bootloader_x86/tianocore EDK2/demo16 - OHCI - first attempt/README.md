@@ -68,9 +68,159 @@ Platform expects other platform-specific initialization (clocks, regulators, pow
 
 ```
 
-The result of executing this HelloWrold.efi (equivalent to bootx64.efi)
+The result of executing this HelloWorld.efi (equivalent to bootx64.efi)
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/images/104%20-%2012-10-2025%20-%20how%20it%20works%20on%20VirtualBox.png?raw=true)
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/images/103%20-%2012-10-2025%20-%20te%202%20porty%20pokazaly%20sie%20jako%20aktywne%20CONNECTED.png?raw=true)
 
+<h3>The result of running the rest code test for OHCI</h3>
+
+HELLWORLD_OHCI -> probably this code here - > https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/HelloWorld%20-%20OHCI%20controller%20demo%2012-10-2025%20-%20working.c
+
+```
+FS0:\__bin\a10-10-2025bth\bt3\> helloworld_ohci
+Scanning 10 PCI devices for USB host controllers...
+
+PCI USB Host Controller found (handle=0x7DFD5698): Class=0x0C Sub=0x03 ProgIf=0x10
+  PCI Location: Seg=0 Bus=0 Dev=6 Func=0
+  PCI VendorId=0x106B DeviceId=0x003F
+  BAR 0x10 = 0x90627000
+  BAR 0x14 = 0x00000000
+  BAR 0x18 = 0x00000000
+  BAR 0x1C = 0x00000000
+  BAR 0x20 = 0x00000000
+  BAR 0x24 = 0x00000000
+  Interrupt Line=0x0A  Pin=0x01
+  PCI DevicePath: PciRoot(0x0)/Pci(0x6,0x0)
+  Detected OHCI host controller (ProgIf=0x10). Attempting to read OHCI MMIO registers from BAR0...
+    HcRevision(0x00) = 0x00000010
+    HcControl(0x04) = 0x00000200
+    HcCommandStatus(0x08) = 0x00000000
+    HcHCCA(0x18) = 0x00000000
+  ConnectController returned: Not Found
+  EFI_USB2_HC_PROTOCOL not present for this host (or not found under PCI subtree).
+
+PCI USB Host Controller found (handle=0x7DFD4018): Class=0x0C Sub=0x03 ProgIf=0x20
+  PCI Location: Seg=0 Bus=0 Dev=11 Func=0
+  PCI VendorId=0x8086 DeviceId=0x265C
+  BAR 0x10 = 0x90626000
+  BAR 0x14 = 0x00000000
+  BAR 0x18 = 0x00000000
+  BAR 0x1C = 0x00000000
+  BAR 0x20 = 0x00000000
+  BAR 0x24 = 0x00000000
+  Interrupt Line=0x0B  Pin=0x01
+  PCI DevicePath: PciRoot(0x0)/Pci(0xB,0x0)
+  ConnectController: OK
+  Host Capabilities: maxSpeed=2 numP    Port 1: Connected=0  PortStatus=0x00002100
+    Port 2: Connected=0  PortStatus=0x00002100
+    Port 3: Connected=0  PortStatus=0x00002100
+    Port 4: Connected=0  PortStatus=0x00002100
+    Port 5: Connected=0  PortStatus=0x00002100
+    Port 6: Connected=0  PortStatus=0x00002100
+    Port 7: Connected=0  PortStatus=    Port 8: Connected=0  PortStatus=0x00002100
+    Port 9: Connected=0  PortStatus=0x00002100
+    Port 10: Connected=0  PortStatus=0x00002100
+    Port 11: Connected=0  PortStatus=0x00002100
+    Port 12: GetRootHubPortStatus failed: Invalid Parameter
+
+Done. Press any key to exit...
+```
+
+HELLOWORLD_OHCI_DEMO2 ==> probably this -> https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/HelloWorld%20-%20OHCI%20demo2%20-%20ale%20bez%20inicjalizacji%20DXE%20.c
+
+```
+FS0:\__bin\a10-10-202helloworld_ohci_demo2
+Scanning 10 PCI devices for USB host Found 1 EFI_USB2_HC_PROTOCOL handle(s):
+  Usb2Hc handle=0x7DFD4018
+    DevicePath: PciRoot(0x0)/Pci(0xB,0x0)
+    Protocol[0]: 7DF8A0B0-0000-0000-B0D3-F87D00000000
+    Protocol[1]: 7DF8D3B0-0000-0000-3069-FD7D00000000
+    Protocol[2]: 7DFD6930-0000-0000-3058-CE7E00000000
+    Protocol[3]: 7ECE5830-0000-0000-7074-616C78004200
+
+PCI USB Host Controller found  PCI Location: Seg=0 Bus=0 Dev=6 Func=0
+  PCI VendorId=0x106B DeviceId=0x003F
+  BAR 0x10 = 0x90627000
+  BAR 0x14 = 0x00000000
+  BAR 0x18 = 0x00000000
+  BAR 0x1C = 0x00000000
+  BAR 0x20 = 0x00000000
+  BAR 0x24 = 0x00000000
+  PCI Command: 0x0017 (MemSpace=1 IO=1 BusMaster=1)
+  Interrupt Line=0x0A  Pin=0x01
+  PCI DevicePath: PciRoot(0x0)/Pci(0x6,0x0)
+  Detected OHCI (ProgIf=0x10). Checking BAR0 MMIO and OHCI registers...    BAR0 MMIO base = 0x90627000
+    HcRevision(0x00) = 0x00000010
+    HcControl(0x04) = 0x00000200
+    HcCommandStatus(0x08) = 0x00000000
+    HcHCCA(0x18) = 0x00000000
+  ConnectController returned: Not Found
+  EFI_USB2_HC_PROTOCOL not present for this host (driver likely missing or not bound).
+  Suggestion: run on firmware image with OHCI/EHCI/xHCI DXE driver or add the appropriate DXE driver.
+
+PCI USB Host Controller found (handle=0x7DFD4018): Class=0x0C Sub=0x03 ProgIf=0x20
+  PCI Location: Seg=0 Bus=0 Dev=11 Func=0
+  PCI VendorId=0x8086 DeviceId=0x265C
+  BAR 0x10 = 0x90626000
+  BAR 0x14 = 0x00000000
+  BAR 0x18 = 0x00000000
+  BAR 0x1C = 0x00000000
+  BAR 0x20 = 0x00000000
+  BAR 0x24 = 0x00000000
+  PCI Command: 0x0017 (MemSpace=1 IO=1 BusMaster=1)
+  Interrupt Line=0x0B  Pin=0x01
+  PCI DevicePath: PciRoot(0x0)/Pci(0xB,0x0)
+  ConnectController: OK
+  Host Capabilities: maxSpeed=2 numPorts=12 64bit=0
+    Port 1: Connected=0  PortStatus=0x00002100
+    Port 2: Connected=0  PortStatus=0x00002100
+    Port 3: Connected=0  PortStatus=0x00002100
+    Port 4: Connected=0  PortStatus=0x00002100
+    Port 5: Connected=0  PortStatus=    Port 6: Connected=0  PortStatus=0x00002100
+    Port 7: Connected=0  PortStatus=0x00002100
+    Port 8: Connected=0  PortStatus=0x00002100
+    Port 9: Connected=0  PortStatus=0x00002100
+    Port 10: Connected=0  PortStatus=0x00002100
+    Port 11: Connected=0  PortStatus    Port 12: GetRootHubPortStatus failed: Invalid Parameter
+
+Diagnostics complete. Press any key to exit...
+```
+
+HELLOWORLD_SOFT_INIT_OHCI --> probably this -> https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/soft%20reset%20ohci/HelloWorld.c or this -> https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/HelloWorld%20-%20OHCI%20initialization%20soft%2012-10-2025.c
+
+```
+FS0:\__bin\a10-10-2025bth\bt3\> helloworld_soft_init_ohci                                                                                                               
+Scanning PCI devices for USB host controllers...
+
+PCI USB Host Controller found (handle=0x7DFD5698): Class=0x0C Sub=0x03 ProgIf=0x10
+  PCI VendorId=0x106B DeviceId=0x003F
+  BAR0 (raw) = 0x90627000
+  Detected OHCI host controller. Trying minimal init...
+    HcRevision = 0x00000010
+    HcControl = 0x00000280
+    HcCommandStatus = 0x00000000
+    HcHCCA = 0x7CF2B000
+    Writing HcCommandStatus.HCR to reset co    OHCI: reset complete
+    Allocated HCCA at phys 0x7CF15000
+    HcControl set to OPERATIONAL (0x00000280)
+    Root hub: 12 downstream ports (RhDescriptorA=0x0000020C)
+      Port 1: Status=0x00000000  Connected=0  Enabled=0  Powered=0  LowSpeed=0
+      Port 2: Status=0x00010101  Connected=1  Enabled=0  Powered=1  LowSpeed=0
+      Po      Port 4: Status=0x00000100  Connected=0  Enabled=0  Powered=1  LowSpeed=0
+      Port 5: Status=0x00000100  Connected=0  Enabled=0  Powered=1  LowSpeed=0
+      Port 6: Status=0x00000100  Connected=0  Enabled=0  Powered=1  LowSpeed=0
+      Port 7: Status=0x00000100  Connected=0  Enabled=0  Powered=1  LowSpeed=0
+      Port 8: Status=0x00000100  Connected=0  Enabled=0  Powered=1  LowSpeed=0
+      Port 9: Status=0x00000100  Connected=0  Enabled=0  Powered=1  LowSpeed=0
+      Port 10: Status=0x00000100  Connected=0  Enabled=0  Powered=1  LowSpeed=0
+      Port 11: Status=0x00000100  Connected=0  Enabled=0  Powered=1  LowSpeed=0
+      Port 12: Status=0x00000100  Connected=0  Enabled=0  Powered=1  LowSpeed=0
+
+PCI USB Host Controller found (handle=0x7DFD4018): Class=0x0C S  PCI VendorId=0x8086 DeviceId=0x265C
+  BAR0 (raw) = 0x90626000
+  (Non-OHCI host controller; skipping software init)
+
+Done. Press any key to exit...
+```
