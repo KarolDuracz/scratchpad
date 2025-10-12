@@ -1,6 +1,10 @@
 > [!WARNING]
 > I DO NOT RECOMMEND RUN THIS ON REAL HARDWARE. I AM NOT RESPONSIBLE FOR THE CODE AND CONSEQUENCE.
 
+> [!NOTE]
+> Please, read the note below on  SOFT RESET solution provided by GPT-5
+
+
 I also tested these demos using Real HW on my Asus laptop. I'm writing this because after running demo, which attempts to initialize controller after a soft reset, and after restart computer and entering Windows, was unable to initialize ETHERNET connection. It had this problem and repeated process again and again, looking at behavior of 
  tray icon on right bottom corner, which tried to establish a connection but failed. Only shutting down computer fixed this error. This means the system and my firmware, which is currently executing in DXE phase of ASUS system, are probably doing something different than the sequence I've demonstrated here. But this is just a preliminary analysis.
 <br /><br />
@@ -45,7 +49,7 @@ What I'm writing here applies to this file -> https://github.com/KarolDuracz/scr
 and this code -> https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/soft%20reset%20ohci/HelloWorld.c
 <br /><br />
 
-> [!NOTE]
+> [!IMPORTANT]
 > This is the solution and attempt to approach it given by GPT-5 after analyzing the logs I gave it
 >
 > 
