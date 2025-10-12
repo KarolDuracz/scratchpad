@@ -77,7 +77,7 @@ The result of executing this HelloWorld.efi (equivalent to bootx64.efi)
 
 <h3>The result of running the rest code test for OHCI</h3>
 
-HELLWORLD_OHCI -> probably this code here - > https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/HelloWorld%20-%20OHCI%20controller%20demo%2012-10-2025%20-%20working.c
+HELLOWORLD_OHCI -> probably this code here - > https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/HelloWorld%20-%20OHCI%20controller%20demo%2012-10-2025%20-%20working.c
 
 ```
 FS0:\__bin\a10-10-2025bth\bt3\> helloworld_ohci
