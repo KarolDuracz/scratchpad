@@ -44,7 +44,35 @@ What I'm writing here applies to this file -> https://github.com/KarolDuracz/scr
 <br /><br />
 and this code -> https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/soft%20reset%20ohci/HelloWorld.c
 <br /><br />
-This is the controller reset sequence
+
+> [!NOTE]
+> This is the solution and attempt to approach it given by GPT-5 after analyzing the logs I gave it
+>
+> 
+
+
+This is the controller reset sequence <br /><br />
+The first 2 logs below show the value HcHCCA = 0x00000000 and that was the first thing noticed by GPT-5
+
+```
+You do have an OHCI controller at Bus 0 Dev 6 Func 0 (ProgIf 0x10) — HcRevision = 0x10 confirms OHCI present.
+
+HcHCCA = 0x00000000 and ConnectController returned: Not Found for that PCI handle are red flags:
+
+HcHCCA = 0 usually means the host controller isn't initialized/owned by a USB bus driver in DXE. The controller exists, but nobody has set it up (allocated HCCA, started controller).
+
+ConnectController returning Not Found means the platform driver binding didn't find a DXE driver to bind to that PCI device (your firmware image likely lacks an OHCI driver for that controller).
+
+For the Intel xHCI/EHCI-like controller (ProgIf 0x20) you succeeded in ConnectController, got Usb2Hc and port status. That controller had a driver installed in your firmware, so the bus driver created root hub logic and (optionally) children.
+
+Net result: OHCI exists in hardware, but no UEFI USB controller driver has bound it — therefore no EFI_USB2_HC_PROTOCOL on that PCI handle and no EFI_USB_IO devices created by UEFI for devices under that host.
+
+---
+
+This is a minimal initializer (reset, install HCCA, set HC functional state to OPERATIONAL) — it does not implement full OHCI host driver details (ED/TD lists, scheduling, interrupts, transfer execution). It is intended to get the controller into an initialized state so the root hub registers become meaningful and you can read port status/enumeration info.
+```
+
+That's why GPT-5 used such a solution and such an approach for SOFT RESET
 
 ```
 Detects OHCI PCI host controllers and attempts a minimal, local initialization:
