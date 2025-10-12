@@ -35,3 +35,42 @@ This is what it looks like after disconnecting from VirtualBox. Device returns t
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/images/image2.png?raw=true)
 
+The rest of the files in the /bt2/ folder simply list USB devices based on the basic protocols in the UEFI specification. These are simple tests I performed in the previous demo USB 6-7, so I won't describe them here.
+
+<h3>OHCI demo</h3>
+
+What I'm writing here applies to this file -> https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/bt2/helloworld.efi
+<br /><br />
+and this code -> https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/soft%20reset%20ohci/HelloWorld.c
+<br /><br />
+This is the controller reset sequence
+
+```
+Detects OHCI PCI host controllers and attempts a minimal, local initialization:
+
+resets controller (soft reset via HcCommandStatus.HCR),
+
+allocates one physical page for HCCA and programs HcHCCA,
+
+clears control/bulk/done heads,
+
+sets the controller to OPERATIONAL,
+
+reads RhDescriptorA and each root-hub port status and prints connected/enabled/powered/low-speed flags.
+
+If you still see HcHCCA == 0 or root hub ports empty after this, possible causes:
+
+The platform firmware (or another driver) prevents direct MMIO access or ownership (Ownership Change feature / PCI ownership). In such cases you may need to set the PCI Command bits (Memory Space / Bus Master) or request ownership clear via OHCI OCR bit handling — that is driver territory.
+
+IOMMU / DMA mapping: the controller may not be able to access the physical pages you allocated. Real OHCI drivers set up DMA mapping so the HCCA and ED/TD structures are accessible to the controller. My demo uses AllocatePages which often works in UEFI, but on some platforms you must ensure the address is within the device's addressable range (no IOMMU) or use platform-specific mapping.
+
+Platform expects other platform-specific initialization (clocks, regulators, power rails) before the controller can come up. That must be done via platform-specific MMIO or ACPI calls.
+
+```
+
+The result of executing this HelloWrold.efi (equivalent to bootx64.efi)
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/images/104%20-%2012-10-2025%20-%20how%20it%20works%20on%20VirtualBox.png?raw=true)
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/images/103%20-%2012-10-2025%20-%20te%202%20porty%20pokazaly%20sie%20jako%20aktywne%20CONNECTED.png?raw=true)
+
