@@ -20,7 +20,7 @@ I'm probably doing something wrong, so I gave up and started looking for the tre
 
 In this demo I ran this code - /bt2/helloworld.efi -> https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/bt2/helloworld.efi
 <br /><br />
-What's important to note is that it detected the two devices you can see in Windows (Visual Box) on the left. Below that is 0x265C, and above that is OHCI, which has the ID 0x003F. In Windows I didn't show the ID of the second device in path here in Device Manager, but you can see that one ID matches what the shell shows.
+What's important to note is that it detected the two devices you can see in Windows (Virtual Box) on the left. Below that is 0x265C, and above that is OHCI, which has the ID 0x003F. In Windows I didn't show the ID of the second device in path here in Device Manager, but you can see that one ID matches what the shell shows.
 <br /><br />
 VENDOR and IDs from the source code for comparison<br />
 virtualbox/src/VBox/Devices/USB/DevEHCI.cpp - https://github.com/VirtualBox/virtualbox/blob/main/src/VBox/Devices/USB/DevEHCI.cpp#L4905 <br />
