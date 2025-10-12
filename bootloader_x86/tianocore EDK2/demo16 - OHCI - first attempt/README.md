@@ -14,3 +14,24 @@ Bluetooth protocol specs - https://uefi.org/specs/UEFI/2.9_A/26_Network_Protocol
 USD protocol specs - https://uefi.org/specs/UEFI/2.9_A/17_Protocols_USB_Support.html
 <br /><br />
 I'm probably doing something wrong, so I gave up and started looking for the tree in which this device is located. And that's how I came across the topic of OHCI.
+
+<h3>Ok, first thing to explain</h3>
+
+In this demo I ran this code - /bt2/helloworld.efi -> https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/bt2/helloworld.efi
+<br /><br />
+What's important to note is that it detected the two devices you can see in Windows (Visual Box) on the left. Below that is 0x265C, and above that is OHCI, which has the ID 0x003F. In Windows I didn't show the ID of the second device in path here in Device Manager, but you can see that one ID matches what the shell shows.
+<br /><br />
+VENDOR and IDs from the source code for comparison<br />
+virtualbox/src/VBox/Devices/USB/DevEHCI.cpp - https://github.com/VirtualBox/virtualbox/blob/main/src/VBox/Devices/USB/DevEHCI.cpp#L4905 <br />
+virtualbox/src/VBox/Devices/USB/DevOHCI.cpp - https://github.com/VirtualBox/virtualbox/blob/main/src/VBox/Devices/USB/DevOHCI.cpp#L6002 <br />
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/images/image3.png?raw=true)
+
+Eemulated device is connected here, meaning it's switching from the host device. I can then see the same vendor and Bluetooth device ID in VirtualBox.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/images/image1.png?raw=true)
+
+This is what it looks like after disconnecting from VirtualBox. Device returns to the list on the right.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/images/image2.png?raw=true)
+
