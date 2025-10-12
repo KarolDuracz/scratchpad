@@ -224,3 +224,11 @@ PCI USB Host Controller found (handle=0x7DFD4018): Class=0x0C S  PCI VendorId=0x
 
 Done. Press any key to exit...
 ```
+
+<h2>SUMMARY</h2>
+Initially, I wanted to start interacting with Bluetooth. Since everything works on VirtualBox as it does on the host, i.e., Win 8.1. It detects all devices normally. But, as I mentioned above, it didn't work, so I became interested in the tree topology of devices connected to USB controllers. And that's how I came to OHCI. I started trying to search for devices based on OHCI. And that's how this initial demo for this topic was created. But it's just a rough draft. I didn't get anything else out of it that could give me a step forward right away to start interacting with Bluetooth and using protocols for this specification. But it's still something.
+
+<h3>Links</h3>
+1. https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core-60/out/en/architecture,-change-history,-and-conventions/architecture.html <br />
+2. https://devicehunt.com/view/type/usb/vendor/13D3/device/3304 <br />
+3. https://uefi.org/sites/default/files/resources/2014_UEFI_Plugfest_AMI.pdf
