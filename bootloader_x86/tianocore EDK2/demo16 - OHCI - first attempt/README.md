@@ -40,7 +40,7 @@ The rest of the files in the /bt2/ folder simply list USB devices based on the b
 
 <h3>OHCI demo</h3>
 
-What I'm writing here applies to this file -> https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/bt2/helloworld.efi
+What I'm writing here applies to this file -> https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/helloworld.efi
 <br /><br />
 and this code -> https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo16%20-%20OHCI%20-%20first%20attempt/soft%20reset%20ohci/HelloWorld.c
 <br /><br />
