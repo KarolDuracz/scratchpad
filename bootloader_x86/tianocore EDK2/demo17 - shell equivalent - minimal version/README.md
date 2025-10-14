@@ -1,5 +1,5 @@
 > [!IMPORTANT]
-> You can see the "loadshell" and "setbuf" commands in screenshots. Loadshell was supposed to load shell.efi file from \EFI\Boot\. I simply copied compiled shell.efi from EmulatorPkg, but it doesn't work on real HW ( it starts but does not show SHELL, program hangs on the bootx64 loading text ). Setbuf is there because it allows to "scroll" text, but it repaints text N lines back again after pressing LEFT SHIFT + PageUp / PageDown. But then it writes how many lines have been shown. It's a "bug". I DO NOT RECOMMEND USING THESE COMMANDS. THEY NEED IMPROVEMENT. This demo is mainly for using --> loadimg from myApps.
+> You can see the "loadshell" and "setbuf" commands in screenshots. Loadshell was supposed to load shell.efi file from \EFI\Boot\. I simply copied compiled shell.efi from EmulatorPkg, but it doesn't work on real HW ( it starts but does not show SHELL, program hangs on the bootx64 loading text ). Setbuf is there because it allows to "scroll" text, but it repaints text N lines back again after pressing LEFT SHIFT + PageUp / PageDown. But then it writes how many lines have been shown. It shouldn't act like that. I DO NOT RECOMMEND USING THESE COMMANDS. THEY NEED IMPROVEMENT. This demo is mainly for using --> loadimg from myApps.
 
 
 <h3>shell equivalent - minimal version</h3>
