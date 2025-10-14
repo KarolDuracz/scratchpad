@@ -1,6 +1,6 @@
 <h3>shell equivalent - minimal version</h3>
 
-There's only one reason I'm puting it in the demo, because it allows to create a custom folder for applications that can be launched directly from this minimalist shell, like the HelloWorld.efi example. So, in the previous demos, if I wanted to run something on physical hardware (ASUS), I had to rename it to bootx64.efi and put it in the \EFI\Boot\ directory on the flash drive. Here, I have this minimalist shell as bootx64.efi and can drop the rest of the apps directly into the myApps folder, so I can then load them from that path.
+There's only one reason I'm putting it in the demo, because it allows to create a custom folder for applications that can be launched directly from this minimalist shell, like the HelloWorld.efi example. So, in the previous demos, if I wanted to run something on physical hardware (ASUS), I had to rename it to bootx64.efi and put it in the \EFI\Boot\ directory on the flash drive. Here, I have this minimalist shell as bootx64.efi and can drop the rest of the apps directly into the myApps folder, so I can then load them from that path.
 
 <h3>File list</h3>
 
