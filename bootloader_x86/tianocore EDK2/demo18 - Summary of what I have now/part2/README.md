@@ -136,6 +136,8 @@ Images can be seen in part 1 for real hw and VirtualBox. Here is the code and lo
 
 <h3>//////////////////////////////////////////////////////// DEMO 6 - savelog</h3>
 
+https://chatgpt.com/share/68f4118d-d520-8000-8cce-4b7cadbd43df
+
 There is an example log that was saved from VirtualBox - log-20251018-031139-0002.txt
 
 
