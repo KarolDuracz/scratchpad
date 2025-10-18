@@ -11,8 +11,9 @@ https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20E
 <br /><br />
 https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo18%20-%20Summary%20of%20what%20I%20have%20now/part2
 <br /><br />
-Part 3 – code analysis + screenshots
+<b>Part 3</b> – code analysis + screenshots ( just a few pictures that chronologically show what I did to better understand the code )
 <br /><br />
+https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo18%20-%20Summary%20of%20what%20I%20have%20now/part3
 
 <h3>Some links to documents I looked through while building these demos</h3>
 
