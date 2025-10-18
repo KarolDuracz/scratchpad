@@ -1,0 +1,1055 @@
+
+
+
+
+                                                         Device Path :
+                                                         PciRoot(0x0)/Pci(0xB,0
+                                                         x0)/USB(0x0,0x0)
+   Windows Boot Manager
+   UEFI VBOX CD-ROM VB1-1a2b3c4d
+   UEFI VBOX HARDDISK VB1981ae93-81f869fa
+   EFI Internal Shell
+   UEFI PXEv4 (MAC:0800274CACB2)
+   UEFI Generic Mass Storage EE5B4CC2
+
+
+
+
+
+
+
+
+
+  ^v=Move Highlight       <Enter>=Select Entry      Esc=Exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+elloWorld: advanced terminal startiH\loadimg helloworld.efi
+Found '\EFI\Boot\myApps\helloworld.efi'. Run image (YES/NO)?
+yes
+loadimg: starting image ...
+UsbDiagApp: Starting USB diagnostic sequence
+--- Stage 1: Scan PCI bus for USB class devices ---
+PCI 00:00.0  Class=0x06 SubClass=0x00 ProgIf=0x00
+PCI 00:01.0  Class=0x06 SubClass=0x01 ProgIf=0x00
+PCI 00:02.0  Class=0x03 SubClass=0x00 ProgIf=0x00
+PCI 00:03.0  Class=0x02 SubClass=0x00 ProgIf=0x00
+PCI 00:04.0  Class=0x08 SubClass=0x80 ProgIf=0x00
+PCI 0PCI 00:06.0  Class=0x0C SubClass=0x03 ProgIf=0x10
+  -> Detected USB controller (PCI class 0x0C/0x03). Try to locate HC protocols on same handle.
+PCI 00:07.0  Class=0x06 SubClass=0x80 ProgIf=0x00
+PCI 00:0B.0  Class=0x0C SubClass=0x03 ProgIf=0x20
+  -> Detected USB controller (PCI class 0x0C/0x03). Try to locate HC protocols on same handle.
+PCI 00:0D.0  Clas--- Stage 2: Find published USB Host Controller protocols ---
+Found 1 USB2_HC protocol handle(s)
+No USB_HC handles found (Status=0x800000000000000E)
+--- Mapping USB2_HC handles to PCI B:D.F ---
+  USB2_HC handle 0 -> PCI 00:0B.0 (Segment=0)
+--- EHCI probe for PCI 00:06.0 | PROGIF 10 ---
+  BAR0: CAPLENGTH=0x10 HCIVERSION=0x0000
+    USBCMD=0x00000000 USBSTS=0x00000000 USBINTR=0x00000000 FRINDEX=0x00000000
+    PERIODICLISTBASE=0x00000000 ASYNCLISTADDR=0x00000000
+    HCSPARAMS(raw)=0x00000200  (N_PORTS approx=0)
+      PORT0: PORTSC raw=0x00010101  (CCS=1 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT1: PORTSC raw=0x00010101  (CCS=1 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT2: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT3: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT4: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT5: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT6: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT7: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT8: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT9: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT10: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT11: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT12: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PortSpeed=3 PO=1)
+      PORT13: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PortSpeed=3 PO=1)
+      PORT14: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PortSpeed=3 PO=1)
+      PORT15: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PortSpeed=3 PO=1)
+--- EHCI probe for PCI 00:0B.0 | PROGIF 20 ---
+  BAR0: CAPLENGTH=0x20 HCIVERSION=0x0100
+    USBCMD=0x00080B71 USBSTS=0x0000C028 USBINTR=0x00000000 FRINDEX=0x00026F48
+    PERIODICLISTBASE=0x00000000 ASYNCLISTADDR=0x7DF5B080
+    HCSPARAMS(raw)=0x0000000C  (N_PORTS approx=12)
+      PORT0: PORTSC raw=0x00001005  (CCS=1 CSC=0 PE=1 PortSpeed=0 PO=0)
+      PORT1: PORTSC raw=0x00003000        PORT2: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=1)
+      PORT3: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=1)
+      PORT4: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=1)
+      PORT5: PORTSC raw=0x00003000        PORT6: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=1)
+      PORT7: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=1)
+      PORT8: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=1)
+      PORT9: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=1)
+      PORT10: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=1)
+      PORT11: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=1)
+      PORT12: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PortSpeed=3 PO=1)
+      PORT13: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PortSpeed=3 PO=1)
+      PORT14: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PortSpeed=3 PO=1)
+      PORT15: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PortSpeed=3 PO=1)
+--- Examining USB controllers: ports vs published EFI_USB_IO_PROTOCOL handles ---
+Total EFI_USB_IO_PROTOCOL handles in system: 1
+USB controller at PCI 00:06.0  ProgIf=0x10
+  BAR0 CAPLENGTH=0x10  USBCMD=0x00000000 USBSTS=0x00000000 HCSPARAMS(raw)=0x00000200
+      PORT1: PORTSC raw=0x00010101  (CCS=1 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+        -> Port1 connected but not enabled (PE=0). Enumeration may not have completed.
+      PORT2: PORTSC raw=0x00010101  (CCS=1 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+        -> Port2 connected but not enabled (PE=0). Enumeration may not have completed.
+      PORT3: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      PORT4: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      PORT5: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      PORT6: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      PORT7: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      PORT8: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      PORT9: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      PORT10: PORTSC raw=0x00000100       PORT11: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      PORT12: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      PORT13: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+        -> Port13 connected but PO (Port Owner) set: companion controller likely owns this port.
+      PORT14: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+        -> Port14 connected but PO (Port Owner) set: companion controller likely owns this port.
+      PORT15: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+        -> Port15 connected but PO (      PORT16: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+        -> Port16 connected but PO (Port Owner) set: companion controller likely owns this port.
+      PORT17: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+        -> Port17 connected but PO (Port Owner) set: companion controller likely owns this port.
+      PORT18: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+        -> Port18 connected but PO (Port Owner) set: companion controller likely owns this port.
+      PORT19: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+        -> Port19 connected but PO (Port Owner) set: companion controller likely owns this port.
+      PORT20: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+        -> Port20 connected but PO (      PORT21: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+        -> Port21 connected but PO (Port Owner) set: companion controller likely owns this port.
+      PORT22: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+        -> Port22 connected but PO (Port Owner) set: companion controller likely owns this port.
+      PORT23: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+        -> Port23 connected but PO (Port Owner) set: companion controller likely owns      PORT24: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+        -> Port24 connected but PO (Port Owner) set: companion controller likely owns this port.
+      PORT25: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+        -> Port25 connected but PO (      PORT26: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+        -> Port26 connected but PO (Port Owner) set: companion controller likely owns this port.
+      PORT27: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+        -> Port27 connected but PO (Port Owner) set: companion controller likely owns this port.
+      PORT28: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+        -> Port28 connected but PO (Port Owner) set: companion controller likely owns this port.
+      PORT29: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+        -> Port29 connected but PO (Port Owner) set: companion controller likely owns this port.
+      PORT30: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+        -> Port30 connected but PO (Port Owner) set: companion controller likely owns this port.
+      PORT31: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+        -> Port31 connected but PO (      PORT32: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+        -> Port32 connected but PO (Port Owner) set: companion controller likely owns this port.
+  Summary for controller 00:06.0: ConnectedPorts=22
+  Notice: 22 connected ports vs 1 UsbIo device handles overall. Some devices may be un-enumerated.
+  Host Controller appears stopped (USBCMD.Run/Stop = 0). The HC driver may not have started the schedule.
+USB controller at PCI 00:0B.0  ProgIf=0x20
+  BAR0 CAPLENGTH=0x20  USBCMD=0x00080B71 USBSTS=0x0000C028 HCSPARAMS(raw)=0x0000000C
+      PORT1: PORTSC raw=0x00001005  (CCS=1 CSC=0 PE=1 PEchg=0 PO=0 Speed=0)
+      PORT2: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PEchg=0 PO=1 Speed=0)
+      PORT3: PORTSC raw=0x00003000        PORT4: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PEchg=0 PO=1 Speed=0)
+      PORT5: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PEchg=0 PO=1 Speed=0)
+      PORT6: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PEchg=0 PO=1 Speed=0)
+      PORT7: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PEchg=0 PO=1      PORT8: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PEchg=0 PO=1 Speed=0)
+      PORT9: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PEchg=0 PO=1 Speed=0)
+      PORT10: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PEchg=0 PO=1 Speed=0)
+      PORT11: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PEchg=0 PO=1 Speed=0)
+      PORT12: PORTSC raw=0x00003000  (CCS=0 CSC=0   Summary for controller 00:0B.0: ConnectedPorts=1
+  Device-handle count (1) >= connected ports (1) -- enumeration seems to have succeeded globally.
+--- End of port enumeration vs handles check ---
+Controller PCI BAR0: Found port 1 with CCS=1 PE=0 PO=0 -> diagnosing deeper
+  No HC protocol handle found for this PCI device (driver may not have bound)
+    PCI Vendor/Device: 0x003F106B (Vendor=0x106B Device=0x003F)
+  Trying DriverBinding.Start() on 55 driver-binding handles...
+    DriverBinding handle 7E172B18 Supported() => 0x8000000000000003
+    DriverBinding handle 7E172198 Supported() => 0x8000000000000003
+    DriverBinding handle 7E170118 Supported() => 0x8000000000000003
+    DriverBinding handle 7E170298 Supported() => 0x8000000000000003
+    DriverBinding handle 7E162C18 Supported() => 0x8000000000000003
+    DriverBinding handle 7E162318 Supported() => 0x8000000000000003
+    DriverBinding handle 7E13BC18 Supported() => 0x8000000000000003
+    DriverBinding handle 7E13B618 Su    DriverBinding handle 7E13B798 Supported() => 0x8000000000000003
+    DriverBinding handle 7E164A18 Supported() => 0x8000000000000003
+    DriverBinding handle 7E164718 Su    DriverBinding handle 7E164618 Supported() => 0x8000000000000003
+    DriverBinding handle 7E164418 Supported() => 0x8000000000000003
+    DriverBinding handle 7E13A818 Supported() => 0x8000000000000003
+    DriverBinding handle 7E126A98 Supported() => 0x8000000000000003
+    DriverBinding handle 7E125818 Su    DriverBinding handle 7E122318 Supported() => 0x8000000000000003
+    DriverBinding handle 7E123498 Supported() => 0x8000000000000003
+    DriverBinding handle 7E124F18 Supported() => 0x8000000000000003
+    DriverBinding handle 7E124A98 Supported() => 0x8000000000000003
+    DriverBinding handle 7E11A098 Supported() => 0x8000000000000003
+    DriverBinding handle 7E11A598 Supported() => 0x8000000000000003
+    DriverBinding handle 7E097C18 Supported() => 0x8000000000000003
+    DriverBinding handle 7E097418 Supported() => 0x8000000000000003
+    DriverBinding handle 7E08BD98 Supported() => 0x8000000000000003
+    DriverBinding handle 7E08B498 Supported() => 0x8000000000000003
+    DriverBinding handle 7E096E98 Supported() => 0x8000000000000003
+    DriverBinding handle 7E096718 Supported() => 0x8000000000000003
+    DriverBinding handle 7E095318 Supported() => 0x8000000000000003
+    DriverBinding handle 7E083698 Supported() => 0x8000000000000003
+    DriverBinding handle 7E06B998 Supported() => 0x8000000000000003
+    DriverBinding handle 7E06C018 Supported() => 0x8000000000000003
+    DriverBinding handle 7E06C298 Supported() => 0x8000000000000003
+    DriverBinding handle 7E054098 Supported() => 0x8000000000000003
+    DriverBinding handle 7E054618 Supported() => 0x8000000000000003
+    DriverBinding handle 7E053B98 Supported() => 0x8000000000000003
+    DriverBinding handle 7E053A98 Supported() => 0x8000000000000003
+    DriverBinding handle 7E03C998 Supported() => 0x8000000000000003
+    DriverBinding handle 7E03CB98 Supported() => 0x8000000000000003
+    DriverBinding handle 7E04B098 Supported() => 0x8000000000000003
+    DriverBinding handle 7E04B998 Supported() => 0x8000000000000003
+    DriverBinding handle 7E04AD18 Supported() => 0x8000000000000003
+    DriverBinding handle 7E049B18 Supported() => 0x8000000000000003
+    DriverBinding handle 7E049098 Supported() => 0x8000000000000003
+    DriverBinding handle 7E049718 Supported() => 0x8000000000000003
+    DriverBinding handle 7E049498 Su    DriverBinding handle 7E048098 Supported() => 0x8000000000000003
+    DriverBinding handle 7E03B118 Supported() => 0x8000000000000003
+    DriverBinding handle 7E03A098 Supported() => 0x8000000000000003
+    DriverBinding handle 7E03A918 Supported() => 0x8000000000000003
+    DriverBinding handle 7E02ED98 Supported() => 0x0
+      -> Supported; calling Start()       Start() returned 0x800000000000000E
+    DriverBinding handle 7E02E198 Supported() => 0x8000000000000003
+    DriverBinding handle 7E02DB98 Supported() => 0x8000000000000003
+    DriverBinding handle 7E02D818 Supported() => 0x8000000000000003
+    DriverBinding handle 7E014118 Supported() => 0x8000000000000003
+Trying gBS->ConnectController for handle 7DFD5698 ...
+  ConnectController failed: 0x800000000000000E
+  --- Diagnose: controller BAR0 OpBase=0x010 port=1 ---
+    USBCMD=0x00000000 USBSTS=0x00000    ASYNCLISTADDR=0x00000000 PERIODICLISTBASE=0x00000000 HCSPARAMS=0x00000200
+      PORT1: PORTSC raw=0x00010101  (CCS=1 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+    NOTE: Host controller Run/Stop == 0 (controller stopped). Driver may not have started schedules.
+    NOTE: ASYNCLISTADDR == 0 (no async list programmed).
+    NOTE: Async schedule not enabled    NOTE: Periodic schedule not enabled (USBCMD.PeriodicEnable=0).
+    Could not determine HC protocol handle by location (best-effort failed).
+    Suggestion: ensure HC DXE driver (EHCI/OHCI/UHCI) for this chipset is present in your firmware build.
+    Result: connected, not enabled, EHCI owns port -> likely HC scheduling/driver not started.
+    Next safe diagnostic steps: (1) verify HC driver is present in DXE image; (2) enable driver debug logging; (3) check for companion controller and driver.
+    If you control firmware build: ensure UsbBusDxe and relevant host-controller drivers are included and started.
+  --- End diagnose for port 1 ---
+  USBCMD still 0 after attempting dr    Current USBCMD=0x00000000 -> attempting to set Run+Periodic+Async bits (experimental)
+    Wrote USBCMD -> ReadBack USBCMD=0x00000031
+    TryForceControllerRun returned 0x0
+  --- Diagnose: controller BAR0 OpBase=0x010 port=1 ---
+    USBCMD=0x00000031 USBSTS=0x00000031 FRINDEX=0x00000000
+    ASYNCLISTADDR=0x00000000 PERIODICLISTBASE=0x00000000 HCSPARAMS=0x00000200
+      PORT1: PORTSC raw=0x00010101  (CCS=1 CSC=0    NOTE: ASYNCLISTADDR == 0 (no async list programmed).
+    Could not determine HC protocol handle by location (best-effort failed).
+    Suggestion: ensure HC DXE driver (EHCI/OHCI/UHCI) for this chipset is present in your firmware build.
+    Result: connected, not enabled, EHCI owns port -> likely HC scheduling/driver not started.
+    Next safe diagnostic steps: (1) verify HC driver is present in DXE image; (2) enable driver debug logging; (3) check for companion controller and driver.
+    If you control firmware build: ensure UsbBusDxe and relevant host-controller drivers are included and started.
+  --- End diagnose for port 1 ---
+Controller PCI BAR0: Found port 2 with CCS=1 PE=0 PO=0 -> diagnosing deeper
+  No HC protocol handle found for this PCI device (driver may not have bound)
+    PCI Vendor/Device: 0x003F106B (Vendor=0x106B Device=0x003F)
+  Trying DriverBinding.Start() on 55 driver-binding handles...
+    DriverBinding handle 7E172B18 Supported() => 0x8000000000000003
+    DriverBinding handle 7E172198 Supported() => 0x8000000000000003
+    DriverBinding handle 7E170118 Supported() => 0x8000000000000003
+    DriverBinding handle 7E170298 Supported() => 0x8000000000000003
+    DriverBinding handle 7E162C18 Supported() => 0x8000000000000003
+    DriverBinding handle 7E162318 Supported() => 0x8000000000000003
+    DriverBinding handle 7E13BC18 Supported() => 0x8000000000000003
+    DriverBinding handle 7E13B618 Supported() => 0x8000000000000003
+    DriverBinding handle 7E13B798 Supported() => 0x8000000000000003
+    DriverBinding handle 7E164A18 Supported() => 0x8000000000000003
+    DriverBinding handle 7E164718 Supported() => 0x8000000000000003
+    DriverBinding handle 7E164618 Supported() => 0x8000000000000003
+    DriverBinding handle 7E164418 Supported() => 0x8000000000000003
+    DriverBinding handle 7E13A818 Supported() => 0x8000000000000003
+    DriverBinding handle 7E126A98 Supported() => 0x8000000000000003
+    DriverBinding handle 7E125818 Supported() => 0x8000000000000003
+    DriverBinding handle 7E122318 Supported() => 0x8000000000000003
+    DriverBinding handle 7E123498 Supported() => 0x8000000000000003
+    DriverBinding handle 7E124F18 Supported() => 0x8000000000000003
+    DriverBinding handle 7E124A98 Supported() => 0x8000000000000003
+    DriverBinding handle 7E11A098 Supported() => 0x8000000000000003
+    DriverBinding handle 7E11A598 Supported() => 0x8000000000000003
+    DriverBinding handle 7E097C18 Supported() => 0x8000000000000003
+    DriverBinding handle 7E097418 Su    DriverBinding handle 7E08BD98 Supported() => 0x800000000000    DriverBinding handle 7E08B498 Supported() => 0x8000000000000003
+    DriverBinding handle 7E096E98 Supported() => 0x8000000000000003
+    DriverBinding handle 7E096718 Supported() => 0x8000000000000003
+    DriverBinding handle 7E095318 Supported() => 0x8000000000000003
+    DriverBinding handle 7E083698 Supported() => 0x8000000000000003
+    DriverBinding handle 7E06B998 Supported() => 0x8000000000000003
+    DriverBinding handle 7E06C018 Supported() => 0x8000000000000003
+    DriverBinding handle 7E06C298 Supported() => 0x8000000000000003
+    DriverBinding handle 7E054098 Supported() => 0x8000000000000003
+    DriverBinding handle 7E054618 Supported() => 0x8000000000000003
+    DriverBinding handle 7E053B98 Supported() => 0x8000000000000003
+    DriverBinding handle 7E053A98 Su    DriverBinding handle 7E03C998 Supported() => 0x8000000000000003
+    DriverBinding handle 7E03CB98 Supported() => 0x8000000000000003
+    DriverBinding handle 7E04B098 Supported() => 0x8000000000000003
+    DriverBinding handle 7E04B998 Supported() => 0x8000000000000003
+    DriverBinding handle 7E04AD18 Supported() => 0x8000000000000003
+    DriverBinding handle 7E049B18 Supported() => 0x8000000000000003
+    DriverBinding handle 7E049098 Supported() => 0x8000000000000003
+    DriverBinding handle 7E049718 Supported() => 0x8000000000000003
+    DriverBinding handle 7E049498 Supported() => 0x8000000000000003
+    DriverBinding handle 7E048098 Supported() => 0x8000000000000003
+    DriverBinding handle 7E03B118 Supported() => 0x8000000000000003
+    DriverBinding handle 7E03A098 Supported() => 0x8000000000000003
+    DriverBinding handle 7E03A918 Supported() => 0x8000000000000003
+    DriverBinding handle 7E02ED98 Supported() => 0x0
+      -> Supported; calling Start() now...
+      Start() returned 0x800000000000000E
+    DriverBinding handle 7E02E198 Supported() => 0x8000000000000003
+    DriverBinding handle 7E02DB98 Supported() => 0x8000000000000003
+    DriverBinding handle 7E02D818 Supported() => 0x8000000000000003
+    DriverBinding handle 7E014118 Supported() => 0x8000000000000003
+Trying gBS->ConnectController for handle 7DFD5698 ...
+  ConnectController failed: 0x800000000000000E
+  --- Diagnose: controller BAR0 OpBase=0x010 port=2 ---
+    USBCMD=0x00000031 USBSTS=0x00000031 FRINDEX=0x00000000
+    ASYNCLISTADDR=0x00000000 PERIODICLISTBASE=0x00000000 HCSPARAMS=0x00000200
+      PORT2: PORTSC raw=0x00010101  (CCS=1 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+    NOTE: ASYNCLISTADDR == 0 (no async list programmed).
+    Could not determine HC protocol     Suggestion: ensure HC DXE driver (EHCI/OHCI/UHCI) for this chipset is present in your firmware build.
+    Result: connected, not enabled, EHCI owns port -> likely HC scheduling/driver not started.
+    Next safe diagnostic steps: (1) verify HC driver is present in DXE image; (2) enable driver debug logging; (3) check for companion controller and driver.
+    If you control firmware build: ensure UsbBusDxe and relevant host-controller drivers are included and started.
+  --- End diagnose for port 2 ---
+  USBCMD changed to 0x00000031 ??? driver may have started. Re-diagnosing above.
+--- Inspect PCI devices for Vendor=0x106B Device=0x003F ---
+Found matching PCI handle: handle=7DFD5698 (index=6)
+  -> PCI location: Segment=0 Bus=00 Dev=06 Func=0
+    Vendor/Device = 0x003F106B (Vendor=0x106B Dev    PCI Command = 0x0017 (IO=1 MEM=1 BusMaster=1)
+    PCI BAR0 = 0x90627000
+    PCI config (0x00..0x3C):
+      [00] = 0x003F106B
+      [04] = 0x00100017
+      [08] = 0x0C031000
+      [0C] = 0x00000000
+      [10] = 0x90627000
+      [14] = 0x00000000
+      [18] = 0x00000000
+      [1C] = 0x00000000
+      [20] = 0x00000000
+      [24] = 0x00000000
+      [28] = 0x00000000
+      [2C] = 0x00000000
+      [30] = 0x00000000
+      [34] = 0x00000000
+      [38] = 0x00000000
+      [3C] = 0x0000010A
+  Scanning 1 EFI_USB_IO_PROTOCOL han  Found bulk endpoints: OUT=0x01 IN=0x82
+  UsbBulkTransfer(CBW OUT): Status = 0x0
+  UsbBulkTransfer(INQUIRY DATA-IN): Status = 0x0
+    INQUIRY returned 36 bytes
+    INQUIRY data (len=36):
+0000: 00 80 02 02 1F 00 00 00 47 65 6E 65 72 69 63 20
+0010: 46 6C 61 73 68 20 44 69 73 6B 20 20 20 20 20 20
+0020: 38 2E 30 37
+    INQUIRY: Vendor="Generic " Product="Flash Disk      " Rev="8.07"
+  UsbBulkTransfer(CSW IN): Status = 0x0
+    CSW status = 0x00 DataResidue=0x00000000
+    SCSI INQUIRY completed successfully (no writes performed)
+--- End Inspect ---
+
+Inspecting PCI device 106B:003F (handle=7DFD5698)
+--- Listing all 1 EFI_USB_IO_PROTOCOL handles and USB() nodes ---
+UsbIo handle[0] = 7D888818
+  DevicePath: T02.S01/Pci(0,11)/USB(0,0)/
+  -> USB node: ParentPort=0 Interface=0
+  DeviceDescriptor: Vendor=0x058F Product=0x6387 bDeviceClass=0x00
+--- End list ---
+  DriverBinding handle 7E172B18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E172198 Supported() => 0x8000000000000003
+  DriverBinding handle 7E170118 Supported() => 0x8000000000000003
+  DriverBinding handle 7E170298 Supported() => 0x8000000000000003
+  DriverBinding handle 7E162C18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E162318 Supp  DriverBinding handle 7E13BC18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E13B618 Supported() => 0x8000000000000003
+  DriverBinding handle 7E13B798 Supported() => 0x8000000000000003
+  DriverBinding handle 7E164A18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E164718 Supported() => 0x8000000000000003
+  DriverBinding handle 7E164618 Supported() => 0x8000000000000003
+  DriverBinding handle 7E164418 Supported() => 0x8000000000000003
+  DriverBinding handle 7E13A818 Supported() => 0x8000000000000003
+  DriverBinding handle 7E126A98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E125818 Supported() => 0x8000000000000003
+  DriverBinding handle 7E122318 Supported() => 0x8000000000000003
+  DriverBinding handle 7E123498 Supported() => 0x8000000000000003
+  DriverBinding handle 7E124F18 Supp  DriverBinding handle 7E124A98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E11A098 Supported() => 0x8000000000000003
+  DriverBinding handle 7E11A598 Supported() => 0x8000000000000003
+  DriverBinding handle 7E097C18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E097418 Supported  DriverBinding handle 7E08BD98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E08B498 Supported() => 0x8000000000000003
+  DriverBinding handle 7E096E98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E096718 Supported() => 0x8000000000000003
+  DriverBinding handle 7E095318 Supported() => 0x8000000000000003
+  DriverBinding handle 7E083698 Supported() => 0x8000000000000003
+  DriverBinding handle 7E06B998 Supported() => 0x8000000000000003
+  DriverBinding handle 7E06C018 Supported() => 0x8000000000000003
+  DriverBinding handle 7E06C298 Supported() => 0x8000000000000003
+  DriverBinding handle 7E054098 Supported() => 0x8000000000000003
+  DriverBinding handle 7E054618 Supported() => 0x8000000000000003
+  DriverBinding handle 7E053B98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E053A98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E03C998 Supported() => 0x8000000000000003
+  DriverBinding handle 7E03CB98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E04B098 Supported() => 0x8000000000000003
+  DriverBinding handle 7E04B998 Supported() => 0x8000000000000003
+  DriverBinding handle 7E04AD18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E049B18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E049098 Supported() => 0x8000000000000003
+  DriverBinding handle 7E049718 Supp  DriverBinding handle 7E049498 Supported() => 0x8000000000000003
+  DriverBinding handle 7E048098 Supported() => 0x8000000000000003
+  DriverBinding handle 7E03B118 Supported() => 0x8000000000000003
+  DriverBinding handle 7E03A098 Supported() => 0x8000000000000003
+  DriverBinding handle 7E03A918 Supported() => 0x80  DriverBinding handle 7E02ED98 Supported() => 0x0
+  -> Found supporting driver-binding handle 7E02ED98; calling DumpDriverHandleAndTryBind()
+--- DumpDriverHandleAndTryBind => controller=7DFD5698 driverBinding=7E02ED98 ---
+  Protocols on driver handle: 5
+    [0] GUID ptr=7E172330
+    [1] GUID ptr=7E1722B0
+    [2] EFI_DRIVER_BINDING_PROTOCOL
+    [3] GUID ptr=7E93D630
+    [4] EFI_LOADED_IMAGE_PROTOCOL
+  LoadedImage: ImageBase=7DFB7000 FilePath=7E02E218
+    Driver image device path: T04.S06/
+  ConnectController(controller=7DFD5698, driver=7E02ED98) returned 0x800000000000000E
+--- End dump/try ---
+
+--- Controller health check for PCI 106B:003F (handle=7DFD5698) ---
+  BAR0 OpBase=0x010  USBCMD=0x00000031 USBSTS=0x00000031 FRINDEX=0x00000000
+    ASYNCLISTADDR=0x00000000 PERIODICLISTBASE=0x00000000 HCSPARAMS=0x00000200
+    Probing up to 32 ports (HCSPARAMS l    PORT1: PORTSC=0x00010101 (CCS=1 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port1 CONNECTED but NOT ENABLED and EHCI owns it (un-enumerated)
+    PORT2: PORTSC=0x00010101 (CCS=1 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port2 CONNECTED but NOT ENABLED and EHCI owns it (un-enumerated)
+    PORT3: PORTSC=0x00000100 (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port3 no device connected
+    PORT4: PORTSC=0x00000100 (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port4 no device connected
+    PORT5: PORTSC=0x00000100 (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port5 no device connected
+    PORT6: PORTSC=0x00000100 (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port6 no device connected
+    PORT7: PORTSC=0x00000100 (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port7 no device connected
+    PORT8: PORTSC=0x00000100 (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port8 no device connected
+    PORT9: PORTSC=0x00000100 (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port9 no device connected
+    PORT10: PORTSC=0x00000100 (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port10 no device connected
+    PORT11: PORTSC=0x00000100 (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port11 no device connected
+    PORT12: PORTSC=0x00000100 (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port12 no device connected
+    PORT13: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port13 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT14: PORTSC=0xFFFFFFFF (CCS=1 CSC=1      -> Port14 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT15: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port15 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT16: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port16 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT17: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port17 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT18: PORTSC=0xFFFFFFFF (CCS=1      -> Port18 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT19: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port19 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT20: PORTSC=0xFFFFFFFF (CCS=1      -> Port20 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT21: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port21 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT22: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port22 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT23: PORTSC=0xFFFFFFFF (CCS=1      -> Port23 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT24: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port24 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT25: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port25 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT26: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port26 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT27: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port27 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT28: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port28 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT29: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port29 connected but no pub    PORT30: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port30 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT31: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port31 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT32: PORTSC=0xFFFFFFFF (CCS=1      -> Port32 connected but no published UsbIo handle (state PE=1 PO=1)
+--- End controller health check ---
+
+--- Stage 3: Locate EFI_USB_IO_PROTOCOL handles (actual devices) ---
+Found 1 USB device handles (EFI_USB_IO_PROTOCOL)
+
+--- Device 0 ---
+UsbGetDeviceDescriptor: Status = 0x0
+  bLength=18 bDescriptorType=1 bcdUSUsbGetConfigDescriptor: Status = 0x0
+  wTotalLength=32 bNumInterfaces=1 bConfigurationValue=1
+ skipping DumpHex 32
+UsbGetInterfaceDescriptor: Status = 0x0
+  Interface: bInterfaceNumber=0 bAlternateSetting=0 bInterfaceClass=0x08 bInterfa  Endpoint 0: bEndpointAddress=0x01 bmAttributes=0x02 wMaxPacketSize=512 bInterval=0
+  Endpoint 1: bEndpointAddress=0x82 bmAttributes=0x02 wMaxPacketSize=512 bInterval=0
+  End of endpoint list (index 2). Last status=Not Found
+UsbControlTransfer(GET_STATUS): Status = 0x0
+  GET_STATUS returned UsbStatus=0x0 Data: 0000: 00 00
+UsbPortReset (note: this may re-enumerate device): Status = 0x0
+--- End of device 0 checks ---
+--- Stage: Check BlockIo on USB mass-storage devices ---
+  BlockIo handle 0: MediaId=0 BlockSize=512 LastBlock=125829119 MediaPresent=1 Removable=0
+    ReadBlocks(LBA0) returned 0x0
+    LBA0 (first 64 bytes) (len=64):
+0000: 33 C0 8E D0 BC 00 7C 8E C0 8E D8 BE 00 7C BF 00
+0010: 06 B9 00 02 FC F3 A4 50 68 1C 06 CB FB B9 04 00
+0020: BD BE 07 80 7E 00 00 7C 0B 0F 85 0E 01 83 C5 10
+0030: E2 F1 CD 18 88 56 00 55 C6 46 11 05 C6 46 10 00
+    MBR signature 0x55AA found at offset 0x1FE
+  BlockIo handle 1: MediaId=1 BlockS    ReadBlocks(LBA0) returned 0x0
+    LBA0 (first 64 bytes) (len=64):
+0000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0010: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0020: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0030: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+    No MBR signature at 0x1FE (bytes=0x00 0x00)
+  BlockIo handle 2: MediaId=1 BlockSize=2048 LastBlock=7 MediaPresent=1 Removable=1
+    ReadBlocks(LBA0) returned 0x0
+0000: FA 33 C0 8E D0 BC 00 7C FB 8C C8 8E D8 52 B4 0F
+0010: CD 10 24 7F 3C 03 74 06 B4 00 B0 03 CD 10 E8 00
+0020: 00 5E 81 EE 21 00 74 16 81 FE 00 7C 0F 85 7D 00
+0030: 8C C8 3D 00 00 0F 85 84 00 EA 45 00 C0 07 8C C8
+    No MBR signature at 0x1FE (bytes=0x0E 0xDF)
+  BlockIo handle 3: MediaId=1 BlockS    ReadBlocks(LBA0) returned 0x0
+    LBA0 (first 64 bytes) (len=64):
+0000: EB 3C 90 4D 53 44 4F 53 35 2E 30 00 02 01 01 00
+0010: 02 E0 00 40 0B F0 09 00 12 00 02 00 00 00 00 00
+0020: 00 00 00 00 00 00 29 78 48 A0 00 45 46 49 53 45
+0030: 43 54 4F 52 20 20 46 41 54 31 32 20 20 20 FA 33
+    MBR signature 0x55AA found at offset 0x1FE
+  BlockIo handle 4: MediaId=1 BlockSize=2048 LastBlock=2335903 MediaPresent=1 Removable=1
+    ReadBlocks(LBA0) returned 0x0
+0000: 01 00 02 00 5E 00 00 00 3C 0E F0 01 20 00 00 00
+0010: 00 00 00 00 00 00 00 00 08 45 53 44 2D 49 53 4F
+0020: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0030: 00 00 00 00 00 00 00 08 01 00 01 00 02 00 03 00
+    No MBR signature at 0x1FE (bytes  BlockIo handle 5: MediaId=0 BlockSize=512 LastBlock=204799 MediaPresent=1 Removable=0
+    ReadBlocks(LBA0) returned 0x0
+0000: EB 58 90 4D 53 44 4F 53 35 2E 30 00 02 02 FE 19
+0010: 02 00 00 00 00 F8 00 00 3F 00 FF 00 00 08 00 00
+0020: 00 20 03 00 01 03 00 00 00 00 00 00 02 00 00 00
+0030: 01 00 06 00 00 00 00 00 00 00 00 00 00 00 00 00
+    MBR signature 0x55AA found at offset 0x1FE
+  BlockIo handle 6: MediaId=0 BlockSize=512 LastBlock=32767 MediaPresent=1 Removable=0
+    ReadBlocks(LBA0) returned 0x0
+    LBA0 (first 64 bytes) (len=64):
+0000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0010: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0020: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0030: 00 00 00 00 00 00 00 00 00 00 00 00 0000 00
+    No MBR signature at 0x1FE (bytes=0x00 0x00)
+  BlockIo handle 7: MediaId=0 BlockSize=512 LastBlock=124499022 MediaPresent=1 Removable=0
+    ReadBlocks(LBA0) returned 0x0
+    LBA0 (first 64 bytes) (len=64):
+0000: EB 52 90 4E 54 46 53 20 20 20 20 00 02 08 00 00
+0010: 00 00 00 00 00 F8 00 00 3F 00 FF 00 00 A8 03 00
+0020: 00 00 00 00 80 00 80 00 4E B4 6B 07 00 00 00 00
+0030: 00 00 0C 00 00 00 00 00 02 00 00 00 00 00 00 00
+    MBR signature 0x55AA found at offset 0x1FE
+  BlockIo handle 8: MediaId=0 BlockSize=512 LastBlock=1085439 MediaPresent=1 Removable=0
+    ReadBlocks(LBA0) returned 0x0
+0000: EB 52 90 4E 54 46 53 20 20 20 20 00 02 08 00 00
+0010: 00 00 00 00 00 F8 00 00 3F 00 FF 00 00 60 6F 07
+0020: 00 00 00 00 80 00 80 00 FF 8F 10 00 00 00 00 00
+0030: AA B0 00 00 00 00 00 00 02 00 00 00 00 00 00 00
+    MBR signature 0x55AA found at of  BlockIo handle 9: MediaId=2 BlockSize=512 LastBlock=8165375 MediaPresent=1 Removable=1
+    ReadBlocks(LBA0) returned 0x800000000000000D
+
+--- Probing controller ports: 106B:003F ports 1,2 ---
+  PORT1 PORTSC=0x00010101 (CCS=1 PE=0 PO=0)
+    No published UsbIo handle for Port1
+  PORT2 PORTSC=0x00010101 (CCS=1 PE=0 PO=0)
+    No published UsbIo handle for Port2
+--- End probe ---
+
+  Handle 7DFD5698 has 2 protocols installed:
+    [0] EFI_PCI_IO_PROTOCOL
+    [1] GUID ptr=7ECE5830
+--- LoadedImage handles (97) ---
+ [0] Handle=7ECEEF98 ImageBase=7F318000
+     FilePath: T04.S06/
+ [1] Handle=7E93D698 ImageBase=7E91F000
+     FilePath: T04.S06/
+ [2] Handle=7E932B18 ImageBase=7E92C000
+     FilePath: T04.S06/
+ [3] Handle=7E932518 ImageBase=7EEEC000
+     FilePath: T04.S06/
+ [4] Handle=7E930018 ImageBase=7EEEA000
+     FilePath: T04.S06/
+ [5] Handle=7E930698 ImageBase=7EEE8000
+     FilePath: T04.S06/
+ [6] Handle=7E92F398 ImageBase=7E815000
+     FilePath: T04.S06/
+ [7] Handle=7E929118 ImageBase=7E915000
+     FilePath: T04.S06/
+ [8] Handle=7E91E118 ImageBase=7E91C000
+     FilePath: T04.S06/
+ [9] Handle=7E91E198 ImageBase=7E91A000
+     FilePath: T04.S06/
+ [10] Handle=7E91B318 ImageBase=7E8F9000
+     FilePath: T04.S06/
+ [11] Handle=7E91B498 ImageBase=7E908000
+     FilePath: T04.S06/
+ [12] Handle=7E909918 ImageBase=7E8E1000
+     FilePath: T04.S06/
+ [13] Handle=7E909698 ImageBase=7EEE6000
+     FilePath: T04.S06/
+ [14] Handle=7E8E6D18 ImageBase=7E8E5000
+     FilePath: T04.S06/
+ [15] Handle=7E907518 ImageBase=7E8DD000
+     FilePath: T04.S06/
+ [16] Handle=7E8E6418 ImageBase=7E8A7000
+     FilePath: T04.S06/
+ [17] Handle=7E8E0D18 ImageBase=7E8DF000
+     FilePath: T04.S06/
+ [18] Handle=7E8E0018 ImageBase=7E8D3000
+     FilePath: T04.S06/
+ [19] Handle=7E8E0118 ImageBase=7E8DA000
+     FilePath: T04.S06/
+ [20] Handle=7E8DBE98 ImageBase=7E8D1000
+     FilePath: T04.S06/
+ [21] Handle=7E8DB618 ImageBase=7EE5C000
+     FilePath: T04.S06/
+ [22] Handle=7E8DCD98 ImageBase=7EE5B000
+     FilePath: T04.S06/
+ [23] Handle=7E8D8D98 ImageBase=7E8D0000
+     FilePath: T04.S06/
+ [24] Handle=7E8D8018 ImageBase=7E8C     FilePath: T04.S06/
+ [25] Handle=7E8CFB98 ImageBase=7E1A4000
+     FilePath: T04.S06/
+ [26] Handle=7E8CF798 ImageBase=7E8C3000
+     FilePath: T04.S06/
+ [27] Handle=7E8CE298 ImageBase=7E40C000
+     FilePath: T04.S06/
+ [28] Handle=7E8CD598 ImageBase=7E401000
+     FilePath: T04.S06/
+ [29] Handle=7E8CC398 ImageBase=7E19D000
+     FilePath: T04.S06/
+ [30] Handle=7E8C2118 ImageBase=7E189000
+     FilePath: T04.S06/
+ [31] Handle=7E8A1A98 ImageBase=7E89     FilePath: T04.S06/
+ [32] Handle=7E8D9698 ImageBase=7EE58000
+     FilePath: T04.S06/
+ [33] Handle=7E89EA18 ImageBase=7E0AB000
+     FilePath: T04.S06/
+ [34] Handle=7E89E518 ImageBase=7E184000
+     FilePath: T04.S06/
+ [35] Handle=7E187C18 ImageBase=7EE57000
+     FilePath: T04.S06/
+ [36] Handle=7E187118 ImageBase=7EE56000
+     FilePath: T04.S06/
+ [37] Handle=7E183918 ImageBase=7E17     FilePath: T04.S06/
+ [38] Handle=7E182298 ImageBase=7E14B000
+     FilePath: T04.S06/
+ [39] Handle=7E181198 ImageBase=7E167000
+     FilePath: T04.S06/
+ [40] Handle=7E17F618 ImageBase=7E129000
+     FilePath: T04.S06/
+ [41] Handle=7E175A18 ImageBase=7E165000
+     FilePath: T04.S06/
+ [42] Handle=7E175418 ImageBase=7E143000
+     FilePath: T04.S06/
+ [43] Handle=7E172B18 ImageBase=7E0A0000
+     FilePath: T04.S06/
+ [44] Handle=7E172198 ImageBase=7E14     FilePath: T04.S06/
+ [45] Handle=7E170118 ImageBase=7E140000
+     FilePath: T04.S06/
+ [46] Handle=7E170298 ImageBase=7E147000
+     FilePath: T04.S06/
+ [47] Handle=7E162C18 ImageBase=7E13E000
+     FilePath: T04.S06/
+ [48] Handle=7E162318 ImageBase=7E13C000
+     FilePath: T04.S06/
+ [49] Handle=7E13BC18 ImageBase=7E127000
+     FilePath: T04.S06/
+ [50] Handle=7E13B798 ImageBase=7E11B000
+     FilePath: T04.S06/
+ [51] Handle=7E13A818 ImageBase=7E09C000
+     FilePath: T04.S06/
+ [52] Handle=7E126A98 ImageBase=7E09     FilePath: T04.S06/
+ [53] Handle=7E125818 ImageBase=7E098000
+     FilePath: T04.S06/
+ [54] Handle=7E122318 ImageBase=7E086000
+     FilePath: T04.S06/
+ [55] Handle=7E122818 ImageBase=7E121000
+     FilePath: T04.S06/
+ [56] Handle=7E123498 ImageBase=7E08E000
+     FilePath: T04.S06/
+ [57] Handle=7E124F18 ImageBase=7E076     FilePath: T04.S06/
+ [58] Handle=7E124A98 ImageBase=7E08C000
+     FilePath: T04.S06/
+ [59] Handle=7E11A098 ImageBase=7E06E000
+     FilePath: T04.S06/
+ [60] Handle=7E11A598 ImageBase=7E07E000
+     FilePath: T04.S06/
+ [61] Handle=7E097C18 ImageBase=7E060000
+     FilePath: T04.S06/
+ [62] Handle=7E097418 ImageBase=7E084000
+     FilePath: T04.S06/
+ [63] Handle=7E08BD98 ImageBase=7E05B000
+     FilePath: T04.S06/
+ [64] Handle=7E08B498 ImageBase=7E05     FilePath: T04.S06/
+ [65] Handle=7E096E98 ImageBase=7E068000
+     FilePath: T04.S06/
+ [66] Handle=7E096718 ImageBase=7E04F000
+     FilePath: T04.S06/
+ [67] Handle=7E095318 ImageBase=7E041000
+     FilePath: T04.S06/
+ [68] Handle=7E095718 ImageBase=7E06D000
+     FilePath: T04.S06/
+ [69] Handle=7E083E98 ImageBase=7E04C000
+     FilePath: T04.S06/
+ [70] Handle=7E083698 ImageBase=7E055000
+     FilePath: T04.S06/
+ [71] Handle=7E082598 ImageBase=7E067000
+     FilePath: T04.S06/
+ [72] Handle=7E06B998 ImageBase=7E033000
+     FilePath: T04.S06/
+ [73] Handle=7E06C018 ImageBase=7E03D000
+     FilePath: T04.S06/
+ [74] Handle=7E06C298 ImageBase=7E027000
+     FilePath: T04.S06/
+ [75] Handle=7E054098 ImageBase=7E021000
+     FilePath: T04.S06/
+ [76] Handle=7E054618 ImageBase=7E01B000
+     FilePath: T04.S06/
+ [77] Handle=7E053B98 ImageBase=7E00D000
+     FilePath: T04.S06/
+ [78] Handle=7E053A98 ImageBase=7E02     FilePath: T04.S06/
+ [79] Handle=7E03C998 ImageBase=7DFFD000
+     FilePath: T04.S06/
+ [80] Handle=7E03CB98 ImageBase=7DFDB000
+     FilePath: T04.S06/
+ [81] Handle=7E04B098 ImageBase=7DFF5000
+     FilePath: T04.S06/
+ [82] Handle=7E04B998 ImageBase=7DFED000
+     FilePath: T04.S06/
+ [83] Handle=7E04AD18 ImageBase=7DFC1000
+     FilePath: T04.S06/
+ [84] Handle=7E049098 ImageBase=7DFA1000
+     FilePath: T04.S06/
+ [85] Handle=7E049498 ImageBase=7DF6B000
+     FilePath: T04.S06/
+ [86] Handle=7E03B118 ImageBase=7DFD7000
+     FilePath: T04.S06/
+ [87] Handle=7E03A098 ImageBase=7E005000
+     FilePath: T04.S06/
+ [88] Handle=7E03A918 ImageBase=7DFBC000
+     FilePath: T04.S06/
+ [89] Handle=7E02ED98 ImageBase=7DFB7000
+     FilePath: T04.S06/
+ [90] Handle=7E02E198 ImageBase=7DF99000
+     FilePath: T04.S06/
+ [91] Handle=7E02DB98 ImageBase=7DFB2000
+     FilePath: T04.S06/
+ [92] Handle=7E02D818 ImageBase=7DFCF000
+     FilePath: T04.S06/
+ [93] Handle=7E014118 ImageBase=7DF95000
+     FilePath: T04.S06/
+ [94] Handle=7DF92B98 ImageBase=7D725000
+     FilePath: T04.S06/
+ [95] Handle=7D892B18 ImageBase=7D0FD000
+     FilePath: T04.S04/
+ [96] Handle=7D84BF18 ImageBase=7D0BE000
+     FilePath: T04.S04/
+--- end LoadedImage list ---
+--- Trying Start() on drivers that Supported() this  DriverBinding handle 7E172B18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E172198 Supported() => 0x8000000000000003
+  DriverBinding handle 7E170118 Supported() => 0x8000000000000003
+  DriverBinding handle 7E170298 Supported() => 0x8000000000000003
+  DriverBinding handle 7E162C18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E162318 Supported() => 0x8000000000000003
+  DriverBinding handle 7E13BC18 Supp  DriverBinding handle 7E13B618 Supported() => 0x8000000000000003
+  DriverBinding handle 7E13B798 Supported() => 0x8000000000000003
+  DriverBinding handle 7E164A18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E164718 Supported() => 0x8000000000000003
+  DriverBinding handle 7E164618 Supported() =  DriverBinding handle 7E164418 Supported() => 0x8000000000000003
+  DriverBinding handle 7E13A818 Supp  DriverBinding handle 7E126A98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E125818 Supported() => 0x8000000000000003
+  DriverBinding handle 7E122318 Supported() => 0x8000000000000003
+  DriverBinding handle 7E123498 Supported() => 0x8000000000000003
+  DriverBinding handle 7E124F18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E124A98 Supp  DriverBinding handle 7E11A098 Supported() => 0x8000000000000003
+  DriverBinding handle 7E11A598 Supported() => 0x8000000000000003
+  DriverBinding handle 7E097C18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E097418 Supported() => 0x8000000000000003
+  DriverBinding handle 7E08BD98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E08B498 Supported() => 0x8000000000000003
+  DriverBinding handle 7E096E98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E096718 Supported() => 0x8000000000000003
+  DriverBinding handle 7E095318 Supp  DriverBinding handle 7E083698 Supported() => 0x8000000000000003
+  DriverBinding handle 7E06B998 Supported() => 0x8000000000000003
+  DriverBinding handle 7E06C018 Supported() => 0x8000000000000003
+  DriverBinding handle 7E06C298 Supported() => 0x8000000000000003
+  DriverBinding handle 7E054098 Supported() => 0x8000000000000003
+  DriverBinding handle 7E054618 Supported() => 0x8000000000000003
+  DriverBinding handle 7E053B98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E053A98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E03C998 Supp  DriverBinding handle 7E03CB98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E04B098 Supported() => 0x8000000000000003
+  DriverBinding handle 7E04B998 Supported() => 0x8000000000000003
+  DriverBinding handle 7E04AD18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E049B18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E049098 Supported() => 0x8000000000000003
+  DriverBinding handle 7E049718 Supported() => 0x8000000000000003
+  DriverBinding handle 7E049498 Supported() => 0x8000000000000003
+  DriverBinding handle 7E048098 Supported() => 0x8000000000000003
+  DriverBinding handle 7E03B118 Supported() => 0x8000000000000003
+  DriverBinding handle 7E03A098 Supported() => 0x8000000000000003
+  DriverBinding handle 7E03A918 Supported() => 0x8000000000000003
+  DriverBinding handle 7E02ED98 Supported() => 0x0
+    Driver image: 7DFB7000 FilePath=T04.S06/
+    DriverBinding->Start() returned 0x800000000000000E
+  DriverBinding handle 7E02E198 Supported() => 0x8000000000000003
+  DriverBinding handle 7E02DB98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E02D818 Supported() => 0x8000000000000003
+  DriverBinding handle 7E014118 Supported() => 0x8000000000000003
+--- End trying Start() ---
+
+--- Controller health check for PCI 106B:003F (handle=  BAR0 OpBase=0x010  USBCMD=0x00000031 USBSTS=0x00000031 FRINDEX=0x00000000
+    ASYNCLISTADDR=0x00000000 PERIODI    Probing up to 32 ports (HCSPARAMS lower nibble => 0)
+    PORT1: PORTSC=0x00010101 (CCS=1 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port1 CONNECTED but NOT ENABLED and EHCI owns it (un-enumerated)
+    PORT2: PORTSC=0x00010101 (CCS=1 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port2 CONNECTED but NOT ENABLED and EHCI owns it (un-enumerated)
+    PORT3: PORTSC=0x00000100 (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port3 no device connected
+    PORT4: PORTSC=0x00000100 (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port4 no device connected
+    PORT5: PORTSC=0x00000100 (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port5 no device connected
+    PORT6: PORTSC=0x00000100 (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port6 no device connected
+    PORT7: PORTSC=0x00000100 (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port7 no device connected
+    PORT8: PORTSC=0x00000100 (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port8 no device connected
+    PORT9: PORTSC=0x00000100 (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port9 no device connected
+    PORT10: PORTSC=0x00000100 (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port10 no device connected
+    PORT11: PORTSC=0x00000100 (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port11 no device connected
+    PORT12: PORTSC=0x00000100 (CCS=0 CSC=0 PE=0 PEchg=0 PO=0 Speed=0)
+      -> Port12 no device connected
+    PORT13: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port13 connected but no publis    PORT14: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port14 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT15: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port15 connected but no published UsbIo handle (stat    PORT16: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port16 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT17: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port17 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT18: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port18 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT19: PORTSC=0xFFFFFFFF (CCS=1      -> Port19 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT20: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port20 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT21: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port21 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT22: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port22 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT23: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port23 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT24: PORTSC=0xFFFFFFFF (CCS=1      -> Port24 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT25: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port25 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT26: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port26 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT27: PORTSC=0xFFFFFFFF (CCS=1      -> Port27 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT28: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port28 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT29: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port29 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT30: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port30 connected but no pub    PORT31: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port31 connected but no published UsbIo handle (state PE=1 PO=1)
+    PORT32: PORTSC=0xFFFFFFFF (CCS=1 CSC=1 PE=1 PEchg=1 PO=1 Speed=3)
+      -> Port32 connected but no published UsbIo handle (state PE=1 PO=1)
+--- End controller health check ---
+
+
+AutoProbe: PCI 00:06.0 handle=7DFD5698
+  PCI class=0x0C subclass=0x03 progIf=0x10
+  Found candidate BAR0 CapLen/OpBase=0x10
+    Read [BAR0+0x010] => 0x00000031
+    Read [BAR0+0x014] => 0x00000031
+  Controller appears to be OHCI (ProgIf=0x10). Running OHCI port probe/reset on provided ports.
+  [OHCI] port1: reading RHPS at offset 0x054
+    Read [BAR0+0x054] => 0x00010101
+  [OHCI] Port1: initiating RH port reset (writing PR bit)
+    Wrote [BAR0+0x054] = 0x00010101
+    Read [BAR0+0x054] => 0x00000101
+    Read [BAR0+0x054] => 0x00000101
+    Read [BAR0+0x054] => 0x00000101
+    Read [BAR0+0x054] => 0x00000101
+    Read [BAR0+0x054] => 0x00000101
+    Read [BAR0+0x054] => 0x00000101
+    Read [BAR0+0x054] => 0x00000101
+    Read [BAR0+0x054] => 0x00000101
+    Read [BAR0+0x054] => 0x00000101
+    Read [BAR0+0x054] => 0x00000101
+    Read [BAR0+0x054] => 0x00000101
+    Read [BAR0+0x054] => 0x00000101
+    Read [BAR0+0x054] => 0x00000101
+    Read [BAR0+0x054] => 0x00000101
+    Read [BAR0+0x054] => 0x00000101
+    Read [BAR0+0x054] => 0x00000101
+    Read [BAR0+0x054] => 0x00000101
+    Read [BAR0+0x054] => 0x00000101
+    Read [BAR0+0x054] => 0x00000101
+    Read [BAR0+0x054] => 0x00000101
+    Port1 did not become enabled within timeout (OHCI)
+  [OHCI] port2: reading RHPS at offset 0x058
+    Read [BAR0+0x058] => 0x00010101
+  [OHCI] Port2: initiating RH port reset (writing PR bit)
+    Wrote [BAR0+0x058] = 0x00010101
+    Read [BAR0+0x058] => 0x00000101
+    Read [BAR0+0x058] => 0x00000101
+    Read [BAR0+0x058] => 0x00000101
+    Read [BAR0+0x058] => 0x00000101
+    Read [BAR0+0x058] => 0x00000101
+    Read [BAR0+0x058] => 0x00000101
+    Read [BAR0+0x058] => 0x00000101
+    Read [BAR0+0x058] => 0x00000101
+    Read [BAR0+0x058] => 0x00000101
+    Read [BAR0+0x058] => 0x00000101
+    Read [BAR0+0x058] => 0x00000101
+    Read [BAR0+0x058] => 0x00000101
+    Read [BAR0+0x058] => 0x00000101
+    Read [BAR0+0x058] => 0x00000101
+    Read [BAR0+0x058] => 0x00000101
+    Read [BAR0+0x058] => 0x00000101
+    Read [BAR0+0x058] => 0x00000101
+    Read [BAR0+0x058] => 0x00000101
+    Read [BAR0+0x058] => 0x00000101
+    Read [BAR0+0x058] => 0x00000101
+    Port2 did not become enabled within timeout (OHCI)
+AutoProbe: done for 106B:003F
+
+--- Trying Start() on drivers that Supported() this controller ---
+  DriverBinding handle 7E172B18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E172198 Supported() => 0x8000000000000003
+  DriverBinding handle 7E170118 Supported() => 0x8000000000000003
+  DriverBinding handle 7E170298 Supported() => 0x8000000000000003
+  DriverBinding handle 7E162C18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E162318 Supported() => 0x8000000000000003
+  DriverBinding handle 7E13BC18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E13B618 Supported() => 0x8000000000000003
+  DriverBinding handle 7E13B798 Supported() => 0x8000000000000003
+  DriverBinding handle 7E164A18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E164718 Supported() => 0x8000000000000003
+  DriverBinding handle 7E164618 Supported() => 0x8000000000000003
+  DriverBinding handle 7E164418 Supported() => 0x8000000000000003
+  DriverBinding handle 7E13A818 Supported() => 0x8000000000000003
+  DriverBinding handle 7E126A98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E125818 Supported() => 0x8000000000000003
+  DriverBinding handle 7E122318 Supported() => 0x8000000000000003
+  DriverBinding handle 7E123498 Supported() => 0x8000000000000003
+  DriverBinding handle 7E124F18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E124A98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E11A098 Supported() => 0x8000000000000003
+  DriverBinding handle 7E11A598 Supported() => 0x8000000000000003
+  DriverBinding handle 7E097C18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E097418 Supported() =>   DriverBinding handle 7E08BD98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E08B498 Supported() => 0x8000000000000003
+  DriverBinding handle 7E096E98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E096718 Supported() => 0x8000000000000003
+  DriverBinding handle 7E095318 Supported() => 0x8000000000000003
+  DriverBinding handle 7E083698 Supported() => 0x8000000000000003
+  DriverBinding handle 7E06B998 Supported() => 0x8000000000000003
+  DriverBinding handle 7E06C018 Supported() => 0x8000000000000003
+  DriverBinding handle 7E06C298 Supported() => 0x8000000000000003
+  DriverBinding handle 7E054098 Supported() => 0x8000000000000003
+  DriverBinding handle 7E054618 Supported() => 0x8000000000000003
+  DriverBinding handle 7E053B98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E053A98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E03C998 Supp  DriverBinding handle 7E03CB98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E04B098 Supported() => 0x8000000000000003
+  DriverBinding handle 7E04B998 Supported() => 0x8000000000000003
+  DriverBinding handle 7E04AD18 Supported() => 0x8000000000000003
+  DriverBinding handle 7E049B18 Supp  DriverBinding handle 7E049098 Supported() => 0x8000000000000003
+  DriverBinding handle 7E049718 Supported() => 0x8000000000000003
+  DriverBinding handle 7E049498 Supported() => 0x8000000000000003
+  DriverBinding handle 7E048098 Supported() => 0x8000000000000003
+  DriverBinding handle 7E03B118 Supported() => 0x8000000000000003  DriverBinding handle 7E03A098 Supported() => 0x8000000000000003
+  DriverBinding handle 7E03A918 Supported() => 0x8000000000000003
+  DriverBinding handle 7E02ED98 Supported() => 0x0
+    Driver image: 7DFB7000 FilePath=T04.S06/
+    DriverBinding->Start() returned 0x800000000000000E
+  DriverBinding handle 7E02E198 Supp  DriverBinding handle 7E02DB98 Supported() => 0x8000000000000003
+  DriverBinding handle 7E02D818 Supported() => 0x8000000000000003
+  DriverBinding handle 7E014118 Supported() => 0x8000000000000003
+--- End trying Start() ---
+gBS->ConnectController(PciH,NULL,NULL,TRUE) returned 0x800000000000000E
+--- Listing all 1 EFI_USB_IO_PROTOCOL handles and USB() nodes ---
+UsbIo handle[0] = 7D888818
+  DevicePath: T02.S01/Pci(0,11)/USB(0,0)/
+  -> USB node: ParentPort=0 Interface=0
+  DeviceDescriptor: Vendor=0x058F Product=0x6387 bDeviceClass=0x00
+--- End list ---
+
+--- OHCI register dump for PCI 106B:003F ---
+  Using BAR0 OpBase=0x010
+    Read [BAR0+0x010] => 0x00000031
+    Read [BAR0+0x014] => 0x00000031
+    Read [BAR0+0x018] => 0x00000000
+    Read [BAR0+0x01C] => 0x00000000
+    Read [BAR0+0x040] => 0x00000000
+    Read [BAR0+0x044] => 0x00000628
+    Read [BAR0+0x048] => 0x0000020C
+    Warning: RhDescriptorA reports NPorts=0. Using safe cap 32
+  Root Hub: HcRevision=0x00000031 HcControl=0x00000031 HcCmdSts=0x00000000 HcHCCA=0x00000000
+           RhDescriptorA=0x00000000 RhDescriptorB=0x00000628 RhStatus=0x0000020C NPorts=32
+    PORT1: RHPS raw=0x00000101  (CCS=1 PES=0 PR=1)
+    PORT2: RHPS raw=0x00000101  (CCS=1 PES=0 PR=1)
+    PORT3: RHPS raw=0x00000100  (CCS=0 PES=0 PR=1)
+    PORT4: RHPS raw=0x00000100  (CCS=0 PES=0 PR=1)
+    PORT5: RHPS raw=0x00000100  (CCS=0 PES=0 PR=1)
+    PORT6: RHPS raw=0x00000100  (CCS=0 PES=0 PR=1)
+    PORT7: RHPS raw=0x00000100  (CCS    PORT8: RHPS raw=0x00000100  (CCS=0 PES=0 PR=1)
+    PORT9: RHPS raw=0x00000100  (CCS=0 PES=0 PR=1)
+    PORT10: RHPS raw=0x00000100  (CCS=0 PES=0 PR=1)
+    PORT11: RHPS raw=0x00000100  (CCS=0 PES=0 PR=1)
+    PORT12: RHPS raw=0x00000100  (CCS=0 PES=0 PR=1)
+    PORT13: RHPS raw=0xFFFFFFFF  (CCS=1 PES=1 PR=1)
+    PORT14: RHPS raw=0xFFFFFFFF  (CCS=1 PES=1 PR=1)
+    PORT15: RHPS raw=0xFFFFFFFF  (CCS=1 PES=1 PR=1)
+    PORT16: RHPS raw=0xFFFFFFFF  (CCS=1 PES=1 PR=1)
+    PORT17: RHPS raw=0xFFFFFFFF  (CCS=1 PES=1 PR=1)
+    PORT18: RHPS raw=0xFFFFFFFF  (CC    PORT19: RHPS raw=0xFFFFFFFF  (CCS=1 PES=1 PR=1)
+    PORT20: RHPS raw=0xFFFFFFFF  (CCS=1 PES=1 PR=1)
+    PORT21: RHPS raw=0xFFFFFFFF  (CCS=1 PES=1 PR=1)
+    PORT22: RHPS raw=0xFFFFFFFF  (CCS=1 PES=1 PR=1)
+    PORT23: RHPS raw=0xFFFFFFFF  (CCS=1 PES=1 PR=1)
+    PORT24: RHPS raw=0xFFFFFFFF  (CC    PORT25: RHPS raw=0xFFFFFFFF  (CCS=1 PES=1 PR=1)
+    PORT26: RHPS raw=0xFFFFFFFF  (CCS=1 PES=1 PR=1)
+    PORT27: RHPS raw=0xFFFFFFFF  (CCS=1 PES=1 PR=1)
+    PORT28: RHPS raw=0xFFFFFFFF  (CCS=1 PES=1 PR=1)
+    PORT29: RHPS raw=0xFFFFFFFF  (CCS=1 PES=1 PR=1)
+    PORT30: RHPS raw=0xFFFFFFFF  (CC    PORT31: RHPS raw=0xFFFFFFFF  (CCS=1 PES=1 PR=1)
+    PORT32: RHPS raw=0xFFFFFFFF  (CCS=1 PES=1 PR=1)
+--- End OHCI dump ---
+
+UsbDiagApp: Completed checks. You can re-run to capture new events.
+Done. Press any key to exit...

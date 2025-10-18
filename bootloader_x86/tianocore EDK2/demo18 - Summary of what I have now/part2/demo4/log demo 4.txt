@@ -1,0 +1,675 @@
+------------------------------------------------------------------------------?
+-                                Boot Manager                                  -
+--------------------------------------------------------------------------------
+
+                                                         Device Path :
+   Boot Manager Menu                                     PciRoot(0x0)/Pci(0xB,0
+                                                         x0)/USB(0x0,0x0)
+   Windows Boot Manager
+   UEFI VBOX CD-ROM VB1-1a2b3c4d
+   UEFI VBOX HARDDISK VB1981ae93-81f869fa
+   EFI Internal Shell
+   UEFI PXEv4 (MAC:0800274CACB2)
+   EFI Generic Mass Storage EE5B4CC22
+
+   Use the <^> and <v> keys to choose a boot option,
+   the <Enter> key to select a boot option, and the
+   <Esc> key to exit the Boot Manager Menu.
+
+
+
+---------------------------------------------?
+-                                                                              -
+- ^v=Move Highlight       <Enter>=Select Entry      Esc=Exit                   -
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                     0 MB RAM
+
+
+
+   Select Language            <Standard English>         This selection will
+                                                         take you to the Boot
+ > Device Manager                                        Manager
+ > Boot Manager
+ > Boot Maintenance Manager
+
+   Continue
+   Reset
+
+
+
+
+
+
+
+  ^v=Move Highlight       <Enter>=Select Entry
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BdsDxe: loading Boot0000 "UiApp" fromBdsDxe: starting Boot0000 "UiApp" from Fv(7CB8BDC9-F8EB-4F34-AAEA-3EE4AF6516A1)/FvFile(462CAA21-7614-4503-836E-8AB6F4662331)
+------------------------------------------------------------------------------?
+-                                Boot Manager                                  -
+--------------------------------------------------------------------------------
+
+                                                         Device Path :
+   Boot Manager Menu                                     PciRoot(0x0)/Pci(0xB,0
+                                                         x0)/USB(0x0,0x0)
+   Windows Boot Manager
+   UEFI VBOX CD-ROM VB1-1a2b3c4d
+   UEFI VBOX HARDDISK VB1981a
+   EFI Internal Shell
+   UEFI PXEv4 (MAC:0800274CACB2)
+   UEFI Generic Mass Storage EE5B4CC2
+
+   Use the <^> and <v> keys to choose a boot option,
+   the <Enter> key to select a boot option, and the
+   <Esc> key to exit the Boot Manager Menu.
+
+
+
+------------------------------------------------------------------------------?
+-                                                                              -
+- ^v=Move Highlight       <Enter>=Select Entry      Esc=Exit                   -
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+HelloWorld: advanced terminal starting...
+HelloWorld: filesystem ready. Type 'help' for commands.
+\> loadimg helloworld.efi
+Found '\EFI\Boot\myApps\helloworld.efi'. Run image (YES/NO)?
+yes
+loadimg: starting image ...
+
+UsbDiagApp: Starting safe USB diagnostic sequence (read-only by default)
+Total PCI handles found: 10
+--- Found PCI USB controller Class=0x0C SubClass=0x03 ProgIf=0x10 ---
+BAR0 (raw) = 0x9062B000  (we will access via PciIo->Mem.Read using BarIndex=0)
+Controller type guess: OHCI (USB 1.x)
+CAPLENGTH byte @ BAR+0x0 = 0x10
+Operational register base (offset from BAR0) = 0x10
+>>> OHCI (USB1.x) operational snapshot (read-only):
+ HcRevision (raw) = 0x10
+ HcControl (raw) = 0x000
+ HcCmdStatus (raw) = 0x00000000
+ RhDescriptorA = 0x00000628
+ RhDescriptorB = 0x0000020C
+ RhStatus      = 0x00000000
+ OHCI reports NPorts = 12 (will probe)
+  Port 01 RHPS (raw) = 0x00010101
+    CCS=1 PES=0 PR=1
+  Port 02 RHPS (raw) = 0x00010101
+    CCS=1 PES=0 PR=1
+  Port 03 RHPS (raw) = 0x00000100
+    CCS=0 PES=0 PR=1
+  Port 04 RHPS (raw) = 0x00000100
+    CCS=0 PES=0 PR=1
+  Port 05 RHPS (raw) = 0x00000100
+    CCS=0 PES=0 PR=1
+  Port 06 RHPS (raw) = 0x00000100
+    CCS=0 PES=0 PR=1
+  Port 07 RHPS (raw) = 0x00000100
+    CCS=0 PES=0 PR=1
+  Port 08 RHPS (raw) = 0x00000100
+    CCS=0 PES=0 PR=1
+  Port 09 RHPS (raw) = 0x00000100
+    CCS=0 PES=0 PR=1
+  Port 10 RHPS (raw) = 0x00000100
+    CCS=0 PES=0 PR=1
+  Port 11 RHPS (raw) = 0x00000100
+    CCS=0 PES=0 PR=1
+  Port 12 RHPS (raw) = 0x7F316A90
+    CCS=0 PES=0 PR=0
+Total EFI_USB_IO_PROTOCOL handles in system: 1
+  UsbIo handle[0]: Vendor=0x058F Product=0x6387 bDeviceClass=0x00 bMaxPacketSize0=64
+--- End inspect for this controller ---
+--- Found PCI USB controller Class=0x0C SubClass=0x03 ProgIf=0x20 ---
+BAR0 (raw) = 0x9062A000  (we will access via PciIo->Mem.Read using BarIndex=0)
+Controller type guess: EHCI (USB 2.0)
+CAPLENGTH byte @ BAR+0x0 = 0x20
+Operational register base (offset fr
+>>> EHCI (USB2) operational register snapshot (read-only):
+ USBCMD = 0x00080B71
+  Run/Stop (Run) = 1
+ USBSTS = 0x0000C028
+  HCHalted = 0
+ ASYNCLISTADDR = 0x7DF89000
+ PERIODICLISTBASE = 0x00000000
+  NOTE: Periodic list base == 0 (periodic schedule not programmed)
+ FRINDEX = 0x00011468
+Reading up to 32 PORTSC entries (opbase+0x44 + 4*(n-1)):
+  Port 01: PORTSC raw 0x00001005
+  Raw PORTSC = 0x00001005
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 0
+    PO  (Port Owner)     = 0
+    Speed (bits)         = 0x04
+    Change bits (CSC/CEC/etc) = 0x00
+  Port 02: PORTSC raw 0x00003000
+  Raw PORTSC = 0x00003000
+    CCS (Connect Status) = 0
+    PE  (Port Enabled)   = 0
+    PR  (Port Reset)     = 0
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x04
+    Change bits (CSC/CEC/etc) = 0x00
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 03: PORTSC raw 0x00003000
+  Raw PORTSC = 0x00003000
+    CCS (Connect Status) = 0
+    PE  (Port Enabled)   = 0
+    PR  (Port Reset)     = 0
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x04
+    Change bits (CSC/CEC/etc) = 0x00
+    -> PortOwner==1 (companion contr
+  Port 04: PORTSC raw 0x00003000
+  Raw PORTSC = 0x00003000
+    CCS (Connect Status) = 0
+    PE  (Port Enabled)   = 0
+    PR  (Port Reset)     = 0
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x04
+    Change bits (CSC/CEC/etc) = 0x00
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 05: PORTSC raw 0x00003000
+  Raw PORTSC = 0x00003000
+    CCS (Connect Status) = 0
+    PE  (Port Enabled)   = 0
+    PR  (Port Reset)     = 0
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x04
+    Change bits (CSC/CEC/etc) = 0x00
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 06: PORTSC raw 0x00003000
+  Raw PORTSC = 0x00003000
+    CCS (Connect Status) = 0
+    PE  (Port Enabled)   = 0
+    PR  (Port Reset)     = 0
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x04
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 07: PORTSC raw 0x00003000
+  Raw PORTSC = 0x00003000
+    CCS (Connect Status) = 0
+    PE  (Port Enabled)   = 0
+    PR  (Port Reset)     = 0
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x04
+    Change bits (CSC/CEC/etc) = 0x00
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 08: PORTSC raw 0x00003000
+  Raw PORTSC = 0x00003000
+    CCS (Connect Status) = 0
+    PE  (Port Enabled)   = 0
+    PR  (Port Reset)     = 0
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x04
+    Change bits (CSC/CEC/etc) = 0x00
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 09: PORTSC raw 0x00003000
+  Raw PORTSC = 0x00003000
+    CCS (Connect Status) = 0
+    PE  (Port Enabled)   = 0
+    PR  (Port Reset)     = 0
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x04
+    Change bits (CSC/CEC/etc) = 0x00
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 10: PORTSC raw 0x00003000
+  Raw PORTSC = 0x00003000
+    CCS (Connect Status) = 0
+    PE  (Port Enabled)   = 0
+    PR  (Port Reset)     = 0
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x04
+    Change bits (CSC/CEC/etc) = 0x00
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 11: PORTSC raw 0x00003000
+  Raw PORTSC = 0x00003000
+    CCS (Connect Status) = 0
+    PE  (Port Enabled)   = 0
+    PR  (Port Reset)     = 0
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x04
+    Change bits (CSC/CEC/etc) = 0x00
+    -> PortOwner==1 (companion contr
+  Port 12: PORTSC raw 0x00003000
+  Raw PORTSC = 0x00003000
+    CCS (Connect Status) = 0
+    PE  (Port Enabled)   = 0
+    PR  (Port Reset)     = 0
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x04
+    Change bits (CSC/CEC/etc) = 0x00
+  Port 13: PORTSC raw 0xFFFFFFFFontrol
+  Raw PORTSC = 0xFFFFFFFF
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 1
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x07
+    Change bits (CSC/CEC/etc) = 0x7F
+    -> PortOwner==1 (companion contr
+  Port 14: PORTSC raw 0xFFFFFFFF
+  Raw PORTSC = 0xFFFFFFFF
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 1
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x07
+    Change bits (CSC/CEC/etc) = 0x7F
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 15: PORTSC raw 0xFFFFFFFF
+  Raw PORTSC = 0xFFFFFFFF
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 1
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x07
+    Change bits (CSC/CEC/etc) = 0x7F
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 16: PORTSC raw 0xFFFFFFFF
+  Raw PORTSC = 0xFFFFFFFF
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 1
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x07
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 17: PORTSC raw 0xFFFFFFFF
+  Raw PORTSC = 0xFFFFFFFF
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 1
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x07
+    Change bits (CSC/CEC/etc) = 0x7F
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 18: PORTSC raw 0xFFFFFFFF
+  Raw PORTSC = 0xFFFFFFFF
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 1
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x07
+    Change bits (CSC/CEC/etc) = 0x7F
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 19: PORTSC raw 0xFFFFFFFF
+  Raw PORTSC = 0xFFFFFFFF
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 1
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x07
+    Change bits (CSC/CEC/etc) = 0x7F
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 20: PORTSC raw 0xFFFFFFFF
+  Raw PORTSC = 0xFFFFFFFF
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 1
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x07
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 21: PORTSC raw 0xFFFFFFFF
+  Raw PORTSC = 0xFFFFFFFF
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 1
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x07
+    Change bits (CSC/CEC/etc) = 0x7F
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 22: PORTSC raw 0xFFFFFFFF
+  Raw PORTSC = 0xFFFFFFFF
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 1
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x07
+    Change bits (CSC/CEC/etc) = 0x7F
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 23: PORTSC raw 0xFFFFFFFF
+  Raw PORTSC = 0xFFFFFFFF
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 1
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x07
+    Change bits (CSC/CEC/etc) = 0x7F
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 24: PORTSC raw 0xFFFFFFFF
+  Raw PORTSC = 0xFFFFFFFF
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 1
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x07
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 25: PORTSC raw 0xFFFFFFFF
+  Raw PORTSC = 0xFFFFFFFF
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 1
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x07
+    Change bits (CSC/CEC/etc) = 0x7F
+  Port 26: PORTSC raw 0xFFFFFFFFontroller likely owns this por
+  Raw PORTSC = 0xFFFFFFFF
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 1
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x07
+    Change bits (CSC/CEC/etc) = 0x7F
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 27: PORTSC raw 0xFFFFFFFF
+  Raw PORTSC = 0xFFFFFFFF
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 1
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x07
+    Change bits (CSC/CEC/etc) = 0x7F
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 28: PORTSC raw 0xFFFFFFFF
+  Raw PORTSC = 0xFFFFFFFF
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 1
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x07
+    Change bits (CSC/CEC/etc) = 0x7F
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 29: PORTSC raw 0xFFFFFFFF
+  Raw PORTSC = 0xFFFFFFFF
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 1
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x07
+    Change bits (CSC/CEC/etc) = 0x7F
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 30: PORTSC raw 0xFFFFFFFF
+  Raw PORTSC = 0xFFFFFFFF
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 1
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x07
+    Change bits (CSC/CEC/etc) = 0x7F
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 31: PORTSC raw 0xFFFFFFFF
+  Raw PORTSC = 0xFFFFFFFF
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 1
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x07
+    Change bits (CSC/CEC/etc) = 0x7F
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+  Port 32: PORTSC raw 0xFFFFFFFF
+  Raw PORTSC = 0xFFFFFFFF
+    CCS (Connect Status) = 1
+    PE  (Port Enabled)   = 1
+    PR  (Port Reset)     = 1
+    PO  (Port Owner)     = 1
+    Speed (bits)         = 0x07
+    Change bits (CSC/CEC/etc) = 0x7F
+    -> PortOwner==1 (companion controller likely owns this port). Do not force.
+Total EFI_USB_IO_PROTOCOL handles in system: 1
+  UsbIo handle[0]: Vendor=0x058F Product=0x6387 bDeviceClass=0x00 bMaxPacketSize0=64
+--- End inspect for this controller
+UsbDiagApp: Completed checks. Press any key to exit (control won't block here).
+
+
+--- DeepProbeUsbTopology: start ---
+[DeepProbe] EFI_USB_IO_PROTOCOL handles: 1
+  UsbIo[00] VID=0x058F PID=0x6387 bDeviceClass=0x00 bNumConfigs=1
+[DeepProbe] Scanning 46 DevicePath handles for USB nodes
+
+[DevPathHandle 7ECE5B18] scanning device-path nodes:
+
+[DevPathHandle 7E930D18] scanning device-path nodes:
+
+[DevPathHandle 7E8CFA98] scanning de
+
+[DevPathHandle 7E89E598] scanning device-path nodes:
+
+[DevPathHandle 7E193418] scanning device-path nodes:
+
+[DevPathHandle 7E183898] scanning device-path nodes:
+
+[DevPathHandle 7E181998] scanning device-path nodes:
+
+[DevPathHandle 7E181498] scanning device-path nodes:
+
+[DevPathHandle 7E175418] scanning device-path nodes:
+
+[DevPathHandle 7E048A98] scanning dev
+
+[DevPathHandle 7DFD5F18] scanning
+
+[DevPathHandle 7E00AB98] scanning device-path nodes:
+
+[DevPathHandle 7DFD6F98] scanning device-path nodes:
+
+[DevPathHandle 7DFECD98] scanning device-path nodes:
+
+[DevPathHandle 7DFD6E98] scanning device-path nodes:
+
+[DevPathHandle 7DFD5918] scanning
+
+[DevPathHandle 7DFD5298] scanning device-path nodes:
+
+[DevPathHandle 7DFD5318] scanning device-path nodes:
+
+[DevPathHandle 7DFD5498] scanning device-path nodes:
+
+[DevPathHandle 7DFD4F98] scanning device-path nodes:
+
+[DevPathHandle 7DFD4898] scanning device-path nodes:
+
+[DevPathHandle 7DFCE998] scanning device-path nodes:
+
+[DevPathHandle 7DFB1018] scanning device-
+
+[DevPathHandle 7DFB1C98] scanning device-path nodes:
+
+[DevPathHandle 7DFB1698] scanning device-path nodes:
+
+[DevPathHandle 7DF94698] scanning device-path nodes:
+
+[DevPathHandle 7DF59898] scanning
+
+[DevPathHandle 7DE52798] scanning device-path nodes:
+
+[DevPathHandle 7DE52318] scanning device-path nodes:
+
+[DevPathHandle 7DE4E798] scanning device-path nodes:
+
+[DevPathHandle 7DE2DD18] scanning device-path nodes:
+
+[DevPathHandle 7DE2D098] scanning device-path nodes:
+
+[DevPathHandle 7DD67E98] scanning device-path nodes:
+
+[DevPathHandle 7DD38B18] scanning device-path nodes:
+
+[DevPathHandle 7DD37F18] scanning
+
+[DevPathHandle 7DD37C18] scanning device-path nodes:
+
+[DevPathHandle 7DF58198] scanning device-path nodes:
+
+[DevPathHandle 7DF58218] scanning device-path nodes:
+
+[DevPathHandle 7D895E98] scanning device-path nodes:
+
+[DevPathHandle 7D62BD18] scanning device-
+
+[DevPathHandle 7D60D398] scanning device-path nodes:
+
+[DevPathHandle 7D60B598] scanning device-path nodes:
+
+[DevPathHandle 7D609E98] scanning device-path nodes:
+
+[DevPathHandle 7DF8E018] scanning de
+
+[DevPathHandle 7D5E6518] scanning
+  MSG_USB_DP: ParentPort=0 Interface=0
+
+[DevPathHandle 7D5F0798] scanning device-path nodes:
+  MSG_USB_DP: ParentPort=0 Interface=0
+[DeepProbe] Scanning 10 PCI handles for USB host controllers
+  PCI USB HC found: ProgIf=0x10 (handle 7DFD5298)
+    CapLength (BAR0+0x0) = 0x10
+    Port 1 PORTSC @ op+0x44 = 0x00010101
+    Port 2 PORTSC @ op+0x48 = 0x00010101
+    Port 4 PORTSC @ op+0x50 = 0x00000100
+    Port 5 PORTSC @ op+0x54 = 0x00000100
+    Port 6 PORTSC @ op+0x58 = 0x00000100
+    Port 7 PORTSC @ op+0x5C = 0x00000100
+    Port 8 PORTSC @ op+0x60 = 0x00000100
+  PCI USB HC found: ProgIf=0x20 (handle 7DFD5498)
+    CapLength (BAR0+0x0) = 0x20
+    Port 1 PORTSC @ op+0x44 = 0x00001005
+    Port 2 PORTSC @ op+0x48 = 0x00003000
+    Port 3 PORTSC @ op+0x4C = 0x00003000
+    Port 4 PORTSC @ op+0x50 = 0x00003000
+    Port 5 PORTSC @ op+0x54 = 0x0000
+    Port 6 PORTSC @ op+0x58 = 0x00003000
+    Port 7 PORTSC @ op+0x5C = 0x00003000
+    Port 8 PORTSC @ op+0x60 = 0x00003000
+--- DeepProbeUsbTopology: end ---
+
+
+--- MonitorUsbTopologyForFiveSecon
+[Monitor] EFI_USB_IO_PROTOCOL handles: 1
+  UsbIo[00] VID=0x058F PID=0x6387 Class=0x00
+[Monitor] Scanning 46 DevicePath handles for USB nodes
+[DevPathHandle 7D5E6518] USB nodes:
+[DevPathHandle 7D5F0798] USB nodes:e
+  MSG_USB_DP: ParentPort=0 Interface=0
+[Monitor] Found PCI USB HC ProgIf=0x10 handle=7DFD5298 caplen=0x10
+[Monitor] Initial snapshot for HC 0 (ProgIf=0x10):
+  Port 01: 0x00010101
+  Port 02: 0x00010101
+  Port 03: 0x00000100
+  Port 04: 0x00000100
+  Port 05: 0x00000100
+  Port 06: 0x00000100
+  Port 07: 0x00000100
+  Port 08: 0x00000100
+[Monitor] Initial snapshot for HC 1 (ProgIf=0x20):
+  Port 01: 0x00001005
+  Port 02: 0x00003000
+  Port 03: 0x00003000
+  Port 04: 0x00003000
+  Port 05: 0x00003000
+  Port 06: 0x00003000
+  Port 07: 0x00003000
+  Port 08: 0x00003000
+--- MonitorUsbTopologyForFiveSeconds: end ---
+
+UsbDiagApp: starting async multi-listen (5s) ??? watch the console for raw packets
+
+[AsyncListen] Starting multi-handle async listener for 5 second(s)
+[AsyncListen] Handle 0: VID=0x058F PID=0x6387 bDeviceClass=0x00
+[AsyncListen] Handle 0: no Interrupt-IN endpoint (skip)
+[AsyncListen] No interrupt-IN endpoints found on any published UsbIo handles. Nothing to listen on.
+No async listeners started (no Inter
+
+[Investigate] Extra checks after Async listen:
+[Investigate] DevicePath handles: 46 (looking for MSG_USB_DP)
+  DevPath 7D5E6518: MSG_USB_DP ParentPort=0 Interface=0
+  DevPath 7D5F0798: MSG_USB_DP ParentPort=0 Interface=0
+[Investigate] Tip: many ports can be owned by companion controllers (EHCI/OHCI/UHCI split).
+[Investigate] If PortOwner==1 on EHCI ports, those ports are controlled by companion HC and may show up under other HC or OS drivers.
+[Investigate] Use MonitorUsbTopology
+
+--- FetchHidReportDescriptors: start ---
+[HIDProbe] Handle 0 VID=0x058F PID=0x6387 bNumConfigs=1
+[HIDProbe] Handle 0: InterfaceClass=0x08 SubClass=0x06 Protocol=0x50 NumEndpoints=2 InterfaceNumber=0
+--- FetchHidReportDescriptors: end ---
+
+
+--- FetchHubDescriptors: start ---
+[HubProbe] Handle 0 VID=0x058F PID=0x6387 bDeviceClass=0x00
+[HubProbe] Handle 0: not hub (device/interface class != 0x09) - skipping
+--- FetchHubDescriptors: end ---
+
+ -- UsbDiagApp: prepare for read RAW packets --
+
+[RawTest] Found 1 UsbIo handles. Starting raw listen (5s) on interrupt-IN endpoints.
+[RawTest] Handle 0:
+UsbIo handle[0]: VID=0x058F PID=0x6387 bDeviceClass=0x00 bDeviceSubClass=0x00 bDeviceProtocol=0x00
+ UsbIf: bInterfaceClass=0x08 bInterfaceSubClass=0x06 bInterfaceProtocol=0x50
+  -> Identification hint: Mass Stora
+  Endpoint[1]: Addr=0x82 Attr=0x02 MaxPacket=512 Interval=0
+  No Interrupt-IN endpoint found for handle 0 (skipping raw listen)
+[RawTest] Completed.
+ -- UsbDiagApp: wait for packets for 5 seconds test
+ --
+loadimg: image exited with status: Success
+loadimg: UnloadImage returned: Invalid Parameter
+\>

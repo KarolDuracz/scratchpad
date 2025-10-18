@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Bit Viewer — Dark (Ctrl+Drag Select)</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f1724;
+    --card:#0b1220;
+    --muted:#9aa7bf;
+    --accent:#7dd3fc;
+    --on:#16a34a;
+    --off:#334155;
+    --border: rgba(255,255,255,0.06);
+    --select-red: #ef4444;
+    --select-red-bg: rgba(239,68,68,0.09);
+  }
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;}
+  body{
+    background: linear-gradient(180deg,#071028 0%, #07182b 60%);
+    color:#e6eef8;
+    padding:28px;
+    box-sizing:border-box;
+  }
+
+  .app{
+    max-width:1100px;
+    margin:0 auto;
+  }
+
+  header{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:18px;
+  }
+  header h1{
+    margin:0;
+    font-size:18px;
+    font-weight:600;
+    letter-spacing:0.2px;
+  }
+  .controls{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:12px;
+    display:flex;
+    gap:12px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  .controls input[type="text"]{ background:transparent; border:1px solid rgba(255,255,255,0.04); padding:8px 10px; border-radius:8px; min-width:220px; color: #e6eef8; }
+  .controls select, .controls button{ padding:8px 10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:transparent; color: #e6eef8; }
+  .controls .small{ font-size:13px; color:var(--muted); }
+  .top-summary{ margin-top:14px; display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+  .swatch{ display:flex; align-items:center; gap:8px; padding:8px 12px; border-radius:10px; background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.006)); border:1px solid var(--border); font-size:13px; color:var(--muted); }
+  .dot{ width:14px;height:14px;border-radius:4px;border:1px solid rgba(255,255,255,0.06); }
+  .dot.on{ background:linear-gradient(180deg,var(--on), #0fa34b); box-shadow:0 1px 6px rgba(21,128,61,0.16); }
+  .dot.off{ background:linear-gradient(180deg,var(--off), #1f2b3a); }
+
+  .table-wrap{
+    margin-top:16px;
+    overflow:auto;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.006));
+    padding:10px;
+    -webkit-user-select: none; /* prevent text selection while dragging */
+    user-select: none;
+  }
+
+  table.bits {
+    border-collapse:collapse;
+    font-family: "Courier New", Courier, monospace;
+    font-size:13px;
+    min-width:100%;
+  }
+  table.bits thead th{
+    position:sticky; top:0;
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.0));
+    color:var(--muted);
+    padding:6px 8px;
+    font-weight:600;
+    border-bottom:1px solid rgba(255,255,255,0.03);
+    text-align:center;
+  }
+  table.bits th.bitidx{ font-size:12px; color:#a9b9d1; }
+  table.bits td{ padding:6px 8px; text-align:center; border-right:1px solid rgba(255,255,255,0.02); vertical-align:middle; }
+  td.bit{ border-bottom:1px dashed rgba(255,255,255,0.02); min-width:28px; font-weight:700; border-radius:6px; cursor:default; transition: background .12s, color .12s, box-shadow .12s; }
+  td.bit.on{ background: linear-gradient(90deg, rgba(22,163,74,0.12), rgba(22,163,74,0.06)); color:var(--on); box-shadow: inset 0 -6px 18px rgba(22,163,74,0.02); }
+  td.bit.off{ background: linear-gradient(90deg, rgba(51,65,85,0.06), rgba(17,24,39,0.02)); color:#9fb0c9; }
+
+  .group-sep{ border-left:3px solid rgba(255,255,255,0.02); }
+
+  /* selection visuals */
+  td.bit.selecting { background: linear-gradient(90deg, rgba(239,68,68,0.09), rgba(239,68,68,0.06)); color: var(--select-red); box-shadow: 0 0 0 2px rgba(239,68,68,0.12) inset; }
+  td.bit.selected { background: linear-gradient(90deg, rgba(239,68,68,0.12), rgba(239,68,68,0.08)); color: var(--select-red); box-shadow: 0 6px 18px rgba(239,68,68,0.06); border-radius:6px; }
+
+  .ascii{ margin-top:14px; background:rgba(2,6,23,0.6); border:1px solid rgba(255,255,255,0.03); padding:12px; border-radius:10px; font-family: "Courier New", monospace; font-size:13px; color:#dbe9ff; white-space:pre; overflow:auto; }
+  .meta{ margin-top:10px; color:var(--muted); font-size:13px; }
+  .actions{ margin-left:auto; display:flex; gap:8px; }
+  .btn{ background:linear-gradient(180deg, rgba(125,211,252,0.06), rgba(125,211,252,0.02)); border:1px solid rgba(125,211,252,0.08); color:var(--accent); padding:6px 10px; border-radius:8px; cursor:pointer; font-weight:600; }
+  footer{ margin-top:20px; color:var(--muted); font-size:13px; }
+
+  /* Modal */
+  .modal-backdrop{ position:fixed; inset:0; background:rgba(2,6,23,0.55); display:flex; align-items:center; justify-content:center; z-index:9999; }
+  .modal{ background: linear-gradient(180deg,#071026,#0b1220); border-radius:12px; padding:18px; min-width:320px; color:#e6eef8; border:1px solid rgba(255,255,255,0.06); box-shadow: 0 8px 40px rgba(2,6,23,0.6); }
+  .modal h3{ margin:0 0 8px 0; font-size:16px; }
+  .modal .row{ display:flex; gap:10px; align-items:center; margin-bottom:8px; }
+  .val{ font-family: "Courier New", monospace; padding:8px 10px; border-radius:8px; background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); color:#bfe8ff; }
+  .modal .actions{ margin-top:10px; justify-content:flex-end; }
+  .modal button{ padding:8px 10px; border-radius:8px; border:none; cursor:pointer; }
+  .btn-copy{ background:linear-gradient(90deg,#06b6d4,#7dd3fc); color:#032; font-weight:700; border:0; }
+  .btn-close{ background:transparent; color:var(--muted); border:1px solid rgba(255,255,255,0.03); }
+
+  /* small helper note */
+  .hint{ font-size:13px; color:var(--muted); margin-left:8px; }
+
+  @media (max-width:700px){ table.bits td{ padding:6px 4px; min-width:22px; } }
+</style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Bit Viewer — ASCII & HTML (Dark)</h1>
+
+      <div class="controls" style="margin-left:12px;">
+        <label class="small">Number</label>
+        <input id="numInput" type="text" value="0x00200002" title="Supports 0x.., 0b.. or decimal">
+        <label class="small">Width</label>
+        <select id="widthSelect">
+          <option>8</option>
+          <option>16</option>
+          <option selected>32</option>
+          <option>64</option>
+          <option>128</option>
+        </select>
+
+        <label class="small">Display</label>
+        <select id="formatSelect">
+          <option value="hex">Hex</option>
+          <option value="dec">Decimal</option>
+          <option value="bin">Binary</option>
+        </select>
+
+        <div class="actions">
+          <button id="renderBtn" class="btn">Render</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="top-summary" id="summaryArea" aria-live="polite">
+      <!-- legend and counts inserted here -->
+    </div>
+
+    <div class="table-wrap" id="tableWrap">
+      <table class="bits" id="bitsTable" aria-label="Bit map table">
+        <!-- generated -->
+      </table>
+    </div>
+
+    <div class="meta" id="metaLine"></div>
+
+    <div class="ascii" id="asciiOut" aria-label="ASCII bits"></div>
+
+    <footer>
+      Tip: hold <strong>Ctrl</strong> and left-click+drag across bits to select a range. Release to see values.
+    </footer>
+  </div>
+
+  <!-- Modal placeholder -->
+  <div id="selectionModalRoot" style="display:none;"></div>
+
+<script>
+(function(){
+  const numInput = document.getElementById('numInput');
+  const widthSelect = document.getElementById('widthSelect');
+  const renderBtn = document.getElementById('renderBtn');
+  const bitsTable = document.getElementById('bitsTable');
+  const asciiOut = document.getElementById('asciiOut');
+  const formatSelect = document.getElementById('formatSelect');
+  const summaryArea = document.getElementById('summaryArea');
+  const metaLine = document.getElementById('metaLine');
+  const modalRoot = document.getElementById('selectionModalRoot');
+
+  let currentMasked = 0n;      // masked value for the current width (used for selection extraction)
+  let currentWidth = 32;      // current width
+  let lastBits = [];          // store bits array for quick mapping
+
+  // selection state
+  let isSelecting = false;
+  let selStart = null; // integer bit index
+  let selEnd = null;
+  let mouseDownPointerId = null;
+  let selectionExists = false; // whether a finalized selection exists
+
+  function parseNumber(s){
+    s = (s||'').trim();
+    if(!s) throw new Error('Empty input');
+    if (/^[-+]?0x/i.test(s) || /^[-+]?0b/i.test(s)){
+      return BigInt(s);
+    }
+    const cleaned = s.replace(/_/g,'');
+    if (!/^[+-]?\d+$/.test(cleaned)) throw new Error('Invalid decimal literal');
+    return BigInt(cleaned);
+  }
+
+  function formatValue(value, fmt, width){
+    if(fmt === 'hex'){
+      const nibbles = Math.ceil(width/4);
+      const abs = value < 0n ? -value : value;
+      const body = abs.toString(16).padStart(nibbles,'0');
+      return (value < 0n ? '-0x' : '0x') + body;
+    } else if(fmt === 'bin'){
+      const abs = value < 0n ? -value : value;
+      return (value < 0n ? '-0b' : '0b') + abs.toString(2);
+    } else {
+      return value.toString(10);
+    }
+  }
+
+  function getBit(value, idx){
+    return Number((value >> BigInt(idx)) & 1n);
+  }
+
+  function render(){
+    let width = Number(widthSelect.value);
+    currentWidth = width;
+    let value;
+    try {
+      value = parseNumber(numInput.value);
+    } catch(e){
+      asciiOut.textContent = 'Error: ' + e.message;
+      bitsTable.innerHTML = '';
+      summaryArea.innerHTML = '';
+      metaLine.textContent = '';
+      return;
+    }
+
+    const mask = (1n << BigInt(width)) - 1n;
+    const masked = value & mask;
+    currentMasked = masked;
+
+    // build bits array MSB -> LSB for display
+    const bits = [];
+    let ones = 0;
+    for(let i = width - 1; i >= 0; i--){
+      const bit = getBit(masked, i);
+      bits.push({ idx: i, val: bit });
+      ones += bit;
+    }
+    lastBits = bits; // store for selection mapping
+    const zeros = width - ones;
+    const pct = (width>0) ? ( (ones/width*100).toFixed(1) ) : '0';
+
+    // summary
+    summaryArea.innerHTML = '';
+    const swOn = document.createElement('div');
+    swOn.className = 'swatch';
+    swOn.innerHTML = `<span class="dot on" aria-hidden="true"></span><strong style="color:var(--on);margin-right:6px">${ones}</strong> ones (${pct}%)`;
+    const swOff = document.createElement('div');
+    swOff.className = 'swatch';
+    swOff.innerHTML = `<span class="dot off" aria-hidden="true"></span><strong style="color:#9fb0c9;margin-right:6px">${zeros}</strong> zeros`;
+    const repr = document.createElement('div');
+    repr.className = 'swatch';
+    repr.innerHTML = `<span style="font-weight:600;color:var(--muted);">Value</span>
+                      <div style="min-width:12px;"></div>
+                      <div style="margin-left:8px;font-family:monospace;color:#bfe8ff">${formatValue(value, 'hex', width)}</div>`;
+    summaryArea.appendChild(swOn);
+    summaryArea.appendChild(swOff);
+    summaryArea.appendChild(repr);
+
+    // build table
+    bitsTable.innerHTML = '';
+    const thead = document.createElement('thead');
+    const trh = document.createElement('tr');
+    bits.forEach((b)=>{
+      const th = document.createElement('th');
+      th.className = 'bitidx';
+      th.textContent = b.idx;
+      if (b.idx % 8 === 7) th.classList.add('group-sep');
+      trh.appendChild(th);
+    });
+    thead.appendChild(trh);
+    bitsTable.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    const trv = document.createElement('tr');
+    bits.forEach(b=>{
+      const td = document.createElement('td');
+      td.className = 'bit ' + (b.val ? 'on' : 'off');
+      td.textContent = b.val;
+      td.title = `bit ${b.idx}: ${b.val}`;
+      td.dataset.idx = String(b.idx); // important for selection
+      if (b.idx % 8 === 7) td.classList.add('group-sep');
+      trv.appendChild(td);
+    });
+    tbody.appendChild(trv);
+    bitsTable.appendChild(tbody);
+
+    metaLine.textContent = `Interpreted value: ${formatValue(value, formatSelect.value, width)}    (display width: ${width} bits)`;
+
+    // ascii
+    const binFull = masked.toString(2).padStart(width,'0');
+    const groupedBinary = binFull.replace(/(.{8})/g, '$1 ').trim();
+    const ascii = [
+      `Width: ${width} bits    Ones: ${ones}    Zeros: ${zeros}    Percent ones: ${pct}%`,
+      '',
+      'Full binary (MSB -> LSB):',
+      '0b' + binFull,
+      '',
+      'Byte groups (MSB -> LSB):',
+      groupedBinary
+    ].join('\n');
+    asciiOut.textContent = ascii;
+
+    // clear previous selection visuals if any
+    clearSelectionVisuals(false);
+    selectionExists = false;
+  }
+
+  // --- Selection logic ---
+  function findBitCellFromEvent(e){
+    const td = e.target.closest && e.target.closest('td.bit');
+    return td;
+  }
+
+  function startSelecting(startIdx){
+    isSelecting = true;
+    selStart = startIdx;
+    selEnd = startIdx;
+    // indicate selecting by adding class 'selecting' to the single cell initially
+    updateSelectionVisuals(selStart, selEnd, true);
+  }
+
+  function updateSelecting(currentIdx){
+    if (!isSelecting) return;
+    selEnd = currentIdx;
+    updateSelectionVisuals(selStart, selEnd, true);
+  }
+
+  function finishSelecting(finalize=true){
+    if (!isSelecting) return;
+    isSelecting = false;
+    // mark final selection as .selected
+    updateSelectionVisuals(selStart, selEnd, false, true);
+    selectionExists = true;
+    if (finalize) {
+      showSelectionPopup(selStart, selEnd);
+    }
+  }
+
+  function clearSelectionVisuals(removeModalClose=true){
+    // remove selecting/selected classes from all tds
+    const tds = bitsTable.querySelectorAll('td.bit');
+    tds.forEach(td => {
+      td.classList.remove('selecting');
+      td.classList.remove('selected');
+    });
+    selStart = null; selEnd = null;
+    isSelecting = false;
+    selectionExists = false;
+    if (removeModalClose) hideModal();
+  }
+
+  function updateSelectionVisuals(a,b,temporary=true, finalize=false){
+    // a,b are bit indices (start, end) anywhere order; show selection between them inclusive
+    const low = Math.min(a,b);
+    const high = Math.max(a,b);
+
+    const tds = bitsTable.querySelectorAll('td.bit');
+    tds.forEach(td => {
+      const idx = Number(td.dataset.idx);
+      td.classList.remove('selecting');
+      td.classList.remove('selected');
+      if (idx >= low && idx <= high) {
+        if (temporary) td.classList.add('selecting');
+        if (finalize) td.classList.add('selected');
+      }
+    });
+  }
+
+  // selection extraction: given selStart/selEnd compute value of that bit field (LSB = index 0)
+  function extractSelectedValue(a,b){
+    const low = Math.min(a,b);
+    const high = Math.max(a,b);
+    const width = high - low + 1;
+    if (width <= 0) return { value:0n, width:0 };
+    // mask and shift
+    const mask = ((1n << BigInt(width)) - 1n);
+    const value = (currentMasked >> BigInt(low)) & mask;
+    return { value, low, high, width };
+  }
+
+  // create & show modal with selected values
+  function showSelectionPopup(a,b){
+    const sel = extractSelectedValue(a,b);
+    if (sel.width === 0) return;
+
+    const nibbleCount = Math.ceil(sel.width / 4);
+    const hexBody = sel.value.toString(16).padStart(nibbleCount, '0');
+    const hexStr = '0x' + hexBody;
+    const binStr = '0b' + sel.value.toString(2).padStart(sel.width, '0');
+    const decStr = sel.value.toString(10);
+
+    // build modal DOM
+    modalRoot.innerHTML = '';
+    modalRoot.style.display = 'block';
+
+    const backdrop = document.createElement('div');
+    backdrop.className = 'modal-backdrop';
+
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.setAttribute('role','dialog');
+    modal.setAttribute('aria-modal','true');
+
+    const title = document.createElement('h3');
+    title.textContent = `Selected bits ${sel.high} → ${sel.low} (${sel.width} bits)`;
+    modal.appendChild(title);
+
+    // show values
+    const rowHex = document.createElement('div');
+    rowHex.className = 'row';
+    rowHex.innerHTML = `<div style="width:80px;color:var(--muted)">Hex</div><div class="val" id="selHex">${hexStr}</div>
+                        <button class="btn-copy" data-copy="${hexStr}" style="margin-left:auto">Copy</button>`;
+    modal.appendChild(rowHex);
+
+    const rowDec = document.createElement('div');
+    rowDec.className = 'row';
+    rowDec.innerHTML = `<div style="width:80px;color:var(--muted)">Decimal</div><div class="val" id="selDec">${decStr}</div>
+                        <button class="btn-copy" data-copy="${decStr}">Copy</button>`;
+    modal.appendChild(rowDec);
+
+    const rowBin = document.createElement('div');
+    rowBin.className = 'row';
+    rowBin.innerHTML = `<div style="width:80px;color:var(--muted)">Binary</div><div class="val" id="selBin">${binStr}</div>
+                        <button class="btn-copy" data-copy="${binStr}">Copy</button>`;
+    modal.appendChild(rowBin);
+
+    const hint = document.createElement('div');
+    hint.className = 'row';
+    hint.style.fontSize = '12px';
+    hint.style.color = 'var(--muted)';
+    hint.textContent = 'Note: hex padded to nearest nibble for readability.';
+    modal.appendChild(hint);
+
+    const actions = document.createElement('div');
+    actions.className = 'actions';
+    actions.style.marginTop = '12px';
+    actions.style.justifyContent = 'flex-end';
+
+    const clearBtn = document.createElement('button');
+    clearBtn.className = 'btn-close';
+    clearBtn.textContent = 'Clear selection';
+    clearBtn.addEventListener('click', ()=> {
+      clearSelectionVisuals();
+      hideModal();
+    });
+
+    const keepBtn = document.createElement('button');
+    keepBtn.className = 'btn-close';
+    keepBtn.style.marginLeft = '8px';
+    keepBtn.textContent = 'Keep selection';
+    keepBtn.addEventListener('click', ()=> {
+      // keep highlights as .selected (already applied);
+      hideModal();
+    });
+
+    actions.appendChild(clearBtn);
+    actions.appendChild(keepBtn);
+    modal.appendChild(actions);
+
+    backdrop.appendChild(modal);
+    modalRoot.appendChild(backdrop);
+
+    // bind copy buttons inside modal
+    modal.querySelectorAll('.btn-copy').forEach(btn => {
+      btn.addEventListener('click', (ev)=>{
+        const payload = btn.dataset.copy;
+        navigator.clipboard?.writeText(payload).then(()=> {
+          btn.textContent = 'Copied';
+          setTimeout(()=> btn.textContent = 'Copy', 900);
+        }).catch(()=> {
+          // fallback: select text (not necessary in a modal)
+        });
+      });
+    });
+
+    // close when clicking outside modal content
+    backdrop.addEventListener('click', (ev)=>{
+      if (ev.target === backdrop) {
+        hideModal();
+      }
+    });
+  }
+
+  function hideModal(){
+    modalRoot.innerHTML = '';
+    modalRoot.style.display = 'none';
+  }
+
+  // pointer / mouse event handlers for selection
+  bitsTable.addEventListener('mousedown', (e)=>{
+    // left button only and ctrl must be held
+    if (e.button !== 0) return;
+    if (!e.ctrlKey) return;
+    const td = findBitCellFromEvent(e);
+    if (!td) return;
+    e.preventDefault();
+    // start selection
+    startSelecting(Number(td.dataset.idx));
+    // capture pointer to table for reliable mouseup
+    mouseDownPointerId = e.pointerId || null;
+  });
+
+  // track mouse over cells while mouse is held - use mousemove on document for reliability
+  document.addEventListener('mousemove', (e)=>{
+    if (!isSelecting) return;
+    // find element under pointer
+    const el = document.elementFromPoint(e.clientX, e.clientY);
+    if (!el) return;
+    const td = el.closest && el.closest('td.bit');
+    if (!td) return;
+    updateSelecting(Number(td.dataset.idx));
+  });
+
+  // finalize on mouseup anywhere
+  document.addEventListener('mouseup', (e)=>{
+    if (!isSelecting) return;
+    // user may have released ctrl earlier; we finalize as soon as mouse button released
+    finishSelecting(true);
+  });
+
+  // also allow keyboard Esc to clear selection
+  document.addEventListener('keydown', (e)=>{
+    if (e.key === 'Escape') {
+      clearSelectionVisuals();
+    }
+  });
+
+  // clicking on a bit cell without ctrl selects single bit (optional enhancement)
+  bitsTable.addEventListener('click', (e)=>{
+    const td = findBitCellFromEvent(e);
+    if (!td) return;
+    // if user clicked without ctrl, create a single-bit selection and show modal
+    if (!e.ctrlKey) {
+      clearSelectionVisuals(false);
+      selStart = Number(td.dataset.idx);
+      selEnd = selStart;
+      updateSelectionVisuals(selStart, selEnd, false, true);
+      selectionExists = true;
+      showSelectionPopup(selStart, selEnd);
+    }
+  });
+
+  // utility: double-click on table clears selection
+  bitsTable.addEventListener('dblclick', (e)=> {
+    clearSelectionVisuals();
+  });
+
+  // initial render
+  renderBtn.addEventListener('click', render);
+  numInput.addEventListener('keydown', (ev)=> { if (ev.key === 'Enter') render(); });
+  window.addEventListener('resize', ()=> { /* no dynamic reflow needed for selection; keep as-is */ });
+
+  render();
+})();
+</script>
+</body>
+</html>

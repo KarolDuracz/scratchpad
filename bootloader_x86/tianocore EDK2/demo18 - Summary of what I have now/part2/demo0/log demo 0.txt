@@ -1,0 +1,153 @@
+loadimg: image exited with status: Success
+loadimg: UnloadImage returned: Invalid Parameter
+\> exit
+HelloWorld: exiting terminal. Goodbye.
+-----------------------------------------?
+-                                Boot Manager                                  -
+--------------------------------------------------------------------------------
+
+                                                         Device Path :
+   Boot Manager Menu                                     PciRoot(0x0)/Pci(0xB,0
+                                                         x0)/USB(0x0,0x0)
+   Windows Boot Manager
+   UEFI VBOX CD-ROM VB1-1a2b3c4d
+   UEFI VBOX HARDDISK VB1981ae93-81f869fa
+   EFI Internal Shell
+   UEFI PXEv4 (MAC:0800274CACB2)
+   UEFI Generic Mass Storage EE5B4CC2
+
+   Use the <^> and <v> keys to choose a boot option,
+   the <Enter> key to select a boot option, and the
+   <Esc> key
+
+
+
+----------------------------?
+                                                                               -
+- ^                       <Enter>=Select Entry      Esc=Exit                   -
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+HelloWorld: advanced terminal starting...
+Scanning PCI devices for USB host controllers...mmands.
+\> loadimg helloworld.efi
+PCI USB Host Controller found (handle=0x7DFD5298): Class=0x0C Sub=0x03 ProgIf=0x10
+  PCI VendorId=0x106B DeviceId=0x003F
+  BAR0 (raw) = 0x9062B000..
+  Detected OHCI host controller. Trying minimal init...
+    HcRevision = 0x00000010
+    HcControl = 0x00000280
+    HcCommandStatus = 0x0000     Writing HcCommandStatus.HCR to reset controller...
+    OHCI: reset complete
+    Allocated HCCA at phys 0x7CC96000
+    HcControl set to OPERATIONAL (0x00000280)
+    Root hub: 12 downstream ports (RhDescriptorA=0x0000020C)
+      Port 1: Status=0x00000000  Connected=0  Enabled=0  Powered=0  LowSpeed=0
+      Port 2: Status=0x00010101  Connected=1  Enabled=0  Powered=1  LowSpeed=0      Port 3: Status=0x00010101  Connected=1  Enabled=0  Powered=1  LowSpeed=0
+      Port 4: Status=0x00000100  Connected=0  Enabled=0  Powered=1  LowSpeed=0
+      Port 5: Status=0x00000100  Connected=0  Enabled=0  Powered=1  LowSpeed=0
+      Port 6: Status=0x00000100  Connected=0  Enabled=0  Powered=1  LowSpeed=0
+      Port 7: Status=0x00000100  Connected=0  Enabled=0  Powered=1  LowSp      Port 8: Status=0x00000100  Connected=0  Enabled=0  Powered=1  LowSpeed=0
+      Port 9: Status=0x00000100  Connected=0  Enabled=0  Powered=1  LowSpeed=0
+      Port 10: Status=0x00000100  Connected=0  Enabled=0  Powered=1  LowSpeed=0
+      Port 11: Status=0x00000100  Connected=0  Enabled=0  Powered=1  LowSpeed=0
+      Port 12: Status=0x00000100  Connected=0  Enabled=0  Powered=1  LowSpeed=0
+    EFI_USB2_HC_PROTOCOL not found on this handle - high-level enumeration skipped.
+    Starting diagnostics for handle 0x7DFD5298
+    Protocols installed on this handle: 2
+      [00] 4CF5B200-68B8-4CA5-9EEC-B23E3F50029A
+      [01] 09576E91-6D3F-11D2-8E39-00A0C969723B
+    System reports 1 handle(s) with EFI_USB2_HC_PROTOCOL
+      Handle[0] = 0x7DFD5498
+        EFI_USB2_HC_PROTOCOL open OK, pointer=0x7DF8D320
+        Protocol struct address: 0x7DF8D320
+        ControlTransfer@7DFB7A68  GetRootHubPortStatus@7DFB76F0
+    LocateProtocol found an EFI_USB2_    End diagnostics for handle 0x7DFD5298
+    Using EFI_USB2_HC_PROTOCOL from handle 7DFD5498 (protocol at 7DF8D320)
+  Root port 1: PortStatus=0x00000503
+  Device (addr 1): class=0x00 vid=0x058F pid=0x6387 mp0=64
+  Device (addr 1): SET_CONFIGURATION(1) OK
+  Parsing configuration (totalLen=32)
+  Config hex dump (first 32 bytes):
+  0000: 00 98 00 00 00 00 00 00 50 00 FD 00 00 00 00 00
+  0010: 00 74 00 6C 01 02 00 02 70 00 61 00 00 00 00 00
+  Malformed descriptor at pos 0: length 152 exceeds total 32 - stopping
+  Device (addr 1) not a hub (no interface class 0x09 found)
+  Hub(addr 1): GetHubDescriptor failed: Device Error (tr=0x2)
+  Root port 2: PortStatus=0x00002100
+  Root port 3: PortStatus=0x00002100
+  Root port 4: PortStatus=0x00002100
+  Root port 5: PortStatus=0x00002100
+  Root port 6: PortStatus=0x00002100
+  Root port 7: PortStatus=0x00002100
+  Root port 8: PortStatus=0x00002100
+  Root port 9: PortStatus=0x00002100
+  Root port 10: PortStatus=0x00002100
+  Root port 11: PortStatus=0x00002100
+  Root port 12: PortStatus=0x00002100
+ ( Ehci examine error )
+
+PCI USB Host Controller found (handle=0x7DFD5498): Class=0x0C Sub=0x03 ProgIf=0x20
+  PCI VendorId=0x8086 DeviceId=0x265C
+  BAR0 (raw) = 0x9062A000
+  (Non-OHCI host controller; skipping software init)
+  Detected EHCI host controller. Running minimal introspect...
+    CAP (DWORD @0) = 0x01000020  CAPLENGTH = 32
+    HCSPARAMS = 0x0000000C  -> N_POR    Operational registers base offset (caplen) = 0x00000020
+    USBCMD = 0x00080B71
+    USBSTS = 0x0000C028
+    Port 1: PORTSC=0x00001005
+    Port 2: PORTSC=0x00003000
+    Port 3: PORTSC=0x00003000
+    Port 4: PORTSC=0x00003000
+    Port 5: PORTSC=0x00003000
+    Port 6: PORTSC=0x00003000
+    Port 7: PORTSC=0x00003000
+    Port 8: PORTSC=0x00003000
+    Port 9: PORTSC=0x00003000
+    Port 10: PORTSC=0x00003000
+    Port 11: PORTSC=0x00003000
+    Port 12: PORTSC=0x00003000
+    EFI_USB2_HC_PROTOCOL present on     Launching high-level enumeration via EFI_USB2_HC_PROTOCOL (NumPorts=12)
+  Root port 1: PortStatus=0x00000503
+  Device (addr 1): class=0x00 vid=0x058F pid=0x6387 mp0=64
+  Device (addr 1): SET_CONFIGURATION(1) OK
+  Parsing configuration (totalLen=32)
+  Config hex dump (first 32 bytes):
+  0000: 00 98 00 00 00 00 00 00 50 00 FD 00 00 00 00 00
+  0010: 00 74 00 6C 01 02 00 02 70 00 61 00 00 00 00 00
+  Malformed descriptor at pos 0: len  Device (addr 1) not a hub (no interface class 0x09 found)
+  Hub(addr 1): GetHubDescriptor failed: Device Error (tr=0x2)
+  Root port 2: PortStatus=0x00002100
+  Root port 3: PortStatus=0x00002100
+  Root port 4: PortStatus=0x00002100
+  Root port 5: PortStatus=0x00002100
+  Root port 6: PortStatus=0x00002100
+  Root port 7: PortStatus=0x00002100
+  Root port 8: PortStatus=0x00002100  Root port 9: PortStatus=0x00002100
+  Root port 10: PortStatus=0x00002100
+  Root port 11: PortStatus=0x00002100
+  Root port 12: PortStatus=0x00002100
+
+Done. Press any key to exit...
+loadimg: image exited with status: Success
+loadimg: UnloadImage returned: Invalid Parameter
+\>

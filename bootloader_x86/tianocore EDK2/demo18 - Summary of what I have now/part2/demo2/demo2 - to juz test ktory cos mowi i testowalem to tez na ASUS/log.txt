@@ -1,0 +1,210 @@
+------------------------------------------------------------------------------?
+-                                Boot Manager                                  -
+-----------------------------------------------------------------------
+
+                                                         Device Path :
+   Boot Manager Menu                                     PciRoot(0x0)/Pci(0xB,0
+                                                         x0)/USB(0x0,0x0)
+   Windows Boot Manager
+   UEFI VBOX CD-ROM VB1-1a2b3c4d
+   UEFI VBOX HARDDISK VB1981ae93-81f869fa
+   EFI Internal Shell
+   UEFI PXEv4 (MAC:0800274CACB2)
+   UEFI Generic Mass Storage EE5B4CC2
+
+   Use the <^> and <v> keys to choo
+   the <Enter> key to select a boot option, and the
+   <Esc> key to exit the Boot Manager Menu.
+
+
+
+------------------------------------------------------------------------------?
+-                                                                              -
+- ^v=Move Highlight       <Enter>=Select Entry      Esc=Exit                   -
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+HelloWorld: advanced terminal starting...
+HelloWorld: filesystem ready. Type 'help' for commands.
+\> gop set 10
+gop set: mode changed to 10
+\> listapps
+D       4096  .
+D       4096  ..
+D       4096  bth
+D       4096  demo2 - green nasm
+F      94208  helloworld_x.efi
+F      10624  green.efi
+D       4096  shellv2
+F      65536  helloworld1.efi
+F      69632  helloworld.efi
+D       4096  13-10-2025-dF      86016  bootx64_1310.efi
+F      86016  helloworld_1310.efi
+\> loadimg helloworld.efi
+Found '\EFI\Boot\myApps\helloworld.efi'. Run image (YES/NO)?
+yes
+loadimg: starting image ...
+UsbDiagApp: Starting USB diagnostic sequence
+--- Stage 1: Scan PCI bus for USB class devices ---
+PCI 00:00.0  Class=0x06 SubClass=0x00 ProgIf=0x00
+PCI 00:01.0  Class=0x06 SubClass=0x01 ProgIf=0x00
+PCI 00:02.0  Class=0x03 SubClass=0x00 ProgIf=0x00
+PCI 00:03.0  Class=0x02 SubClass=0x00 ProgIf=0x00
+PCI 00:04.0  Class=0x08 SubClass=0x80 ProgIf=0x00
+PCI 00:05.0  Class=0x04 SubClass=0x01 ProgIf=0x00
+PCI 00:06.0  Class=0x0C SubClass=0x03 ProgIf=0x10
+  -> Detected USB controller (PCI class 0x0C/0x03). Try to locate HC protocols on same handle.
+PCI 00:07.0  Class=0x06 SubClass=0x8PCI 00:0B.0  Class=0x0C SubClass=0x03 ProgIf=0x20
+  -> Detected USB controller (PCI class 0x0C/0x03). Try to locate HC protocols on same handle.
+PCI 00:0D.0  Class=0x01 SubClass=0x06 ProgIf=0x01
+--- Stage 2: Find published USB Host Controller protocols ---
+Found 1 USB2_HC protocol handle(s)
+No USB_HC handles found (Status=0x800000000000000E)
+--- Mapping USB2_HC handles to PCI B:D.F ---
+  USB2_HC handle 0 -> PCI 00:0B.0 (Segment=0)
+--- EHCI probe for PCI 00:06.0 | PROGIF 10 ---
+  BAR0: CAPLENGTH=0x10 HCIVERSION=0x0000
+    USBCMD=0x00000000 USBSTS=0x00000000 USBINTR=0x00000000 FRINDEX=0x00000000
+    PERIODICLISTBASE=0x00000000 ASYNCLISTADDR=0x00000000
+    HCSPARAMS(raw)=0x00000200  (N_PORTS approx=0)
+      PORT0: PORTSC raw=0x00010101  (CCS=1 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT1: PORTSC raw=0x00010101  (CCS=1 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT2: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT3: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT4: PORTSC raw=0x00000100  (CCS      PORT5: PORTSC raw=0x00000100        PORT6: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT7: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT8: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT9: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT10: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT11: PORTSC raw=0x00000100  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=0)
+      PORT12: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PortSpeed=3 PO=1)
+      PORT13: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PortSpeed=3 PO=1)
+      PORT14: PORTSC raw=0xFFFFFFFF       PORT15: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PortSpeed=3 PO=1)
+--- EHCI probe for PCI 00:0B.0 | PROGIF 20 ---
+  BAR0: CAPLENGTH=0x20 HCIVERSION=0x0100
+    USBCMD=0x00080B71 USBSTS=0x0000C028 USBINTR=0x00000000 FRINDEX=0x0002B488
+    PERIODICLISTBASE=0x00000000 ASYNCLISTADDR=0x7DF5B080
+    HCSPARAMS(raw)=0x0000000C  (N_PORTS approx=12)
+      PORT0: PORTSC raw=0x00001005  (CCS=1 CSC=0 PE=1 PortSpeed=0 PO=0)
+      PORT1: PORTSC raw=0x00003000        PORT2: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=1)
+      PORT3: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=1)
+      PORT4: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=1)
+      PORT5: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=1)
+      PORT6: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=1)
+      PORT7: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=1)
+      PORT8: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=1)
+      PORT9: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=1)
+      PORT10: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=1)
+      PORT11: PORTSC raw=0x00003000  (CCS=0 CSC=0 PE=0 PortSpeed=0 PO=1)
+      PORT12: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PortSpeed=3 PO=1)
+      PORT13: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PortSpeed=3 PO=1)
+      PORT14: PORTSC raw=0xFFFFFFFF  (CCS=1 CSC=1 PE=1 PortSpeed=3 PO=1)
+      PORT15: PORTSC raw=0xFFFFFFFF --- Stage 3: Locate EFI_USB_IO_PROTOCOL handles (actual devices) ---
+Found 1 USB device handles (EFI_USB_IO_PROTOCOL)
+
+--- Device 0 ---
+UsbGetDeviceDescriptor: Status = 0x0
+  bLength=18 bDescriptorType=1 bcdUSB=0x0200 idVendor=0x058F idProduct=0x6387 bDeviceClass=0x00
+UsbGetConfigDescriptor: Status = 0x0
+  wTotalLength=32 bNumInterfaces=1 bConfigurationValue=1
+ skipping DumpHex 32
+UsbGetInterfaceDescriptor: Status = 0x0
+  Interface: bInterfaceNumber=0 bAlternateSetting=0 bInterfaceClass=0x08 bInterfaceSubClass=0x06 bInterfaceProtocol=0x50
+  Endpoint 0: bEndpointAddress=0x01 bmAttributes=0x02 wMaxPacketSize=512 bInterval=0
+  Endpoint 1: bEndpointAddress=0x82 bmAttributes=0x02 wMaxPacketSize=512 bInterval=0
+  End of endpoint list (index 2). Last status=Not Found
+UsbControlTransfer(GET_STATUS): Status = 0x0
+  GET_STATUS returned UsbStatus=0x0 Data: 0000: 00 00
+UsbPortReset (note: this may re-enumerate device): Status = 0x0
+--- End of device 0 checks ---
+--- Stage: Check BlockIo on USB mass-storage devices ---
+  BlockIo handle 0: MediaId=0 BlockSize=512 LastBlock=125829119 MediaPresent=1 Removable=    ReadBlocks(LBA0) returned 0x0
+    LBA0 (first 64 bytes) (len=64):
+0000: 33 C0 8E D0 BC 00 7C 8E C0 8E D8 BE 00 7C BF 00
+0010: 06 B9 00 02 FC F3 A4 50 68 1C 06 CB FB B9 04 00
+0020: BD BE 07 80 7E 00 00 7C 0B 0F 85 0E 01 83 C5 10
+0030: E2 F1 CD 18 88 56 00 55 C6 46 11 05 C6 46 10 00
+    MBR signature 0x55AA found at offset 0x1FE
+  BlockIo handle 1: MediaId=1 BlockSize=2048 LastBlock=2335935 MediaPresent=1 Removable=1
+    ReadBlocks(LBA0) returned 0x0
+    LBA0 (first 64 bytes) (len=64):
+0000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0010: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0020: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0030: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+    No MBR signature at 0x1FE (bytes=0x00 0x00)
+  BlockIo handle 2: MediaId=1 BlockS    ReadBlocks(LBA0) returned 0x0
+    LBA0 (first 64 bytes) (len=64):
+0000: FA 33 C0 8E D0 BC 00 7C FB 8C C8 8E D8 52 B4 0F
+0010: CD 10 24 7F 3C 03 74 06 B4 00 B0 03 CD 10 E8 00
+0030: 8C C8 3D 00 00 0F 85 84 00 EA 45 00 C0 07 8C C8
+    No MBR signature at 0x1FE (bytes=0x0E 0xDF)
+  BlockIo handle 3: MediaId=1 BlockS    ReadBlocks(LBA0) returned 0x0
+    LBA0 (first 64 bytes) (len=64):
+0000: EB 3C 90 4D 53 44 4F 53 35 2E 30 00 02 01 01 00
+0010: 02 E0 00 40 0B F0 09 00 12 00 02 00 00 00 00 00
+0020: 00 00 00 00 00 00 29 78 48 A0 00 45 46 49 53 45
+0030: 43 54 4F 52 20 20 46 41 54 31 32 20 20 20 FA 33
+    MBR signature 0x55AA found at offset 0x1FE
+  BlockIo handle 4: MediaId=1 BlockSize=2048 LastBlock=2335903 MediaPresent=1 Removable=1
+    ReadBlocks(LBA0) returned 0x0
+0000: 01 00 02 00 5E 00 00 00 3C 0E F0 01 20 00 00 00
+0010: 00 00 00 00 00 00 00 00 08 45 53 44 2D 49 53 4F
+0020: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0030: 00 00 00 00 00 00 00 08 01 00 01 00 02 00 03 00
+    No MBR signature at 0x1FE (bytes  BlockIo handle 5: MediaId=0 BlockSize=512 LastBlock=204799 MediaPresent=1 Removable=0
+    ReadBlocks(LBA0) returned 0x0
+    LBA0 (first 64 bytes) (len=64):
+0000: EB 58 90 4D 53 44 4F 53 35 2E 30 00 02 02 F19
+0010: 02 00 00 00 00 F8 00 00 3F 00 FF 00 00 08 00 00
+0020: 00 20 03 00 01 03 00 00 00 00 00 00 02 00 00 00
+0030: 01 00 06 00 00 00 00 00 00 00 00 00 00 00 00 00
+    MBR signature 0x55AA found at offset 0x1FE
+  BlockIo handle 6: MediaId=0 BlockS    ReadBlocks(LBA0) returned 0x0
+    LBA0 (first 64 bytes) (len=64):
+0000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0010: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0020: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0030: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+    No MBR signature at 0x1FE (bytes=0x00 0x00)
+  BlockIo handle 7: MediaId=0 BlockSize=512 LastBlock=124499022 MediaPresent=1 Removable=0
+    ReadBlocks(LBA0) returned 0x0
+    LBA0 (first 64 bytes) (len=64):
+0000: EB 52 90 4E 54 46 53 20 20 20 20 00 02 08 00 00
+0010: 00 00 00 00 00 F8 00 00 3F 00 FF 00 00 A8 03 00
+0020: 00 00 00 00 80 00 80 00 4E B4 6B 07 00 00 00 00
+0030: 00 00 0C 00 00 00 00 00 02 00 00 00 00 00 00 00
+    MBR signature 0x55AA found at offset 0x1FE
+  BlockIo handle 8: MediaId=0 BlockSize=512 LastBlock=1085439 MediaPresent=1 Removable=0
+    ReadBlocks(LBA0) returned 0x0
+    LBA0 (first 64 bytes) (len=64):
+0000: EB 52 90 4E 54 46 53 20 20 20 20 00 02 08 00 00
+0010: 00 00 00 00 00 F8 00 00 3F 00 FF 00 00 60 6F 07
+0020: 00 00 00 00 80 00 80 00 FF 8F 100 00 00 00 00
+0030: AA B0 00 00 00 00 00 00 02 00 00 00 00 00 00 00
+    MBR signature 0x55AA found at offset 0x1FE
+  BlockIo handle 9: MediaId=2 BlockSize=512 LastBlock=8165375 MediaPresent=1 Removable=1
+    ReadBlocks(LBA0) returned 0x800000000000000D
+UsbDiagApp: Completed checks. You can re-run to capture new events.
+Done. Press any key to exit...
+loadimg: image exited with status: Success
+loadimg: UnloadImage returned: Invalid Parameter
+\>

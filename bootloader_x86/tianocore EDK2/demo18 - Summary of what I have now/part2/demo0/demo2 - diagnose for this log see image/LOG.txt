@@ -1,0 +1,27 @@
+
+Press ESC in 5 seconds to skip startup.nsh or any other key to continue.
+Shell> fs0:
+FS0:\> cd __bin\a10-10-2025bth\bt6
+FS0:\__bin\a10-10-2025bth\bt6\> cls
+FS0:\__bin\a10-10-2025bth\bt6\> helloworld
+
+USB Port Enumeration (fixed headers/defines)
+--- Approach A: Locate EFI_USB_IO_PROTOCOL handles (high-level)
+Found 1 USB device handle(s)
+  Handle[0]: VID=0x058F PID=0x6387 Class=0x00 Subclass=0x00 Protocol=0x00
+
+Found 1 USB host controller handle(s)
+  Host[0]: MaxSpeed=2 NumPorts=12 64bit=0
+  Inspecting host[0] root port (human 1 -> index 0)
+--- Approach B: Manual enumeration on host controller, port index 0
+ PortStatus=0x00000503 PortChange=0x00000000
+ Resetting port ...
+ Device speed (inferred) = 2
+  GET_DESCRIPTOR(Device,8) ...
+   bMaxPacketSize0 = 64
+  SET_ADDRESS = 5 ...
+  GET_DESCRIPTOR(Device,full) at addr 5 ...
+   Device: VID=0x058F PID=0x6387 Class=0x00 NumConfigs=1
+   Configuration wTotalLength = 32
+   First config bConfigurationValue = 1
+   SET_CONFIGURATION OK

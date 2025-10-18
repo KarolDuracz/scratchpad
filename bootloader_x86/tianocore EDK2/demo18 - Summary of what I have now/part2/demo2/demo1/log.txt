@@ -1,0 +1,104 @@
+BdsDxe: loading Boot0000 "UiApp" from Fv(7CB8BDC9-F8EB-4F34-AAEA-3EE4AF6516A1)/FvFile(462CAA21-7614-4503-836E-8AB6F4662331)
+BdsDxe: starting Boot0000 "UiApp" from Fv(7CB8BDC9-F8EB-4F34-AAEA-3EE4AF6516A1)/FvFile(462CAA21-7614-4503-836E-8AB6F4662331)
+------------------------------------------------------------------------------?
+-                                Boot Manager                                  -
+---------------------------------------------------------------------
+
+                                                         Device Path :
+   Boot Manager Menu                                     PciRoot(0x0)/Pci(0xB,0
+                                                         x0)/USB(0x0,0x0)
+   Windows Boot Manager
+   UEFI VBOX CD-ROM VB1-1a2b3c4d
+   UEFI VBOX HARDDISK VB1981ae93-81f869fa
+   EFI Internal Shell
+   UEFI Generic Mass Storage EE5B4CC2
+   UEFI PXEv4 (MAC:0800274CACB2)
+
+   Use the <^> and <v> keys to choose a boot option,
+   the <Enter> key to select a boot option, and the
+   <Esc> key to exit the Boot Manager Menu.
+
+
+
+------------------------------------------------------------------------------?
+-                                                                              -
+- ^v=Move Highlight       <Enter>=Select Entry      Esc=Exit                   -
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+HelloWorld: advanced terminal starting...
+HelloWorld: filesystem ready. Type 'help' for commands.
+\> loadimg helloworld.efi
+Found '\EFI\Boot\myApps\helloworld.efi'. Run image (YES/NO)?
+yes
+loadimg: starting image ...
+UsbDiagA--- Stage 1: Scan PCI bus for USB class devices ---
+PCI 00:00.0  Class=0x06 SubClass=0x00 ProgIf=0x00
+PCI 00:01.0  Class=0x06 SubClass=0x01 ProgIf=0x0PCI 00:02.0  Class=0x03 SubClass=0x00 ProgIf=0x00
+PCI 00:03.0  Class=0x02 SubClass=0x00 ProgIf=0x00
+PCI 00:04.0  Class=0x08 SubClass=0x80 ProgIf=0x00
+PCI 00:05.0  Class=0x04 SubClass=0x01 ProgIf=0x00
+PCI 00:06.0  Class=0x0C SubClass=0x03 ProgIf=0x10
+  -> Detected USB controller (PCI class 0x0C/0x03). Try to locate HC protocols on same handle.
+PCI 00:07.0  Class=0x06 SubClass=0x80 PrPCI 00:0B.0  Class=0x0C SubClass=0x03 ProgIf=0x20
+  -> Detected USB controller (PCI class 0x0C/0x03). Try to locate HC protocols on same handle.
+PCI 00:0D.0  Class=0x01 SubClass=0x06 ProgIf=0x01
+--- Stage 2: Find published USB Host Controller protocols ---
+Found 1 USB2_HC protocol handle(s)
+No USB_HC handles found (Status=0x800000000000000E)
+--- Stage 3: Locate EFI_USB_IO_PROTOCOL handles (actual devices) ---
+Found 1 USB device handles (EFI_USB_IO_PROTOCOL)
+
+--- Device 0 ---
+UsbGetDeviceDescriptor: Status = 0x0
+  bLength=18 bDescriptorType=1 bcdUSB=0x0200 idVendor=0x058F idProduct=0x6387 bDeviceClass=0x00
+UsbGetConfigDescriptor: Status = 0x0
+  wTotalLength=32 bNumInterfaces=1 bConfigurationValue=1
+ skipping DumpHex 32
+UsbGetInterfaceDescriptor: Status = 0x0
+  Interface: bInterfaceNumber=0 bAlternateSetting=0 bInterfaceClass=0x08 bInterfaceSubClass=0x06 bInterfaceProtocol=0x50
+  Endpoint 0: bEndpointAddress=0x01 bmAttributes=0x02 wMaxPacketSize=512 bInterval=0
+  Endpoint 1: bEndpointAddress=0x82 bmAttributes=0x02 wMaxPacketSize=512 bInterval=0
+  End of endpoint list (index 2). Last status=Not Found
+UsbGetSupportedLanguages: Status = 0x0
+  Supported languages count=2 first LangID=0x0409
+  UsbGetStringDescriptor(ID=1): Status = 0x0
+    String[1] = Generic
+  UsbGetStringDescriptor(ID=2): Status = 0x0
+    String[2] = Mass Storage
+!!!! X64 Exception Type - 03(#BP - Breakpoint)  CPU Apic ID - 00000000 !!!!
+RIP  - 000000007D0F0B4B, CS  - 0000000000000038, RFLAGS - 0000000000000202
+RAX  - 0000000000000010, RCX - 0000000000000000, RDX - 000000007F331580
+RBX  - 000000007D3C4318, RSP - 000000007F316848, RBP - 000000007D3C4B18
+RSI  - 000000007F316DB8, RDI - 000000007D157418
+R8   - 0000000000000014, R9  - 000000007D3E0028, R10 - 0000000003050007
+R11  - 0000000090000002, R12 - 0000000000000000, R13 - 0000000000000000
+R14  - 000000007F316DE0, R15 - 000000000000015A
+DS   - 0000000000000030, ES  - 0000000000000030, FS  - 0000000000000030
+GS   - 0000000000000030, SS  - 0000000000000030
+CR0  - 00000000C0010033, CR2 - 0000000000000000, CR3 - 000000007F001000
+CR4  - 0000000000000668, CR8 - 0000000000000000
+DR0  - 0000000000000000, DR1 - 0000000000000000, DR2 - 0000000000000000
+DR3  - 0000000000000000, DR6 - 00000000FFFF0FF0, DR7 - 0000000000000400
+GDTR - 000000007EF6E018 0000000000000047, LDTR - 0000000000000000
+IDTR - 000000007E90D018 0000000000000FFF,   TR - 0000000000000000
+FXSAVE_STATE - 000000007F3164A0
+!!!! Find image based on IP(0x7D0F0B4B) c:\users\kdhome\documents\progs\edk2_win81\edk2\Build\EmulatorX64\DEBUG_VS2019\X64\MdeModulePkg\Application\HelloWorld\HelloWorld\DEBUG\HelloWorld.pdb (ImageBase=000000007D0ED000, EntryPoint=000000007D0EE014) !!!!

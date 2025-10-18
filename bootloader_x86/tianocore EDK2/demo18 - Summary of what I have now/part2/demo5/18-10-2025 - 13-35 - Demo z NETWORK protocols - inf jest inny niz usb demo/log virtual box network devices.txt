@@ -1,0 +1,152 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+elloWorld: advanced terminal starting...
+HelloWorld: filesystem ready. Type 'help' for commands.
+\> loadimg helloworld.efi
+Found '\EFI\Boot\myApps\helloworld.efi'. Run image (YES/NO)?
+yes
+loadimg: starting image ...
+HelloNet: network & bluetooth enumerator (read-only)
+
+EFI_SIMPLE_NETWORK_PROTOCOL (SNP): found 2 handle(s)
+ Handle[0] = 7DF58D98
+  DevicePath: [02:01 len=12] (D0:41:03:0A:00:00:00:00) [01:01 len=6] (00:03) [03:0B len=37] (08:00:27:4C:AC:B2:00:00) [END]
+  Protocols installed on handle (14):
+   - FA3CDE4C-87C2-427D-AEDE-7DD096C88C58
+   - B95E9FDA-26DE-48D2-8807-1F9107AC5E3A
+   - 00720665-67EB-4A99-BAF7-D3C33A1C7CC9
+   - 2FE800BE-8F    - 83F01464-99BD-45E5-B383-AF6305D8E9E6
+   - 5B446ED1-E30B-4FAA-871A-3654ECA36080
+   - C51711E7-B4BF-404A-BFB8-0A048EF1FFE4
+   - F44C00EE-1F2C-4A00-AA09-1C9F3E0800A3
+   - E4F61863-FE2C-4B56-A8F4-08519BC439DF
+   - F36FF770-A7E1-42CF-9ED2-56F0F271F44C
+   - 9E23D768-D2F3-4366-9FC3-3A7ABA864374
+   - 09576E91-6D3F-11D2-8E39-00A0C969723B
+   - A19832B9-AC25-11D3-9A2D-0090273FC14D
+  OpenProtocolInformation (entries: 2):
+    Agent=7E053B98 Attr: BY_DRIVER  OpenCount=1
+    Agent=7ECEEF98 Attr: BY_HANDLE_PROTOCOL  OpenCount=8
+  SNP Mode: IfType=1 HwAddrLen=6 MediaPresent=1
+  MAC: 08:00:27:4C:AC:B2
+
+ Handle[1] = 7D5FE418
+  DevicePath: [02:01 len=12] (D0:41:03:0A:00:00:00:00) [01:01 len=6] (00:03) [03:0B len=37] (08:00:27:4C:AC:B2:00:00) [03:0C len=27] (00:00:00:00:00:00:00:00) [END]
+  Protocols installed on handle (4):
+   - A19832B9-AC25-11D3-9A2D-0090273FC14D
+   - 03C4E603-AC28-11D3-9A2D-0090273FC14D
+   - 56EC3091-954C-11D2-8E3F-00A0C969723B
+   - 09576E91-6D3F-11D2-8E39-00A0C969723B
+  OpenProtocolInformation (entries: 2):
+    Agent=7E049098 Attr: BY_DRIVER EXCLUSIVE  OpenCount=1
+    Agent=7ECEEF98 Attr: BY_HANDLE_PROTOCOL  OpenCount=1
+  SNP Mode: IfType=1 HwAddrLen=6 MediaPresent=1
+  MAC: 08:00:27:4C:AC:B2
+
+EFI_MANAGED_NETWORK_PROTOCOL (MNP): found 2 handle(s)
+ Handle[0] = 7D642F98
+  DevicePath: <none>
+  Protocols installed on handle (1):
+   - 7AB33A91-ACE5-4326-B572-E7EE33D39F16
+  OpenProtocolInformation (entries: 3):
+    Agent=7E053A98 Attr: BY_DRIVER  OpenCount=1
+    Agent=7E053A98 Attr: BY_CHILD_CONTROLLER  OpenCount=1
+    Agent=7ECEEF98 Attr: BY_HANDLE_PROTOCOL  OpenCount=1
+  MNP SnpMode: IfType=1 HwAddrLen=6 MediaPresent=1
+  MAC: 08:00:27:4C:AC:B2
+
+ Handle[1] = 7D61DD18
+  DevicePath: <none>
+  Protocols installed on handle (1):
+   - 7AB33A91-ACE5-4326-B572-E7EE33D39F16
+  OpenProtocolInformation (entries: 11):
+    Agent=7E03CB98 Attr: BY_DRIVER  OpenCount=1
+    Agent=7E03CB98 Attr: BY_CHILD_CONTROLLER  OpenCount=1
+    Agent=7E03CB98 Attr: BY_CHILD_CONTROLLER  OpenCount=1
+    Agent=7E03CB98 Attr: BY_CHILD_CONTROLLER  OpenCount=1
+    Agent=7E03CB98 Attr: BY_CHILD_CONTROLLER  OpenCount=1
+    Agent=7E03CB98 Attr: BY_CHILD_CONTROLLER  OpenCount=1
+    Agent=7E03CB98 Attr: BY_CHILD_CONTROLLER  OpenCount=1
+    Agent=7E03CB98 Attr: BY_CHILD_CONTROLLER  OpenCount=1
+    Agent=7E03CB98 Attr: BY_CHILD_CONTROLLER  OpenCount=1
+    Agent=7E03CB98 Attr: BY_CHILD_CONTROLLER  OpenCount=1
+    Agent=7ECEEF98 Attr: BY_HANDLE_PROTOCOL  OpenCount=1
+  MNP SnpMode: IfType=1 HwAddrLen=6 MediaPresent=1
+  MAC: 08:00:27:4C:AC:B2
+
+EFI_WIRELESS_MAC_CONNECTION_PROTOCOL (WiFi): no handles found (Not Found)
+
+EFI_WIRELESS_MAC_CONNECTION_II_PROTOCOL (WiFi2): no handles found (Not Found)
+
+EFI_BLUETOOTH_HC_PROTOCOL (Bluetooth HC): no handles found (Not Found)
+
+EFI_BLUETOOTH_IO_PROTOCOL (Bluetooth IO): no handles found (Not Found)
+
+EFI_VLAN_CONFIG_PROTOCOL (VLAN): found 1 handle(s)
+ Handle[0] = 7DF58D98
+  DevicePath: [02:01 len=12] (D0:41:03:0A:00:00:00:00) [01:01 len=6] (00:03) [03:0B len=37] (08:00:27:4C:AC:B2:00:00) [END]
+  Protocols installed on handle (14):
+   - FA3CDE4C-87C2-427D-AEDE-7DD096C88C58
+   - B95E9FDA-26DE-48D2-8807-1F9107AC5E3A
+   - 00720665-67EB-4A99-BAF7-D3C33A1C7CC9
+   - 2FE800BE-8F01-4AA6-946B-D71388E1833F
+   - 9D9A39D8-BD42-4A73-A4D5-8EE94BE11380
+   - 83F01464-99BD-45E5-B383-AF6305D8E9E6
+   - 5B446ED1-E30B-4FAA-871A-3654ECA36080
+   - C51711E7-B4BF-404A-BFB8-0A048EF1FFE4
+   - F44C00EE-1F2C-4A00-AA09-1C9F3E0800A3
+   - E4F61863-FE2C-4B56-A8F4-08519BC439DF
+   - F36FF770-A7E1-42CF-9ED2-56F0F271F44C
+   - 9E23D768-D2F3-4366-9FC3-3A7ABA8   - 09576E91-6D3F-11D2-8E39-00A0C969723B
+   - A19832B9-AC25-11D3-9A2D-0090273FC14D
+  OpenProtocolInformation (entries: 2):
+    Agent=7E054618 Attr: BY_DRIVER  OpenCount=1
+    Agent=7E054618 Attr: BY_CHILD_CONTROLLER  OpenCount=1
+  WiFi protocol handle present (no further introspection performed)
+
+Done.
+loadimg: image exited with status: Success
+loadimg: UnloadImage returned: Invalid Parameter
+\>
