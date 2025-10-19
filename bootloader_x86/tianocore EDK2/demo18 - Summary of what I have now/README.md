@@ -27,4 +27,4 @@ https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20E
 <br /><br />
 
 > [!NOTE]
-> btw. I subscribe to this magazine (https://programistamag.pl/budujemy-wlasne-urzadzenie-usb/). And some time ago, there was an article by Rafał Kozik where he showed how to build a simple USB device and communicate with it. I didn't build this device for myself. But now I understand how profound this topic is from a UEFI perspective and how it works in practice—how it's structured.
+> btw. I subscribe magazine (https://programistamag.pl/budujemy-wlasne-urzadzenie-usb/). And some time ago, there was an article by Rafał Kozik where he showed how to build a simple USB device and communicate with it. I didn't build this device for myself. But now I understand how profound this topic is from a UEFI perspective and how it works in practice—how it's structured.
