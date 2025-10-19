@@ -23,3 +23,8 @@ https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20E
 4. Intel Enhanced Host Controller Interface Specification for Universal Serial Bus - https://www.intel.com/content/dam/www/public/us/en/documents/technical-specifications/ehci-specification-for-usb.pdf
 5. Nice diagrams and pictures - https://www.infineon.com/assets/row/public/documents/cross-divisions/42/infineon-an57294-usb-101-an-introduction-to-universal-serial-bus-2.0-applicationnotes-en.pdf?fileId=8ac78c8c7cdc391c017d072d8e8e5256
 6. Protocols used to save logs - https://uefi.org/specs/UEFI/2.10/13_Protocols_Media_Access.html
+
+<br /><br />
+
+> [!NOTE]
+> btw. I subscribe to this magazine (https://programistamag.pl/budujemy-wlasne-urzadzenie-usb/). And some time ago, there was an article by Rafał Kozik where he showed how to build a simple USB device and communicate with it. I didn't build this device for myself. But now I understand how profound this topic is from a UEFI perspective and how it works in practice—how it's structured.
