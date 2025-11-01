@@ -54,7 +54,7 @@ And after exiting demo and type "help" again, let's assume it produced 105 lines
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/images/1762021891963.jpg?raw=true)
 
-<b>Let's assume that I want to save the log now on a USB flash drive to the path L"\\EFI\\Boot\\myLogs"<b/> - ```capmem save``` - But from tests it turned out that for large logs, e.g. 3000-5000 lines, it can take up to 30-60 seconds.
+<b>Let's assume that I want to save the log now on a USB flash drive to the path L"\\EFI\\Boot\\myLogs"</b> - ```capmem save``` - But from tests it turned out that for large logs, e.g. 3000-5000 lines, it can take up to 30-60 seconds.
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/images/1762021891951.jpg?raw=true)
 
