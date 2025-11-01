@@ -1,10 +1,10 @@
 I will skip the long description this time. I'll just show how it works on images, what I changed in these demos.
 <br /><br />
-<b>1. Minimalist Shell FIXED AND IMPROVED.</b>
+<b>1. Minimalist Shell FIXED AND IMPROVED.</b> - I don't need to take photos anymore. Currently, the repo is over ~600MB - mostly raw photos. This gives the ability to collect logs and save them to a USB flash drive.
 <br /><br />
 https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes
 <br /><br />
-<b>2. Simple text editor for logs ( read only )</b>
+<b>2. Simple text editor for logs ( read only )</b> - In order to not exit from shell for reading logs, but read them in this mode, in shell mode.
 <br /><br />
 https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo2%20-%20log%20reader
 <br /><br />
