@@ -77,3 +77,13 @@ In editor mode, you can see how many pages there are, you can scroll the buffer 
 > [!NOTE]
 > This file contains a lot of code that isn't compiled. Compile it as is. There's also a macro in line 28, but don't include it. Compile this code as is to get the exact same .efi file I posted here. It needs to be checked and rewritten. I'm posting it as is. https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/HelloWorld.c#L28 - because I had to debug a bit but I didn't want to lose the code that was at the begining etc etc. I've added a macro, and it simply compiles whatever is correct in this code. So, when you read this code, remember that if there's an #else and the __FIRST_WORKING_VERSION__ macro is commented out, the second part of this compilation condition is executed. In short, compile as it currently is in the source code.
 
+<h3>Running on Vritual Box - few commands example</h3>
+
+Before entering this GOP demo (loadimg helloworld.efi), I turn on ```capmem start 5000 512``` so that I could save the log later. This is an example of it collecting logs all the time.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/images/virtual_bxox1.png?raw=true)
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/images/virtual_bxox2.png?raw=true)
+
+it works the same on QEMU too.
+
