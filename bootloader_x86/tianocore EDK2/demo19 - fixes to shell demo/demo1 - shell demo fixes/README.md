@@ -87,3 +87,35 @@ Before entering this GOP demo (loadimg helloworld.efi), I turn on ```capmem star
 
 it works the same on QEMU too.
 
+<h3>Transparent effect demo</h3>
+
+There is a list of parameters for the GOP command. These are further expanded, e.g. ```gop fontbg transparent``` disables background coloring under the font. ```fontfg``` is supposed to change the color of the font itself
+<br /><br />
+Virtual Box
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/images/virtual_box3.png?raw=true)
+
+QEMU
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/images/qemu%20-%20cant%20detect%20mouse%20usb%20device.png?raw=true)
+
+REAL HW
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/images/1762039321366.jpg?raw=true)
+
+<h3>SIMPLE POINTER on real hw</h3>
+
+the command ```gop pointer_mode device``` detects 2 handlers. You can see below that some kind of log appears, a few lines, and this is after pressing the left or right mouse button and moving it
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/images/1762039321340.jpg?raw=true)
+
+```gop pointer_mode on``` turns on the pointer and draws a cursor on the screen. You can move it around by holding down a key and moving the mouse.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/images/1762039321290.jpg?raw=true)
+
+Save the log (capmem was on )
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/images/1762039321277.jpg?raw=true)
+
+link to log : https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/log-20251102-002033-0001.txt
+
