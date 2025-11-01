@@ -4,6 +4,10 @@ Ok, you can see pictures of this in "demo1 - shell demo fixes". This is a simple
 <br /><br />
 This isn't a text editor. It just reads the logs as shown in the images, and you can scroll the buffer up and down with the PAGE UP and PAGE DOWN keys. This allows you to avoid using the serial port, etc., and just collect the logs and read them immediately.
 
+<h3>How to use</h3>
+1. Page Up / Page Down keys to move up and down
+2. "q" key to exit program
+
 <h3>How to run</h3>
 1. Just put it in /EFI/Boot/myApps/<br />
 2. So the command "listapps" sees this in folder<br />
