@@ -1,6 +1,10 @@
 > [!WARNING]
 > If you want to test, do it in QEMU / VirtualBox. Here are images from my ASUS, but I do it at my own risk.
 
+> [!IMPORTANT]
+> Please read note at the bottom of the page
+
+
 <h3>File description</h3>
 
 ```HelloWorld.c``` - https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/HelloWorld.c - source code
@@ -69,3 +73,7 @@ Program is waiting for the index to be entered
 In editor mode, you can see how many pages there are, you can scroll the buffer up/down with the PAGE UP/PAGE DOWN keys (without shift). Exit with the letter "q".
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/images/1762021891838.jpg?raw=true)
+
+> [!NOTE]
+> This file contains a lot of code that isn't compiled. Compile it as is. There's also a macro in line 28, but don't include it. Compile this code as is to get the exact same .efi file I posted here. It needs to be checked and rewritten. I'm posting it as is. https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/HelloWorld.c#L28
+
