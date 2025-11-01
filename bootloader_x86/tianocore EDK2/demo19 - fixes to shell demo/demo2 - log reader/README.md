@@ -7,7 +7,7 @@ This isn't a text editor. It just reads the logs as shown in the images, and you
 <h3>How to run</h3>
 1. Just put it in /EFI/Boot/myApps/<br />
 2. So the command "listapps" sees this in folder<br />
-3. Then loading via "loading editor.efi"<br />
+3. Then loading via "loadimg editor.efi"<br />
 4. Program lists the logs and waits for the index to be entered<br />
 5. Press enter based on the information in the terminal and enter to log reader
 <br /><br />
