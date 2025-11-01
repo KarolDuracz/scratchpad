@@ -21,7 +21,7 @@ Every demo from 1-19 (up to now) is built on top of HelloWorld.c https://github.
 // main edk2 folder, go here first
 cd edk2
 
-// setup environemnt - read guide for edk2 installation and configuration which I wrote here
+// setup environment - read guide for edk2 installation and configuration which I wrote here
 edksetup.bat
 
 // compile via .inf just like that
