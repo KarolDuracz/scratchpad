@@ -5,6 +5,12 @@ This demo isn't configured with the demo shell. It's just for playing with GOP a
 <br /><br />
 Files are loaded (HARD CODE) from the path - #define MYIMAGES_REL_PATH L"\\EFI\\Boot\\myPics"
 
+<h3>How to run</h3>
+
+1. put it in the /EFI/Boot/myApps/ folder
+2. load the demo with the shell command "LAODIMG", in this case it will be helloworld.efi, i.e. ```loadimg helloworld.efi```
+3. And then follow the command examples below
+
 <h3>Example commands</h3>
 
 https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo3%20-%20gop%20fun/HelloWorld.c#L992
