@@ -1,6 +1,15 @@
 > [!WARNING]
 > If you want to test, do it in QEMU / VirtualBox. Here are images from my ASUS, but I do it at my own risk.
 
+<h3>File description</h3>
+
+```HelloWorld.c``` - https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/HelloWorld.c - source code
+
+```HelloWorld.inf``` - https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/HelloWorld.inf - inf file for this demo
+
+```bootx64.efi``` - https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/bootx64.efi - Compiled X64 demo shell with these patches from this source code that you put into /EFI/Boot/ - you can change name of file if you want.
+
+```log-20251101-192622-0001.txt``` - https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/log-20251101-192622-0001.txt - log generated on real hw on usb flash driver to \EFI\Boot\myLogs\
 
 <h3>How to use (example) - capmem command</h3>
 
