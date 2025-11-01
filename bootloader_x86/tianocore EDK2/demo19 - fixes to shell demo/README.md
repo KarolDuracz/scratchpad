@@ -8,7 +8,7 @@ https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20E
 <br /><br />
 https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo2%20-%20log%20reader
 <br /><br />
-<b>3. GOP fun - playing with custom fonts and image loading, simple pointer protocol, etc.</b>
+<b>3. GOP fun - playing with custom fonts and image loading, simple pointer protocol, etc.</b> - This is not integrated with this demo shell. It runs as "loadimg helloworld.efi" from this shell only. This is just to show some of the possibilities offered by GOP and the default protocol. Even at 1024x768 resolution, you can see that these images look quite good. Simply to play with it more in free time. But GUI isn't what I want to focus on here.
 <br /><br />
 https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo3%20-%20gop%20fun
 <br /><br /><br />
