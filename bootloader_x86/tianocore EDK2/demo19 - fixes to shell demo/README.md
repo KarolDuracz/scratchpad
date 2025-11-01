@@ -13,7 +13,7 @@ https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20E
 https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo3%20-%20gop%20fun
 <br /><br /><br />
 > [!NOTE]
-> ...
+> How to build demos from source code - I build it on EmulatorPkg ( helloworld ) and copy helloworld.efi
 
 Every demo from 1-19 (up to now) is built on top of HelloWorld.c https://github.com/tianocore/edk2/tree/master/MdeModulePkg/Application/HelloWorld . So I build it with the commands. But you could also build it with EmulatorPkg and copy helloworld.efi ( in demo 18 there is a .bat script that does this ) 
 
