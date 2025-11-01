@@ -5,7 +5,7 @@ Ok, you can see pictures of this in "demo1 - shell demo fixes". This is a simple
 This isn't a text editor. It just reads the logs as shown in the images, and you can scroll the buffer up and down with the PAGE UP and PAGE DOWN keys. This allows you to avoid using the serial port, etc., and just collect the logs and read them immediately.
 
 <h3>How to use</h3>
-1. Page Up / Page Down keys to move up and down
+1. Page Up / Page Down keys to move up and down <br />
 2. "q" key to exit program
 
 <h3>How to run</h3>
