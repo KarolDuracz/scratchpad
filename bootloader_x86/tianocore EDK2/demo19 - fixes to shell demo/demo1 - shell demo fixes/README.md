@@ -125,7 +125,7 @@ I used demo0 and demo4 from https://github.com/KarolDuracz/scratchpad/tree/main/
 <br /><br />
 update 02-11-2025 - 11:00 - LOG from real hw : https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/log-20251102-104501-0001.txt
 <br /><br />
-short listing by line
+short listing by line -- log doesn't show it but command to run capmem was ```capmem start 10000 512```
 
 ```
 [3] capmem: active=1 buffer_allocated=1 lines_stored=2 capacity=10000 chars_per_line=512
