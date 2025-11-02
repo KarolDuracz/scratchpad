@@ -121,7 +121,7 @@ link to log : https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86
 
 <h3>Example of using capmem on real hw for a longer log from several demos</h3>
 
-I used demo0 and demo4 from https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo18%20-%20Summary%20of%20what%20I%20have%20now/part2 - there was supposed to be a demo1 but something went wrong when I quickly copied it. If you go back to demo #18 and look at the photos, they have exactly the same values ​​as you see in this log now.
+I used demo0 and demo4 from https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo18%20-%20Summary%20of%20what%20I%20have%20now/part2 - there was supposed to be a demo1 but something went wrong when I quickly copied it. If you go back to demo #18 and look at the photos, they have exactly the same values ​​as you see in this log now. I just copied the .c and .inf files, compiled them, copied, to produce the logs.
 <br /><br />
 update 02-11-2025 - 11:00 - LOG from real hw : https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/log-20251102-104501-0001.txt
 <br /><br />
