@@ -95,6 +95,10 @@ Virtual Box
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/images/virtual_box3.png?raw=true)
 
+This way, you can expand the font list and manipulate them, positioning colors, etc. (but as I wrote on the first page, I'm not so interested in GUI now, I'm more interested in going down to low-level hardware interacting) - But to show what can be achieved with this demo is really cool.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/images/virtual_box4.png?raw=true)
+
 QEMU
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/images/qemu%20-%20cant%20detect%20mouse%20usb%20device.png?raw=true)
