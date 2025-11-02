@@ -139,3 +139,9 @@ short listing by line
 ```
 
 The file isn't large, less than 1000 lines, 72 KB. It took a ~10-15 seconds to save. But for sequences of such short diagnostic tests / demos it helps when the log starts getting longer. 
+<br /><br />
+this wild text in logs is because it was BACKSPACE because I'm making a lot of typo mistakes now
+
+```
+list    losad     loadimg usb1.efi
+```
