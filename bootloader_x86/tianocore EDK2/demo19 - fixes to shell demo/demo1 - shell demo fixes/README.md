@@ -119,3 +119,23 @@ Save the log (capmem was on )
 
 link to log : https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/log-20251102-002033-0001.txt
 
+<h3>Example of using capmem on real hw for a longer log from several demos</h3>
+
+I used demo0 and demo4 from https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2/demo18%20-%20Summary%20of%20what%20I%20have%20now/part2 - there was supposed to be a demo1 but something went wrong when I quickly copied it. If you go back to demo #18 and look at the photos, they have exactly the same values ​​as you see in this log now.
+<br /><br />
+update 02-11-2025 - 11:00 - LOG from real hw : https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo19%20-%20fixes%20to%20shell%20demo/demo1%20-%20shell%20demo%20fixes/log-20251102-104501-0001.txt
+<br /><br />
+short listing by line
+
+```
+[3] capmem: active=1 buffer_allocated=1 lines_stored=2 capacity=10000 chars_per_line=512
+[5] gop set: mode changed to 0
+[36] loadimg usb0.efi
+[78] loadimg usb1.efi // It was supposed to be demo1 but it copied demo0
+[120] loadimg usb4.efi
+[830] on those lines you will see what I've uploaded to demo #18 in these noise images. The same logs
+[916] capmem status
+[918] capmem save
+```
+
+The file isn't large, less than 1000 lines, 72 KB. It took a ~10-15 seconds to save. But for sequences of such short diagnostic tests / demos it helps when the log starts getting longer. 
