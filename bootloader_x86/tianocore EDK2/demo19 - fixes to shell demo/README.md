@@ -33,7 +33,7 @@ build -p MdeModulePkg/MdeModulePkg.dsc -m MdeModulePkg/Application/HelloWorld/He
 
 <h2>Some information for summary of demos 0 - 19 after 1 year of learning it</h2>
 
-When you go to main folder here -> https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2 and you will start doing the same thing as I started a year ago. The first thing you need to pay attention to, I'm still use ```git checkout tags/edk2-stable202411``` version. On Win 8.1. 
+When you go to main folder here -> https://github.com/KarolDuracz/scratchpad/tree/main/bootloader_x86/tianocore%20EDK2 and you will start doing the same thing as I started a year ago. The first thing you need to pay attention to ( notice ), I'm still use ```git checkout tags/edk2-stable202411``` version. On Win 8.1. 
 
 ```
 git clone https://github.com/tianocore/edk2.git
