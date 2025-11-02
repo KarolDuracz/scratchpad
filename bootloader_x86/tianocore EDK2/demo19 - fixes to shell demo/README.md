@@ -43,7 +43,7 @@ git tag
 git checkout tags/edk2-stable202411
 ```
 
-Now, current stable version is diffrent - current state for 02-11-2025.
+Now, current stable version is different - current state for 02-11-2025.
 
 ```
 https://github.com/tianocore/edk2/releases/tag/edk2-stable202508
