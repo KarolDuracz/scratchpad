@@ -133,3 +133,6 @@ TOOL_CHAIN_TAG        = VS2019
 BUILD_RULE_CONF = Conf/build_rule.txt
 ```
 
+<h3>Links</h3>
+
+I will refer to this @Kostr's repo again - https://github.com/Kostr/UEFI-Lessons/tree/master - If someone is just starting wih uefi, I recommend it. Lots of helpful demos and examples. If you read my repo, you'll find links to other similar repos I've found. But Kostr's repo is definitely a good place to start delving deeper into the topic. and expanding as I showed in ```demo10 - hello world extended``` . BUT DO NOT DO THIS ON REAL HW. Only on qemu / virtual box. I also have less than a year of experience, but this information is for complete beginners who are also interested in this topic and want to learn.
