@@ -8,7 +8,7 @@ Files are loaded (HARD CODE) from the path - #define MYIMAGES_REL_PATH L"\\EFI\\
 <h3>How to run</h3>
 
 1. put it in the /EFI/Boot/myApps/ folder
-2. load the demo with the shell command "LAODIMG", in this case it will be helloworld.efi, i.e. ```loadimg helloworld.efi```
+2. load the demo with the shell command "LOADIMG", in this case it will be helloworld.efi, i.e. ```loadimg helloworld.efi```
 3. And then follow the command examples below
 
 <h3>Example commands</h3>
