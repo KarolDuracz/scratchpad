@@ -136,3 +136,11 @@ BUILD_RULE_CONF = Conf/build_rule.txt
 <h3>Links</h3>
 
 I will refer to this @Kostr's repo again - https://github.com/Kostr/UEFI-Lessons/tree/master - If someone is just starting wih uefi, I recommend it. Lots of helpful demos and examples. If you read my repo, you'll find links to other similar repos I've found. But Kostr's repo is definitely a good place to start delving deeper into the topic. and expanding as I showed in ```demo10 - hello world extended``` . BUT DO NOT DO THIS ON REAL HW. Only on qemu / virtual box / EDK2 EmulatorPkg. I also have less than a year of experience, but this information is for complete beginners who are also interested in this topic and want to learn. https://gitee.com/luobing4365/uefi-explorer there is also an interesting and motivating repo here to see how others deal with this topic.
+
+> [!IMPORTANT]
+> https://tianocore-docs.github.io/edk2-UefiDriverWritersGuide/draft/edk2-UefiDriverWritersGuide-draft.pdf
+> 
+> DRAFT FOR REVIEW [04/30/2025 11:40:07]
+> 
+> This is a very useful document. Everything I've shown here, is presented in sequence step by step in this guide. Lots of tips and examples. Everything starts from the beginning, proceeding step by step. Using these small demo shells and loading your own demos, you can test these UEFI EDK2 mechanisms. And that's what it's really for. The current state is primarily for that purpose. Judging by the date of the document [04/30/2025], is fresh, it's very up-to-date. It organizes certain information, so you don't get lost and can test and write specific demos that test these specific mechanisms.
+
