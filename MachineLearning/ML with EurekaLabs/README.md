@@ -1,3 +1,10 @@
+
+Update 03-11-2025 - Just a few days ago, when I checked, these four repositories were public. Today I looked, disappeared. I don't know why this decision was made. But the links here will probably no longer work. Unless they are restored.
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/MachineLearning/ML%20with%20EurekaLabs/31%20-%2003-11-2025%20-%20eureka%20labs%20info.png?raw=true)
+
+<hr>
+
 <h2>Update 02-06-2025 - I do not recommend reading everything. Most of it is my personal notes, thoughts. FOR THE VISITOR THIS HAS NO POSITIVE VALUE. IT IS ONLY WORTH START WITH THIS POST.</h2>
 1. My notes and a short analysis of Andrej's first MLP videos https://github.com/KarolDuracz/scratchpad/tree/main/MachineLearning/ML%20with%20EurekaLabs/04-05-2025%20-%20EurekaLabs%20practice%20-%20MLP%20vs%20manual%20counting <br />
 2. The first 2 paragraphs are a continuation of the 04-05-2025 demo, the rest is a continuation of my notes and plans. Nothing important beyond the first 2 paragraphs on "The EM Algorithm Clearly Explained (Expectation-Maximization Algorithm" https://github.com/KarolDuracz/scratchpad/tree/main/MachineLearning/ML%20with%20EurekaLabs/11-05-2025%20-%20EurekaLabs%20practice%20-%20MNIST
