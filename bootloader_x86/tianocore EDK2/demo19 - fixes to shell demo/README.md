@@ -143,4 +143,6 @@ I will refer to this @Kostr's repo again - https://github.com/Kostr/UEFI-Lessons
 > DRAFT FOR REVIEW [04/30/2025 11:40:07]
 > 
 > This is a very useful document. Everything I've shown here, is presented in sequence step by step in this guide. Lots of tips and examples. Everything starts from the beginning, proceeding step by step. Using these small demo shells and loading your own demos, you can test these UEFI EDK2 mechanisms. And that's what it's really for. The current state is primarily for that purpose. Judging by the date of the document [04/30/2025], is fresh, it's very up-to-date. It organizes certain information, so you don't get lost and can test and write specific demos that test these specific mechanisms.
+>
+> This document is really well written.
 
