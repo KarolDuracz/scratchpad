@@ -54,7 +54,7 @@ qemu-system-x86_64.exe ^
  -nographic
 ```
 
-4. QEMU waits for PUTTY to open on port 4444<br />
+4. QEMU waits for PUTTY to open on port 4444 - ( <b>look at the picture below, there is a picture of how I run putty</b> )<br />
 
 ```
 Then open PuTTY and connect to 127.0.0.1:4444 (connection type: Raw) to see the guest serial console in real time. The file ovmf-debugcon.log will contain the very early DEBUG() output routed via IO 0x402.
