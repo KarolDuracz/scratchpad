@@ -3,7 +3,7 @@ This is for information only. I think I'll do some digging in QEMU in the coming
 
 <h3>Build OVMF</h3>
 
-DO NOT BUILD IN THIS WAY - SOURCE_DEBUG_ENABLE=TRUE - This didn't work for me. 
+DO NOT BUILD IN THIS WAY - SOURCE_DEBUG_ENABLE=TRUE - This didn't work for me. DO NOT USE SOURCE_DEBUG_ENABLE=TRUE ( on Windows only ? TODO )
 
 ```
 # from edk2 root
