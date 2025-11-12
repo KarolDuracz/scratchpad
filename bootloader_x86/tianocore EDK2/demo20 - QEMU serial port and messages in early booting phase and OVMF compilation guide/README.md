@@ -55,6 +55,11 @@ qemu-system-x86_64.exe ^
 ```
 
 4. QEMU waits for PUTTY to open on port 4444<br />
+
+```
+Then open PuTTY and connect to 127.0.0.1:4444 (connection type: Raw) to see the guest serial console in real time. The file ovmf-debugcon.log will contain the very early DEBUG() output routed via IO 0x402.
+```
+
 5. Then second instance , run second PUTTY on port 4445 ( you see this on picture - on the right is 4444 for logs for serial communication )<br />
 6. After going through all the logs it should enter SHELL. And as you can see, it responds to commands such as ```pci``` on the second picture.<br />
 
