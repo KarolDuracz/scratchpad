@@ -13,7 +13,7 @@ DO NOT BUILD IN THIS WAY - SOURCE_DEBUG_ENABLE=TRUE - This didn't work for me. D
 ```
 # from edk2 root
 make -C BaseTools
-. edksetup.sh
+. edksetup.sh / edksetup.bat
 
 # produce a DEBUG OVMF fd that sends debug to serial
 OvmfPkg/build.sh -a X64 -b DEBUG -n $(nproc) -D DEBUG_ON_SERIAL_PORT -D SOURCE_DEBUG_ENABLE
@@ -31,7 +31,7 @@ SecCoreStartupWithStack(0xFFFCC000, 0x820000) ASSERT [SecMain] ...\MdePkg\Librar
 And files ```OVMF_CODE.fd``` and ```OVMF_VARS.fd``` that I put here are compiled from these commands
 
 ```
-. edksetup.sh
+. edksetup.bat
 build -p OvmfPkg/OvmfPkgX64.dsc -a X64 -b DEBUG \
   -D DEBUG_ON_SERIAL_PORT=TRUE \
   -D SOURCE_DEBUG_ENABLE=FALSE
