@@ -185,3 +185,30 @@ This demo requires further expansion and clarification, as outlined above. For n
 <br /><br />
 I have a demo made in python that executes the program from OVMF ResetVcetor to the SEC phase. But I'm not posting it yet. This executes the program using the https://pypi.org/project/unicorn/ library. You know the state of the registers, you know how the jumps are executed. You don't have to GUESS the program execution, it just goes through the entire CPU setup phase between the reset vector and the Sec. And the output here is https://github.com/tianocore/edk2/blob/master/OvmfPkg/ResetVector/Main.asm#L134, i.e.  ``` jmp rsi ``` in line 134  and, as the description shows, 
  ``` Jump to the 64-bit SEC entry point ``` . And it shows well in the registers. But I need to refine it. This helps better understand the sequence between RESET VECTOR and SEC. But GDB is also good and step into
+<br /><br />
+Okay, I'm posting this demo that automatically performs the phase between RESET VECTOR and SEC. But it might work incorrectly. It probably does. But it helps to understand the sequence to some extent.
+<br /><br />
+
+``` vm9.py``` file - https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo20%20-%20QEMU%20serial%20port%20and%20messages%20in%20early%20booting%20phase%20and%20OVMF%20compilation%20guide/vm9.py
+<br /><br />
+You need to install several libraries in pip (unfortunately I won't tell you which ones I had to install, but definitely pip install unicorn, also tkinter etc. Look at the header for the imports and look for how to install a given library one by one)
+<br /><br />
+Run ( OVMF_CODE.fd )
+
+```
+python vm9.py OVMF_CODE.fd
+```
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo20%20-%20QEMU%20serial%20port%20and%20messages%20in%20early%20booting%20phase%20and%20OVMF%20compilation%20guide/debug%20cygwin/reverse%201.png?raw=true)
+
+The first instructions are interesting. <br />
+1. It looks like it's accessing RESET VECOR here: https://github.com/tianocore/edk2/blob/master/OvmfPkg/ResetVector/Ia16/ResetVectorVtf0.asm#L210 - line 210
+2. Then jump to Main32 after few instructions looking at execution flow. Because look at EIP/RIP. It skipped the JE test and moved on to the next instruction without jumping. So it didn't enter .Real
+3. Main32 is in https://github.com/tianocore/edk2/blob/master/OvmfPkg/ResetVector/Main.asm#L50 - Main.asm, line 50
+4. First instruction from Main32 is  ```OneTimeCall ReloadFlat32``` so next jump
+5. RealoadFlat32 is in line 130, IntelTdx.asm https://github.com/tianocore/edk2/blob/master/OvmfPkg/ResetVector/Ia32/IntelTdx.asm#L130
+6. And you can still see CLI, mov eax... and lgdt [eax] there
+7. This is what the analysis looks like initially (THIS IS HOW IT WORKS IN THE SIMPLE DEMO TEN vm9.py)
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo20%20-%20QEMU%20serial%20port%20and%20messages%20in%20early%20booting%20phase%20and%20OVMF%20compilation%20guide/debug%20cygwin/reverse%202.png?raw=true)
+
