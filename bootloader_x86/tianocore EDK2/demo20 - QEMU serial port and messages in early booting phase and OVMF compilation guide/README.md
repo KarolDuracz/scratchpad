@@ -207,8 +207,8 @@ The first instructions are interesting. <br />
 3. Main32 is in https://github.com/tianocore/edk2/blob/master/OvmfPkg/ResetVector/Main.asm#L50 - Main.asm, line 50
 4. First instruction from Main32 is  ```OneTimeCall ReloadFlat32``` so next jump
 5. RealoadFlat32 is in line 130, IntelTdx.asm https://github.com/tianocore/edk2/blob/master/OvmfPkg/ResetVector/Ia32/IntelTdx.asm#L130
-6. And you can still see CLI, mov eax... and lgdt [eax] there
-7. This is what the analysis looks like initially (THIS IS HOW IT WORKS IN THE SIMPLE DEMO TEN vm9.py)
+6. And you can see CLI, mov eax... and lgdt [eax] there
+7. This is what the analysis looks like initially (THIS IS HOW IT WORKS IN THE SIMPLE DEMO vm9.py)
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo20%20-%20QEMU%20serial%20port%20and%20messages%20in%20early%20booting%20phase%20and%20OVMF%20compilation%20guide/debug%20cygwin/reverse%202.png?raw=true)
 
