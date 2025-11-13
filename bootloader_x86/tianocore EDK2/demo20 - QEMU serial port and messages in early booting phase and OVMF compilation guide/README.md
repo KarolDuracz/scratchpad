@@ -164,7 +164,7 @@ First, checking the first state of the registers, theoretically this is the stat
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo20%20-%20QEMU%20serial%20port%20and%20messages%20in%20early%20booting%20phase%20and%20OVMF%20compilation%20guide/debug%20cygwin/5.png?raw=true)
 
-Using the ```si``` (step into) command, which is one instruction forward, I get this register state after executing the first instruction. It looks like an early entry to RESET VECTOR and the first instruction ``mov eax, cr0``` 
+Using the ```si``` (step into) command, which is one instruction forward, I get this register state after executing the first instruction. It looks like an early entry to RESET VECTOR and the first instruction ```mov eax, cr0``` 
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo20%20-%20QEMU%20serial%20port%20and%20messages%20in%20early%20booting%20phase%20and%20OVMF%20compilation%20guide/debug%20cygwin/6.png?raw=true)
 
@@ -183,5 +183,5 @@ Ok, continue to enter shell
 <h3>Summary</h3>
 This demo requires further expansion and clarification, as outlined above. For now, I just trying to find a configuration that allows for debugging at a very early stage of QEMU and OVMF boot.
 <br /><br />
-I have a demo made in python that executes the program from OVMF ResetVcetor to the SEC phase. But I'm not posting it yet. This executes the program using the https://pypi.org/project/unicorn/ library. You know the state of the registers, you know how the jumps are executed. You don't have to GUESS the program execution, it just goes through the entire CPU setup phase between the reset vector and the Sec. And the output here is https://github.com/tianocore/edk2/blob/master/OvmfPkg/ResetVector/Main.asm#L134, i.e.  ``` jmp rsi ```  and, as the description shows, 
+I have a demo made in python that executes the program from OVMF ResetVcetor to the SEC phase. But I'm not posting it yet. This executes the program using the https://pypi.org/project/unicorn/ library. You know the state of the registers, you know how the jumps are executed. You don't have to GUESS the program execution, it just goes through the entire CPU setup phase between the reset vector and the Sec. And the output here is https://github.com/tianocore/edk2/blob/master/OvmfPkg/ResetVector/Main.asm#L134, i.e.  ``` jmp rsi ``` in line 134  and, as the description shows, 
  ``` Jump to the 64-bit SEC entry point ``` . And it shows well in the registers. But I need to refine it. This helps better understand the sequence between RESET VECTOR and SEC. But GDB is also good and step into
