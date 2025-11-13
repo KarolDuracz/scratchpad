@@ -164,7 +164,7 @@ First, checking the first state of the registers, theoretically this is the stat
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo20%20-%20QEMU%20serial%20port%20and%20messages%20in%20early%20booting%20phase%20and%20OVMF%20compilation%20guide/debug%20cygwin/5.png?raw=true)
 
-Using the ``si``` (step into) command, which is one instruction forward, I get this register state. It looks like an early entry to RESET VECTOR and the first instruction ``mov eax, cr0``` 
+Using the ```si``` (step into) command, which is one instruction forward, I get this register state after executing the first instruction. It looks like an early entry to RESET VECTOR and the first instruction ``mov eax, cr0``` 
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo20%20-%20QEMU%20serial%20port%20and%20messages%20in%20early%20booting%20phase%20and%20OVMF%20compilation%20guide/debug%20cygwin/6.png?raw=true)
 
@@ -179,3 +179,6 @@ I'll go back to what I did at the beginning for a moment. Before starting, I che
 Ok, continue to enter shell
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo20%20-%20QEMU%20serial%20port%20and%20messages%20in%20early%20booting%20phase%20and%20OVMF%20compilation%20guide/debug%20cygwin/9%20-%20continue.png?raw=true)
+
+<h3>Summary</h3>
+This demo requires further expansion and clarification, as outlined above. For now, I just trying to find a configuration that allows for debugging at a very early stage of QEMU and OVMF boot.
