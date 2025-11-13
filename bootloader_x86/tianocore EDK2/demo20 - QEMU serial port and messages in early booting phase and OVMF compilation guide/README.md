@@ -1,7 +1,10 @@
-update history<br />
-: #1 - 12-11-2025 - first post<br />
-: #2 - 13-11-2025 - add debug cygwin info<br />
-: #3 - TODO - add information to PcdLib.c(95) message, info chardev, gdb etc .<br />
+```
+update history
+: #1 - 12-11-2025 - first post
+: #2 - 13-11-2025 - add debug cygwin info
+: #3 - TODO - add information to PcdLib.c(95) message, info chardev, gdb etc .
+```
+
 
 > [!NOTE]
 > This is not "clean" version. I changed the pci files a bit https://github.com/tianocore/edk2/blob/master/ShellPkg/Library/UefiShellDebug1CommandsLib/Pci.c a few lines. So, similar to what you can see in the pictures here. In some time I will post "clean" versions from the base code. Now I did it quickly. This is only simple guide to setup serial communication in QEMU and compile OVMF project to use it.
