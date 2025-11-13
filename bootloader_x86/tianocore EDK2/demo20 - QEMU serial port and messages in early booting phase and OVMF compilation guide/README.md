@@ -212,3 +212,32 @@ The first instructions are interesting. <br />
 
 ![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo20%20-%20QEMU%20serial%20port%20and%20messages%20in%20early%20booting%20phase%20and%20OVMF%20compilation%20guide/debug%20cygwin/reverse%202.png?raw=true)
 
+Ok, this GDB can't do ```disassemble``` here, so it won't recognize the instructions with the command x/i $pc etc.
+<br /><br />
+It's nothing. This is not necessary in this level of debugging. All you need to do is track the EIP/PC instruction counter, i.e., where it's going. It looks like it's executing REAL 16 code, meaning it doesn't go into Main32, but jumps to .Real after FFFFFFF5, meaning it's executing 16-bit code (Qemu is configured to start from 16 bits, etc.).
+<br /><br />
+So, it's jump to EarlyBspInitReal16 - https://github.com/tianocore/edk2/blob/master/UefiCpuPkg/ResetVector/Vtf0/Ia16/Init16.asm#L16
+<br />
+And inside there is a ``` mov     di, 'BP'``` instruction. And after execution what we expect is to move the 'BP' bytes to the DI register. Because ord('B') and ord('P') is 66 and 80, in hexa is 0x42, 0x50. CORRECT!
+
+```
+(gdb) si
+0x000000000000ff13 in ?? ()
+1: x/i $pc
+=> 0xff13:      add    %al,(%rax)
+(gdb) i r
+rax            0x60000010          1610612752
+rbx            0x0                 0
+rcx            0x0                 0
+rdx            0x60fb1             397233
+rsi            0x0                 0
+rdi            0x5042              20546          // di register 16 bit -  mov     di, 'BP'
+rbp            0x0                 0x0
+rsp            0x0                 0x0
+```
+
+So, qemu executes 16 bit part.
+<br />
+
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo20%20-%20QEMU%20serial%20port%20and%20messages%20in%20early%20booting%20phase%20and%20OVMF%20compilation%20guide/debug%20cygwin/qemu%20run%20from%20vector%20reset.png?raw=true)
+
