@@ -1,6 +1,6 @@
 ```
 update list:
-16-11-2025 - If you have any errors, please look at the bottom of the page.
+16-11-2025 - If you have any errors.
 Update yt-dlp to the latest stable/nightly (very important):
 
 CLI: yt-dlp -U or pip: python -m pip install -U "yt-dlp[all]". Many issues are resolved by an update. 
@@ -12,8 +12,10 @@ GitHub
 In simple words. This command fixed the error problem. Last time I used version from 2024.12.13, this command uninstalled that older version and changed it to 2025.11.12.
 
 ```
-python -m pip install -U "yt-dlp[all]
+python -m pip install -U "yt-dlp[all]"
 ```
+
+Great project btw.
 
 <hr>
 
