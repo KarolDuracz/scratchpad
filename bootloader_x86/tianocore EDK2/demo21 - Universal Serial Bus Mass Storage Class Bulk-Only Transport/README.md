@@ -21,7 +21,7 @@ https://www.beyondlogic.org/usbnutshell/usb5.shtml
 <br /><br />
 Universal Serial Bus
 Specification Revision 2.0
-April 27, 2000 - <b> Here'a a document that I use for this demo. For example page 448 - 11.24.2 Class-specific Requests </b> - I used this to read values ​​for queries etc.
+April 27, 2000 - <b> Here'a a document that I use for this demo. For example page 278 - 9.4 Standard Device Requests ( here on these few pages around 278 there is a description of the queries ) and 448 - 11.24.2 Class-specific Requests </b> - I used this to read values ​​for queries etc.
 https://wcours.gel.ulaval.ca/GIF1001/old/h20/docs/USB_20.pdf
 <br /><br />
 XHCI description. Ok, this is new standard than USB 2.0 but nice document to read.
