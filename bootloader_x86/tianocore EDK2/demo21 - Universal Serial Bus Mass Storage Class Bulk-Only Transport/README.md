@@ -1,6 +1,6 @@
 This is a long way from what I wanted to do. But I haven't done anything lately, so it's better than nothing, to get back to learning. USB in general interests me a lot. In the previous demo, I was "going in circle" because I didn't have enough knowledge to delve into the topic enough to understand what it was really about. 
 What about the protocols like https://uefi.org/specs/UEFI/2.10/17_Protocols_USB_Support.html#efi-usb-io-protocol-usbgetdevicedescriptor
-So I kept trying to enumerate ports on USB Host Controllers and I couldn't reach the enpoints.
+So I kept trying to enumerate ports on USB Host Controllers and I couldn't reach the endpoints.
 <br /><br />
 Then I start looking for a posts and better specifications like those:
 
