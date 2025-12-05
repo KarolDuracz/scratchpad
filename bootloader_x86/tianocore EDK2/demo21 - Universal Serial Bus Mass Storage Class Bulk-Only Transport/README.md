@@ -1,4 +1,4 @@
-This is a long way from what I wanted to do. But I haven't done anything lately, so it's better than nothing, to get back to learning. USB in general interests me a lot. In the previous demo, I was "going in circles" because I didn't have enough knowledge to delve into the topic enough to understand what it was really about. 
+This is a long way from what I wanted to do. But I haven't done anything lately, so it's better than nothing, to get back to learning. USB in general interests me a lot. In the previous demo, I was "going in circle" because I didn't have enough knowledge to delve into the topic enough to understand what it was really about. 
 What about the protocols like https://uefi.org/specs/UEFI/2.10/17_Protocols_USB_Support.html#efi-usb-io-protocol-usbgetdevicedescriptor
 So I kept trying to enumerate ports on USB Host Controllers and I couldn't reach the enpoints.
 <br /><br />
@@ -10,7 +10,7 @@ Beautiful images from a USB packet analyzer and a great post that takes you to a
 These colorful images with blocks of subsequent packets tell a lot about the communication method and what certain packets look like, like "setup," etc. This is the first one
 https://www.perytech.com/USB-Enumeration.htm
 <br /><br />
-nice pictures of IN/OUT transmission
+Nice pictures of IN/OUT transmission ( transactions )
 https://bits4device.wordpress.com/2011/10/14/usb-protocol-device-framework/
 <br /><br />
 This is a more complex description and more details about the USB topology.
@@ -21,10 +21,10 @@ https://www.beyondlogic.org/usbnutshell/usb5.shtml
 <br /><br />
 Universal Serial Bus
 Specification Revision 2.0
-April 27, 2000
+April 27, 2000 - <b> Here'a a document that I use for this demo. For example page 448 - 11.24.2 Class-specific Requests </b> - I used this to read values ​​for queries etc.
 https://wcours.gel.ulaval.ca/GIF1001/old/h20/docs/USB_20.pdf
 <br /><br />
-XHCI description
+XHCI description. Ok, this is new standard than USB 2.0 but nice document to read.
 https://www.intel.com/content/dam/www/public/us/en/documents/technical-specifications/extensible-host-controler-interface-usb-xhci.pdf
 <br /><br />
 There is also information about it on the official Microsoft website
@@ -46,7 +46,7 @@ There's more, these are just a few places where I started looking for technical 
 
 <h3>Demo</h3>
 <br />
-Here is a demo that gives you an overview of what it's all about, for example MASS STORAGE class devices. Device from previous demos ( usb pendrive ) VID 0x058F PID 0x6387
+Here is a demo that gives an overview of what it's all about, for example MASS STORAGE class devices. Device from previous demos ( usb pendrive ) VID 0x058F PID 0x6387. But this is very basic demo. 
 <br /><br />
 The example mass-storage test only sends READ(10) for LBA 0 (one block) via the Bulk-Only Transport CBW/CSW sequence. This is read-only and should not change device contents.
 <br /><br />
