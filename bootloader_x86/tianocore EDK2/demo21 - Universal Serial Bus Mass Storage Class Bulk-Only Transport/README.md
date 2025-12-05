@@ -54,6 +54,8 @@ The test uses UsbBulkTransfer (UEFI API), which is the safest path. It prints th
 <br /><br />
 NOT MUCH, but it's better than nothing
 
+![dump](https://github.com/KarolDuracz/scratchpad/blob/main/bootloader_x86/tianocore%20EDK2/demo21%20-%20Universal%20Serial%20Bus%20Mass%20Storage%20Class%20Bulk-Only%20Transport/demo1%20-%20usb%20mass%20storage%20-%2004-12-2025.png?raw=true)
+
 <br /><br />
 
 ```
